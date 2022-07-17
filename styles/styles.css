@@ -31,11 +31,11 @@ body {
 .custom-text {
   font-family: 'Gordita';
   font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 25px;
   line-height: 20px;
   text-align: center;
-  color: #838996;
+  /* color: #838996; */
 }
 
 .caret {
@@ -124,10 +124,20 @@ li {
 
 .container-right {
   display: flex;
-  flex-flow: row wrap;
+  /* flex-flow: row wrap;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 }
+
+.custom-shadow {
+  /* box-shadow: 3px 3px 3px #DDE4ED;
+   */
+  box-shadow: inset -4px -4px 12px #FFFFFF, inset 4px 4px 12px #D1D9E6;
+}
+
+/* .grad-text-color {
+  color
+} */
 
 .width-90 {
   width: 100%;
@@ -239,12 +249,12 @@ li {
 
 .col-dau,
 .col-tx {
-  text-align: right;
+  /* text-align: right; */
   padding: 0 10px;
 }
 
 .col-dau {
-  width: 100px;
+  width: 128px;
 }
 
 .component-ranking-table-dau-head {
@@ -340,10 +350,11 @@ li {
 }
 
 .table-main {
+  min-width: 100%;
+  max-width: 100%;
   background: #EDF1F4;
   box-shadow: inset -8px -8px 20px #FFFFFF, inset 8px 8px 20px #D1D9E6;
   border-radius: 20px;
-  width: 100%;
   padding: 0px 15px;
   border-image-source: linear-gradient(270.45deg, #D8DBE3 0%, #FFFFFF 100.02%);
   background: linear-gradient(270.45deg, #D8DBE3 0%, #FFFFFF 100.02%), linear-gradient(0deg, #EDF1F4, #EDF1F4);
@@ -552,7 +563,7 @@ li {
 .col-tx,
 .col-vol,
 .col-rewards {
-  text-align: right;
+  /* text-align: right; */
 }
 
 .pct.is-negative {
@@ -862,6 +873,11 @@ li {
   background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
   border-radius: 500px;
 }
+
+.line-h {
+  line-height: 1.3rem;
+}
+
 
 .input-div {
   width: 800px;

@@ -1,10 +1,59 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from "next/router";
-import Header from './components/Header';
+import Moralis from "moralis";
+import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import Header from './components/header';
 import Tbody from './components/tbody';
+import { useMoralis } from 'react-moralis';
+
+
+
+const Filter = [
+  { name: 'Wade Cooper' },
+  { name: 'Arlene Mccoy' },
+]
+const Category = [
+  { name: 'Wade Cooper' },
+  { name: 'Arlene Mccoy' },
+]
+
 
 export default function Home() {
+  const { isInitialized } = useMoralis()
+
+  const [data, setData] = useState([]);
+  const [duration, setDuration] = useState("Daily");
+  const [filter, setFilter] = useState(Filter[0])
+  const [category, setCategory] = useState(Category[0])
+
+
+
+  useEffect(() => {
+    if (isInitialized) {
+      getAppList()
+    }
+
+    console.log(isInitialized)
+  }, [isInitialized]);
+
+  const getAppList = async () => {
+    const Dapps = Moralis.Object.extend("Dapps");
+    const query = new Moralis.Query(Dapps);
+    query.limit(1000);
+    const response = await query.find();
+    let result = JSON.parse(JSON.stringify(response));
+    setData(result);
+
+    // return (
+    //   <div onClick={() => router.push({ pathname: '/dApp' })}>
+    //     <Tbody />
+    //   </div>
+    // )
+  }
+
+
   const router = useRouter();
   return (
     <Fragment>
@@ -12,17 +61,121 @@ export default function Home() {
         <link href="http://fonts.cdnfonts.com/css/gordita" rel="stylesheet"></link>
       </Head>
       <div className="relative wrapper overflow-hidden">
-        <div className="max-width-1200 mx-auto">
-          <div className="relative z-10 pb-8 bg-transparent sm:pb-16">
-            <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
-              <Header />
+        <div className="w-full border-b-2 border-slate-300 py-2 mb-5">
+          <div className="container mx-auto">
+            <div className="relative z-10 bg-transparent">
+              <div className="relative">
+                <Header />
+              </div>
             </div>
           </div>
-          <div className="mb-2.5">
+        </div>
+
+        <div className="max-width-1200 mx-auto">
+
+          <div className="my-16">
             <div className="flex flex-row flex-wrap items-center justify-between table-top-wrapper" style={{ marginBottom: "10px" }}>
-              <h2 className="items-center ml-1 mb-0 custom-text">Total: 45 Apps</h2>
+              <h2 className="items-center ml-1 mb-0 custom-text text-dark">Explore Projects</h2>
+              <div>
+                <div className="flex items-center justify-center">
+                  <div className="inline-flex border-2 rounded-full border-white custom-shadow " role="group">
+                    <button
+                      type="button"
+                      onClick={() => setDuration("Daily")}
+                      className=
+                      {`rounded-full
+        px-6
+        py-2
+        font-medium
+        text-xs
+        leading-tight
+        uppercase
+        transition
+        duration-150
+        font-semibold
+        ease-in-out
+        text-base
+        text-gray-400
+         ${duration === "Daily" ? " border-2 custom-shadow grad-text-color text-violet-700" : ""}`}
+
+                    >
+                      <p className={` ${duration === "Daily" ? " link" : ""}`}>Daily</p>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDuration("Weekly")}
+                      className={`rounded-full
+      px-6
+      py-2
+      text-dark
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      hover:bg-black hover:bg-opacity-5
+      focus:outline-none focus:ring-0
+      transition
+      duration-150
+      font-semibold
+      ease-in-out
+      text-base
+      text-gray-400
+       ${duration === "Weekly" ? " border-2 custom-shadow grad-text-color" : ""}`}
+                    >
+                      <p className={` ${duration === "Weekly" ? " link" : ""}`}>Weekly</p>
+
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDuration("Monthly")}
+                      className={`rounded-full
+      px-6
+      py-2
+      text-dark
+      font-medium
+      text-xs
+      leading-tight
+      uppercase
+      hover:bg-black hover:bg-opacity-5
+      focus:outline-none focus:ring-0
+      transition
+      duration-150
+      font-semibold
+      ease-in-out
+      text-base
+      text-gray-400
+       ${duration === "Monthly" ? " border-2 custom-shadow grad-text-color" : ""}`}
+                    >
+                      <p className={` ${duration === "Monthly" ? " link" : ""}`}>Monthly</p>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setDuration("Yearly")}
+                      className={`rounded-full
+                      px-6
+                      py-2
+                      text-dark
+                      font-medium
+                      text-xs
+                      leading-tight
+                      uppercase
+                      hover:bg-black hover:bg-opacity-5
+                      focus:outline-none focus:ring-0
+                      transition
+                      duration-150
+                      font-semibold
+                      ease-in-out
+                      text-base
+                      text-gray-400
+                       ${duration === "Yearly" ? " border-2 custom-shadow grad-text-color" : ""}`}
+                    >
+                      <p className={` ${duration === "Yearly" ? " link" : ""}`}>Yearly</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div className="container-right">
-                <div className="w-full btn-group dropdown">
+                {/* <div className="w-full btn-group dropdown">
                   <li className="dropdown-toggle menuActive">
                     Filter
                     <span className="caret"></span>
@@ -33,109 +186,225 @@ export default function Home() {
                     Categories
                     <span className="caret"></span>
                   </li>
+                </div> */}
+
+                <Listbox value={filter} onChange={setFilter}>
+                  <div className="relative mt-1 mx-2">
+                    <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <span className="block truncate">{filter.name}</span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <SelectorIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Listbox.Button>
+                    <Transition
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {Filter.map((data, dataIdx) => (
+                          <Listbox.Option
+                            key={dataIdx}
+                            className={({ active }) =>
+                              `cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                              }`
+                            }
+                            value={data}
+                          >
+                            {({ selected }) => (
+                              <>
+                                <span
+                                  className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                    }`}
+                                >
+                                  {data.name}
+                                </span>
+                                {selected ? (
+                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                  </span>
+                                ) : null}
+                              </>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </div>
+                </Listbox>
+                <Listbox value={category} onChange={setCategory}>
+                  <div className="relative mt-1">
+                    <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <span className="block truncate">{category.name}</span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <SelectorIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Listbox.Button>
+                    <Transition
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {Category.map((data, dataIdx) => (
+                          <Listbox.Option
+                            key={dataIdx}
+                            className={({ active }) =>
+                              `cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                              }`
+                            }
+                            value={data}
+                          >
+                            {({ selected }) => (
+                              <>
+                                <span
+                                  className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                    }`}
+                                >
+                                  {data.name}
+                                </span>
+                                {selected ? (
+                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                    <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                  </span>
+                                ) : null}
+                              </>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </div>
+                </Listbox>
+
+                <div className="flex flex-wrap overflow-hidden md:-mx-1 lg:-mx-1 xl:-mx-1">
+
+                  {/* <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
+                    <button
+                      type="submit"
+                      className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
+                    >
+                      Daily
+                    </button>
+                  </div>
+                  <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
+                    <button
+                      type="submit"
+                      className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
+                    >
+                      Weekly
+                    </button>
+                  </div>
+                  <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
+                    <button
+                      type="submit"
+                      className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
+                    >
+                      Monthly
+                    </button>
+                  </div> */}
                 </div>
-                {/* <div className="flex flex-wrap overflow-hidden md:-mx-1 lg:-mx-1 xl:-mx-1">
-            <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
-              <button
-                type="submit"
-                className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
-              >
-                Daily
-              </button>
-            </div>
-            <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
-              <button
-                type="submit"
-                className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
-              >
-                Weekly
-              </button>
-            </div>
-            <div className="my-1 px-1 w-1/3 overflow-hidden md:my-1 md:px-1 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3">
-              <button
-                type="submit"
-                className="width-90 bg-custom-color rounded-full py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none"
-              >
-                Monthly
-              </button>
-            </div>
-          </div> */}
               </div>
-            </div>
-            <div className="table-header">
-              <div className="table-row">
-                <div className="table-head col-rank">
-                  <div className="component-ranking-table-rank-head">
-                    <a href="#" className="label head-link router-link-active is-active">
-                      Rank
-                    </a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-head col-name">
-                  <div className="component-ranking-table-name-head"></div>
-                </div>
-                <div className="table-head col-dau">
-                  <div data-v-e13d5096="" className="component-ranking-table-dau-head">
-                    <a href="/?sort=dau&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Page Views</a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-head col-tx">
-                  <div className="component-ranking-table-tx-head">
-                    <a href="/?sort=tx&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Status</a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-head col-vol">
-                  <div className="component-ranking-table-volume-head">
-                    <a href="/?sort=volume_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Ticker</a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-head col-vol col-vol-hbd">
-                  <div className="component-ranking-table-volume-head">
-                    <a href="/?sort=volume_hbd&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Sacrifice</a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-head col-rewards col-rewards-hive">
-                  <div className="component-ranking-table-rewards-head">
-                    <a href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Total Supply</a>
-                    <div className="help">
-                      <div className="help-inner">
-                        i
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div onClick={() => router.push({ pathname: '/dApp' })}>
-              <Tbody />
             </div>
           </div>
         </div>
+      </div>
+      <div className="max-width-1200 mx-auto">
+        <div className="table-header rounded-md">
+          <div className="table-row">
+            <div className="table-head col-rank">
+              <div className="component-ranking-table-rank-head">
+                <a href="#" className="label head-link router-link-active is-active">
+                  Rank
+                </a>
+                <div className="help">
+                  <div className="help-inner ">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-name">
+              <div className="component-ranking-table-name-head"></div>
+            </div>
+            <div className="table-head col-dau">
+              <div data-v-e13d5096="" className="component-ranking-table-dau-head">
+                <a href="/?sort=dau&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Page Views</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-tx">
+              <div className="component-ranking-table-tx-head">
+                <a href="/?sort=tx&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Status</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-vol">
+              <div className="component-ranking-table-volume-head">
+                <a href="/?sort=volume_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Ticker</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-vol col-vol-hbd">
+              <div className="component-ranking-table-volume-head">
+                <a href="/?sort=volume_hbd&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Sacrifice</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-rewards col-rewards-hive">
+              <div className="component-ranking-table-rewards-head">
+                <a href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Total Supply</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="table-head col-rewards col-rewards-hive">
+              <div className="component-ranking-table-rewards-head">
+                <a href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Vote</a>
+                <div className="help">
+                  <div className="help-inner">
+                    i
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {data && data.length > 0 && data.map((res, i) => {
+          return (
+            <div onClick={() => router.push({ pathname: `/dappDetails/${res.objectId}` })}>
+              <Tbody index={i + 1} name={res.name} short_description={res.short_description} types={res.type} app_status={res.app_status} />
+            </div>
+          )
+
+        })}
       </div>
     </Fragment>
 

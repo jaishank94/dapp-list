@@ -159,9 +159,9 @@ class CreateApp extends Component {
                                     </div>
                                 </div>
                                 <div className="component-app-detail">
-                                    <div class="flex justify-center">
-                                        <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2">
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                    <div className="flex justify-center">
+                                        <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <input
                                                     type="text"
                                                     // className="form-control custom-input px-5"
@@ -175,7 +175,7 @@ class CreateApp extends Component {
                                                 />
                                                 {errors.name && !this.state.name ? (<div className="error my-2">{errors.name}</div>) : ""}
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <input
                                                     type="text"
                                                     className={`form-control custom-input px-5
@@ -188,7 +188,7 @@ class CreateApp extends Component {
                                                 />
                                                 {errors.short_description && !this.state.short_description ? (<div className="error my-2">{errors.short_description}</div>) : ""}
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <input
                                                     type="text"
                                                     // className="form-control custom-input px-5"
@@ -202,7 +202,7 @@ class CreateApp extends Component {
                                                 />
                                                 {errors.full_description && !this.state.full_description ? (<div className="error my-2">{errors.full_description}</div>) : ""}
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <input
                                                     type="text"
                                                     // className="form-control custom-input px-5"
@@ -217,9 +217,9 @@ class CreateApp extends Component {
                                                 {errors.website_url && !this.state.website_url ? (<div className="error my-2">{errors.full_description}</div>) : ""}
 
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">App Status*</p>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -228,7 +228,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Live</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -244,7 +244,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Beta</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -260,7 +260,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Alpha</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -276,7 +276,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Work in Progress</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -284,9 +284,9 @@ class CreateApp extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">Category*</p>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -297,7 +297,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Games</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -315,7 +315,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Entertainment</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -331,7 +331,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Exchanges</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -347,14 +347,14 @@ class CreateApp extends Component {
                                                             <p className="text-1">Development</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -365,7 +365,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Gambling</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -381,7 +381,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Wallet</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -397,7 +397,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Finance</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -413,14 +413,14 @@ class CreateApp extends Component {
                                                             <p className="text-1">Promotion</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -431,7 +431,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Social</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -447,7 +447,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Media</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -463,7 +463,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Security</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -479,14 +479,14 @@ class CreateApp extends Component {
                                                             <p className="text-1">Utility</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -497,7 +497,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Interface</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -513,7 +513,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Education</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -529,7 +529,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Health</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -545,7 +545,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Content Discovery</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -553,9 +553,9 @@ class CreateApp extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">Project Information*</p>
-                                                <div class="flex flex-row my-6">
+                                                <div className="flex flex-row my-6">
                                                     <div>
                                                         <div className="group-6-6">
                                                             <div className="rectangle-1-0-8" />
@@ -566,7 +566,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Airdrop</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -582,7 +582,7 @@ class CreateApp extends Component {
                                                             <p className="text-1">Sacrifice Phrase</p>
                                                             <div className="group-6-5">
                                                                 <div className="rectangle-1-3-3" />
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 icon" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
                                                                 </svg>
                                                             </div>
@@ -590,7 +590,7 @@ class CreateApp extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">Tags*</p>
                                                 <input
                                                     type="text"
@@ -617,7 +617,7 @@ class CreateApp extends Component {
                                                 />
                                                 {errors.tage && !this.state.tag_arr.length ? (<div className="error my-2">{errors.tage}</div>) : ""}
                                                 <div>
-                                                    <div class="flex flex-row my-3">
+                                                    <div className="flex flex-row my-3">
                                                         {
                                                             this.state.tag_arr.map((data, i) => {
                                                                 return (
@@ -641,7 +641,7 @@ class CreateApp extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">Social media links</p>
                                                 <div>
                                                     <input
@@ -713,7 +713,7 @@ class CreateApp extends Component {
                                                 </div>
 
                                             </div>
-                                            <div class="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                                            <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                                                 <p className="font-bold text-lg mt-8">Source code</p>
                                                 <div>
                                                     <input
