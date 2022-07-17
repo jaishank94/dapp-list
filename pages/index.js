@@ -9,8 +9,12 @@ import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 
 const Filter = [
-  { name: "Games" },
-  { name: "Entertainment" },
+  { name: "Filter" },
+  { name: "Live" },
+  { name: "Beta" },
+  { name: "Alpha" },
+  { name: "Work in Progress" },
+
 ];
 const Category = [
   { name: "Category" },
@@ -42,18 +46,33 @@ export default function Home() {
     if (isInitialized) {
       getAppList();
     }
-  }, [isInitialized]);
+  }, [isInitialized, category, filter]);
 
   const getAppList = async () => {
     const Dapps = Moralis.Object.extend("Dapps");
     const query = new Moralis.Query(Dapps);
-    query.equalTo("type", "Finance")
+    if (category.name !== "Category") {
+      query.containedIn("type", [category.name]);
+    }
+    if (filter.name !== "Filter") {
+      query.equalTo("app_status", filter.name);
+    }
+    query.ascending("priority");
     query.limit(1000);
     const response = await query.find();
     let result = JSON.parse(JSON.stringify(response));
     console.log("result", result)
     setData(result);
   };
+
+
+  const handleCategory = (e) => {
+    setCategory(e);
+  }
+
+  const handleFilter = (e) => {
+    setFilter(e);
+  }
 
 
 
@@ -204,7 +223,7 @@ export default function Home() {
               </div>
               <div className="flex mt-2 w-full flex-row text-center justify-center md:justify-end">
                 <div className="container-right">
-                  <Listbox value={filter} onChange={setFilter}>
+                  <Listbox value={filter} onChange={e => handleFilter(e)}>
                     <div className="mt-1 mx-2">
                       <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate text-gray-400">
@@ -246,14 +265,14 @@ export default function Home() {
                                   >
                                     {data.name}
                                   </span>
-                                  {selected ? (
+                                  {/* {selected ? (
                                     <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
                                       <CheckIcon
                                         className="h-5 w-5"
                                         aria-hidden="true"
                                       />
                                     </span>
-                                  ) : null}
+                                  ) : null} */}
                                 </>
                               )}
                             </Listbox.Option>
@@ -264,7 +283,7 @@ export default function Home() {
                   </Listbox>
 
 
-                  <Listbox value={category} onChange={setCategory}>
+                  <Listbox value={category} onChange={e => handleCategory(e)}>
                     <div className="mt-1">
                       <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate text-gray-400">
@@ -301,14 +320,14 @@ export default function Home() {
                                   >
                                     {data.name}
                                   </span>
-                                  {selected ? (
+                                  {/* {selected ? (
                                     <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
                                       <CheckIcon
                                         className="h-5 w-5"
                                         aria-hidden="true"
                                       />
                                     </span>
-                                  ) : null}
+                                  ) : null} */}
                                 </>
                               )}
                             </Listbox.Option>
@@ -467,7 +486,7 @@ export default function Home() {
             </div>
           </div>
           {data &&
-            data.length > 0 &&
+            data.length > 0 ?
             data.map((res, i) => {
               return (
                 <div
@@ -481,12 +500,23 @@ export default function Home() {
                     short_description={res.short_description}
                     types={res.type}
                     app_status={res.app_status}
+                    id={res.objectId}
+                    likes={res.likes ? res.likes : 0}
+                    dislikes={res.dislikes ? res.dislikes : 0}
+
                   />
                 </div>
               );
-            })}
+            }
+            ) :
+            (
+              <div>
+                <p className="text-center p-6">No Data Found..!!</p>
+              </div>
+            )
+          }
         </div>
       </div>
-    </Fragment>
+    </Fragment >
   );
 }
