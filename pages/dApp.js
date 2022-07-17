@@ -13,7 +13,7 @@ function DApp() {
                 <span className="sr-only">Workflow</span>
                 <img
                   className="h-8 w-auto sm:h-10"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                  src="/images/pp_final_icon_black.png"
                   alt=""
                 />
               </a>
@@ -186,7 +186,7 @@ function DApp() {
           <p className="text-1-8">Vote</p>
           <p className="text-1-9">Last updated</p>
           <p className="text-2-0">Jul 11st, 2022</p>
-         <div className="rectangle-2-5-7" /> 
+      <div className="rectangle-2-5-7" />
           <img src="" />
           <img src="" />
           <img src="" />
