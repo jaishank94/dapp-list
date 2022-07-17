@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import Head from 'next/head';
 import { useRouter } from "next/router";
-import Header from './component/header';
-import Tbody from './component/tbody';
+import Header from './components/Header';
+import Tbody from './components/tbody';
 
 export default function Home() {
   const router = useRouter();

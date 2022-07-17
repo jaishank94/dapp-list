@@ -3,9 +3,9 @@ import { Formik, Form, ErrorMessage } from "formik";
 import Moralis from "moralis";
 import toast, { Toaster } from 'react-hot-toast';
 import * as Yup from "yup";
-import Header from './component/header'
+import Header from '../components/Header'
 import plus from "/public/images/plus.png"
-import Button from './component/customButton'
+import Button from '../components/customButton'
 
 const validation = Yup.object().shape({
     name: Yup.string().required('This field is required'),
