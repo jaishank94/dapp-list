@@ -81,7 +81,7 @@ export default function Home() {
                 </div>
                 <div className="table-head col-dau">
                   <div data-v-e13d5096="" className="component-ranking-table-dau-head">
-                    <a href="/?sort=dau&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Users</a>
+                    <a href="/?sort=dau&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Page Views</a>
                     <div className="help">
                       <div className="help-inner">
                         i
@@ -91,7 +91,7 @@ export default function Home() {
                 </div>
                 <div className="table-head col-tx">
                   <div className="component-ranking-table-tx-head">
-                    <a href="/?sort=tx&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Transactions</a>
+                    <a href="/?sort=tx&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Status</a>
                     <div className="help">
                       <div className="help-inner">
                         i
@@ -101,7 +101,7 @@ export default function Home() {
                 </div>
                 <div className="table-head col-vol">
                   <div className="component-ranking-table-volume-head">
-                    <a href="/?sort=volume_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Volume HIVE</a>
+                    <a href="/?sort=volume_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Ticker</a>
                     <div className="help">
                       <div className="help-inner">
                         i
@@ -111,7 +111,7 @@ export default function Home() {
                 </div>
                 <div className="table-head col-vol col-vol-hbd">
                   <div className="component-ranking-table-volume-head">
-                    <a href="/?sort=volume_hbd&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Volume HBD</a>
+                    <a href="/?sort=volume_hbd&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Sacrifice</a>
                     <div className="help">
                       <div className="help-inner">
                         i
@@ -121,7 +121,7 @@ export default function Home() {
                 </div>
                 <div className="table-head col-rewards col-rewards-hive">
                   <div className="component-ranking-table-rewards-head">
-                    <a href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Rewards HIVE</a>
+                    <a href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day" className="label head-link router-link-active">Total Supply</a>
                     <div className="help">
                       <div className="help-inner">
                         i
