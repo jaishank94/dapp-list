@@ -33,16 +33,16 @@ function Tbody(props) {
   }
 
   return (
-    <div className="table-body mt-5">
+    <div className="table-body mt-5 px-4">
       <div className="table-row">
-        <div className="table-data col-rank">
+        <div className="bg-[#e2e7ef] border-2 rounded-lg lg:border-0 table-data col-rank">
           <div className="component-ranking-table-rank rank-1">
             <span className="current-rank">{props.index}</span>
             <span className="past-rank"></span>
           </div>
         </div>
-        <div className="flex table-main">
-          <div className="table-data col-name">
+        <div className="flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main">
+          <div className="text-center lg:table-data col-name">
             <div className="component-ranking-table-name">
               <div className="icon-place mr-4">
                 <div className="icon-wrapper">
@@ -53,7 +53,7 @@ function Tbody(props) {
                 </div>
               </div>
 
-              <div className="right-wrapper">
+              <div className="text-center right-wrapper">
                 <div className="top-wrapper">
                   <div className="name-description-wrapper">
                     <div className="name-description-top-wrapper">
@@ -73,7 +73,7 @@ function Tbody(props) {
               </div>
             </div>
           </div>
-          <div className="table-data col-dau">
+          <div className="flex table-data col-dau">
             <span className="col-title-mobile">Page Views</span>
             <div className="component-ranking-table-value-pct">
               <span className="value">-</span>
