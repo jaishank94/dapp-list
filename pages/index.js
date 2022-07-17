@@ -68,7 +68,7 @@ export default function Home() {
               className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
               style={{ marginBottom: "10px" }}
             >
-              <h2 className="items-center ml-1 mb-0 custom-text text-dark">
+              <h2 className="items-center ml-1 mb-6 custom-text text-dark lg:mb-0">
                 Explore Projects
               </h2>
               <div>
@@ -191,8 +191,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="container-right">
-                <div className="relative">
+              <div className="flex mt-2 w-full flex-row text-center justify-center md:justify-end">
+                <div className="">
                 <Listbox value={filter} onChange={setFilter}>
                   <div className="relative mt-1 mx-2">
                     <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">

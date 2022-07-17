@@ -9,8 +9,8 @@ export default function Header({ displayCreate }) {
 
   return (
     <div className="text-left w-full">
-      <nav className="flex items-center justify-between flex-wrap bg-teal-500">
-        <div className="flex items-center flex-shrink-0 mr-6">
+      <nav className="flex w-full">
+        <div className="flex justify-between w-full items-center">
           <a
             className="flex items-center cursor-pointer"
             onClick={() => router.push("/")}
@@ -22,16 +22,13 @@ export default function Header({ displayCreate }) {
               className="rounded-t-lg"
               src={logo}
             />
-            <p className="font-bold">PulseChainProjects.io</p>
+            <p className="font-bold hidden sm:block">PulseChainProjects.io</p>
           </a>
-        </div>
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm flex-grow"></div>
           {displayCreate && (
-            <div>
+            <div className="">
               <button
                 onClick={() => router.push("/createDapp")}
-                className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0"
+                className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0"
               >
                 Submit DApp
               </button>
