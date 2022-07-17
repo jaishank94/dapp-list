@@ -8,12 +8,31 @@ import Header from "./components/header";
 import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 
-const Filter = [{ name: "Filter" }, { name: "Arlene Mccoy" }];
-const Category = [{ name: "Category" }, { name: "Arlene Mccoy" }];
+const Filter = [
+  { name: "Games" },
+  { name: "Entertainment" },
+];
+const Category = [
+  { name: "Category" },
+  { name: "Entertainment" },
+  { name: "Exchanges" },
+  { name: "Development" },
+  { name: "Gambling" },
+  { name: "Wallet" },
+  { name: "Finance" },
+  { name: "Promotion" },
+  { name: "Social" },
+  { name: "Media" },
+  { name: "Security" },
+  { name: "Utility" },
+  { name: "Interface" },
+  { name: "Education" },
+  { name: "Health" },
+  { name: "Content Discovery" },
+];
 
 export default function Home() {
   const { isInitialized } = useMoralis();
-
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState("Daily");
   const [filter, setFilter] = useState(Filter[0]);
@@ -23,24 +42,20 @@ export default function Home() {
     if (isInitialized) {
       getAppList();
     }
-
-    console.log(isInitialized);
   }, [isInitialized]);
 
   const getAppList = async () => {
     const Dapps = Moralis.Object.extend("Dapps");
     const query = new Moralis.Query(Dapps);
+    query.equalTo("type", "Finance")
     query.limit(1000);
     const response = await query.find();
     let result = JSON.parse(JSON.stringify(response));
+    console.log("result", result)
     setData(result);
-
-    // return (
-    //   <div onClick={() => router.push({ pathname: '/dApp' })}>
-    //     <Tbody />
-    //   </div>
-    // )
   };
+
+
 
   const router = useRouter();
   return (
@@ -51,7 +66,7 @@ export default function Home() {
           rel="stylesheet"
         ></link>
       </Head>
-      <div className="relative wrapper overflow-hidden">
+      <div className="wrapper overflow-hidden">
         <div className="w-full border-b-2 border-slate-300 py-2 mb-5">
           <div className="container mx-auto">
             <div className="relative z-10 bg-transparent">
@@ -92,11 +107,10 @@ export default function Home() {
         ease-in-out
   
         text-gray-400
-         ${
-           duration === "Daily"
-             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-             : ""
-         }`}
+         ${duration === "Daily"
+                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Daily" ? " link" : ""}`}>
                         Daily
@@ -120,11 +134,10 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${
-         duration === "Weekly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
+       ${duration === "Weekly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
@@ -148,11 +161,10 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${
-         duration === "Monthly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
+       ${duration === "Monthly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p
                         className={` ${duration === "Monthly" ? " link" : ""}`}
@@ -178,11 +190,10 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${
-                         duration === "Yearly"
-                           ? " border-2 font-semibold custom-shadow grad-text-color"
-                           : ""
-                       }`}
+                       ${duration === "Yearly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
@@ -192,10 +203,10 @@ export default function Home() {
                 </div>
               </div>
               <div className="container-right">
-                <div className="relative">
+
                 <Listbox value={filter} onChange={setFilter}>
-                  <div className="relative mt-1 mx-2">
-                    <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                  <div className="mt-1 mx-2">
+                    <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                       <span className="block truncate text-gray-400">
                         {filter.name}
                       </span>
@@ -212,27 +223,26 @@ export default function Home() {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      <Listbox.Options className="absolute mt-1 z-40 max-h-60 overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                         {Filter.map((data, dataIdx) => (
                           <Listbox.Option
                             key={dataIdx}
                             className={({ active }) =>
-                              `cursor-default select-none py-2 pl-10 pr-4 ${
-                                active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                              `cursor-default select-none py-2 pl-10 pr-4 ${active
+                                ? "bg-amber-100 text-amber-900"
+                                : "text-gray-900"
                               }`
                             }
                             value={data}
+
                           >
                             {({ selected }) => (
                               <>
                                 <span
-                                  className={`block truncate ${
-                                    selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                  }`}
+                                  className={`block truncate ${selected
+                                    ? "text-gray-400 font-medium"
+                                    : "font-normal"
+                                    }`}
                                 >
                                   {data.name}
                                 </span>
@@ -252,10 +262,10 @@ export default function Home() {
                     </Transition>
                   </div>
                 </Listbox>
-                </div>
-                
+
+
                 <Listbox value={category} onChange={setCategory}>
-                  <div className="relative mt-1">
+                  <div className="mt-1">
                     <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                       <span className="block truncate text-gray-400">
                         {category.name}
@@ -273,27 +283,21 @@ export default function Home() {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      <Listbox.Options className="absolute z-40 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                         {Category.map((data, dataIdx) => (
-                          <Listbox.Option
-                            key={dataIdx}
-                            className={({ active }) =>
-                              `cursor-default select-none py-2 pl-10 pr-4 ${
-                                active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
-                              }`
-                            }
+                          <Listbox.Option key={dataIdx}
+                            className={({ active }) => `cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-amber-100 text-amber-900" : "text-gray-900"}`}
                             value={data}
+
                           >
                             {({ selected }) => (
                               <>
                                 <span
-                                  className={`block truncate ${
-                                    selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                  }`}
+                                  className={`block truncate ${selected
+                                    ? "text-gray-400 font-medium"
+                                    : "font-normal"
+                                    }`}
+
                                 >
                                   {data.name}
                                 </span>
