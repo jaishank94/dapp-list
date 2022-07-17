@@ -205,11 +205,12 @@ li {
   padding: 0;
   text-decoration: none; */
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.01em;
   color: #1D202C;
+  width: auto;
 }
 
 .help .help-inner {
@@ -254,7 +255,7 @@ li {
 }
 
 .col-dau {
-  width: 128px;
+  width: 130px;
 }
 
 .component-ranking-table-dau-head {
