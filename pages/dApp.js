@@ -35,15 +35,16 @@ function DApp() {
         </div>
       </div>
       <div className="component-app-detail">
-        {/* <div>
+        <div>
           <div className="card-header flex">
             <div className="flex-none w-14 h-14 card-icon">
               <div className="logo-img"></div>
             </div>
             <div className="flex-initial p-5 app-detail">
               <div className="">
-                <h5 className="font-bold app-name">Hypno Chain</h5>
-                <p className="app-desc mt-2">Your hub for all hypnosis related content.</p>
+                <h5 className="font-bold app-name">NFTonPulse.io</h5>
+                <p className="app-desc mt-2">NFTonPulse is a NFT Marketplace. Buy, sell, trade, auction NFTs. Powered by the PulseChain.
+</p>
               </div>
             </div>
             <div className="flex-initial edit-div p-5">
@@ -150,7 +151,7 @@ function DApp() {
               </button>
             </div>
           </div>
-        </div> */}
+        </div> 
         <div className="group-3-6-8-4-8">
           <div className="rectangle-2-5-6" />
           <div className="rectangle-2-5-8" />
@@ -185,7 +186,7 @@ function DApp() {
           <p className="text-1-8">Vote</p>
           <p className="text-1-9">Last updated</p>
           <p className="text-2-0">Jul 11st, 2022</p>
-          <div className="rectangle-2-5-7" />
+         <div className="rectangle-2-5-7" /> 
           <img src="" />
           <img src="" />
           <img src="" />

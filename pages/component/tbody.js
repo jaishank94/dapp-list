@@ -21,7 +21,7 @@ function Tbody() {
                 <div className="icon-wrapper">
                   <p>sd</p>
                   {/* <a className="icon-link">
-                  <img src="https://images.hive.blog/u/splinterlands/avatar" className="icon-image" />
+                  <img src="..\images\nftonpulse-logo.png" className="icon-image" />
                 </a> */}
                 </div>
               </div>
@@ -32,16 +32,16 @@ function Tbody() {
                     <div className="name-description-top-wrapper">
                       <h4 className="name">
                         <a className="link">
-                          Splinterlands
+                          NFTonPulse.io
                         </a>
                       </h4>
                     </div>
-                    <p className="description">Trading Card Game on the blockchain</p>
+                    <p className="description">NFT Marketplace</p>
                   </div>
                 </div>
                 <div className="bottom-wrapper">
-                  <div className="app-type bottom-partial">APP</div>
-                  <div className="category bottom-partial">GAMES</div>
+                  <div className="app-type bottom-partial">NFT</div>
+                  <div className="category bottom-partial">MARKETPLACE</div>
                 </div>
               </div>
             </div>
@@ -71,9 +71,9 @@ function Tbody() {
             </div>
           </div>
           <div className="table-data col-vol">
-            <span className="col-title-mobile">Volume HIVE 24h</span>
+            <span className="col-title-mobile">Volume 24h</span>
             <div className="component-ranking-table-volume">
-              <span className="value">45,260 HIVE</span>
+              <span className="value">45,260 </span>
               <span className="pct is-negative">-9.00%</span>
             </div>
           </div>
@@ -88,9 +88,9 @@ function Tbody() {
             </div>
           </div>
           <div className="table-data col-rewards col-rewards-hive">
-            <span className="col-title-mobile">Rewards HIVE 24h</span>
+            <span className="col-title-mobile">Rewards 24h</span>
             <div className="component-ranking-table-volume">
-              <span className="value">506 HIVE</span>
+              <span className="value">506</span>
               <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
