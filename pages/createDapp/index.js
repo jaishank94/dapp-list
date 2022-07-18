@@ -16,6 +16,41 @@ const validation = Yup.object().shape({
   // tag: Yup.string().required("This field is required"),
 });
 
+const AppStatus = [
+  { name: "Live" },
+  { name: "Beta" },
+  { name: "Alpha" },
+  { name: "Work in Progress" },
+];
+
+
+const Category = [
+  { name: "Games" },
+  { name: "Entertainment" },
+  { name: "Exchanges" },
+  { name: "Development" },
+  { name: "Gambling" },
+  { name: "Wallet" },
+  { name: "Finance" },
+  { name: "Promotion" },
+  { name: "Social" },
+  { name: "Media" },
+  { name: "Security" },
+  { name: "Utility" },
+  { name: "Interface" },
+  { name: "Education" },
+  { name: "Health" },
+  { name: "Content Discovery" },
+];
+
+
+const ProjInformation = [
+  { name: "Airdrop" },
+  { name: "Sacrifice Phrase" },
+]
+
+
+
 class CreateApp extends Component {
   constructor(props) {
     super(props);
@@ -24,9 +59,9 @@ class CreateApp extends Component {
       short_description: "",
       full_description: "",
       website_url: "",
-      app_status: "",
+      app_status: "Live",
       category: [],
-      porject_information: "",
+      porject_information: "Airdrop",
       tag: "",
       tag_arr: [],
       facebook: "",
@@ -62,8 +97,8 @@ class CreateApp extends Component {
       website_url: "",
       logo_url: "",
       app_status: "",
-      category: [],
-      porject_information: "",
+      category: ["Games"],
+      porject_information: "Airdrop",
       tag: "",
       tag_arr: [],
       facebook: "",
@@ -96,8 +131,6 @@ class CreateApp extends Component {
       gitlab,
       logo_url,
     } = this.state;
-
-    console.log("Asdfasdsdf gakjs f1");
 
     if (
       name !== "" &&
@@ -143,6 +176,26 @@ class CreateApp extends Component {
         let result = JSON.parse(JSON.stringify(response));
         if (result) {
           toast.success("Succefully submited");
+          this.setState({
+            name: "",
+            short_description: "",
+            full_description: "",
+            website_url: "",
+            logo_url: "",
+            app_status: "Live",
+            category: ["Games"],
+            porject_information: "Airdrop",
+            tag: "",
+            tag_arr: [],
+            facebook: "",
+            twitter: "",
+            instagram: "",
+            youtube: "",
+            github: "",
+            discord: "",
+            gitlab: "",
+            isSubmitting: false,
+          });
           // this.setState({ isSubmitting: false })
         } else {
           toast.error("Some Error Occured..!! Please try again.");
@@ -157,11 +210,12 @@ class CreateApp extends Component {
   };
 
   render() {
+
+    console.log("state", this.state)
     return (
       <Fragment>
         <div className="relative wrapper overflow-hidden">
           <Toaster position="top-right" />
-
           <div className="max-width-1200 mx-auto">
             <div className="relative z-10 bg-transparent">
               <div className="relative py-6 px-4 sm:px-6 lg:px-8">
@@ -219,9 +273,8 @@ class CreateApp extends Component {
                         </div>
                         <div className="hidden md:block flex mx-6">
                           <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
-                            }`}
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                              }`}
                             type="submit"
                             disabled={this.state.isSubmitting}
                           >
@@ -249,12 +302,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.name &&
-                                                      errors.name
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.name &&
+                              errors.name
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="name"
                           name="name"
                           placeholder="App Name *"
@@ -273,12 +325,11 @@ class CreateApp extends Component {
                         <input
                           type="text"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.short_description &&
-                                                      errors.short_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.short_description &&
+                              errors.short_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="short_description"
                           name="short_description"
                           placeholder="Short Description*"
@@ -288,7 +339,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.short_description &&
-                        !this.state.short_description ? (
+                          !this.state.short_description ? (
                           <div className="error my-2">
                             {errors.short_description}
                           </div>
@@ -301,12 +352,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.full_description &&
-                                                      errors.full_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.full_description &&
+                              errors.full_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="full_description"
                           name="full_description"
                           placeholder="Full Description*"
@@ -316,7 +366,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.full_description &&
-                        !this.state.full_description ? (
+                          !this.state.full_description ? (
                           <div className="error my-2">
                             {errors.full_description}
                           </div>
@@ -329,12 +379,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.website_url &&
-                                                      errors.website_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.website_url &&
+                              errors.website_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="website_url"
                           name="website_url"
                           placeholder="Website URL*"
@@ -354,12 +403,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.logo_url &&
-                                                      errors.logo_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.logo_url &&
+                              errors.logo_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="logo_url"
                           name="logo_url"
                           placeholder="DApp Logo URL*"
@@ -377,654 +425,76 @@ class CreateApp extends Component {
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">App Status*</p>
                         <div className="md:flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({ app_status: "Live" })
-                                }
-                              />
-                              <p className="text-1">Live</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({ app_status: "Beta" })
-                                }
-                              />
-                              <p className="text-1">Beta</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({ app_status: "Alpha" })
-                                }
-                              />
-                              <p className="text-1">Alpha</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    app_status: "Work in Progress",
-                                  })
-                                }
-                              />
-                              <p className="text-1">Work in Progress</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
+                          {AppStatus.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div className="group-6-6 cursor-pointer" onClick={(e) =>
+                                    this.setState({ app_status: this.state.app_status === data.name ? this.state.app_status : data.name })
+                                  }>
+                                    <div className="rectangle-1-0-8" />
+                                    <div className="rectangle-1-0-9" />
+                                    <div className={`rectangle-1-1-0 ${this.state.app_status === data.name ? "selected-background" : "not-selected-background"}`}
+                                    />
+                                    <p className={`text-1 ${this.state.app_status === data.name ? "selected-text" : "not-selected-text"}`}>{data.name}</p>
+                                    <div className="group-6-5">
+                                      <div className={`rectangle-1-3-3 ${this.state.app_status === data.name ? "selected-rectangle-1-3-3" : "not-rectangle-1-3-3"}`} />
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-8 w-8 icon"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          })}
                         </div>
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">Category*</p>
-                        <div className="md:flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [...this.state.category, "Games"],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Games</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                // onClick={e => this.setState({ category: [...this.state.category, 'Entertainment'] })}
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Entertainment",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Entertainment</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Exchanges",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Exchanges</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Development",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Development</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="md:flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Gambling",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Gambling</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Wallet",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Wallet</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Finance",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Finance</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Promotion",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Promotion</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="md:flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Social",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Social</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [...this.state.category, "Media"],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Media</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Security",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Security</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Utility",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Utility</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="md:flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Interface",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Interface</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Education",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Education</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Health",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Health</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    category: [
-                                      ...this.state.category,
-                                      "Content Discovery",
-                                    ],
-                                  })
-                                }
-                              />
-                              <p className="text-1">Content Discovery</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
+                        <div class="grid grid-cols-4 gap-4">
+                          {Category.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div className="group-6-6 cursor-pointer" onClick={(e) =>
+                                    this.setState({
+                                      category: [...this.state.category, data.name],
+                                    })
+                                  }>
+                                    <div className="rectangle-1-0-8" />
+                                    <div className="rectangle-1-0-9" />
+                                    <div className={`rectangle-1-1-0 `} />
+                                    <p className="text-1">{data.name}</p>
+                                    <div className="group-6-5">
+                                      <div className="rectangle-1-3-3" />
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-8 w-8 icon"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                      >
+                                        <path
+                                          fillRule="evenodd"
+                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                          clipRule="evenodd"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )
+                          })}
                         </div>
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
@@ -1032,66 +502,37 @@ class CreateApp extends Component {
                           Project Information*
                         </p>
                         <div className="flex flex-row my-6">
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    porject_information: "Airdrop",
-                                  })
-                                }
-                              />
-                              <p className="text-1">Airdrop</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
+                          {ProjInformation.map((data, i) => {
+                            return (
+                              <div>
+                                <div className="group-6-6" onClick={(e) =>
+                                  this.setState({ porject_information: this.state.porject_information === data.name ? this.state.porject_information : data.name })
+                                }>
+                                  <div className="rectangle-1-0-8" />
+                                  <div className="rectangle-1-0-9" />
+                                  <div className={`rectangle-1-1-0 ${this.state.porject_information === data.name ? "selected-background" : "not-selected-background"}`} />
+                                  <p className={`text-1 ${this.state.porject_information === data.name ? "selected-text" : "not-selected-text"}`}>{data.name}</p>
+                                  <div className="group-6-5">
+                                    <div className={`rectangle-1-3-3 ${this.state.porject_information === data.name ? "selected-rectangle-1-3-3" : "not-rectangle-1-3-3"}`} />
+
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="h-8 w-8 icon"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                    >
+                                      <path
+                                        fillRule="evenodd"
+                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                        clipRule="evenodd"
+                                      />
+                                    </svg>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div className="group-6-6">
-                              <div className="rectangle-1-0-8" />
-                              <div className="rectangle-1-0-9" />
-                              <div
-                                className="rectangle-1-1-0"
-                                onClick={(e) =>
-                                  this.setState({
-                                    porject_information: "Sacrifice Phrase",
-                                  })
-                                }
-                              />
-                              <p className="text-1">Sacrifice Phrase</p>
-                              <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-8 w-8 icon"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
+                            )
+
+                          })}
                         </div>
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
@@ -1100,11 +541,10 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5 mt-4"
                           className={`form-control custom-input px-5 mt-4
-                                                    ${
-                                                      touched.tag && errors.tag
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                      ${touched.tag && errors.tag
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="tag"
                           name="tag"
                           placeholder="e.g.splinterlands"
@@ -1288,9 +728,8 @@ class CreateApp extends Component {
                         </div>
                         <div className="flex my-4 justify-center md:hidden ">
                           <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
-                            }`}
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                              }`}
                             type="submit"
                             disabled={this.state.isSubmitting}
                           >

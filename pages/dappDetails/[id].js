@@ -8,6 +8,7 @@ import moment from "moment";
 import { useMoralis } from "react-moralis";
 import Image from "next/image";
 import logo from "/public/images/pp_final_icon_black.png";
+import Footer from "../components/Footer";
 
 export default function DappDetails() {
   const router = useRouter();
@@ -282,6 +283,7 @@ export default function DappDetails() {
           <p className="p-6 text-center">No Data Found</p>
         </>
       )}
+      <Footer />
     </Fragment>
   );
 }
