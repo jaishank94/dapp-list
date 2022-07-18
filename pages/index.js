@@ -35,7 +35,7 @@ const Category = [
 ];
 
 export default function Home() {
-  const { isInitialized, authenticate, isAuthenticated } = useMoralis();
+  const { isInitialized } = useMoralis();
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState("Daily");
   const [filter, setFilter] = useState(Filter[0]);

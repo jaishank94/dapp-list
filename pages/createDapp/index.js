@@ -13,7 +13,7 @@ const validation = Yup.object().shape({
   full_description: Yup.string().required("This field is required"),
   website_url: Yup.string().required("This field is required"),
   logo_url: Yup.string().required("This field is required"),
-  tage: Yup.string().required("This field is required"),
+  // tag: Yup.string().required("This field is required"),
 });
 
 class CreateApp extends Component {
@@ -27,7 +27,7 @@ class CreateApp extends Component {
       app_status: "",
       category: [],
       porject_information: "",
-      tage: "",
+      tag: "",
       tag_arr: [],
       facebook: "",
       twitter: "",
@@ -53,8 +53,7 @@ class CreateApp extends Component {
     console.log("ljhck", e.target.value);
   };
 
-  resetForm = () => {
-    console.log("asdajk")
+  resetForm = (e) => {
     e.preventDefault();
     this.setState({
       name: "",
@@ -65,7 +64,7 @@ class CreateApp extends Component {
       app_status: "",
       category: [],
       porject_information: "",
-      tage: "",
+      tag: "",
       tag_arr: [],
       facebook: "",
       twitter: "",
@@ -97,6 +96,9 @@ class CreateApp extends Component {
       gitlab,
       logo_url,
     } = this.state;
+
+    console.log("Asdfasdsdf gakjs f1");
+
     if (
       name !== "" &&
       short_description !== "" &&
@@ -119,8 +121,9 @@ class CreateApp extends Component {
         discord: discord,
         gitlab,
       };
+
       try {
-        // this.setState({ isSubmitting: true })
+        this.setState({ isSubmitting: true });
         const Dapps = Moralis.Object.extend("Dapps");
         const newObject = new Dapps();
         newObject.set("name", name);
@@ -131,7 +134,7 @@ class CreateApp extends Component {
         newObject.set("logo", logo_url);
         newObject.set("app_status", app_status);
         newObject.set("type", category);
-        newObject.set("tage", tag_arr);
+        newObject.set("tag", tag_arr);
         newObject.set("sns", snc);
         newObject.set("code", code);
         // newObject.set("reaction",);
@@ -142,18 +145,18 @@ class CreateApp extends Component {
           toast.success("Succefully submited");
           // this.setState({ isSubmitting: false })
         } else {
-          toast.error("Some Error Occured..!!");
+          toast.error("Some Error Occured..!! Please try again.");
           // this.setState({ isSubmitting: false })
         }
+        this.setState({ isSubmitting: false });
       } catch (error) {
-        toast.error("Some Error Occured..!!");
+        toast.error("Some Error Occured..!! Please try again.");
         this.setState({ isSubmitting: false });
       }
     }
   };
 
   render() {
-    console.log("state", this.state);
     return (
       <Fragment>
         <div className="relative wrapper overflow-hidden">
@@ -168,7 +171,13 @@ class CreateApp extends Component {
           </div>
         </div>
         <Formik
-          initialValues={{}}
+          initialValues={{
+            name: this.state.name,
+            short_description: this.state.short_description,
+            full_description: this.state.full_description,
+            website_url: this.state.website_url,
+            logo_url: this.state.logo_url,
+          }}
           enableReinitialize={true}
           validationSchema={validation}
           onSubmit={this.submitApp}
@@ -176,7 +185,6 @@ class CreateApp extends Component {
           {({
             setFieldValue,
             setFieldTouched,
-            resetForm,
             values,
             errors,
             touched,
@@ -188,7 +196,10 @@ class CreateApp extends Component {
                     <div className="flex justify-center p-2 items-center py-6 md:justify-center md:space-x-10">
                       <div className="flex text-center">
                         <div className="">
-                          <a href={"/"} className="flex item-center p-4 mr-4 rounded-full bg-gray-300">
+                          <a
+                            href={"/"}
+                            className="flex item-center p-4 mr-4 rounded-full bg-gray-300"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-5 w-5 custom-back-icon"
@@ -208,9 +219,11 @@ class CreateApp extends Component {
                         </div>
                         <div className="hidden md:block flex mx-6">
                           <button
-                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
-                              }`}
+                            className={`sub-header-button text-white ${
+                              this.state.isSubmitting ? "" : ""
+                            }`}
                             type="submit"
+                            disabled={this.state.isSubmitting}
                           >
                             {this.state.isSubmitting
                               ? "Submitting..."
@@ -219,7 +232,7 @@ class CreateApp extends Component {
                           <button
                             className={`mx-2 rounded-full border-0 p-4 text-black bg-gray-300`}
                             type="reset"
-                            onClick={() => this.resetForm}
+                            onClick={(e) => this.resetForm(e)}
                           >
                             Reset
                           </button>
@@ -236,11 +249,12 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${touched.name &&
-                              errors.name
-                              ? "is-invalid"
-                              : ""
-                            }`}
+                                                    ${
+                                                      touched.name &&
+                                                      errors.name
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                           id="name"
                           name="name"
                           placeholder="App Name *"
@@ -259,11 +273,12 @@ class CreateApp extends Component {
                         <input
                           type="text"
                           className={`form-control custom-input px-5
-                                                    ${touched.short_description &&
-                              errors.short_description
-                              ? "is-invalid"
-                              : ""
-                            }`}
+                                                    ${
+                                                      touched.short_description &&
+                                                      errors.short_description
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                           id="short_description"
                           name="short_description"
                           placeholder="Short Description*"
@@ -273,7 +288,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.short_description &&
-                          !this.state.short_description ? (
+                        !this.state.short_description ? (
                           <div className="error my-2">
                             {errors.short_description}
                           </div>
@@ -286,11 +301,12 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${touched.full_description &&
-                              errors.full_description
-                              ? "is-invalid"
-                              : ""
-                            }`}
+                                                    ${
+                                                      touched.full_description &&
+                                                      errors.full_description
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                           id="full_description"
                           name="full_description"
                           placeholder="Full Description*"
@@ -300,7 +316,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.full_description &&
-                          !this.state.full_description ? (
+                        !this.state.full_description ? (
                           <div className="error my-2">
                             {errors.full_description}
                           </div>
@@ -313,11 +329,12 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${touched.website_url &&
-                              errors.website_url
-                              ? "is-invalid"
-                              : ""
-                            }`}
+                                                    ${
+                                                      touched.website_url &&
+                                                      errors.website_url
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                           id="website_url"
                           name="website_url"
                           placeholder="Website URL*"
@@ -327,9 +344,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.website_url && !this.state.website_url ? (
-                          <div className="error my-2">
-                            {errors.full_description}
-                          </div>
+                          <div className="error my-2">{errors.website_url}</div>
                         ) : (
                           ""
                         )}
@@ -339,11 +354,12 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${touched.logo_url &&
-                              errors.logo_url
-                              ? "is-invalid"
-                              : ""
-                            }`}
+                                                    ${
+                                                      touched.logo_url &&
+                                                      errors.logo_url
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                           id="logo_url"
                           name="logo_url"
                           placeholder="DApp Logo URL*"
@@ -353,9 +369,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.logo_url && !this.state.logo_url ? (
-                          <div className="error my-2">
-                            {errors.full_description}
-                          </div>
+                          <div className="error my-2">{errors.logo_url}</div>
                         ) : (
                           ""
                         )}
@@ -383,9 +397,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -411,9 +425,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -439,9 +453,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -469,9 +483,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -504,9 +518,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -538,9 +552,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -571,9 +585,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -604,9 +618,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -639,9 +653,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -672,9 +686,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -705,9 +719,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -738,9 +752,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -773,9 +787,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -803,9 +817,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -836,9 +850,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -869,9 +883,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -904,9 +918,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -937,9 +951,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -970,9 +984,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -1003,9 +1017,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -1040,9 +1054,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -1070,9 +1084,9 @@ class CreateApp extends Component {
                                   fill="currentColor"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                    clip-rule="evenodd"
+                                    clipRule="evenodd"
                                   />
                                 </svg>
                               </div>
@@ -1086,17 +1100,17 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5 mt-4"
                           className={`form-control custom-input px-5 mt-4
-                                                    ${touched.tage &&
-                              errors.tage
-                              ? "is-invalid"
-                              : ""
-                            }`}
-                          id="tage"
-                          name="tage"
+                                                    ${
+                                                      touched.tag && errors.tag
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
+                          id="tag"
+                          name="tag"
                           placeholder="e.g.splinterlands"
-                          value={this.state.tage}
+                          value={this.state.tag}
                           onChange={(e) =>
-                            this.setState({ tage: e.target.value })
+                            this.setState({ tag: e.target.value })
                           }
                           // onChange={e => this.setState({ category: [...this.state.category, 'Content Discovery'] })}
                           // onKeyDown={e => this.handleKeyDown(e.target.value)}
@@ -1107,24 +1121,24 @@ class CreateApp extends Component {
                                 {
                                   tag_arr: [
                                     ...this.state.tag_arr,
-                                    this.state.tage,
+                                    this.state.tag,
                                   ],
                                 },
                                 () => {
-                                  this.setState({ tage: "" });
+                                  this.setState({ tag: "" });
                                 }
                               );
                               console.log(e.target.value);
                             }
                           }}
                         />
-                        {errors.tage && !this.state.tag_arr.length ? (
-                          <div className="error my-2">{errors.tage}</div>
+                        {/* {errors.tag && !this.state.tag_arr.length ? (
+                          <div className="error my-2">{errors.tag}</div>
                         ) : (
                           ""
-                        )}
+                        )} */}
                         <div>
-                          <div className="flex flex-row my-3">
+                          <div className="flex flex-row my-3 overscroll-contain">
                             {this.state.tag_arr.map((data, i) => {
                               return (
                                 <div>
@@ -1172,7 +1186,7 @@ class CreateApp extends Component {
                               this.setState({ facebook: e.target.value })
                             }
                             error={errors.facebook && Boolean(errors.facebook)}
-                            helperText={errors.facebook ? errors.facebook : ""}
+                            helpertext={errors.facebook ? errors.facebook : ""}
                           />
                         </div>
                         <div>
@@ -1187,7 +1201,7 @@ class CreateApp extends Component {
                               this.setState({ twitter: e.target.value })
                             }
                             error={errors.twitter && Boolean(errors.twitter)}
-                            helperText={errors.twitter ? errors.twitter : ""}
+                            helpertext={errors.twitter ? errors.twitter : ""}
                           />
                         </div>
                         <div>
@@ -1204,7 +1218,7 @@ class CreateApp extends Component {
                             error={
                               errors.instagram && Boolean(errors.instagram)
                             }
-                            helperText={
+                            helpertext={
                               errors.instagram ? errors.instagram : ""
                             }
                           />
@@ -1221,7 +1235,7 @@ class CreateApp extends Component {
                               this.setState({ youtube: e.target.value })
                             }
                             error={errors.youtube && Boolean(errors.youtube)}
-                            helperText={errors.youtube ? errors.youtube : ""}
+                            helpertext={errors.youtube ? errors.youtube : ""}
                           />
                         </div>
                       </div>
@@ -1239,7 +1253,7 @@ class CreateApp extends Component {
                               this.setState({ github: e.target.value })
                             }
                             error={errors.github && Boolean(errors.github)}
-                            helperText={errors.github ? errors.github : ""}
+                            helpertext={errors.github ? errors.github : ""}
                           />
                         </div>
                         <div>
@@ -1254,7 +1268,7 @@ class CreateApp extends Component {
                               this.setState({ discord: e.target.value })
                             }
                             error={errors.discord && Boolean(errors.discord)}
-                            helperText={errors.discord ? errors.discord : ""}
+                            helpertext={errors.discord ? errors.discord : ""}
                           />
                         </div>
                         <div>
@@ -1269,14 +1283,16 @@ class CreateApp extends Component {
                               this.setState({ gitlab: e.target.value })
                             }
                             error={errors.gitlab && Boolean(errors.gitlab)}
-                            helperText={errors.gitlab ? errors.gitlab : ""}
+                            helpertext={errors.gitlab ? errors.gitlab : ""}
                           />
                         </div>
                         <div className="flex my-4 justify-center md:hidden ">
                           <button
-                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
-                              }`}
+                            className={`sub-header-button text-white ${
+                              this.state.isSubmitting ? "" : ""
+                            }`}
                             type="submit"
+                            disabled={this.state.isSubmitting}
                           >
                             {this.state.isSubmitting
                               ? "Submitting..."
