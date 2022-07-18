@@ -14,7 +14,6 @@ const Filter = [
   { name: "Beta" },
   { name: "Alpha" },
   { name: "Work in Progress" },
-
 ];
 const Category = [
   { name: "Category" },
@@ -36,7 +35,7 @@ const Category = [
 ];
 
 export default function Home() {
-  const { isInitialized } = useMoralis();
+  const { isInitialized, authenticate, isAuthenticated } = useMoralis();
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState("Daily");
   const [filter, setFilter] = useState(Filter[0]);
@@ -61,20 +60,17 @@ export default function Home() {
     query.limit(1000);
     const response = await query.find();
     let result = JSON.parse(JSON.stringify(response));
-    console.log("result", result)
+    console.log("result", result);
     setData(result);
   };
 
-
   const handleCategory = (e) => {
     setCategory(e);
-  }
+  };
 
   const handleFilter = (e) => {
     setFilter(e);
-  }
-
-
+  };
 
   const router = useRouter();
   return (
@@ -126,10 +122,11 @@ export default function Home() {
         ease-in-out
   
         text-gray-400
-         ${duration === "Daily"
-                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-                          : ""
-                        }`}
+         ${
+           duration === "Daily"
+             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+             : ""
+         }`}
                     >
                       <p className={` ${duration === "Daily" ? " link" : ""}`}>
                         Daily
@@ -153,10 +150,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Weekly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Weekly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p className={` ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
@@ -180,10 +178,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Monthly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Monthly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p
                         className={` ${duration === "Monthly" ? " link" : ""}`}
@@ -209,10 +208,11 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${duration === "Yearly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+                       ${
+                         duration === "Yearly"
+                           ? " border-2 font-semibold custom-shadow grad-text-color"
+                           : ""
+                       }`}
                     >
                       <p className={` ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
@@ -223,9 +223,9 @@ export default function Home() {
               </div>
               <div className="flex mt-2 w-full flex-row text-center justify-center md:justify-end">
                 <div className="container-right">
-                  <Listbox value={filter} onChange={e => handleFilter(e)}>
+                  <Listbox value={filter} onChange={(e) => handleFilter(e)}>
                     <div className="mt-1 mx-2">
-                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate text-gray-400">
                           {filter.name}
                         </span>
@@ -247,21 +247,22 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-default select-none py-2 pl-10 pr-4 ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
                                 }`
                               }
                               value={data}
-
                             >
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -282,10 +283,9 @@ export default function Home() {
                     </div>
                   </Listbox>
 
-
-                  <Listbox value={category} onChange={e => handleCategory(e)}>
+                  <Listbox value={category} onChange={(e) => handleCategory(e)}>
                     <div className="mt-1">
-                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate text-gray-400">
                           {category.name}
                         </span>
@@ -304,19 +304,25 @@ export default function Home() {
                       >
                         <Listbox.Options className="absolute z-40 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                           {Category.map((data, dataIdx) => (
-                            <Listbox.Option key={dataIdx}
-                              className={({ active }) => `cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-amber-100 text-amber-900" : "text-gray-900"}`}
+                            <Listbox.Option
+                              key={dataIdx}
+                              className={({ active }) =>
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
+                                }`
+                              }
                               value={data}
-
                             >
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
-
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -485,15 +491,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {data &&
-            data.length > 0 ?
+          {data && data.length > 0 ? (
             data.map((res, i) => {
               return (
-                <div
-                  onClick={() =>
-                    router.push({ pathname: `/dappDetails/${res.objectId}` })
-                  }
-                >
+                <div>
                   <Tbody
                     index={i + 1}
                     name={res.name}
@@ -503,20 +504,17 @@ export default function Home() {
                     id={res.objectId}
                     likes={res.likes ? res.likes : 0}
                     dislikes={res.dislikes ? res.dislikes : 0}
-
                   />
                 </div>
               );
-            }
-            ) :
-            (
-              <div>
-                <p className="text-center p-6">No Data Found..!!</p>
-              </div>
-            )
-          }
+            })
+          ) : (
+            <div>
+              <p className="text-center p-6">No Data Found..!!</p>
+            </div>
+          )}
         </div>
       </div>
-    </Fragment >
+    </Fragment>
   );
 }

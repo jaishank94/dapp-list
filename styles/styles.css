@@ -70,7 +70,7 @@ body {
 }
 
 .menuActive {
-  background-image: linear-gradient(#6000de, #6000de), linear-gradient(#6000de, #6000de);
+  background-image: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   cursor: pointer
 }
 
@@ -471,7 +471,7 @@ li {
   font-weight: 700;
   font-size: 16px;
   line-height: 23px;
-  background: linear-gradient(260.84deg, #0F8EFF 9.18%, #3729DE 59.78%, #9976FF 111.2%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -810,7 +810,7 @@ li {
 }
 
 .confirm-section {
-  width: 790px;
+  /* width: 790px; */
   height: 175px;
   background: #FFFFFF;
   /* opacity: 0.2; */
@@ -825,13 +825,13 @@ li {
 }
 
 .launch-app {
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 500px;
 }
 
 .launcapp-btn {
   height: 50px;
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 500px;
   font-weight: 900;
   font-size: 16px;
@@ -876,7 +876,7 @@ li {
 .sub-header-button {
   width: 150px;
   height: 50px;
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 500px;
 }
 
@@ -1027,7 +1027,7 @@ li {
 
 .text-1 {
   position: absolute;
-  width: 29px;
+  /* width: 29px; */
   height: 20px;
   bottom: 8px;
   left: 16px;
@@ -1240,7 +1240,7 @@ li {
   height: 656px;
   left: 560px;
   top: 230px;
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%)34;
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   opacity: 0.1;
   border-radius: 25px;
 }
@@ -1271,7 +1271,7 @@ li {
   left: 560px;
   top: 230px;
 
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 25px;
 }
 
@@ -1471,7 +1471,7 @@ li {
   height: 250px;
   left: 560px;
   top: 230px;
-  background: radial-gradient(100% 177.6% at 80.62% 0%, #0F8EFF 0%, #3729DE 49.6%, #9976FF 100%);
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 25px;
 }
 

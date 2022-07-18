@@ -1,12 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Head from "next/head";
 import Header from "../components/header";
 import { useRouter } from "next/router";
-// import { ChevronDownIcon } from '@heroicons/react/solid'
+import Moralis from "moralis";
+import { useMoralis } from "react-moralis";
 
-function DApp() {
+export default function DappDetails() {
   const router = useRouter();
+  const { isInitialized } = useMoralis();
+  const { id } = router.query;
+  const [dappInfo, setDappInfo] = useState();
+
+  useEffect(() => {
+    if (isInitialized) {
+      fetchDappDetails();
+    }
+  }, [isInitialized]);
+
+  const fetchDappDetails = async () => {
+    const Dapps = Moralis.Object.extend("Dapps");
+
+    const query = new Moralis.Query(Dapps);
+    query.equalTo("objectId", id);
+    const response = await query.first();
+    if (response) {
+      setDappInfo(response);
+    }
+  };
+
   return (
     <Fragment>
       <Head>
@@ -26,9 +48,12 @@ function DApp() {
           </div>
         </div>
         <div className="bg-white w-full mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+          <div className="flex justify-between items-center py-6 px-16 md:justify-center md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a className="icon-div cursor-pointer" onClick={() => router.push("/")}>
+              <a
+                className="icon-div cursor-pointer"
+                onClick={() => router.push("/")}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 custom-back-icon"
@@ -237,5 +262,3 @@ function DApp() {
     </Fragment>
   );
 }
-
-export default DApp;

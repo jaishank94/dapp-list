@@ -183,10 +183,10 @@ class CreateApp extends Component {
               <Form>
                 <div className="relative bg-white">
                   <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-                      <div className="flex text-center lg:w-0 lg:flex-1">
-                        <div className="w-1/5">
-                          <div className="icon-div">
+                    <div className="flex justify-center p-2 items-center py-6 md:justify-center md:space-x-10">
+                      <div className="flex text-center">
+                        <div className="">
+                          <a href={"/"} className="flex item-center p-4 mr-4 rounded-full bg-gray-300">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-5 w-5 custom-back-icon"
@@ -199,12 +199,12 @@ class CreateApp extends Component {
                                 clipRule="evenodd"
                               />
                             </svg>
-                          </div>
+                          </a>
                         </div>
-                        <div className="w-3/5 text-center">
-                          <p className="font-bold text-2xl">Submit an DApp</p>
+                        <div className="flex p-3 mx-6">
+                          <p className="font-bold text-2xl">Submit a DApp</p>
                         </div>
-                        <div className="w-1/5">
+                        <div className="hidden md:block flex mx-6">
                           <button
                             className={`sub-header-button text-white ${
                               this.state.isSubmitting ? "" : ""
@@ -216,7 +216,7 @@ class CreateApp extends Component {
                               : "Submit"}
                           </button>
                           <button
-                            className={`mx-2 rounded-full border-slate-500 text-black bg-gray`}
+                            className={`mx-2 rounded-full border-0 p-4 text-black bg-gray-300`}
                             type="reset"
                             onClick={() => this.resetForm}
                           >
@@ -366,7 +366,7 @@ class CreateApp extends Component {
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">App Status*</p>
-                        <div className="flex flex-row my-6">
+                        <div className="md:flex flex-row my-6">
                           <div>
                             <div className="group-6-6">
                               <div className="rectangle-1-0-8" />
@@ -485,7 +485,7 @@ class CreateApp extends Component {
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">Category*</p>
-                        <div className="flex flex-row my-6">
+                        <div className="md:flex flex-row my-6">
                           <div>
                             <div className="group-6-6">
                               <div className="rectangle-1-0-8" />
@@ -617,7 +617,7 @@ class CreateApp extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="flex flex-row my-6">
+                        <div className="md:flex flex-row my-6">
                           <div>
                             <div className="group-6-6">
                               <div className="rectangle-1-0-8" />
@@ -751,7 +751,7 @@ class CreateApp extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="flex flex-row my-6">
+                        <div className="md:flex flex-row my-6">
                           <div>
                             <div className="group-6-6">
                               <div className="rectangle-1-0-8" />
@@ -882,7 +882,7 @@ class CreateApp extends Component {
                             </div>
                           </div>
                         </div>
-                        <div className="flex flex-row my-6">
+                        <div className="md:flex flex-row my-6">
                           <div>
                             <div className="group-6-6">
                               <div className="rectangle-1-0-8" />
@@ -1276,6 +1276,25 @@ class CreateApp extends Component {
                             error={errors.gitlab && Boolean(errors.gitlab)}
                             helperText={errors.gitlab ? errors.gitlab : ""}
                           />
+                        </div>
+                        <div className="flex my-4 justify-center md:hidden ">
+                          <button
+                            className={`sub-header-button text-white ${
+                              this.state.isSubmitting ? "" : ""
+                            }`}
+                            type="submit"
+                          >
+                            {this.state.isSubmitting
+                              ? "Submitting..."
+                              : "Submit"}
+                          </button>
+                          <button
+                            className={`mx-2 rounded-full border-0 p-4 text-black bg-gray-300`}
+                            type="reset"
+                            onClick={() => this.resetForm}
+                          >
+                            Reset
+                          </button>
                         </div>
                       </div>
                     </div>
