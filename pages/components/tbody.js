@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 function Tbody(props) {
   const { authenticate, isAuthenticated, user } = useMoralis();
   const [like, setLike] = useState("");
+  const [isDisabled, setDisabled] = useState(false);
   const [dislike, setDislike] = useState("");
   const router = useRouter();
 
@@ -17,92 +18,102 @@ function Tbody(props) {
   }, [isAuthenticated]);
 
   function getDisplayType(val) {
-    let TypeLength = val ? val.length : 0;
-    let TypeBadge = "";
-    if (TypeLength > 0) {
-      if (TypeLength > 2) {
-        let restCount = TypeLength - 2;
-        TypeBadge = val.slice(0, 2).map((type, index) => {
+    try {
+      let TypeLength = val ? val.length : 0;
+      let TypeBadge = "";
+      if (TypeLength > 0) {
+        if (TypeLength > 2) {
+          let restCount = TypeLength - 2;
+          TypeBadge = val.slice(0, 2).map((type, index) => {
+            return (
+              <div key={index} className="app-type bottom-partial">
+                {type}
+              </div>
+            );
+          });
           return (
-            <div key={index} className="app-type bottom-partial">
-              {type}
-            </div>
+            <>
+              {TypeBadge}{" "}
+              <span className="app-type bottom-partial">+{restCount}</span>
+            </>
           );
-        });
-        return (
-          <>
-            {TypeBadge}{" "}
-            <span className="app-type bottom-partial">+{restCount}</span>
-          </>
-        );
-      } else {
-        TypeBadge = val.map((type, index) => {
-          return (
-            <div key={index} className="app-type bottom-partial">
-              {type}
-            </div>
-          );
-        });
-        return TypeBadge;
+        } else {
+          TypeBadge = val.map((type, index) => {
+            return (
+              <div key={index} className="app-type bottom-partial">
+                {type}
+              </div>
+            );
+          });
+          return TypeBadge;
+        }
       }
-    }
+    } catch (e) {}
   }
 
   const handleReaction = async (isLiked) => {
-    let isExists = await getUserReaction(isLiked);
-    if (isAuthenticated && !isExists) {
-      const DappLikes = Moralis.Object.extend("DappLikes");
-      const Dapps = Moralis.Object.extend("Dapps");
+    setDisabled(true);
 
-      const newDapObject = new Dapps();
-      newDapObject.id = props.id;
-      const query = new Moralis.Query(Dapps);
-      query.equalTo("objectId", props.id);
-      const response = await query.first();
-      if (response) {
-        const newLikesObject = new DappLikes();
-        newLikesObject.set("dapp", newDapObject);
-        newLikesObject.set("user", user.get("ethAddress"));
-        newLikesObject.set("isLiked", isLiked);
-        newLikesObject.set("status", "ACTIVE");
-        await newLikesObject.save();
-        if (isLiked) {
-          setLike(isLiked);
-          response.increment("likes", 1);
-        } else {
-          setDislike(true);
-          response.increment("dislikes", 1);
+    try {
+      let isExists = await getUserReaction(isLiked);
+      if (isAuthenticated && !isExists) {
+        const DappLikes = Moralis.Object.extend("DappLikes");
+        const Dapps = Moralis.Object.extend("Dapps");
+
+        const newDapObject = new Dapps();
+        newDapObject.id = props.id;
+        const query = new Moralis.Query(Dapps);
+        query.equalTo("objectId", props.id);
+        const response = await query.first();
+        if (response) {
+          const newLikesObject = new DappLikes();
+          newLikesObject.set("dapp", newDapObject);
+          newLikesObject.set("user", user.get("ethAddress"));
+          newLikesObject.set("isLiked", isLiked);
+          newLikesObject.set("status", "ACTIVE");
+          await newLikesObject.save();
+          if (isLiked) {
+            setLike(isLiked);
+            response.increment("likes", 1);
+          } else {
+            setDislike(true);
+            response.increment("dislikes", 1);
+          }
+          await response.save();
         }
-        await response.save();
       }
+      setDisabled(false);
+    } catch (e) {
+      setDisabled(false);
     }
   };
 
   const getUserReaction = async (isLiked) => {
-    if (isAuthenticated) {
-      const DappLikes = Moralis.Object.extend("DappLikes");
-      const Dapps = Moralis.Object.extend("Dapps");
+    try {
+      if (isAuthenticated) {
+        const DappLikes = Moralis.Object.extend("DappLikes");
+        const Dapps = Moralis.Object.extend("Dapps");
 
-      const newDapObject = new Dapps();
-      newDapObject.id = props.id;
+        const newDapObject = new Dapps();
+        newDapObject.id = props.id;
 
-      const query = new Moralis.Query(DappLikes);
-      query.equalTo("user", user.get("ethAddress"));
-      query.equalTo("dapp", newDapObject);
-      query.equalTo("isLiked", isLiked);
-      const response = await query.first();
+        const query = new Moralis.Query(DappLikes);
+        query.equalTo("user", user.get("ethAddress"));
+        query.equalTo("dapp", newDapObject);
+        query.equalTo("isLiked", isLiked);
+        const response = await query.first();
 
-      if (response) {
-        console.log("SAdfa12sf", response);
-
-        if (response.get("isLiked")) {
-          console.log("SAdfasf");
-          setLike(true);
-        } else {
-          setDislike(true);
+        if (response) {
+          if (response.get("isLiked")) {
+            setLike(true);
+          } else {
+            setDislike(true);
+          }
         }
+        return response;
       }
-      return response;
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -207,7 +218,14 @@ function Tbody(props) {
             <span className="col-title-mobile">Vote</span>
             <div className="component-ranking-table-volume">
               <span className="value flex">
-                <div className="text-center">
+                <button
+                  className="text-center"
+                  disabled={isDisabled}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    isAuthenticated ? handleReaction(true) : authenticate();
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -215,9 +233,10 @@ function Tbody(props) {
                     viewBox="0 0 24 24"
                     stroke="skyblue"
                     strokeWidth="2"
-                    onClick={(e) =>
-                      isAuthenticated ? handleReaction(true) : authenticate()
-                    }
+                    // onClick={(e) =>
+                    //   isAuthenticated ? handleReaction(true) : authenticate()
+                    // }
+                    // disabled={isDisabled}
                   >
                     <path
                       strokeLinecap="round"
@@ -226,8 +245,15 @@ function Tbody(props) {
                     />
                   </svg>
                   {like ? props.likes + 1 : props.likes}
-                </div>
-                <div className="text-center">
+                </button>
+                <button
+                  className="text-center"
+                  disabled={isDisabled}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    isAuthenticated ? handleReaction(false) : authenticate();
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
@@ -235,9 +261,6 @@ function Tbody(props) {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                     strokeWidth="2"
-                    onClick={(e) =>
-                      isAuthenticated ? handleReaction(false) : authenticate()
-                    }
                   >
                     <path
                       strokeLinecap="round"
@@ -246,7 +269,7 @@ function Tbody(props) {
                     />
                   </svg>
                   {dislike ? props.dislikes + 1 : props.dislikes}
-                </div>
+                </button>
               </span>
             </div>
           </div>

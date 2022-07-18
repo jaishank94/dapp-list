@@ -9,6 +9,11 @@ export default function Header({ displayCreate }) {
 
   return (
     <div className="text-left w-full">
+      <Head>
+        <title>PulseChainProjects.io</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link href="http://fonts.cdnfonts.com/css/gordita" rel="stylesheet" />
+      </Head>
       <nav className="flex w-full">
         <div className="flex justify-between w-full items-center">
           <a

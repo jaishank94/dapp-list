@@ -17,7 +17,7 @@ export default function DappDetails() {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  console.log(id)
+  console.log(id);
   useEffect(() => {
     if (isInitialized && id) {
       fetchDappDetails();
@@ -26,39 +26,40 @@ export default function DappDetails() {
   }, [isInitialized, id]);
 
   const fetchDappDetails = async () => {
-    setLoading(true)
-    const Dapps = Moralis.Object.extend("Dapps");
-    const query = new Moralis.Query(Dapps);
-    query.equalTo("objectId", id);
-    const response = await query.find();
-    if (response.length > 0) {
-      let result = JSON.parse(JSON.stringify(response));
-      setDappInfo(result[0]);
-      setLoading(false)
+    setLoading(true);
+    try {
+      const Dapps = Moralis.Object.extend("Dapps");
+      const query = new Moralis.Query(Dapps);
+      query.equalTo("objectId", id);
+      const response = await query.find();
+      if (response.length > 0) {
+        let result = JSON.parse(JSON.stringify(response));
+        setDappInfo(result[0]);
+      }
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
     }
   };
 
   const getAppList = async () => {
-    const Dapps = Moralis.Object.extend("Dapps");
-    const query = new Moralis.Query(Dapps);
-    query.ascending("priority");
-    query.limit(3);
-    const response = await query.find();
-    let result = JSON.parse(JSON.stringify(response));
-    console.log("result", result);
-    setData(result);
+    try {
+      const Dapps = Moralis.Object.extend("Dapps");
+      const query = new Moralis.Query(Dapps);
+      query.ascending("priority");
+      query.limit(3);
+      const response = await query.find();
+      let result = JSON.parse(JSON.stringify(response));
+      setData(result);
+    } catch (e) {
+      console.log("Error", e);
+    }
   };
 
-  console.log(data)
+  console.log(data);
 
   return (
     <Fragment>
-      <Head>
-        <link
-          href="http://fonts.cdnfonts.com/css/gordita"
-          rel="stylesheet"
-        ></link>
-      </Head>
       <div className="relative overflow-hidden">
         <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
           <div className="container mx-auto">
@@ -130,8 +131,7 @@ export default function DappDetails() {
                     <span className="page-view-value">-</span>
                     <div className="pct is-positive ml-1">
                       <div className="page-view-index">
-                        {/* <span className="upper-limit mr-1">^</span> */}
-                        -
+                        {/* <span className="upper-limit mr-1">^</span> */}-
                       </div>
                     </div>
                   </div>
@@ -191,9 +191,7 @@ export default function DappDetails() {
               </div>
               <div className="mt-14">
                 <div className="text-center dApp-text">
-                  <p className="p-dapp">
-                    {/* {dappInfo.full_description} */}
-                  </p>
+                  <p className="p-dapp">{/* {dappInfo.full_description} */}</p>
                 </div>
               </div>
               <div className="mt-14 confirm-section p-5">
@@ -203,7 +201,9 @@ export default function DappDetails() {
                       <p className="text-gray-500">Submitted</p>
                     </div>
                     <div className="mt-2">
-                      <p className="ticker-value">{moment(dappInfo.createdAt).format("DD MMM YY")}</p>
+                      <p className="ticker-value">
+                        {moment(dappInfo.createdAt).format("DD MMM YY")}
+                      </p>
                     </div>
                   </div>
                   <div className="seperator"></div>
@@ -212,12 +212,18 @@ export default function DappDetails() {
                       <p className="text-gray-500">Last updated</p>
                     </div>
                     <div className="mt-2">
-                      <p className="ticker-value">{moment(dappInfo.updatedAt).format("DD MMM YY")}</p>
+                      <p className="ticker-value">
+                        {moment(dappInfo.updatedAt).format("DD MMM YY")}
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div className="submit-button">
-                  <a href={dappInfo.website_url} target="_blank" className="inline-flex w-full tracking-widest cursor-pointer launcapp-btn px-4 py-4 text-white justify-center rounded-md">
+                  <a
+                    href={dappInfo.website_url}
+                    target="_blank"
+                    className="inline-flex w-full tracking-widest cursor-pointer launcapp-btn px-4 py-4 text-white justify-center rounded-md"
+                  >
                     Launch App
                   </a>
                 </div>
@@ -231,35 +237,51 @@ export default function DappDetails() {
               </h2>
             </div>
             <div className="my-10 sm:grid md:grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
-              {data.map((app, indx) => {
-                return (
-                  <div className="max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 border-white cursor-pointer"
-                    onClick={() => router.push("/dappDetails/" + app.objectId)}
-                  >
-                    <div class="flex block w-full p-6 max-w-sm bg-white  rounded-2xl custom-shadow">
-                      <div>
-                        <div class="block p-6 max-w-sm bg-white rounded-lg border-2 border-white shadow-md">
-                          <Image src={logo} width={25} height={25} />
+              {data &&
+                data.map((app, indx) => {
+                  return (
+                    <div
+                      className="max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 border-white cursor-pointer"
+                      onClick={() =>
+                        router.push("/dappDetails/" + app.objectId)
+                      }
+                    >
+                      <div class="flex block w-full p-6 max-w-sm bg-white  rounded-2xl custom-shadow">
+                        <div>
+                          <div class="block p-6 max-w-sm bg-white rounded-lg border-2 border-white shadow-md">
+                            <Image src={logo} width={25} height={25} />
+                          </div>
+                        </div>
+                        <div className="px-3">
+                          <p className="text-left link">{app.name}</p>
+                          <p className="text-left text-justify">
+                            {app.short_description}
+                          </p>
                         </div>
                       </div>
-                      <div className="px-3">
-                        <p className="text-left link">{app.name}</p>
-                        <p className="text-left text-justify">{app.short_description}</p>
-                      </div>
                     </div>
-                  </div>
-                )
-              })}
+                  );
+                })}
+              {data && data.length == 0 && (
+                <>
+                  <p className="p-6">No Data</p>
+                </>
+              )}
             </div>
           </div>
         </>
       )}
       {isLoading && (
         <>
-          <p className="text-center">Loading...</p>
+          <p className="p-6 text-center">Loading...</p>
         </>
       )}
 
+      {!isLoading && !dappInfo && (
+        <>
+          <p className="p-6 text-center">No Data Found</p>
+        </>
+      )}
     </Fragment>
   );
 }
