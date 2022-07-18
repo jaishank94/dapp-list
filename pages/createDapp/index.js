@@ -24,7 +24,7 @@ class CreateApp extends Component {
       short_description: "",
       full_description: "",
       website_url: "",
-      app_status: "",
+      app_status: "Live",
       category: [],
       porject_information: "",
       tage: "",
@@ -79,6 +79,7 @@ class CreateApp extends Component {
   };
 
   submitApp = async () => {
+    debugger
     const {
       name,
       short_description,
@@ -126,8 +127,6 @@ class CreateApp extends Component {
         newObject.set("name", name);
         newObject.set("short_description", short_description);
         newObject.set("full_description", full_description);
-        newObject.set("website_url", website_url);
-
         newObject.set("logo", logo_url);
         newObject.set("app_status", app_status);
         newObject.set("type", category);
@@ -170,7 +169,7 @@ class CreateApp extends Component {
         <Formik
           initialValues={{}}
           enableReinitialize={true}
-          validationSchema={validation}
+          // validationSchema={validation}
           onSubmit={this.submitApp}
         >
           {({
@@ -368,14 +367,14 @@ class CreateApp extends Component {
                               <div className="rectangle-1-0-8" />
                               <div className="rectangle-1-0-9" />
                               <div
-                                className="rectangle-1-1-0"
+                                className={`rectangle-1-1-0 ${this.state.app_status === "Live" ? "selected-background" : "not-selected-background"}`}
                                 onClick={(e) =>
-                                  this.setState({ app_status: "Live" })
+                                  this.setState({ app_status: this.state.app_status === "Live" ? this.state.app_status : "Live" })
                                 }
                               />
-                              <p className="text-1">Live</p>
+                              <p className={`text-1 ${this.state.app_status === "Live" ? "selected-text" : "not-selected-text"}`}>Live</p>
                               <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
+                                <div className={`rectangle-1-3-3 ${this.state.app_status === "Live" ? "selected-rectangle-1-3-3" : "not-rectangle-1-3-3"}`} />
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-8 w-8 icon"
@@ -396,14 +395,14 @@ class CreateApp extends Component {
                               <div className="rectangle-1-0-8" />
                               <div className="rectangle-1-0-9" />
                               <div
-                                className="rectangle-1-1-0"
+                                className={`rectangle-1-1-0 ${this.state.app_status === "Beta" ? "selected-background" : "not-selected-background"}`}
                                 onClick={(e) =>
                                   this.setState({ app_status: "Beta" })
                                 }
                               />
-                              <p className="text-1">Beta</p>
+                              <p className={`text-1 ${this.state.app_status === "Beta" ? "selected-text" : "not-selected-text"}`}>Beta</p>
                               <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
+                                <div className={`rectangle-1-3-3 ${this.state.app_status === "Beta" ? "selected-rectangle-1-3-3" : "not-rectangle-1-3-3"}`} />
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-8 w-8 icon"
@@ -424,14 +423,15 @@ class CreateApp extends Component {
                               <div className="rectangle-1-0-8" />
                               <div className="rectangle-1-0-9" />
                               <div
-                                className="rectangle-1-1-0"
+                                className={`rectangle-1-1-0 ${this.state.app_status === "Alpha" ? "selected-background" : "not-selected-background"}`}
                                 onClick={(e) =>
                                   this.setState({ app_status: "Alpha" })
                                 }
                               />
-                              <p className="text-1">Alpha</p>
+
+                              <p className={`text-1 ${this.state.app_status === "Alpha" ? "selected-text" : "not-selected-text"}`}>Alpha</p>
                               <div className="group-6-5">
-                                <div className="rectangle-1-3-3" />
+                                <div className={`rectangle-1-3-3 ${this.state.app_status === "Alpha" ? "selected-rectangle-1-3-3" : "not-rectangle-1-3-3"}`} />
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="h-8 w-8 icon"
