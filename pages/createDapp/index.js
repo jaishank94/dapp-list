@@ -126,6 +126,8 @@ class CreateApp extends Component {
         newObject.set("name", name);
         newObject.set("short_description", short_description);
         newObject.set("full_description", full_description);
+        newObject.set("website_url", website_url);
+
         newObject.set("logo", logo_url);
         newObject.set("app_status", app_status);
         newObject.set("type", category);
@@ -206,9 +208,8 @@ class CreateApp extends Component {
                         </div>
                         <div className="hidden md:block flex mx-6">
                           <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
-                            }`}
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                              }`}
                             type="submit"
                           >
                             {this.state.isSubmitting
@@ -235,12 +236,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.name &&
-                                                      errors.name
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.name &&
+                              errors.name
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="name"
                           name="name"
                           placeholder="App Name *"
@@ -259,12 +259,11 @@ class CreateApp extends Component {
                         <input
                           type="text"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.short_description &&
-                                                      errors.short_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.short_description &&
+                              errors.short_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="short_description"
                           name="short_description"
                           placeholder="Short Description*"
@@ -274,7 +273,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.short_description &&
-                        !this.state.short_description ? (
+                          !this.state.short_description ? (
                           <div className="error my-2">
                             {errors.short_description}
                           </div>
@@ -287,12 +286,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.full_description &&
-                                                      errors.full_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.full_description &&
+                              errors.full_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="full_description"
                           name="full_description"
                           placeholder="Full Description*"
@@ -302,7 +300,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.full_description &&
-                        !this.state.full_description ? (
+                          !this.state.full_description ? (
                           <div className="error my-2">
                             {errors.full_description}
                           </div>
@@ -315,12 +313,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.website_url &&
-                                                      errors.website_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.website_url &&
+                              errors.website_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="website_url"
                           name="website_url"
                           placeholder="Website URL*"
@@ -342,12 +339,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.logo_url &&
-                                                      errors.logo_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.logo_url &&
+                              errors.logo_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="logo_url"
                           name="logo_url"
                           placeholder="DApp Logo URL*"
@@ -1090,12 +1086,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5 mt-4"
                           className={`form-control custom-input px-5 mt-4
-                                                    ${
-                                                      touched.tage &&
-                                                      errors.tage
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.tage &&
+                              errors.tage
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="tage"
                           name="tage"
                           placeholder="e.g.splinterlands"
@@ -1279,9 +1274,8 @@ class CreateApp extends Component {
                         </div>
                         <div className="flex my-4 justify-center md:hidden ">
                           <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
-                            }`}
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                              }`}
                             type="submit"
                           >
                             {this.state.isSubmitting

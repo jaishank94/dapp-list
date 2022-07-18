@@ -122,11 +122,10 @@ export default function Home() {
         ease-in-out
   
         text-gray-400
-         ${
-           duration === "Daily"
-             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-             : ""
-         }`}
+         ${duration === "Daily"
+                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Daily" ? " link" : ""}`}>
                         Daily
@@ -150,11 +149,10 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${
-         duration === "Weekly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
+       ${duration === "Weekly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
@@ -178,11 +176,10 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${
-         duration === "Monthly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
+       ${duration === "Monthly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p
                         className={` ${duration === "Monthly" ? " link" : ""}`}
@@ -208,11 +205,10 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${
-                         duration === "Yearly"
-                           ? " border-2 font-semibold custom-shadow grad-text-color"
-                           : ""
-                       }`}
+                       ${duration === "Yearly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p className={` ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
@@ -247,10 +243,9 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
-                                  active
-                                    ? "bg-amber-100 text-amber-900"
-                                    : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
+                                  ? "bg-amber-100 text-amber-900"
+                                  : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -258,11 +253,10 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${
-                                      selected
+                                    className={`block truncate ${selected
                                         ? "text-gray-400 font-medium"
                                         : "font-normal"
-                                    }`}
+                                      }`}
                                   >
                                     {data.name}
                                   </span>
@@ -307,10 +301,9 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
-                                  active
-                                    ? "bg-amber-100 text-amber-900"
-                                    : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
+                                  ? "bg-amber-100 text-amber-900"
+                                  : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -318,11 +311,10 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${
-                                      selected
+                                    className={`block truncate ${selected
                                         ? "text-gray-400 font-medium"
                                         : "font-normal"
-                                    }`}
+                                      }`}
                                   >
                                     {data.name}
                                   </span>
