@@ -40,6 +40,7 @@ export default function Home() {
   const [duration, setDuration] = useState("Daily");
   const [filter, setFilter] = useState(Filter[0]);
   const [category, setCategory] = useState(Category[0]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (isInitialized) {
@@ -48,20 +49,26 @@ export default function Home() {
   }, [isInitialized, category, filter]);
 
   const getAppList = async () => {
-    const Dapps = Moralis.Object.extend("Dapps");
-    const query = new Moralis.Query(Dapps);
-    if (category.name !== "Category") {
-      query.containedIn("type", [category.name]);
+    setLoading(true);
+    try {
+      const Dapps = Moralis.Object.extend("Dapps");
+      const query = new Moralis.Query(Dapps);
+      if (category.name !== "Category") {
+        query.containedIn("type", [category.name]);
+      }
+      if (filter.name !== "Filter") {
+        query.equalTo("app_status", filter.name);
+      }
+      query.ascending("priority");
+      query.limit(1000);
+      const response = await query.find();
+      let result = JSON.parse(JSON.stringify(response));
+      console.log("result", result);
+      setData(result);
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
     }
-    if (filter.name !== "Filter") {
-      query.equalTo("app_status", filter.name);
-    }
-    query.ascending("priority");
-    query.limit(1000);
-    const response = await query.find();
-    let result = JSON.parse(JSON.stringify(response));
-    console.log("result", result);
-    setData(result);
   };
 
   const handleCategory = (e) => {
@@ -75,12 +82,6 @@ export default function Home() {
   const router = useRouter();
   return (
     <Fragment>
-      <Head>
-        <link
-          href="http://fonts.cdnfonts.com/css/gordita"
-          rel="stylesheet"
-        ></link>
-      </Head>
       <div className="wrapper overflow-hidden">
         <div className="w-full border-b-2 border-slate-300 py-2 mb-5">
           <div className="container mx-auto">
@@ -122,10 +123,11 @@ export default function Home() {
         ease-in-out
   
         text-gray-400
-         ${duration === "Daily"
-                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-                          : ""
-                        }`}
+         ${
+           duration === "Daily"
+             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+             : ""
+         }`}
                     >
                       <p className={` ${duration === "Daily" ? " link" : ""}`}>
                         Daily
@@ -149,10 +151,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Weekly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Weekly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p className={` ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
@@ -176,10 +179,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Monthly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Monthly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p
                         className={` ${duration === "Monthly" ? " link" : ""}`}
@@ -205,10 +209,11 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${duration === "Yearly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+                       ${
+                         duration === "Yearly"
+                           ? " border-2 font-semibold custom-shadow grad-text-color"
+                           : ""
+                       }`}
                     >
                       <p className={` ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
@@ -243,9 +248,10 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -253,10 +259,11 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
+                                    className={`block truncate ${
+                                      selected
                                         ? "text-gray-400 font-medium"
                                         : "font-normal"
-                                      }`}
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -301,9 +308,10 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -311,10 +319,11 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
+                                    className={`block truncate ${
+                                      selected
                                         ? "text-gray-400 font-medium"
                                         : "font-normal"
-                                      }`}
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -483,7 +492,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          {data && data.length > 0 ? (
+          {data &&
+            !isLoading &&
+            data.length > 0 &&
             data.map((res, i) => {
               return (
                 <div>
@@ -499,11 +510,18 @@ export default function Home() {
                   />
                 </div>
               );
-            })
-          ) : (
-            <div>
-              <p className="text-center p-6">No Data Found..!!</p>
-            </div>
+            })}
+
+          {isLoading && (
+            <>
+              <p className="p-6 text-center">Loading...</p>
+            </>
+          )}
+
+          {data && !isLoading && data.length == 0 && (
+            <>
+              <p className="p-6 text-center">No Data Found</p>
+            </>
           )}
         </div>
       </div>
