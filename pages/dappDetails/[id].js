@@ -122,8 +122,8 @@ export default function DappDetails() {
                   <img
                     src={dappInfo.logo}
                     alt={dappInfo.name}
-                    width={150}
-                    height={150}
+                    width={110}
+                    height={110}
                     className="rounded-lg"
                   />
                   </div>
