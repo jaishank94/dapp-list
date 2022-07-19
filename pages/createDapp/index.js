@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import Header from "../components/Header";
 import plus from "/public/images/plus.png";
 import Button from "../components/customButton";
+import Footer from "../components/Footer";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -15,7 +17,8 @@ const validation = Yup.object().shape({
   logo_url: Yup.string().required("This field is required"),
   ticker: Yup.string().required("This field is required"),
   total_supply: Yup.string().required("This field is required"),
-  // tag: Yup.string().required("This field is required"),
+  tag_arr: Yup.array().min(1).required("This field is required"),
+  category: Yup.array().min(1).required("This field is required"),
 });
 
 const AppStatus = [
@@ -75,7 +78,7 @@ class CreateApp extends Component {
       gitlab: "",
       ticker: "",
       sacrifice: "Yes",
-      total_supply:"",
+      total_supply: "",
       isSubmitting: false,
     };
   }
@@ -114,7 +117,7 @@ class CreateApp extends Component {
       discord: "",
       gitlab: "",
       sacrifice: "Yes",
-      total_supply:"",
+      total_supply: "",
       ticker: "",
       isSubmitting: false,
     });
@@ -140,7 +143,7 @@ class CreateApp extends Component {
       logo_url,
       ticker,
       sacrifice,
-      total_supply
+      total_supply,
     } = this.state;
 
     if (
@@ -199,7 +202,7 @@ class CreateApp extends Component {
             logo_url: "",
             ticker: "",
             sacrifice: "Yes",
-            total_supply:"",
+            total_supply: "",
             app_status: "Live",
             category: ["Games"],
             porject_information: "Airdrop",
@@ -213,7 +216,7 @@ class CreateApp extends Component {
             discord: "",
             gitlab: "",
             sacrifice: "Yes",
-            total_supply:"",
+            total_supply: "",
             isSubmitting: false,
           });
           // this.setState({ isSubmitting: false })
@@ -252,6 +255,8 @@ class CreateApp extends Component {
             logo_url: this.state.logo_url,
             ticker: this.state.ticker,
             total_supply: this.state.total_supply,
+            category: this.state.category,
+            tag_arr: this.state.tag_arr,
           }}
           enableReinitialize={true}
           validationSchema={validation}
@@ -269,7 +274,9 @@ class CreateApp extends Component {
                             href={"/"}
                             className="flex item-center p-4 mr-4 rounded-full bg-gray-300"
                           >
-                            <svg
+                            <BsFillArrowLeftCircleFill className="h-5 w-5 text-black" />
+
+                            {/* <svg
                               xmlns="http://www.w3.org/2000/svg"
                               className="h-5 w-5 custom-back-icon"
                               viewBox="0 0 20 20"
@@ -280,13 +287,13 @@ class CreateApp extends Component {
                                 d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                                 clipRule="evenodd"
                               />
-                            </svg>
+                            </svg> */}
                           </a>
                         </div>
                         <div className="flex p-3 mx-6">
                           <p className="font-bold text-2xl">Submit a DApp</p>
                         </div>
-                        <div className="hidden md:block flex mx-6">
+                        {/* <div className="hidden md:block flex mx-6">
                           <button
                             className={`sub-header-button text-white ${
                               this.state.isSubmitting ? "" : ""
@@ -305,7 +312,7 @@ class CreateApp extends Component {
                           >
                             Reset
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -488,7 +495,9 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.total_supply && !this.state.total_supply ? (
-                          <div className="error my-2">{errors.total_supply}</div>
+                          <div className="error my-2">
+                            {errors.total_supply}
+                          </div>
                         ) : (
                           ""
                         )}
@@ -537,7 +546,7 @@ class CreateApp extends Component {
                                             : "not-rectangle-1-3-3"
                                         }`}
                                       />
-                                      <svg
+                                      {/* <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-8 w-8 icon"
                                         viewBox="0 0 20 20"
@@ -548,7 +557,7 @@ class CreateApp extends Component {
                                           d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                           clipRule="evenodd"
                                         />
-                                      </svg>
+                                      </svg> */}
                                     </div>
                                   </div>
                                 </div>
@@ -601,7 +610,7 @@ class CreateApp extends Component {
                                             : "not-rectangle-1-3-3"
                                         }`}
                                       />
-                                      <svg
+                                      {/* <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-8 w-8 icon"
                                         viewBox="0 0 20 20"
@@ -612,7 +621,7 @@ class CreateApp extends Component {
                                           d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                           clipRule="evenodd"
                                         />
-                                      </svg>
+                                      </svg> */}
                                     </div>
                                   </div>
                                 </div>
@@ -641,11 +650,33 @@ class CreateApp extends Component {
                                   >
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
-                                    <div className={`rectangle-1-1-0 `} />
-                                    <p className="text-1">{data.name}</p>
+                                    <div
+                                      className={`rectangle-1-1-0 ${
+                                        this.state.category.includes(data.name)
+                                          ? "selected-background"
+                                          : "not-selected-background"
+                                      }`}
+                                    />
+                                    <p
+                                      className={`text-1 ${
+                                        this.state.category.includes(data.name)
+                                          ? "selected-text"
+                                          : "not-selected-text"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </p>
                                     <div className="group-6-5">
-                                      <div className="rectangle-1-3-3" />
-                                      <svg
+                                      <div
+                                        className={`rectangle-1-3-3 ${
+                                          this.state.category.includes(
+                                            data.name
+                                          )
+                                            ? "selected-rectangle-1-3-3"
+                                            : "not-rectangle-1-3-3"
+                                        }`}
+                                      />
+                                      {/* <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         className="h-8 w-8 icon"
                                         viewBox="0 0 20 20"
@@ -656,7 +687,7 @@ class CreateApp extends Component {
                                           d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                           clipRule="evenodd"
                                         />
-                                      </svg>
+                                      </svg> */}
                                     </div>
                                   </div>
                                 </div>
@@ -664,6 +695,11 @@ class CreateApp extends Component {
                             );
                           })}
                         </div>
+                        {errors.category && this.state.category.length === 0 ? (
+                          <div className="error my-2">{errors.category}</div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">
@@ -715,7 +751,7 @@ class CreateApp extends Component {
                                       }`}
                                     />
 
-                                    <svg
+                                    {/* <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       className="h-8 w-8 icon"
                                       viewBox="0 0 20 20"
@@ -726,7 +762,7 @@ class CreateApp extends Component {
                                         d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                         clipRule="evenodd"
                                       />
-                                    </svg>
+                                    </svg> */}
                                   </div>
                                 </div>
                               </div>
@@ -781,7 +817,7 @@ class CreateApp extends Component {
                           <div className="flex flex-row my-3 overscroll-contain">
                             {this.state.tag_arr.map((data, i) => {
                               return (
-                                <div>
+                                <div key={i}>
                                   <div className="group-6-6" key={i}>
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
@@ -809,6 +845,11 @@ class CreateApp extends Component {
                             })}
                           </div>
                         </div>
+                        {errors.tag_arr && this.state.tag_arr.length === 0 ? (
+                          <div className="error my-2">{errors.tag_arr}</div>
+                        ) : (
+                          ""
+                        )}
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">
@@ -926,7 +967,7 @@ class CreateApp extends Component {
                             helpertext={errors.gitlab ? errors.gitlab : ""}
                           />
                         </div>
-                        <div className="flex my-4 justify-center md:hidden ">
+                        <div className="flex my-4 justify-center ">
                           <button
                             className={`sub-header-button text-white ${
                               this.state.isSubmitting ? "" : ""
@@ -939,7 +980,7 @@ class CreateApp extends Component {
                               : "Submit"}
                           </button>
                           <button
-                            className={`mx-2 rounded-full border-0 p-4 text-black bg-gray-300`}
+                            className={`mx-4 rounded-full border-0 p-4 text-black bg-gray-300`}
                             type="reset"
                             onClick={(e) => this.resetForm(e)}
                           >
@@ -954,6 +995,9 @@ class CreateApp extends Component {
             );
           }}
         </Formik>
+        {/* <div>
+          <Footer />
+        </div> */}
       </Fragment>
     );
   }
