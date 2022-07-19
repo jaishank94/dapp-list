@@ -57,7 +57,7 @@ export default function index() {
                 PulseChainProjects.io is an open source tool built by the
                 HowToPulse.com team. Create a FREE listing in less than 5 mins.
                 For the communities safety we will approve all listing before
-                deploying them to the site. 
+                deploying them to the site.
                 <br />
                 <br />
                 We are dedicated to providing the

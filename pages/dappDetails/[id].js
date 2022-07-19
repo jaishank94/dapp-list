@@ -54,7 +54,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const getAppList = async () => {
@@ -86,7 +86,7 @@ export default function DappDetails() {
           </div>
         </div>
         <div className="bg-white w-full mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-6 px-16 md:justify-center md:space-x-10">
+          <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <a
                 className="icon-div cursor-pointer"
@@ -117,19 +117,19 @@ export default function DappDetails() {
               style={{ backgroundColor: "#c6c6e4" }}
             >
               <div className="card-header flex">
-                <div className="flex-none w-14 h-14 card-icon">
+                <div className="flex-none w-14 card-icon">
                   <div className="">
-                  <img
-                    src={dappInfo.logo}
-                    alt={dappInfo.name}
-                    width={150}
-                    height={150}
-                    className="rounded-lg"
-                  />
+                    <img
+                      src={dappInfo.logo}
+                      alt={dappInfo.name}
+                      width={150}
+                      height={150}
+                      className="rounded-lg"
+                    />
                   </div>
 
                 </div>
-                <div className="flex-initial p-5 app-detail">
+                <div className="flex-initial px-5 xl:p-5 app-detail">
                   <div className="">
                     <h5 className="font-bold app-name">{dappInfo.name}</h5>
                     <p className="text-gray-500 font-medium mt-2">

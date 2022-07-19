@@ -7,7 +7,8 @@ import Header from "../components/Header";
 import plus from "/public/images/plus.png";
 import Button from "../components/customButton";
 import Footer from "../components/Footer";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill, BsPlus, BsDash } from "react-icons/bs";
+
 
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -233,7 +234,6 @@ class CreateApp extends Component {
   };
 
   render() {
-    console.log("state", this.state);
     return (
       <Fragment>
         <div className="relative wrapper overflow-hidden">
@@ -266,10 +266,10 @@ class CreateApp extends Component {
             return (
               <Form>
                 <div className="relative bg-white">
-                  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-64">
                     <div className="flex justify-center p-2 items-center py-6 md:justify-center md:space-x-10">
-                      <div className="flex text-center">
-                        <div className="">
+                      <div className="flex w-full text-center">
+                        <div className="w-18">
                           <a
                             href={"/"}
                             className="flex item-center p-4 mr-4 rounded-full bg-gray-300"
@@ -290,7 +290,7 @@ class CreateApp extends Component {
                             </svg> */}
                           </a>
                         </div>
-                        <div className="flex p-3 mx-6">
+                        <div className="p-3 mx-6 xl:w-4/5 text-center">
                           <p className="font-bold text-2xl">Submit a DApp</p>
                         </div>
                         {/* <div className="hidden md:block flex mx-6">
@@ -325,12 +325,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.name &&
-                                                      errors.name
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.name &&
+                              errors.name
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="name"
                           name="name"
                           placeholder="App Name *"
@@ -349,12 +348,11 @@ class CreateApp extends Component {
                         <input
                           type="text"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.short_description &&
-                                                      errors.short_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.short_description &&
+                              errors.short_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="short_description"
                           name="short_description"
                           placeholder="Short Description*"
@@ -364,7 +362,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.short_description &&
-                        !this.state.short_description ? (
+                          !this.state.short_description ? (
                           <div className="error my-2">
                             {errors.short_description}
                           </div>
@@ -377,12 +375,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.full_description &&
-                                                      errors.full_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.full_description &&
+                              errors.full_description
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="full_description"
                           name="full_description"
                           placeholder="Full Description*"
@@ -392,7 +389,7 @@ class CreateApp extends Component {
                           }
                         />
                         {errors.full_description &&
-                        !this.state.full_description ? (
+                          !this.state.full_description ? (
                           <div className="error my-2">
                             {errors.full_description}
                           </div>
@@ -405,12 +402,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.website_url &&
-                                                      errors.website_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.website_url &&
+                              errors.website_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="website_url"
                           name="website_url"
                           placeholder="Website URL*"
@@ -430,12 +426,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.logo_url &&
-                                                      errors.logo_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.logo_url &&
+                              errors.logo_url
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="logo_url"
                           name="logo_url"
                           placeholder="DApp Logo URL*"
@@ -455,12 +450,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.ticker &&
-                                                      errors.ticker
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.ticker &&
+                              errors.ticker
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="ticker"
                           name="ticker"
                           placeholder="Ticker*"
@@ -480,12 +474,11 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5"
                           className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.total_supply &&
-                                                      errors.total_supply
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.total_supply &&
+                              errors.total_supply
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="total_supply"
                           name="total_supply"
                           placeholder="Total Supply*"
@@ -523,41 +516,31 @@ class CreateApp extends Component {
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
                                     <div
-                                      className={`rectangle-1-1-0 ${
-                                        this.state.sacrifice === data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                      }`}
+                                      className={`rectangle-1-1-0 ${this.state.sacrifice === data.name
+                                        ? "selected-background"
+                                        : "not-selected-background"
+                                        }`}
                                     />
                                     <p
-                                      className={`text-1 ${
-                                        this.state.sacrifice === data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                      }`}
+                                      className={`text-1 ${this.state.sacrifice === data.name
+                                        ? "selected-text"
+                                        : "not-selected-text"
+                                        }`}
                                     >
                                       {data.name}
                                     </p>
                                     <div className="group-6-5">
                                       <div
-                                        className={`rectangle-1-3-3 ${
-                                          this.state.sacrifice === data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                        }`}
+                                        className={`rectangle-1-3-3 ${this.state.sacrifice === data.name
+                                          ? "selected-rectangle-1-3-3"
+                                          : "not-rectangle-1-3-3"
+                                          }`}
                                       />
-                                      {/* <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-8 w-8 icon"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                      >
-                                        <path
-                                          fillRule="evenodd"
-                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                          clipRule="evenodd"
-                                        />
-                                      </svg> */}
+                                      {this.state.sacrifice === data.name ? (
+                                        <BsDash className="flex text-center icon justify-center" />
+                                      ) : (
+                                        <BsPlus className="flex text-center icon justify-center" />
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -587,41 +570,31 @@ class CreateApp extends Component {
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
                                     <div
-                                      className={`rectangle-1-1-0 ${
-                                        this.state.app_status === data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                      }`}
+                                      className={`rectangle-1-1-0 ${this.state.app_status === data.name
+                                        ? "selected-background"
+                                        : "not-selected-background"
+                                        }`}
                                     />
                                     <p
-                                      className={`text-1 ${
-                                        this.state.app_status === data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                      }`}
+                                      className={`text-1 ${this.state.app_status === data.name
+                                        ? "selected-text"
+                                        : "not-selected-text"
+                                        }`}
                                     >
                                       {data.name}
                                     </p>
                                     <div className="group-6-5">
                                       <div
-                                        className={`rectangle-1-3-3 ${
-                                          this.state.app_status === data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                        }`}
+                                        className={`rectangle-1-3-3 ${this.state.app_status === data.name
+                                          ? "selected-rectangle-1-3-3"
+                                          : "not-rectangle-1-3-3"
+                                          }`}
                                       />
-                                      {/* <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-8 w-8 icon"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                      >
-                                        <path
-                                          fillRule="evenodd"
-                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                          clipRule="evenodd"
-                                        />
-                                      </svg> */}
+                                      {this.state.app_status === data.name ? (
+                                        <BsDash className="flex text-center icon justify-center" />
+                                      ) : (
+                                        <BsPlus className="flex text-center icon justify-center" />
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -632,62 +605,51 @@ class CreateApp extends Component {
                       </div>
                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                         <p className="font-bold text-lg mt-8">Category*</p>
-                        <div class="grid grid-cols-4 gap-4">
+                        <div className="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1">
                           {Category.map((data, i) => {
                             return (
                               <>
-                                <div>
-                                  <div
-                                    className="group-6-6 cursor-pointer"
-                                    onClick={(e) =>
-                                      this.setState({
-                                        category: [
-                                          ...this.state.category,
-                                          data.name,
-                                        ],
-                                      })
-                                    }
-                                  >
+                                <div
+                                  onClick={(e) =>
+                                    this.setState({
+                                      category: [
+                                        ...this.state.category,
+                                        data.name,
+                                      ],
+                                    })
+                                  }
+                                  className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                  <div className="group-6-6 cursor-pointer">
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
                                     <div
-                                      className={`rectangle-1-1-0 ${
-                                        this.state.category.includes(data.name)
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                      }`}
+                                      className={`rectangle-1-1-0 ${this.state.category.includes(data.name)
+                                        ? "selected-background"
+                                        : "not-selected-background"
+                                        }`}
                                     />
                                     <p
-                                      className={`text-1 ${
-                                        this.state.category.includes(data.name)
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                      }`}
+                                      className={`text-1 ${this.state.category.includes(data.name)
+                                        ? "selected-text"
+                                        : "not-selected-text"
+                                        }`}
                                     >
                                       {data.name}
                                     </p>
                                     <div className="group-6-5">
                                       <div
-                                        className={`rectangle-1-3-3 ${
-                                          this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                        }`}
+                                        className={`rectangle-1-3-3 ${this.state.category.includes(
+                                          data.name
+                                        )
+                                          ? "selected-rectangle-1-3-3"
+                                          : "not-rectangle-1-3-3"
+                                          }`}
                                       />
-                                      {/* <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-8 w-8 icon"
-                                        viewBox="0 0 20 20"
-                                        fill="currentColor"
-                                      >
-                                        <path
-                                          fillRule="evenodd"
-                                          d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                          clipRule="evenodd"
-                                        />
-                                      </svg> */}
+                                      {this.state.category === data.name ? (
+                                        <BsDash className="flex text-center icon justify-center" />
+                                      ) : (
+                                        <BsPlus className="flex text-center icon justify-center" />
+                                      )}
                                     </div>
                                   </div>
                                 </div>
@@ -710,12 +672,12 @@ class CreateApp extends Component {
                             return (
                               <div>
                                 <div
-                                  className="group-6-6"
+                                  className="group-6-6 cursor-pointer"
                                   onClick={(e) =>
                                     this.setState({
                                       porject_information:
                                         this.state.porject_information ===
-                                        data.name
+                                          data.name
                                           ? this.state.porject_information
                                           : data.name,
                                     })
@@ -724,45 +686,34 @@ class CreateApp extends Component {
                                   <div className="rectangle-1-0-8" />
                                   <div className="rectangle-1-0-9" />
                                   <div
-                                    className={`rectangle-1-1-0 ${
-                                      this.state.porject_information ===
+                                    className={`rectangle-1-1-0 ${this.state.porject_information ===
                                       data.name
-                                        ? "selected-background"
-                                        : "not-selected-background"
-                                    }`}
+                                      ? "selected-background"
+                                      : "not-selected-background"
+                                      }`}
                                   />
                                   <p
-                                    className={`text-1 ${
-                                      this.state.porject_information ===
+                                    className={`text-1 ${this.state.porject_information ===
                                       data.name
-                                        ? "selected-text"
-                                        : "not-selected-text"
-                                    }`}
+                                      ? "selected-text"
+                                      : "not-selected-text"
+                                      }`}
                                   >
                                     {data.name}
                                   </p>
                                   <div className="group-6-5">
                                     <div
-                                      className={`rectangle-1-3-3 ${
-                                        this.state.porject_information ===
+                                      className={`rectangle-1-3-3 ${this.state.porject_information ===
                                         data.name
-                                          ? "selected-rectangle-1-3-3"
-                                          : "not-rectangle-1-3-3"
-                                      }`}
+                                        ? "selected-rectangle-1-3-3"
+                                        : "not-rectangle-1-3-3"
+                                        }`}
                                     />
-
-                                    {/* <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      className="h-8 w-8 icon"
-                                      viewBox="0 0 20 20"
-                                      fill="currentColor"
-                                    >
-                                      <path
-                                        fillRule="evenodd"
-                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                        clipRule="evenodd"
-                                      />
-                                    </svg> */}
+                                    {this.state.porject_information === data.name ? (
+                                      <BsDash className="flex text-center icon justify-center" />
+                                    ) : (
+                                      <BsPlus className="flex text-center icon justify-center" />
+                                    )}
                                   </div>
                                 </div>
                               </div>
@@ -776,11 +727,10 @@ class CreateApp extends Component {
                           type="text"
                           // className="form-control custom-input px-5 mt-4"
                           className={`form-control custom-input px-5 mt-4
-                                      ${
-                                        touched.tag && errors.tag
-                                          ? "is-invalid"
-                                          : ""
-                                      }`}
+                                      ${touched.tag && errors.tag
+                              ? "is-invalid"
+                              : ""
+                            }`}
                           id="tag"
                           name="tag"
                           placeholder="e.g.splinterlands"
@@ -969,9 +919,8 @@ class CreateApp extends Component {
                         </div>
                         <div className="flex my-4 justify-center ">
                           <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
-                            }`}
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                              }`}
                             type="submit"
                             disabled={this.state.isSubmitting}
                           >
