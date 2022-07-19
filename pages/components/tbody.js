@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function Tbody(props) {
   const { authenticate, isAuthenticated, user } = useMoralis();
@@ -131,10 +132,15 @@ function Tbody(props) {
             <div className="component-ranking-table-name">
               <div className="icon-place mr-4">
                 <div className="icon-wrapper">
-                  <p>sd</p>
-                  {/* <a className="icon-link">
-                  <img src="https://images.hive.blog/u/splinterlands/avatar" className="icon-image" />
-                </a> */}
+                  {/* <a className="icon-link"> */}
+                  <img
+                    src={props.logo}
+                    alt={props.name}
+                    width={150}
+                    height={150}
+                    className="rounded-lg"
+                  />
+                  {/* </a> */}
                 </div>
               </div>
 

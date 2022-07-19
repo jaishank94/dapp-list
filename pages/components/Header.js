@@ -4,7 +4,7 @@ import logo from "/public/images/pp_final_icon_black.png";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-export default function Header({ displayCreate }) {
+export default function Header({ displayCreate, handleSidebar }) {
   const router = useRouter();
 
   return (
@@ -36,6 +36,25 @@ export default function Header({ displayCreate }) {
                 className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0"
               >
                 Submit DApp
+              </button>
+              <button
+                onClick={() => handleSidebar()}
+                className="p-4 rounded-lg focus:outline-none  md:hidden"
+              >
+                <svg
+                  className="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
               </button>
             </div>
           )}

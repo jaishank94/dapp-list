@@ -118,7 +118,16 @@ export default function DappDetails() {
             >
               <div className="card-header flex">
                 <div className="flex-none w-14 h-14 card-icon">
-                  <div className="logo-img"></div>
+                  <div className="">
+                  <img
+                    src={dappInfo.logo}
+                    alt={dappInfo.name}
+                    width={150}
+                    height={150}
+                    className="rounded-lg"
+                  />
+                  </div>
+
                 </div>
                 <div className="flex-initial p-5 app-detail">
                   <div className="">

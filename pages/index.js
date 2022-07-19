@@ -9,6 +9,7 @@ import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 import Footer from "./components/Footer";
 import moment from "moment";
+import Sidebar from "./components/Sidebar";
 
 const Filter = [
   { name: "Filter" },
@@ -43,6 +44,7 @@ export default function Home() {
   const [filter, setFilter] = useState(Filter[0]);
   const [category, setCategory] = useState(Category[0]);
   const [isLoading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (isInitialized) {
@@ -95,7 +97,13 @@ export default function Home() {
     setFilter(e);
   };
 
+  const handleSidebar = () => {
+    // console.log("jklhksd")
+    setIsOpen(!isOpen);
+  };
+
   const router = useRouter();
+
   return (
     <Fragment>
       <div className="wrapper overflow-hidden">
@@ -103,11 +111,15 @@ export default function Home() {
           <div className="container mx-auto">
             <div className="relative z-10 bg-transparent">
               <div className="relative">
-                <Header displayCreate={true} />
+                <Header
+                  displayCreate={true}
+                  handleSidebar={handleSidebar}
+                />
               </div>
             </div>
           </div>
         </div>
+        <Sidebar isOpen={isOpen} />
 
         <div className="max-width-1200 mx-auto">
           <div className="my-16">
@@ -264,7 +276,7 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                `cursor-pointer select-none py-2 pl-4 pr-4 ${
                                   active
                                     ? "bg-amber-100 text-amber-900"
                                     : "text-gray-900"
@@ -283,14 +295,6 @@ export default function Home() {
                                   >
                                     {data.name}
                                   </span>
-                                  {/* {selected ? (
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                      <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  ) : null} */}
                                 </>
                               )}
                             </Listbox.Option>
@@ -324,7 +328,7 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                `cursor-pointer select-none py-2 pl-4 pr-4 ${
                                   active
                                     ? "bg-amber-100 text-amber-900"
                                     : "text-gray-900"
@@ -343,14 +347,6 @@ export default function Home() {
                                   >
                                     {data.name}
                                   </span>
-                                  {/* {selected ? (
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                                      <CheckIcon
-                                        className="h-5 w-5"
-                                        aria-hidden="true"
-                                      />
-                                    </span>
-                                  ) : null} */}
                                 </>
                               )}
                             </Listbox.Option>
@@ -523,6 +519,7 @@ export default function Home() {
                   <Tbody
                     index={i + 1}
                     name={res.name}
+                    logo={res.logo}
                     short_description={res.short_description}
                     types={res.type}
                     app_status={res.app_status}
