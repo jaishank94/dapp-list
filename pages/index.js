@@ -127,7 +127,7 @@ export default function Home() {
               className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
               style={{ marginBottom: "10px" }}
             >
-              <h2 className="items-center ml-1 mb-6 custom-text text-dark lg:mb-0">
+              <h2 className="items-center cursor-default ml-1 mb-6 custom-text text-dark lg:mb-0">
                 Explore Projects
               </h2>
               <div>

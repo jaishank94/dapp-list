@@ -1,6 +1,6 @@
 import { MoralisProvider } from "react-moralis";
 import '../styles/globals.css'
-import "../styles/styles.css";
+// import "../styles/styles.module.css";
 
 
 function MyApp({ Component, pageProps }) {

@@ -12,7 +12,7 @@ export default function Header({ displayCreate, handleSidebar }) {
       <Head>
         <title>PulseChainProjects.io</title>
         <link rel="icon" href="/favicon.ico" />
-        <link href="http://fonts.cdnfonts.com/css/gordita" rel="stylesheet" />
+        <link href="https://fonts.cdnfonts.com/css/gordita" rel="stylesheet" />
       </Head>
       <nav className="flex w-full">
         <div className="flex justify-between w-full items-center">
@@ -49,9 +49,9 @@ export default function Header({ displayCreate, handleSidebar }) {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
