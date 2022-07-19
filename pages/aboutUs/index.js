@@ -32,7 +32,7 @@ export default function index() {
             style={{ backgroundColor: "#c6c6e4" }}
           >
             <div className="card-header flex">
-              <div className="flex-none w-14 h-14 card-icon">
+              <div className="flex-none w-14 card-icon">
                 <div className="menuActive rounded-lg">
                   <Image
                     alt="logo"
@@ -43,17 +43,17 @@ export default function index() {
                   />
                 </div>
               </div>
-              <div className="flex-initial p-5 app-detail">
+              <div className="flex-initial px-5 py-2 xl:p-5 app-detail">
                 <div className="justify-center">
                   <h5 className="font-bold app-name">PulseChainProjects.io</h5>
-                  <p className="text-gray-500 font-medium mt-2">
+                  <p className="text-gray-500 text-xs xl:text-bse font-medium mt-2">
                     Directory of all the projects launching on PulseChain
                   </p>
                 </div>
               </div>
             </div>
             <div>
-              <p className="text-gray-500 font-normal p-16">
+              <p className="text-gray-500 font-normal p-16 text-justify ">
                 PulseChainProjects.io is an open source tool built by the
                 HowToPulse.com team. Create a FREE listing in less than 5 mins.
                 For the communities safety we will approve all listing before

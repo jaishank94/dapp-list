@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/gordita');
+@import url('http://fonts.cdnfonts.com/css/gordita');
 
 html {
   background: #EDF1F4;
@@ -378,6 +378,11 @@ li {
   margin: 0 10px;
 }
 
+.custom-wrapper {
+  min-height: 100vh;
+  max-height: 100%;
+}
+
 .col-rank {
   width: 50px;
   margin-right: 12px !important;
@@ -638,7 +643,7 @@ li {
 .card-header {
   width: 100;
 
-  height: 150px;
+  /* height: 150px; */
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 0px 20px 40px #CAD0EB;
   border-radius: 20px;
@@ -647,7 +652,7 @@ li {
 .card-icon {
   /* width: 150px; */
   width: 20%;
-  height: 150px;
+  /* height: 150px; */
 
   border-radius: 20px;
 }
@@ -842,7 +847,7 @@ li {
   background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
   border-radius: 500px;
   font-weight: 900;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 23px;
   text-align: center;
 }
@@ -913,14 +918,14 @@ li {
 
 
 @media (max-width: 880px) {
-  .container-right {
-    flex-flow: column;
-  }
-
   .table-top-wrapper {
     width: 100%;
     flex-flow: column wrap;
     justify-content: center;
+  }
+
+  .app-name {
+    font-size: 20px;
   }
 
   .table-row {
@@ -946,6 +951,7 @@ li {
   }
 
   .table-data {
+    border: none;
     width: 100%;
   }
 
@@ -964,6 +970,10 @@ li {
   .col-name {
     justify-content: center;
     padding: 15px 20px;
+  }
+
+  .link {
+    font-size: 12px;
   }
 
   .col-dau,
@@ -1243,8 +1253,10 @@ li {
 
 .icon {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .icon1 {

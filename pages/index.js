@@ -106,7 +106,7 @@ export default function Home() {
 
   return (
     <Fragment>
-      <div className="wrapper overflow-hidden">
+      <div className="wrapper custom-wrapper overflow-hidden">
         <div className="w-full border-b-2 border-slate-300 py-2 mb-5">
           <div className="container mx-auto">
             <div className="relative z-10 bg-transparent">
@@ -140,24 +140,22 @@ export default function Home() {
                       type="button"
                       onClick={() => setDuration("Daily")}
                       className={`rounded-full
-        px-6
-        py-2
-        font-medium
-        text-xs
-        leading-tight
-        uppercase
-        transition
-        duration-150
-        ease-in-out
-  
-        text-gray-400
-         ${
-           duration === "Daily"
-             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-             : ""
-         }`}
-                    >
-                      <p className={` ${duration === "Daily" ? " link" : ""}`}>
+                      px-4
+                      xl:px-6
+                      py-2
+                      font-medium
+                      text-xs
+                      leading-tight
+                      uppercase
+                      transition
+                      duration-150
+                      ease-in-out
+                      text-gray-400
+                      ${duration === "Daily"
+                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+                          : ""
+                        }`}>
+                      <p className={`sm:text-xs${duration === "Daily" ? " link" : ""}`}>
                         Daily
                       </p>
                     </button>
@@ -165,27 +163,25 @@ export default function Home() {
                       type="button"
                       onClick={() => setDuration("Weekly")}
                       className={`rounded-full
-      px-6
-      py-2
-      text-dark
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      hover:bg-black hover:bg-opacity-5
-      focus:outline-none focus:ring-0
-      transition
-      duration-150
-      ease-in-out
-
-      text-gray-400
-       ${
-         duration === "Weekly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
-                    >
-                      <p className={` ${duration === "Weekly" ? " link" : ""}`}>
+                      px-4
+                      xl:px-6
+                      py-2
+                      text-dark
+                      font-medium
+                      text-xs
+                      leading-tight
+                      uppercase
+                      hover:bg-black hover:bg-opacity-5
+                      focus:outline-none focus:ring-0
+                      transition
+                      duration-150
+                      ease-in-out
+                      text-gray-400
+                        ${duration === "Weekly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}>
+                      <p className={`sm:text-xs ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
                       </p>
                     </button>
@@ -193,28 +189,26 @@ export default function Home() {
                       type="button"
                       onClick={() => setDuration("Monthly")}
                       className={`rounded-full
-      px-6
-      py-2
-      text-dark
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      hover:bg-black hover:bg-opacity-5
-      focus:outline-none focus:ring-0
-      transition
-      duration-150
-      ease-in-out
-
-      text-gray-400
-       ${
-         duration === "Monthly"
-           ? " border-2 font-semibold custom-shadow grad-text-color"
-           : ""
-       }`}
+                      px-6
+                      py-2
+                      text-dark
+                      font-medium
+                      text-xs
+                      leading-tight
+                      uppercase
+                      hover:bg-black hover:bg-opacity-5
+                      focus:outline-none focus:ring-0
+                      transition
+                      duration-150
+                      ease-in-out
+                      text-gray-400
+                        ${duration === "Monthly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
                       <p
-                        className={` ${duration === "Monthly" ? " link" : ""}`}
+                        className={`sm:text-xs ${duration === "Monthly" ? " link" : ""}`}
                       >
                         Monthly
                       </p>
@@ -237,13 +231,12 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${
-                         duration === "Yearly"
-                           ? " border-2 font-semibold custom-shadow grad-text-color"
-                           : ""
-                       }`}
+                       ${duration === "Yearly"
+                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                          : ""
+                        }`}
                     >
-                      <p className={` ${duration === "Yearly" ? " link" : ""}`}>
+                      <p className={`sm:text-xs ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
                       </p>
                     </button>
@@ -276,10 +269,9 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 ${
-                                  active
-                                    ? "bg-amber-100 text-amber-900"
-                                    : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-4 pr-4 ${active
+                                  ? "bg-amber-100 text-amber-900"
+                                  : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -287,11 +279,10 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${
-                                      selected
-                                        ? "text-gray-400 font-medium"
-                                        : "font-normal"
-                                    }`}
+                                    className={`block truncate ${selected
+                                      ? "text-gray-400 font-medium"
+                                      : "font-normal"
+                                      }`}
                                   >
                                     {data.name}
                                   </span>
@@ -328,10 +319,9 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 ${
-                                  active
-                                    ? "bg-amber-100 text-amber-900"
-                                    : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-4 pr-4 ${active
+                                  ? "bg-amber-100 text-amber-900"
+                                  : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -339,11 +329,10 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${
-                                      selected
-                                        ? "text-gray-400 font-medium"
-                                        : "font-normal"
-                                    }`}
+                                    className={`block truncate ${selected
+                                      ? "text-gray-400 font-medium"
+                                      : "font-normal"
+                                      }`}
                                   >
                                     {data.name}
                                   </span>

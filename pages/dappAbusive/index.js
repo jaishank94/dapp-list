@@ -56,7 +56,7 @@ export default function index() {
           <div className="bg-[#c6c6e4]">
             <div
               style={{ alignItems: "center" }}
-              className="card-header flex flex-col text-xl justify-center"
+              className="card-header flex flex-col p-3 text-xl justify-center"
             >
               <p className="font-bold my-2">Report Abusive Project</p>
               <p className="font-normal text-gray-500 text-sm">
@@ -78,7 +78,7 @@ export default function index() {
               <button
                 disabled={isLoading}
                 onClick={() => reportAbusive()}
-                className="inline-flex w-full tracking-widest cursor-pointer launcapp-btn px-4 py-4 text-white justify-center rounded-md"
+                className="inline-flex w-full text-xs xl:text-base tracking-widest text-xs sm:text-xs xl:text-base cursor-pointer launcapp-btn px-4 py-4 text-white justify-center rounded-md"
               >
                 {isLoading ? "Submitting..." : "I think DApp is a SCAM or Malicious"}
               </button>

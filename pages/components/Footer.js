@@ -7,7 +7,7 @@ export default function Footer() {
 
   return (
     <Fragment>
-      <footer className="p-4 bg-white w-full shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+      <footer className="p-4 bg-white relative bottom-0 w-full shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span className="cursor-pointer text-sm text-gray-500 sm:text-center dark:text-gray-400">
           © {new Date().getFullYear()}{" "}
           <a
@@ -18,7 +18,7 @@ export default function Footer() {
           </a>
         </span>
         <ul className="flex p-2 flex-wrap cursor-pointer items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
+          <li>
             <a
               className="  mr-4 hover:underline md:mr-6 "
               onClick={() => router.push("/createDapp")}
@@ -55,7 +55,7 @@ export default function Footer() {
               className="mr-4 hover:underline md:mr-6 "
               onClick={() => router.push("/aboutUs")}
             >
-              <BsTwitter className="h-5 w-5 text-blue-500"/>
+              <BsTwitter className="h-5 w-5 text-blue-500" />
             </a>
           </li>
           <li className="pt-3">
@@ -63,7 +63,7 @@ export default function Footer() {
               className="mr-4 my-4 hover:underline md:mr-6 "
               onClick={() => router.push("/aboutUs")}
             >
-              <BsGithub className="h-5 w-5 text-black"/>
+              <BsGithub className="h-5 w-5 text-black" />
             </a>
           </li>
         </ul>
