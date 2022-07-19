@@ -18,7 +18,6 @@ export default function DappDetails() {
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState([]);
 
-  console.log(id);
   useEffect(() => {
     if (isInitialized && id) {
       fetchDappDetails();
@@ -32,15 +31,30 @@ export default function DappDetails() {
       const Dapps = Moralis.Object.extend("Dapps");
       const query = new Moralis.Query(Dapps);
       query.equalTo("objectId", id);
+      query.equalTo("status", "ACTIVE");
       const response = await query.find();
       if (response.length > 0) {
         let result = JSON.parse(JSON.stringify(response));
         setDappInfo(result[0]);
+        increasePageView();
       }
       setLoading(false);
     } catch (e) {
       setLoading(false);
     }
+  };
+
+  const increasePageView = async () => {
+    try {
+      const Dapps = Moralis.Object.extend("Dapps");
+      const query = new Moralis.Query(Dapps);
+      query.equalTo("objectId", id);
+      const response = await query.find();
+      if (response.length > 0) {
+        response[0].increment("page_views", 1);
+        await response[0].save();
+      }
+    } catch (e) {}
   };
 
   const getAppList = async () => {
@@ -129,12 +143,14 @@ export default function DappDetails() {
                     <p className="text-gray-500">Page Views</p>
                   </div>
                   <div className="page-view-detail flex mt-2">
-                    <span className="page-view-value">-</span>
-                    <div className="pct is-positive ml-1">
+                    <span className="page-view-value">
+                      {dappInfo.page_views ? dappInfo.page_views : "0"}
+                    </span>
+                    {/* <div className="pct is-positive ml-1">
                       <div className="page-view-index">
-                        {/* <span className="upper-limit mr-1">^</span> */}-
+                        <span className="upper-limit mr-1">^</span>-
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="ticker">
@@ -142,7 +158,9 @@ export default function DappDetails() {
                     <p className="text-gray-500">Ticker</p>
                   </div>
                   <div className="mt-2">
-                    <p className="ticker-value">-</p>
+                    <p className="ticker-value">
+                      {dappInfo.ticker ? dappInfo.ticker : "_"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -152,7 +170,9 @@ export default function DappDetails() {
                     <p className="text-gray-500">Sacrifice</p>
                   </div>
                   <div className="mt-2">
-                    <p className="ticker-value">-</p>
+                    <p className="ticker-value">
+                      {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
+                    </p>
                   </div>
                 </div>
                 <div className="page-view">
@@ -160,7 +180,9 @@ export default function DappDetails() {
                     <p className="text-gray-500">Total Supply</p>
                   </div>
                   <div className="mt-2">
-                    <p className="ticker-value">-</p>
+                    <p className="ticker-value">
+                      {dappInfo.total_supply ? dappInfo.total_supply : "_"}
+                    </p>
                   </div>
                 </div>
                 <div className="ticker">

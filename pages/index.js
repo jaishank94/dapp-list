@@ -8,6 +8,7 @@ import Header from "./components/header";
 import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 import Footer from "./components/Footer";
+import moment from "moment";
 
 const Filter = [
   { name: "Filter" },
@@ -59,6 +60,20 @@ export default function Home() {
       }
       if (filter.name !== "Filter") {
         query.equalTo("app_status", filter.name);
+      }
+      query.equalTo("status", "ACTIVE");
+
+      if (duration !== "Daily") {
+        let startDay =
+          duration === "Yearly" ? 365 : duration === "Monthly" ? 30 : 7;
+        let d = moment().subtract(startDay, "days");
+
+        d.startOf("day");
+
+        let finish = new moment();
+
+        query.greaterThanOrEqualTo("createdAt", d.toDate());
+        query.lessThan("createdAt", finish.toDate());
       }
       query.ascending("priority");
       query.limit(1000);
@@ -124,10 +139,11 @@ export default function Home() {
         ease-in-out
   
         text-gray-400
-         ${duration === "Daily"
-                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
-                          : ""
-                        }`}
+         ${
+           duration === "Daily"
+             ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+             : ""
+         }`}
                     >
                       <p className={` ${duration === "Daily" ? " link" : ""}`}>
                         Daily
@@ -151,10 +167,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Weekly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Weekly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p className={` ${duration === "Weekly" ? " link" : ""}`}>
                         Weekly
@@ -178,10 +195,11 @@ export default function Home() {
       ease-in-out
 
       text-gray-400
-       ${duration === "Monthly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+       ${
+         duration === "Monthly"
+           ? " border-2 font-semibold custom-shadow grad-text-color"
+           : ""
+       }`}
                     >
                       <p
                         className={` ${duration === "Monthly" ? " link" : ""}`}
@@ -207,10 +225,11 @@ export default function Home() {
                       ease-in-out
                 
                       text-gray-400
-                       ${duration === "Yearly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
-                          : ""
-                        }`}
+                       ${
+                         duration === "Yearly"
+                           ? " border-2 font-semibold custom-shadow grad-text-color"
+                           : ""
+                       }`}
                     >
                       <p className={` ${duration === "Yearly" ? " link" : ""}`}>
                         Yearly
@@ -245,9 +264,10 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -255,10 +275,11 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -303,9 +324,10 @@ export default function Home() {
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-10 pr-4 ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                `cursor-pointer select-none py-2 pl-10 pr-4 ${
+                                  active
+                                    ? "bg-amber-100 text-amber-900"
+                                    : "text-gray-900"
                                 }`
                               }
                               value={data}
@@ -313,10 +335,11 @@ export default function Home() {
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -352,11 +375,17 @@ export default function Home() {
                   >
                     Rank
                   </a>
-                  <Popover className="relative help">
+                  <Popover className="relative help ">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>
+                        The rank is calculated from different metrics (incl.
+                        Price, Page views, status & more).
+                        <br />
+                        Keep in mind: the rank is not an exact metric to
+                        determine the value of an app.
+                      </span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -380,8 +409,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Amount of overall page visits</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -399,8 +428,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Current status of development</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -418,8 +447,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Project Ticker Symbol</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -437,8 +466,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Project is raising capital</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -456,8 +485,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Total Amount of Tokens</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -475,8 +504,8 @@ export default function Home() {
                   <Popover className="relative help">
                     <Popover.Button className="help-inner">i</Popover.Button>
 
-                    <Popover.Panel className="absolute bg-black text-white p-2 rounded-xl z-10">
-                      <span>Dummy Text</span>
+                    <Popover.Panel className="absolute w-max bg-black text-white p-2 rounded-xl z-10">
+                      <span>Give your feedback</span>
 
                       <img src="/solutions.jpg" alt="" />
                     </Popover.Panel>
@@ -500,6 +529,10 @@ export default function Home() {
                     id={res.objectId}
                     likes={res.likes ? res.likes : 0}
                     dislikes={res.dislikes ? res.dislikes : 0}
+                    page_views={res.page_views ? res.page_views : 0}
+                    sacrifice={res.sacrifice ? res.sacrifice : "-"}
+                    ticker={res.ticker ? res.ticker : "-"}
+                    total_supply={res.total_supply ? res.total_supply : "-"}
                   />
                 </div>
               );
@@ -517,7 +550,6 @@ export default function Home() {
             </>
           )}
         </div>
-
       </div>
       <Footer />
     </Fragment>

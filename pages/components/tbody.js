@@ -164,7 +164,7 @@ function Tbody(props) {
           <div className="flex table-data col-dau">
             <span className="col-title-mobile">Page Views</span>
             <div className="component-ranking-table-value-pct">
-              <span className="value">-</span>
+              <span className="value">{props.page_views}</span>
               {/* <div className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -188,14 +188,14 @@ function Tbody(props) {
           <div className="table-data col-vol">
             <span className="col-title-mobile">Ticker</span>
             <div className="component-ranking-table-volume">
-              <span className="value">-</span>
+              <span className="value">{props.ticker}</span>
               {/* <span className="pct is-negative">-9.00%</span> */}
             </div>
           </div>
           <div className="table-data col-vol col-vol-hbd">
             <span className="col-title-mobile">Sacrifice</span>
             <div className="component-ranking-table-volume">
-              <span className="value">-</span>
+              <span className="value">{props.sacrifice}</span>
               {/* <span className="pct is-positive">
                 <span>^</span>
                 154.80%
@@ -205,7 +205,7 @@ function Tbody(props) {
           <div className="table-data col-rewards col-rewards-hive">
             <span className="col-title-mobile">Total Supply</span>
             <div className="component-ranking-table-volume">
-              <span className="value">-</span>
+              <span className="value">{props.total_supply}</span>
               {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
