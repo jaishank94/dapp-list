@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Header from "../components/header";
+import Header from "../components/Header";
 import { useRouter } from "next/router";
 import logo from "/public/images/pp_final_icon_black.png";
 import Image from "next/image";

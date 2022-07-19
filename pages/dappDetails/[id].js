@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Head from "next/head";
-import Header from "../components/header";
+import Header from "../components/Header";
 import { useRouter } from "next/router";
 import Moralis from "moralis";
 import moment from "moment";
