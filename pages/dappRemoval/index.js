@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Header from "../components/header";
+import Header from "../components/Header";
 import { useRouter } from "next/router";
 import Moralis from "moralis";
-import { useMoralis } from "react-moralis";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function index() {

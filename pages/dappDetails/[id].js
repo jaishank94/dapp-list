@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Head from "next/head";
-import Header from "../components/header";
+import Header from "../components/Header";
 import { useRouter } from "next/router";
 import Moralis from "moralis";
 import moment from "moment";
@@ -122,8 +122,8 @@ export default function DappDetails() {
                     <img
                       src={dappInfo.logo}
                       alt={dappInfo.name}
-                      width={150}
-                      height={150}
+                      width={110}
+                      height={110}
                       className="rounded-lg"
                     />
                   </div>

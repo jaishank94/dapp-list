@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Moralis from "moralis";
 import { Listbox, Transition, Popover } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import Header from "./components/header";
+import Header from "./components/Header";
 import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 import Footer from "./components/Footer";
@@ -127,7 +127,7 @@ export default function Home() {
               className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
               style={{ marginBottom: "10px" }}
             >
-              <h2 className="items-center ml-1 mb-6 custom-text text-dark lg:mb-0">
+              <h2 className="items-center cursor-default ml-1 mb-6 custom-text text-dark lg:mb-0">
                 Explore Projects
               </h2>
               <div>
