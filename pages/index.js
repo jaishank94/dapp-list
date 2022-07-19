@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Moralis from "moralis";
 import { Listbox, Transition, Popover } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import Header from "./components/header";
+import Header from "./components/Header";
 import Tbody from "./components/tbody";
 import { useMoralis } from "react-moralis";
 import Footer from "./components/Footer";
