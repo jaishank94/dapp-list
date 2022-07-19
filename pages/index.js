@@ -48,7 +48,7 @@ export default function Home() {
     if (isInitialized) {
       getAppList();
     }
-  }, [isInitialized, category, filter]);
+  }, [isInitialized, category, filter, duration]);
 
   const getAppList = async () => {
     setLoading(true);
