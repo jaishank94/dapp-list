@@ -1,11 +1,20 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "/public/images/pp_final_icon_black.png";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { useTheme } from "next-themes";
 
 export default function Header({ displayCreate, handleSidebar }) {
   const router = useRouter();
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <div className="text-left w-full">
@@ -36,6 +45,11 @@ export default function Header({ displayCreate, handleSidebar }) {
                 className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0"
               >
                 Submit DApp
+              </button>
+              <button
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              >
+                Toggle to {theme === "light" ? "Dark" : "Light"}
               </button>
               <button
                 onClick={() => handleSidebar()}

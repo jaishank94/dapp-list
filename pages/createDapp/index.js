@@ -272,7 +272,7 @@ class CreateApp extends Component {
                         <div className="flex w-full text-center">
                           <div className="w-18">
                             <a
-                              href={"/"}
+                              href={"/dapps"}
                               className="flex item-center p-4 mr-4 rounded-full bg-gray-300"
                             >
                               <BsFillArrowLeftCircleFill className="h-5 w-5 text-black" />

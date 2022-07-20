@@ -91,7 +91,7 @@ export default function DappDetails() {
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <a
                   className="icon-div cursor-pointer"
-                  onClick={() => router.push("/")}
+                  onClick={() => router.push("/dapps")}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
