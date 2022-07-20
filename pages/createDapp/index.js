@@ -9,7 +9,6 @@ import Button from "../components/customButton";
 import Footer from "../components/Footer";
 import { BsFillArrowLeftCircleFill, BsPlus, BsDash } from "react-icons/bs";
 
-
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
   short_description: Yup.string().required("This field is required"),
@@ -39,6 +38,18 @@ const Category = [
   { name: "Games" },
   { name: "Entertainment" },
   { name: "Exchanges" },
+  { name: "DeFi" },
+  { name: "Wallet" },
+  { name: "MarketPlaces" },
+  { name: "Governance" },
+  { name: "Yield-farming" },
+  { name: "Property" },
+  { name: "Tools" },
+  { name: "Identity" },
+  { name: "Energy" },
+  { name: "Insurance" },
+  { name: "Storage" },
+  { name: "NFT" },
   { name: "Development" },
   { name: "Gambling" },
   { name: "Wallet" },
@@ -326,11 +337,12 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.name &&
-                                errors.name
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.name &&
+                                                      errors.name
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="name"
                             name="name"
                             placeholder="App Name *"
@@ -338,6 +350,7 @@ class CreateApp extends Component {
                             onChange={(e) =>
                               this.setState({ name: e.target.value })
                             }
+                            maxLength={50}
                           />
                           {errors.name && !this.state.name ? (
                             <div className="error my-2">{errors.name}</div>
@@ -349,21 +362,25 @@ class CreateApp extends Component {
                           <input
                             type="text"
                             className={`form-control custom-input px-5
-                                                    ${touched.short_description &&
-                                errors.short_description
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.short_description &&
+                                                      errors.short_description
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="short_description"
                             name="short_description"
                             placeholder="Short Description*"
                             value={this.state.short_description}
                             onChange={(e) =>
-                              this.setState({ short_description: e.target.value })
+                              this.setState({
+                                short_description: e.target.value,
+                              })
                             }
+                            maxLength={25}
                           />
                           {errors.short_description &&
-                            !this.state.short_description ? (
+                          !this.state.short_description ? (
                             <div className="error my-2">
                               {errors.short_description}
                             </div>
@@ -376,21 +393,25 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.full_description &&
-                                errors.full_description
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.full_description &&
+                                                      errors.full_description
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="full_description"
                             name="full_description"
                             placeholder="Full Description*"
                             value={this.state.full_description}
                             onChange={(e) =>
-                              this.setState({ full_description: e.target.value })
+                              this.setState({
+                                full_description: e.target.value,
+                              })
                             }
+                            maxLength={260}
                           />
                           {errors.full_description &&
-                            !this.state.full_description ? (
+                          !this.state.full_description ? (
                             <div className="error my-2">
                               {errors.full_description}
                             </div>
@@ -403,11 +424,12 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.website_url &&
-                                errors.website_url
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.website_url &&
+                                                      errors.website_url
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="website_url"
                             name="website_url"
                             placeholder="Website URL*"
@@ -417,7 +439,9 @@ class CreateApp extends Component {
                             }
                           />
                           {errors.website_url && !this.state.website_url ? (
-                            <div className="error my-2">{errors.website_url}</div>
+                            <div className="error my-2">
+                              {errors.website_url}
+                            </div>
                           ) : (
                             ""
                           )}
@@ -427,11 +451,12 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.logo_url &&
-                                errors.logo_url
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.logo_url &&
+                                                      errors.logo_url
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="logo_url"
                             name="logo_url"
                             placeholder="DApp Logo URL*"
@@ -439,6 +464,7 @@ class CreateApp extends Component {
                             onChange={(e) =>
                               this.setState({ logo_url: e.target.value })
                             }
+                            maxLength={1000}
                           />
                           {errors.logo_url && !this.state.logo_url ? (
                             <div className="error my-2">{errors.logo_url}</div>
@@ -451,11 +477,12 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.ticker &&
-                                errors.ticker
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.ticker &&
+                                                      errors.ticker
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="ticker"
                             name="ticker"
                             placeholder="Ticker*"
@@ -463,6 +490,7 @@ class CreateApp extends Component {
                             onChange={(e) =>
                               this.setState({ ticker: e.target.value })
                             }
+                            maxLength={200}
                           />
                           {errors.ticker && !this.state.ticker ? (
                             <div className="error my-2">{errors.ticker}</div>
@@ -475,11 +503,12 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${touched.total_supply &&
-                                errors.total_supply
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                                    ${
+                                                      touched.total_supply &&
+                                                      errors.total_supply
+                                                        ? "is-invalid"
+                                                        : ""
+                                                    }`}
                             id="total_supply"
                             name="total_supply"
                             placeholder="Total Supply*"
@@ -487,6 +516,7 @@ class CreateApp extends Component {
                             onChange={(e) =>
                               this.setState({ total_supply: e.target.value })
                             }
+                            maxLength={200}
                           />
                           {errors.total_supply && !this.state.total_supply ? (
                             <div className="error my-2">
@@ -517,25 +547,28 @@ class CreateApp extends Component {
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${this.state.sacrifice === data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                          }`}
+                                        className={`rectangle-1-1-0 ${
+                                          this.state.sacrifice === data.name
+                                            ? "selected-background"
+                                            : "not-selected-background"
+                                        }`}
                                       />
                                       <p
-                                        className={`text-1 ${this.state.sacrifice === data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                          }`}
+                                        className={`text-1 ${
+                                          this.state.sacrifice === data.name
+                                            ? "selected-text"
+                                            : "not-selected-text"
+                                        }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${this.state.sacrifice === data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                            }`}
+                                          className={`rectangle-1-3-3 ${
+                                            this.state.sacrifice === data.name
+                                              ? "selected-rectangle-1-3-3"
+                                              : "not-rectangle-1-3-3"
+                                          }`}
                                         />
                                         {this.state.sacrifice === data.name ? (
                                           <BsDash className="flex text-center icon justify-center" />
@@ -571,25 +604,28 @@ class CreateApp extends Component {
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${this.state.app_status === data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                          }`}
+                                        className={`rectangle-1-1-0 ${
+                                          this.state.app_status === data.name
+                                            ? "selected-background"
+                                            : "not-selected-background"
+                                        }`}
                                       />
                                       <p
-                                        className={`text-1 ${this.state.app_status === data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                          }`}
+                                        className={`text-1 ${
+                                          this.state.app_status === data.name
+                                            ? "selected-text"
+                                            : "not-selected-text"
+                                        }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${this.state.app_status === data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                            }`}
+                                          className={`rectangle-1-3-3 ${
+                                            this.state.app_status === data.name
+                                              ? "selected-rectangle-1-3-3"
+                                              : "not-rectangle-1-3-3"
+                                          }`}
                                         />
                                         {this.state.app_status === data.name ? (
                                           <BsDash className="flex text-center icon justify-center" />
@@ -619,32 +655,40 @@ class CreateApp extends Component {
                                         ],
                                       })
                                     }
-                                    className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                    className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
+                                  >
                                     <div className="group-6-6 cursor-pointer">
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${this.state.category.includes(data.name)
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                          }`}
+                                        className={`rectangle-1-1-0 ${
+                                          this.state.category.includes(
+                                            data.name
+                                          )
+                                            ? "selected-background"
+                                            : "not-selected-background"
+                                        }`}
                                       />
                                       <p
-                                        className={`text-1 ${this.state.category.includes(data.name)
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                          }`}
+                                        className={`text-1 ${
+                                          this.state.category.includes(
+                                            data.name
+                                          )
+                                            ? "selected-text"
+                                            : "not-selected-text"
+                                        }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                            }`}
+                                          className={`rectangle-1-3-3 ${
+                                            this.state.category.includes(
+                                              data.name
+                                            )
+                                              ? "selected-rectangle-1-3-3"
+                                              : "not-rectangle-1-3-3"
+                                          }`}
                                         />
                                         {this.state.category === data.name ? (
                                           <BsDash className="flex text-center icon justify-center" />
@@ -658,7 +702,8 @@ class CreateApp extends Component {
                               );
                             })}
                           </div>
-                          {errors.category && this.state.category.length === 0 ? (
+                          {errors.category &&
+                          this.state.category.length === 0 ? (
                             <div className="error my-2">{errors.category}</div>
                           ) : (
                             ""
@@ -678,7 +723,7 @@ class CreateApp extends Component {
                                       this.setState({
                                         porject_information:
                                           this.state.porject_information ===
-                                            data.name
+                                          data.name
                                             ? this.state.porject_information
                                             : data.name,
                                       })
@@ -687,30 +732,34 @@ class CreateApp extends Component {
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
                                     <div
-                                      className={`rectangle-1-1-0 ${this.state.porject_information ===
+                                      className={`rectangle-1-1-0 ${
+                                        this.state.porject_information ===
                                         data.name
-                                        ? "selected-background"
-                                        : "not-selected-background"
-                                        }`}
+                                          ? "selected-background"
+                                          : "not-selected-background"
+                                      }`}
                                     />
                                     <p
-                                      className={`text-1 ${this.state.porject_information ===
+                                      className={`text-1 ${
+                                        this.state.porject_information ===
                                         data.name
-                                        ? "selected-text"
-                                        : "not-selected-text"
-                                        }`}
+                                          ? "selected-text"
+                                          : "not-selected-text"
+                                      }`}
                                     >
                                       {data.name}
                                     </p>
                                     <div className="group-6-5">
                                       <div
-                                        className={`rectangle-1-3-3 ${this.state.porject_information ===
+                                        className={`rectangle-1-3-3 ${
+                                          this.state.porject_information ===
                                           data.name
-                                          ? "selected-rectangle-1-3-3"
-                                          : "not-rectangle-1-3-3"
-                                          }`}
+                                            ? "selected-rectangle-1-3-3"
+                                            : "not-rectangle-1-3-3"
+                                        }`}
                                       />
-                                      {this.state.porject_information === data.name ? (
+                                      {this.state.porject_information ===
+                                      data.name ? (
                                         <BsDash className="flex text-center icon justify-center" />
                                       ) : (
                                         <BsPlus className="flex text-center icon justify-center" />
@@ -728,10 +777,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5 mt-4"
                             className={`form-control custom-input px-5 mt-4
-                                      ${touched.tag && errors.tag
-                                ? "is-invalid"
-                                : ""
-                              }`}
+                                      ${
+                                        touched.tag && errors.tag
+                                          ? "is-invalid"
+                                          : ""
+                                      }`}
                             id="tag"
                             name="tag"
                             placeholder="e.g.splinterlands"
@@ -817,8 +867,12 @@ class CreateApp extends Component {
                               onChange={(e) =>
                                 this.setState({ facebook: e.target.value })
                               }
-                              error={errors.facebook && Boolean(errors.facebook)}
-                              helpertext={errors.facebook ? errors.facebook : ""}
+                              error={
+                                errors.facebook && Boolean(errors.facebook)
+                              }
+                              helpertext={
+                                errors.facebook ? errors.facebook : ""
+                              }
                             />
                           </div>
                           <div>
@@ -920,8 +974,9 @@ class CreateApp extends Component {
                           </div>
                           <div className="flex my-4 justify-center ">
                             <button
-                              className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
-                                }`}
+                              className={`sub-header-button text-white ${
+                                this.state.isSubmitting ? "" : ""
+                              }`}
                               type="submit"
                               disabled={this.state.isSubmitting}
                             >
@@ -937,6 +992,20 @@ class CreateApp extends Component {
                               Reset
                             </button>
                           </div>
+                          <p className="text-sm text-gray-500 text-center p-4">
+                            Whether you are looking for new users, testers,
+                            concept feedback, partners, or investors, submitting
+                            a DApp (Decentralized Application) to this
+                            definitive registry will help your project gain
+                            traction.
+                            <br />
+                            <br />
+                            We welcome DApps at any stage in the product
+                            life-cycle (concepts are encouraged), or even DApps
+                            that you didn't make but noticed are missing. Email
+                            support@pulsechainprojects.io if you have any
+                            questions!
+                          </p>
                         </div>
                       </div>
                     </div>
