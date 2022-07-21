@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
+import { BsHandThumbsUpFill, BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsDownFill } from "react-icons/bs";
+
 
 function Tbody(props) {
   const { authenticate, isAuthenticated, user } = useMoralis();
@@ -10,6 +13,9 @@ function Tbody(props) {
   const [dislike, setDislike] = useState("");
   const [likeCount, setLikeCount] = useState(props.likes);
   const [dislikeCount, setDisLikeCount] = useState(props.dislikes);
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -18,6 +24,10 @@ function Tbody(props) {
       getUserReaction(false);
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   function getDisplayType(val) {
     try {
@@ -28,7 +38,7 @@ function Tbody(props) {
           let restCount = TypeLength - 2;
           TypeBadge = val.slice(0, 2).map((type, index) => {
             return (
-              <div key={index} className="app-type bottom-partial">
+              <div key={index} className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
                 {type}
               </div>
             );
@@ -36,13 +46,13 @@ function Tbody(props) {
           return (
             <>
               {TypeBadge}{" "}
-              <span className="app-type bottom-partial">+{restCount}</span>
+              <span className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount}</span>
             </>
           );
         } else {
           TypeBadge = val.map((type, index) => {
             return (
-              <div key={index} className="app-type bottom-partial">
+              <div key={index} className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
                 {type}
               </div>
             );
@@ -50,7 +60,7 @@ function Tbody(props) {
           return TypeBadge;
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const handleReaction = async (isLiked) => {
@@ -145,6 +155,7 @@ function Tbody(props) {
       console.log(e);
     }
   };
+  if (!isMounted) return null;
 
   return (
     <div className="table-body mt-5 px-4" key={props.index}>
@@ -155,24 +166,24 @@ function Tbody(props) {
             <span className="past-rank"></span>
           </div>
         </div>
-        <div className="flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main">
+        <div className={`flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main ${theme === "light" ? "custom-shadow border-white table-main-lite" : "custom-shadow-black border-black"}`}>
           <div className="text-center lg:table-data col-name">
             <div className="component-ranking-table-name">
-              <div className="icon-place mr-4">
-                <div className="icon-wrapper">
+              <div className="icon-place mr-4 py-4">
+                <div className={`icon-wrapper border-2 border-white ${theme === "light" ? "custom-shadow icon-wrpper-lite" : "custom-shadow-black border-black"}`}>
                   {/* <a className="icon-link"> */}
                   <img
                     src={props.logo}
-                    alt={props.name}
-                    width={50}
-                    height={50}
+                    alt="Image"
+                    width={40}
+                    height={40}
                     className="rounded-lg"
                   />
                   {/* </a> */}
                 </div>
               </div>
 
-              <div className="text-center right-wrapper">
+              <div className="text-center right-wrapper py-4">
                 <div className="top-wrapper">
                   <div className="name-description-wrapper">
                     <div
@@ -183,7 +194,7 @@ function Tbody(props) {
                         <a className="link">{props.name}</a>
                       </h4>
                     </div>
-                    <p className="description">{props.short_description}</p>
+                    <p className="description text-xs text-justify font-thin my-2">{props.short_description}</p>
                   </div>
                 </div>
                 <div className="bottom-wrapper">
@@ -221,14 +232,14 @@ function Tbody(props) {
           </div>
           <div className="table-data col-vol">
             <span className="col-title-mobile">Ticker</span>
-            <div className="component-ranking-table-volume">
+            <div className="component-ranking-table-volume-head">
               <span className="value">{props.ticker}</span>
               {/* <span className="pct is-negative">-9.00%</span> */}
             </div>
           </div>
           <div className="table-data col-vol col-vol-hbd">
             <span className="col-title-mobile">Sacrifice</span>
-            <div className="component-ranking-table-volume">
+            <div className="component-ranking-table-volume-head">
               <span className="value">{props.sacrifice}</span>
               {/* <span className="pct is-positive">
                 <span>^</span>
@@ -238,7 +249,7 @@ function Tbody(props) {
           </div>
           <div className="table-data col-rewards col-rewards-hive">
             <span className="col-title-mobile">Total Supply</span>
-            <div className="component-ranking-table-volume">
+            <div className="component-ranking-table-volume-head">
               <span className="value">{props.total_supply}</span>
               {/* <span className="pct is-positive">
                 <div className="is-positive-value">
@@ -250,7 +261,7 @@ function Tbody(props) {
           </div>
           <div className="table-data col-rewards col-rewards-hive">
             <span className="col-title-mobile">Vote</span>
-            <div className="component-ranking-table-volume">
+            <div className="component-ranking-table-volume-head">
               <span className="value flex">
                 <button
                   className="text-center"
@@ -260,49 +271,31 @@ function Tbody(props) {
                     isAuthenticated ? handleReaction(true) : authenticate();
                   }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill={` ${like ? "skyblue" : "none"}`}
-                    viewBox="0 0 24 24"
-                    stroke="skyblue"
-                    strokeWidth="2"
-                    // onClick={(e) =>
-                    //   isAuthenticated ? handleReaction(true) : authenticate()
-                    // }
-                    // disabled={isDisabled}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-                    />
-                  </svg>
-                  {likeCount}
+                  {like ? (
+                    <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
+                  ) : (
+                    <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
+                  )}
+
+
+                  <span className="link">{likeCount}</span>
                 </button>
                 <button
-                  className="text-center"
+                  className="text-center ml-2"
                   disabled={isDisabled}
                   onClick={(e) => {
                     e.preventDefault();
                     isAuthenticated ? handleReaction(false) : authenticate();
                   }}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill={` ${dislike ? "currentColor" : "none"}`}
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"
-                    />
-                  </svg>
-                  {dislikeCount}
+                  {dislike ? (
+                    <BsHandThumbsDownFill className="h-5 w-5" />
+                  ) : (
+                    <BsHandThumbsDown className="h-5 w-5" />
+                  )
+                  }
+
+                  <span className="font-bold">{dislikeCount}</span>
                 </button>
               </span>
             </div>

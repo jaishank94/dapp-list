@@ -23,6 +23,7 @@ const Filter = [
   { name: "Work in Progress" },
 ];
 const Category = [
+  { name: "Category" },
   { name: "Games" },
   { name: "Entertainment" },
   { name: "Exchanges" },
@@ -215,7 +216,7 @@ export default function index() {
                       ease-in-out
                       text-gray-400
                         ${duration === "Weekly"
-                        ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
+                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}>
                       <p className={`sm:text-xs ${duration === "Weekly" ? " link" : ""}`}>
@@ -240,7 +241,7 @@ export default function index() {
                       ease-in-out
                       text-gray-400
                         ${duration === "Monthly"
-                        ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
+                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}
                     >
@@ -269,7 +270,7 @@ export default function index() {
                 
                       text-gray-400
                        ${duration === "Yearly"
-                       ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
+                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}
                     >
@@ -284,7 +285,7 @@ export default function index() {
                 <div className="container-right">
                   <Listbox value={filter} onChange={(e) => handleFilter(e)}>
                     <div className="mt-1 mx-2">
-                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <Listbox.Button className={`${theme === "light" ? "border-white custom-shadow bg-white border-2 " : "bg-dark custom-shadow-black border-black"}  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}>
                         <span className="block truncate text-gray-400">
                           {filter.name}
                         </span>
@@ -301,14 +302,16 @@ export default function index() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute mt-1 z-40 max-h-60 overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className={`absolute mt-1 z-40 max-h-60 ${theme === "light" ? "bg-white" : "bg-black"} overflow-auto rounded-md py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
                           {Filter.map((data, dataIdx) => (
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 ${active
+                                `cursor-pointer select-none py-2 pl-4 pr-4 
+                                ${theme === "light" ? "text-gray-900" : "text-white"}
+                                ${active
                                   ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                  : ""
                                 }`
                               }
                               value={data}
@@ -334,7 +337,7 @@ export default function index() {
 
                   <Listbox value={category} onChange={(e) => handleCategory(e)}>
                     <div className="mt-1">
-                      <Listbox.Button className="border-2 border-white custom-shadow rounded-full relative w-full cursor-pointer rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                      <Listbox.Button className={`${theme === "light" ? "border-white custom-shadow bg-white border-2 " : "bg-dark custom-shadow-black border-black"}  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}>
                         <span className="block truncate text-gray-400">
                           {category.name}
                         </span>
@@ -351,14 +354,18 @@ export default function index() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute z-40 mt-1 max-h-60 overflow-auto rounded-md bg-white py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className={`absolute z-40 mt-1 max-h-60 overflow-auto ${theme === "light" ? "bg-white" : "bg-black"}  rounded-md  py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
                           {Category.map((data, dataIdx) => (
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 ${active
+                                `cursor-pointer select-none py-2 pl-4 pr-4 
+                              
+                                ${theme === "light" ? "text-gray-900" : "text-white"}
+
+                                ${active
                                   ? "bg-amber-100 text-amber-900"
-                                  : "text-gray-900"
+                                  : ""
                                 }`
                               }
                               value={data}
@@ -387,7 +394,7 @@ export default function index() {
           </div>
         </div>
         <div className="max-width-1200 mx-auto">
-          <div className="table-header rounded-md">
+          <div className={`table-header  rounded-md ${theme === "light" ? "bg-white shadow-md" : "bg-gray-800"}`}>
             <div className="table-row">
               <div className="table-head col-rank">
                 <div className="component-ranking-table-rank-head">
