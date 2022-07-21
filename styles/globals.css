@@ -147,6 +147,11 @@ li {
   box-shadow: inset -4px -4px 12px #FFFFFF, inset 4px 4px 12px #D1D9E6;
 }
 
+
+.custom-shadow-black {
+  box-shadow: inset -4px -4px 12px #272727, inset 4px 4px 12px #000000;
+}
+
 .grad-color {
   background: linear-gradient(83.43deg, #FE0000 -8%, #F400FF 36.16%, #0000FF 71.3%, #00EAFF 100.77%);
 }

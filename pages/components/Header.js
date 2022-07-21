@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
-import logo from "/public/images/pp_final_icon_black.png";
+import blackLogo from "/public/images/pp_final_icon_black.png";
+import whiteLogo from "/public/images/pp_final_icon_white.png";
+
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useTheme } from "next-themes";
@@ -19,7 +21,7 @@ export default function Header({ displayCreate, handleSidebar }) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {}, [isAuthenticated, isInitialized]);
+  useEffect(() => { }, [isAuthenticated, isInitialized]);
 
   if (!isMounted) return null;
 
@@ -41,21 +43,21 @@ export default function Header({ displayCreate, handleSidebar }) {
               width={50}
               height={50}
               className="rounded-t-lg"
-              src={logo}
+              src={theme === "light" ? blackLogo : whiteLogo}
             />
-            <p className="font-bold hidden sm:block">PulseChainProjects.io</p>
+            <p className="font-bold hidden sm:block ml-1">PulseChainProjects.io</p>
           </a>
           {displayCreate && (
             <div className="flex items-center">
               <button
                 onClick={() => router.push("/createDapp")}
-                className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0"
+                className="cursor-pointer hidden md:block shadow-md sub-header-button inline-block text-sm px-4 leading-none rounded text-white  hover:text-teal-500 lg:mt-0"
               >
                 Submit DApp
               </button>
               {!isAuthenticated ? (
                 <button
-                  className="rounded-lg bg-white p-2 shadow-lg cursor-pointer mx-2 md:rounded-full"
+                  className={`rounded-lg ${theme === "light" ? "bg-white" : "bg-gray-800"} px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
                   onClick={authenticate}
                 >
                   <span className="link p-2 hidden text-xs md:block">Connect Wallet</span>
@@ -63,7 +65,7 @@ export default function Header({ displayCreate, handleSidebar }) {
                 </button>
               ) : (
                 <button
-                  className="rounded-lg bg-white p-2 shadow-lg cursor-pointer mx-2"
+                  className={`rounded-lg ${theme === "light" ? "bg-white" : "bg-gray-800"} px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
                   onClick={logout}
                 >
                   <span className="link p-1 hidden text-xs md:block">Logout</span>

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Moralis from "moralis";
+import Image from "next/image";
 import { Listbox, Transition, Popover } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import Header from "../components/Header";
@@ -10,6 +11,9 @@ import { useMoralis } from "react-moralis";
 import Footer from "../components/Footer";
 import moment from "moment";
 import Sidebar from "../components/Sidebar";
+import howToPulse from "/public/images/howToPulse.png";
+import { useTheme } from "next-themes";
+
 
 const Filter = [
   { name: "Filter" },
@@ -57,6 +61,7 @@ export default function index() {
   const [category, setCategory] = useState(Category[0]);
   const [isLoading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, setTheme } = useTheme("dark");
 
   useEffect(() => {
     if (isInitialized) {
@@ -115,11 +120,19 @@ export default function index() {
   };
 
   const router = useRouter();
-
+  const isColors = router.pathname.includes('/colors') || router.pathname.includes('/docs/colors');
+  console.log("jkbsbdkjbfksdbfksdbfsd", isColors)
   return (
     <Fragment>
+      <div className="flex justify-center bg-black text-white w-full p-2">
+        <p>🎉 FROM THE CREATORS OF
+          <span className="px-2">
+            <Image src={howToPulse} width={50} height={25} />
+          </span>
+          PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉</p>
+      </div>
       <div className="wrapper custom-wrapper overflow-hidden">
-        <div className="w-full border-b-2 border-slate-300 py-2 mb-5">
+        <div className={`w-full ${theme === "light" ? "border-b-2" : "border-b-0"} dark:broder-b-0 border-slate-300 py-2 mb-5`}>
           <div className="container mx-auto">
             <div className="relative z-10 bg-transparent">
               <div className="relative">
@@ -139,13 +152,13 @@ export default function index() {
               className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
               style={{ marginBottom: "10px" }}
             >
-              <h2 className="items-center cursor-default ml-1 mb-6 custom-text text-dark lg:mb-0">
+              <h2 className="items-center cursor-default ml-1 mb-6 font-bold text-2xl text-dark lg:mb-0">
                 Explore Projects
               </h2>
               <div>
                 <div className="flex items-center justify-center">
                   <div
-                    className="inline-flex border-2 rounded-full border-white custom-shadow "
+                    className={`inline-flex border-2 rounded-full ${theme === "light" ? "custom-shadow border-white" : "custom-shadow-black"}`}
                     role="group"
                   >
                     <button
@@ -163,10 +176,13 @@ export default function index() {
                       duration-150
                       ease-in-out
                       text-gray-400
+                      // ${theme === "light" ? "custom-shadow" : "custom-shadow-black"}
                       ${duration === "Daily"
-                          ? " border-2 custom-shadow font-semibold grad-text-color text-violet-700"
+                          ? " border-2 font-semibold grad-text-color text-violet-700"
                           : ""
-                        }`}>
+                        }`}
+
+                    >
                       <p className={`sm:text-xs${duration === "Daily" ? " link" : ""}`}>
                         Daily
                       </p>
