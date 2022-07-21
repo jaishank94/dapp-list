@@ -9,6 +9,11 @@ import { useMoralis } from "react-moralis";
 import Image from "next/image";
 import logo from "/public/images/pp_final_icon_black.png";
 import Footer from "../components/Footer";
+import {
+  BsAlarmFill,
+  BsFillArrowLeftCircleFill,
+  BsHandThumbsUp,
+} from "react-icons/bs";
 
 export default function DappDetails() {
   const router = useRouter();
@@ -54,7 +59,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const getAppList = async () => {
@@ -75,37 +80,20 @@ export default function DappDetails() {
 
   return (
     <Fragment>
-      <div className="custom-wrapper">
+      <div className="custom-wrapper h-screen">
         <div className="relative overflow-hidden">
           <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
-            <div className="container mx-auto">
-              <div className="relative z-10 bg-transparent">
-                <div className="relative">
-                  <Header displayCreate={false} />
-                </div>
-              </div>
-            </div>
+            <Header displayCreate={true} />
           </div>
-          <div className="bg-white w-full mx-auto px-4 sm:px-6">
+          <div className="w-full mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
-              <div className="flex justify-start lg:w-0 lg:flex-1">
-                <a
-                  className="icon-div cursor-pointer"
+              <div className="w-18">
+                <button
                   onClick={() => router.push("/dapps")}
+                  className="flex item-center rounded-full shadow-2xl"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 custom-back-icon"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
+                  <BsFillArrowLeftCircleFill className="h-12 w-12" />
+                </button>
               </div>
             </div>
           </div>
@@ -113,12 +101,9 @@ export default function DappDetails() {
         {dappInfo && !isLoading && (
           <>
             <div className="component-app-detail">
-              <div
-                className="bg-[#c6c6e4] regal-voilet rounded-3xl"
-                style={{ backgroundColor: "#c6c6e4" }}
-              >
-                <div className="card-header flex">
-                  <div className="flex-none w-14 card-icon">
+              <div className="rounded-3xl border-2 drop-shadow-2xl">
+                <div className="card-header flex  border-b-2 rounded-3xl shadow-xl drop-shadow-2xl">
+                  <div className="w-14 card-icon">
                     <div className="">
                       <img
                         src={dappInfo.logo}
@@ -128,13 +113,12 @@ export default function DappDetails() {
                         className="rounded-lg"
                       />
                     </div>
-
                   </div>
                   <div className="flex-initial px-5 xl:p-5 app-detail">
-                    <div className="">
-                      <h5 className="font-bold app-name">{dappInfo.name}</h5>
-                      <p className="text-gray-500 font-medium mt-2">
-                        {dappInfo.full_description}
+                    <div className="py-4">
+                      <h5 className="font-bold text-lg">{dappInfo.name}</h5>
+                      <p className="text-gray-500 text-sm mt-2">
+                        {dappInfo.short_description}
                       </p>
                     </div>
                   </div>
@@ -145,7 +129,9 @@ export default function DappDetails() {
                       <p className="text-gray-500">Status</p>
                     </div>
                     <div className="status-pill mt-2">
-                      <p className="status-detail">{dappInfo.app_status}</p>
+                      <p className="text-white font-semibold">
+                        {dappInfo.app_status}
+                      </p>
                     </div>
                   </div>
                   <div className="page-view">
@@ -153,7 +139,7 @@ export default function DappDetails() {
                       <p className="text-gray-500">Page Views</p>
                     </div>
                     <div className="page-view-detail flex mt-2">
-                      <span className="page-view-value">
+                      <span className="text-lg font-semibold">
                         {dappInfo.page_views ? dappInfo.page_views : "0"}
                       </span>
                       {/* <div className="pct is-positive ml-1">
@@ -168,7 +154,7 @@ export default function DappDetails() {
                       <p className="text-gray-500">Ticker</p>
                     </div>
                     <div className="mt-2">
-                      <p className="ticker-value">
+                      <p className="text-lg font-semibold">
                         {dappInfo.ticker ? dappInfo.ticker : "_"}
                       </p>
                     </div>
@@ -180,7 +166,7 @@ export default function DappDetails() {
                       <p className="text-gray-500">Sacrifice</p>
                     </div>
                     <div className="mt-2">
-                      <p className="ticker-value">
+                      <p className="text-lg font-semibold">
                         {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
                       </p>
                     </div>
@@ -190,7 +176,7 @@ export default function DappDetails() {
                       <p className="text-gray-500">Total Supply</p>
                     </div>
                     <div className="mt-2">
-                      <p className="ticker-value">
+                      <p className="text-lg font-semibold">
                         {dappInfo.total_supply ? dappInfo.total_supply : "_"}
                       </p>
                     </div>
@@ -199,42 +185,54 @@ export default function DappDetails() {
                     <div>
                       <p className="text-gray-500">Vote</p>
                     </div>
-                    <div className="mt-2 flex">
+                    <div className="mt-2 flex text-center justify-center">
                       <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 ticker-value"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-                          />
-                        </svg>
+                        <BsHandThumbsUp
+                          className="h-6 w-6"
+                          color="blueviolet"
+                        />
                       </div>
                       <div className="ml-1">
-                        <p className="ticker-value">{dappInfo.likes}</p>
+                        <p className="text-lg font-semibold">
+                          {dappInfo.likes}
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="mt-14">
-                  <div className="text-center dApp-text">
-                    <p className="p-dapp">{/* {dappInfo.full_description} */}</p>
+                <div className="flex justify-center mt-5">
+                  <div className="status">
+                    <div>
+                      <p className="text-gray-500">Social Media</p>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-lg font-semibold">
+                        {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="ticker">
+                    <div>
+                      <p className="text-gray-500">Source Code</p>
+                    </div>
+                    <div className="mt-2">
+                      <p className="text-lg font-semibold">
+                        {dappInfo.total_supply ? dappInfo.total_supply : "_"}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-14 confirm-section p-5">
-                  <div className="flex text-center w-full">
+                <div className="flex justify-center item-center text-gray-500 text-sm pt-16 pb-4">
+                  {dappInfo.full_description}
+                </div>
+                <div className="mt-4">
+                  <div className="flex text-center items-center align-middle w-full h-24 justify-center border-t-2 rounded-3xl shadow-xl drop-shadow-2xl">
                     <div className="submit-status">
                       <div>
                         <p className="text-gray-500">Submitted</p>
                       </div>
                       <div className="mt-2">
-                        <p className="ticker-value">
+                        <p className="text-lg font-semibold">
                           {moment(dappInfo.createdAt).format("DD MMM YY")}
                         </p>
                       </div>
@@ -245,13 +243,13 @@ export default function DappDetails() {
                         <p className="text-gray-500">Last updated</p>
                       </div>
                       <div className="mt-2">
-                        <p className="ticker-value">
+                        <p className="text-lg font-semibold">
                           {moment(dappInfo.updatedAt).format("DD MMM YY")}
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="submit-button">
+                  <div className="submit-button px-4 -top-4">
                     <a
                       href={dappInfo.website_url}
                       target="_blank"
@@ -262,44 +260,130 @@ export default function DappDetails() {
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="component-app-detail py-16 mt-16">
-              <div className="flex flex-start" style={{ marginBottom: "10px" }}>
-                <h2 className="items-center ml-1 mb-0 custom-text text-dark">
-                  Popular Projects
-                </h2>
+              <div className="w-full pt-6">
+                <iframe
+                  className="w-full h-96 rounded-2xl"
+                  src="https://www.youtube.com/embed/4w02jCPsJBA"
+                  title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
               </div>
-              <div className="my-10 sm:grid md:grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
-                {data &&
-                  data.map((app, indx) => {
-                    return (
-                      <div
-                        className="max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 border-white cursor-pointer"
-                        onClick={() =>
-                          router.push("/dappDetails/" + app.objectId)
-                        }
-                      >
-                        <div class="flex block w-full p-6 max-w-sm bg-white  rounded-2xl custom-shadow">
-                          <div>
-                            <div class="block p-6 max-w-sm bg-white rounded-lg border-2 border-white shadow-md">
-                              <Image src={logo} width={25} height={25} />
+              <div className="flex justify-center items-center mt-6">
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">
+                    Share
+                  </span>
+                </button>
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">
+                    Report Abuse
+                  </span>
+                </button>
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">
+                    Request Removal
+                  </span>
+                </button>
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">
+                    Edit DApp
+                  </span>
+                </button>
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">
+                    Promote DApp
+                  </span>
+                </button>
+              </div>
+              <div className="py-16 mt-16">
+                <div
+                  className="flex flex-start"
+                  style={{ marginBottom: "10px" }}
+                >
+                  <h2 className="items-center ml-1 mb-0 custom-text text-dark">
+                    Popular Projects
+                  </h2>
+                </div>
+                <div className="my-10 sm:grid md:grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
+                  {data &&
+                    data.map((app, indx) => {
+                      return (
+                        <div
+                          className="max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 border-white cursor-pointer"
+                          onClick={() =>
+                            router.push("/dappDetails/" + app.objectId)
+                          }
+                        >
+                          <div class="flex block w-full p-6 max-w-sm bg-white  rounded-2xl custom-shadow">
+                            <div>
+                              <div class="block p-6 max-w-sm bg-white rounded-lg border-2 border-white shadow-md">
+                                <Image src={logo} width={25} height={25} />
+                              </div>
+                            </div>
+                            <div className="px-3">
+                              <p className="text-left link">{app.name}</p>
+                              <p className="text-left text-justify">
+                                {app.short_description}
+                              </p>
                             </div>
                           </div>
-                          <div className="px-3">
-                            <p className="text-left link">{app.name}</p>
-                            <p className="text-left text-justify">
-                              {app.short_description}
-                            </p>
-                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                {data && data.length == 0 && (
-                  <>
-                    <p className="p-6">No Data</p>
-                  </>
-                )}
+                      );
+                    })}
+                  {data && data.length == 0 && (
+                    <>
+                      <p className="p-6">No Data</p>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className=" mt-8">
+                <div
+                  className="flex flex-start"
+                  style={{ marginBottom: "10px" }}
+                >
+                  <h2 className="items-center ml-1 mb-0 custom-text text-dark">
+                    Popular Categories
+                  </h2>
+                </div>
+                <div className="my-10 sm:grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                  {data &&
+                    data.map((app, indx) => {
+                      return (
+                        <button
+                          className="cursor-pointer flex justify-center items-center border-2 p-4 m-2 bg-slate-600 space-around rounded-xl "
+                          onClick={() =>
+                            router.push("/dappDetails/" + app.objectId)
+                          }
+                        >
+                          <BsAlarmFill className="h-5 w-5 mr-4" />
+                          Hello
+                        </button>
+                      );
+                    })}
+                  {data && data.length == 0 && (
+                    <>
+                      <p className="p-6">No Data</p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </>
@@ -317,7 +401,7 @@ export default function DappDetails() {
         )}
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 }

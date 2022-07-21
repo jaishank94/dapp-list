@@ -14,7 +14,6 @@ import Sidebar from "../components/Sidebar";
 import howToPulse from "/public/images/howToPulse.png";
 import { useTheme } from "next-themes";
 
-
 const Filter = [
   { name: "Filter" },
   { name: "Live" },
@@ -64,7 +63,6 @@ export default function index() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
-
 
   useEffect(() => {
     if (isInitialized) {
@@ -127,7 +125,9 @@ export default function index() {
   };
 
   const router = useRouter();
-  const isColors = router.pathname.includes('/colors') || router.pathname.includes('/docs/colors');
+  const isColors =
+    router.pathname.includes("/colors") ||
+    router.pathname.includes("/docs/colors");
   // console.log("jkbsbdkjbfksdbfksdbfsd", isColors)
 
   if (!isMounted) return null;
@@ -135,26 +135,22 @@ export default function index() {
   return (
     <Fragment>
       <div className="flex justify-center bg-black text-white w-full p-2">
-        <p>🎉 FROM THE CREATORS OF
+        <p>
+          🎉 FROM THE CREATORS OF
           <span className="px-2">
             <Image src={howToPulse} width={50} height={25} />
           </span>
-          PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉</p>
+          PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉
+        </p>
       </div>
       <div className="wrapper custom-wrapper overflow-hidden">
-        <div className={`w-full ${theme === "light" ? "border-b-2" : "border-b-0"} dark:broder-b-0 border-slate-300 py-2 mb-5`}>
-          <div className="container mx-auto">
-            <div className="relative z-10 bg-transparent">
-              <div className="relative">
-                <Header
-                  displayCreate={true}
-                  handleSidebar={handleSidebar}
-                />
-              </div>
-            </div>
-          </div>
+        <div
+          className={`w-full ${
+            theme === "light" ? "border-b-2" : "border-b-0"
+          } border-slate-300 py-2 mb-5`}
+        >
+          <Header displayCreate={true} handleSidebar={handleSidebar} />
         </div>
-        <Sidebar isOpen={isOpen} />
 
         <div className="max-width-1200 mx-auto light:bg-gray dark:bg-red">
           <div className="my-16">
@@ -168,7 +164,11 @@ export default function index() {
               <div>
                 <div className="flex items-center justify-center">
                   <div
-                    className={`inline-flex border-2 rounded-full ${theme === "light" ? "custom-shadow border-white" : "custom-shadow-black border-black"}`}
+                    className={`inline-flex border-2 rounded-full ${
+                      theme === "light"
+                        ? "custom-shadow border-white"
+                        : "custom-shadow-black border-black"
+                    }`}
                     role="group"
                   >
                     <button
@@ -187,13 +187,21 @@ export default function index() {
                       ease-in-out
                       text-gray-400
                       
-                      ${duration === "Daily"
-                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
+                      ${
+                        duration === "Daily"
+                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${
+                              theme === "light"
+                                ? "custom-shadow"
+                                : "custom-shadow-black border-black"
+                            }`
                           : ""
-                        }`}
-
+                      }`}
                     >
-                      <p className={`sm:text-xs${duration === "Daily" ? " link" : ""}`}>
+                      <p
+                        className={`sm:text-xs${
+                          duration === "Daily" ? " link" : ""
+                        }`}
+                      >
                         Daily
                       </p>
                     </button>
@@ -215,11 +223,21 @@ export default function index() {
                       duration-150
                       ease-in-out
                       text-gray-400
-                        ${duration === "Weekly"
-                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
-                          : ""
-                        }`}>
-                      <p className={`sm:text-xs ${duration === "Weekly" ? " link" : ""}`}>
+                        ${
+                          duration === "Weekly"
+                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
+                                theme === "light"
+                                  ? "custom-shadow"
+                                  : "custom-shadow-black border-black"
+                              }`
+                            : ""
+                        }`}
+                    >
+                      <p
+                        className={`sm:text-xs ${
+                          duration === "Weekly" ? " link" : ""
+                        }`}
+                      >
                         Weekly
                       </p>
                     </button>
@@ -240,13 +258,20 @@ export default function index() {
                       duration-150
                       ease-in-out
                       text-gray-400
-                        ${duration === "Monthly"
-                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
-                          : ""
+                        ${
+                          duration === "Monthly"
+                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
+                                theme === "light"
+                                  ? "custom-shadow"
+                                  : "custom-shadow-black border-black"
+                              }`
+                            : ""
                         }`}
                     >
                       <p
-                        className={`sm:text-xs ${duration === "Monthly" ? " link" : ""}`}
+                        className={`sm:text-xs ${
+                          duration === "Monthly" ? " link" : ""
+                        }`}
                       >
                         Monthly
                       </p>
@@ -269,12 +294,21 @@ export default function index() {
                       ease-in-out
                 
                       text-gray-400
-                       ${duration === "Yearly"
-                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
-                          : ""
-                        }`}
+                       ${
+                         duration === "Yearly"
+                           ? ` border-2 font-semibold grad-text-color text-violet-700 ${
+                               theme === "light"
+                                 ? "custom-shadow"
+                                 : "custom-shadow-black border-black"
+                             }`
+                           : ""
+                       }`}
                     >
-                      <p className={`sm:text-xs ${duration === "Yearly" ? " link" : ""}`}>
+                      <p
+                        className={`sm:text-xs ${
+                          duration === "Yearly" ? " link" : ""
+                        }`}
+                      >
                         Yearly
                       </p>
                     </button>
@@ -285,7 +319,13 @@ export default function index() {
                 <div className="container-right">
                   <Listbox value={filter} onChange={(e) => handleFilter(e)}>
                     <div className="mt-1 mx-2">
-                      <Listbox.Button className={`${theme === "light" ? "border-white custom-shadow bg-white border-2 " : "bg-dark custom-shadow-black border-black"}  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}>
+                      <Listbox.Button
+                        className={`${
+                          theme === "light"
+                            ? "border-white custom-shadow bg-white border-2 "
+                            : "bg-dark custom-shadow-black border-black"
+                        }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                      >
                         <span className="block truncate text-gray-400">
                           {filter.name}
                         </span>
@@ -302,27 +342,33 @@ export default function index() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className={`absolute mt-1 z-40 max-h-60 ${theme === "light" ? "bg-white" : "bg-black"} overflow-auto rounded-md py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
+                        <Listbox.Options
+                          className={`absolute mt-1 z-40 max-h-60 ${
+                            theme === "light" ? "bg-white" : "bg-black"
+                          } overflow-auto rounded-md py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                        >
                           {Filter.map((data, dataIdx) => (
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
                                 `cursor-pointer select-none py-2 pl-4 pr-4 
-                                ${theme === "light" ? "text-gray-900" : "text-white"}
-                                ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : ""
-                                }`
+                                ${
+                                  theme === "light"
+                                    ? "text-gray-900"
+                                    : "text-white"
+                                }
+                                ${active ? "bg-amber-100 text-amber-900" : ""}`
                               }
                               value={data}
                             >
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -337,7 +383,13 @@ export default function index() {
 
                   <Listbox value={category} onChange={(e) => handleCategory(e)}>
                     <div className="mt-1">
-                      <Listbox.Button className={`${theme === "light" ? "border-white custom-shadow bg-white border-2 " : "bg-dark custom-shadow-black border-black"}  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}>
+                      <Listbox.Button
+                        className={`${
+                          theme === "light"
+                            ? "border-white custom-shadow bg-white border-2 "
+                            : "bg-dark custom-shadow-black border-black"
+                        }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                      >
                         <span className="block truncate text-gray-400">
                           {category.name}
                         </span>
@@ -354,29 +406,35 @@ export default function index() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className={`absolute z-40 mt-1 max-h-60 overflow-auto ${theme === "light" ? "bg-white" : "bg-black"}  rounded-md  py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}>
+                        <Listbox.Options
+                          className={`absolute z-40 mt-1 max-h-60 overflow-auto ${
+                            theme === "light" ? "bg-white" : "bg-black"
+                          }  rounded-md  py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                        >
                           {Category.map((data, dataIdx) => (
                             <Listbox.Option
                               key={dataIdx}
                               className={({ active }) =>
                                 `cursor-pointer select-none py-2 pl-4 pr-4 
                               
-                                ${theme === "light" ? "text-gray-900" : "text-white"}
+                                ${
+                                  theme === "light"
+                                    ? "text-gray-900"
+                                    : "text-white"
+                                }
 
-                                ${active
-                                  ? "bg-amber-100 text-amber-900"
-                                  : ""
-                                }`
+                                ${active ? "bg-amber-100 text-amber-900" : ""}`
                               }
                               value={data}
                             >
                               {({ selected }) => (
                                 <>
                                   <span
-                                    className={`block truncate ${selected
-                                      ? "text-gray-400 font-medium"
-                                      : "font-normal"
-                                      }`}
+                                    className={`block truncate ${
+                                      selected
+                                        ? "text-gray-400 font-medium"
+                                        : "font-normal"
+                                    }`}
                                   >
                                     {data.name}
                                   </span>
@@ -394,7 +452,11 @@ export default function index() {
           </div>
         </div>
         <div className="max-width-1200 mx-auto">
-          <div className={`table-header  rounded-md ${theme === "light" ? "bg-white shadow-md" : "bg-gray-800"}`}>
+          <div
+            className={`table-header  rounded-md ${
+              theme === "light" ? "bg-white shadow-md" : "bg-gray-800"
+            }`}
+          >
             <div className="table-row">
               <div className="table-head col-rank">
                 <div className="component-ranking-table-rank-head">

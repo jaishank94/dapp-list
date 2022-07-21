@@ -250,12 +250,8 @@ class CreateApp extends Component {
         <div className="custom-wrapper">
           <div className="relative wrapper overflow-hidden">
             <Toaster position="top-right" />
-            <div className="max-width-1200 mx-auto">
-              <div className="relative z-10 bg-transparent">
-                <div className="relative py-6 px-4 sm:px-6 lg:px-8">
-                  <Header displayCreate={false} />
-                </div>
-              </div>
+            <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
+              <Header displayCreate={true} />
             </div>
           </div>
           <Formik
@@ -277,16 +273,16 @@ class CreateApp extends Component {
             {({ setFieldValue, setFieldTouched, values, errors, touched }) => {
               return (
                 <Form>
-                  <div className="relative bg-white">
+                  <div className="relative">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-64">
                       <div className="flex justify-center p-2 items-center py-6 md:justify-center md:space-x-10">
                         <div className="flex w-full text-center">
                           <div className="w-18">
                             <a
                               href={"/dapps"}
-                              className="flex item-center p-4 mr-4 rounded-full bg-gray-300"
+                              className="flex item-center rounded-full shadow-2xl"
                             >
-                              <BsFillArrowLeftCircleFill className="h-5 w-5 text-black" />
+                              <BsFillArrowLeftCircleFill className="h-12 w-12" />
 
                               {/* <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -647,14 +643,27 @@ class CreateApp extends Component {
                               return (
                                 <>
                                   <div
-                                    onClick={(e) =>
-                                      this.setState({
-                                        category: [
-                                          ...this.state.category,
-                                          data.name,
-                                        ],
-                                      })
-                                    }
+                                    onClick={(e) => {
+                                      let arr = this.state.category.filter(
+                                        (obj) => obj == data.name
+                                      );
+
+                                      if (arr.length === 0) {
+                                        this.setState({
+                                          category: [
+                                            ...this.state.category,
+                                            data.name,
+                                          ],
+                                        });
+                                      } else {
+                                        let newArr = this.state.category.filter(
+                                          (obj) => obj !== data.name
+                                        );
+                                        this.setState({
+                                          category: newArr,
+                                        });
+                                      }
+                                    }}
                                     className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
                                   >
                                     <div className="group-6-6 cursor-pointer">

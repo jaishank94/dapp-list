@@ -7,8 +7,7 @@ export default function Footer() {
 
   return (
     <Fragment>
-      <footer className="p-4 bg-white text-center  relative bottom-0 mt-16 w-full shadow border-t-2 border-gray-300 md:items-center md:justify-between md:p-6 dark:bg-gray-800">
-
+      <footer className="text-center relative bottom-0 mt-16 w-full border-t-2 border-gray-200">
         <div className="">
           <ul className="flex justify-center p-2 flex-wrap cursor-pointer items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
             <li className="p-2">
@@ -46,13 +45,16 @@ export default function Footer() {
           </ul>
         </div>
       </footer>
-      <div className="flex w-full flex-col md:flex-row visibility px-2 md:px-96 justify-center py-4 bg-black items-center">
-        <div className="cursor-pointer text-center text-sm w-full md:w-6/12 text-gray-500 sm:text-center dark:text-gray-400">
-          © {new Date().getFullYear()}{" "}
-          PulseChainProjects.io | All Rights Reserved
+      <div className="w-full py-2 grid grid-rows-2 grid-flow-col gap-2 md:grid-rows-1 bg-black items-center">
+        <div className="cursor-pointer text-sm text-gray-500 text-center">
+          © {new Date().getFullYear()} PulseChainProjects.io | All Rights
+          Reserved
         </div>
-        <div className="text-center mt-2 md:m-0 w-full md:w-6/12">
-          <p className="link cursor-pointer">  Built by the Community</p>
+        <div className="">
+          <p className="link cursor-pointer text-sm text-center">
+            {" "}
+            Built by the Community
+          </p>
         </div>
       </div>
     </Fragment>
