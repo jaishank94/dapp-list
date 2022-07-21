@@ -4,15 +4,22 @@ import logo from "/public/images/pp_final_icon_black.png";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import { useTheme } from "next-themes";
+import { BsFillMoonFill, BsFillSunFill, BsWallet2, BsWallet, BsPower } from "react-icons/bs";
+import { useMoralis } from "react-moralis";
 
 export default function Header({ displayCreate, handleSidebar }) {
   const router = useRouter();
+  const { authenticate, isAuthenticated, user, isInitialized, logout } =
+    useMoralis();
+
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {}, [isAuthenticated, isInitialized]);
 
   if (!isMounted) return null;
 
@@ -39,17 +46,40 @@ export default function Header({ displayCreate, handleSidebar }) {
             <p className="font-bold hidden sm:block">PulseChainProjects.io</p>
           </a>
           {displayCreate && (
-            <div className="">
+            <div className="flex items-center">
               <button
                 onClick={() => router.push("/createDapp")}
                 className="cursor-pointer shadow-md sub-header-button inline-block text-sm px-4 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white lg:mt-0"
               >
                 Submit DApp
               </button>
+              {!isAuthenticated ? (
+                <button
+                  className="rounded-lg bg-white p-2 shadow-lg cursor-pointer mx-2 md:rounded-full"
+                  onClick={authenticate}
+                >
+                  <span className="link p-2 hidden text-xs md:block">Connect Wallet</span>
+                  <span className="md:hidden"><BsWallet2 className="h-5 w-5" /></span>
+                </button>
+              ) : (
+                <button
+                  className="rounded-lg bg-white p-2 shadow-lg cursor-pointer mx-2"
+                  onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block">Logout</span>
+                  <span className="md:hidden"><BsPower className="h-5 w-5" /></span>
+
+                </button>
+              )}
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="cursor-pointer border-2 p-2 rounded-lg m-1"
               >
-                Toggle to {theme === "light" ? "Dark" : "Light"}
+                {theme === "light" ? (
+                  <BsFillMoonFill className="h-5 w-5" />
+                ) : (
+                  <BsFillSunFill className="h-5 w-5" />
+                )}
               </button>
               <button
                 onClick={() => handleSidebar()}

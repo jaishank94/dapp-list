@@ -133,7 +133,7 @@ export default function index() {
         </div>
         <Sidebar isOpen={isOpen} />
 
-        <div className="max-width-1200 mx-auto">
+        <div className="max-width-1200 mx-auto light:bg-gray dark:bg-red">
           <div className="my-16">
             <div
               className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
