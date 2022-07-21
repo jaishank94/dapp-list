@@ -62,12 +62,18 @@ export default function index() {
   const [isLoading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
 
   useEffect(() => {
     if (isInitialized) {
       getAppList();
     }
   }, [isInitialized, category, filter, duration]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const getAppList = async () => {
     setLoading(true);
@@ -121,7 +127,10 @@ export default function index() {
 
   const router = useRouter();
   const isColors = router.pathname.includes('/colors') || router.pathname.includes('/docs/colors');
-  console.log("jkbsbdkjbfksdbfksdbfsd", isColors)
+  // console.log("jkbsbdkjbfksdbfksdbfsd", isColors)
+
+  if (!isMounted) return null;
+
   return (
     <Fragment>
       <div className="flex justify-center bg-black text-white w-full p-2">
@@ -158,7 +167,7 @@ export default function index() {
               <div>
                 <div className="flex items-center justify-center">
                   <div
-                    className={`inline-flex border-2 rounded-full ${theme === "light" ? "custom-shadow border-white" : "custom-shadow-black"}`}
+                    className={`inline-flex border-2 rounded-full ${theme === "light" ? "custom-shadow border-white" : "custom-shadow-black border-black"}`}
                     role="group"
                   >
                     <button
@@ -176,9 +185,9 @@ export default function index() {
                       duration-150
                       ease-in-out
                       text-gray-400
-                      // ${theme === "light" ? "custom-shadow" : "custom-shadow-black"}
+                      
                       ${duration === "Daily"
-                          ? " border-2 font-semibold grad-text-color text-violet-700"
+                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}
 
@@ -206,7 +215,7 @@ export default function index() {
                       ease-in-out
                       text-gray-400
                         ${duration === "Weekly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                        ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}>
                       <p className={`sm:text-xs ${duration === "Weekly" ? " link" : ""}`}>
@@ -231,7 +240,7 @@ export default function index() {
                       ease-in-out
                       text-gray-400
                         ${duration === "Monthly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                        ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}
                     >
@@ -260,7 +269,7 @@ export default function index() {
                 
                       text-gray-400
                        ${duration === "Yearly"
-                          ? " border-2 font-semibold custom-shadow grad-text-color"
+                       ? ` border-2 font-semibold grad-text-color text-violet-700 ${theme === "light" ? "custom-shadow" : "custom-shadow-black border-black"}`
                           : ""
                         }`}
                     >

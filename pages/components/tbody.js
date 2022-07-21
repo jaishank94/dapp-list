@@ -149,7 +149,7 @@ function Tbody(props) {
   return (
     <div className="table-body mt-5 px-4" key={props.index}>
       <div className="table-row">
-        <div className="bg-[#e2e7ef] border-2 rounded-lg lg:border-0 table-data col-rank">
+        <div className="bg-[#e2e7ef] border-2 rounded-lg lg:border-0 table-data col-rank lg:bg-none">
           <div className="component-ranking-table-rank rank-1">
             <span className="current-rank">{props.index}</span>
             <span className="past-rank"></span>
