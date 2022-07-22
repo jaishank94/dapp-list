@@ -160,14 +160,14 @@ function Tbody(props) {
   return (
     <div className="table-body mt-5 px-4" key={props.index}>
       <div className="table-row">
-        <div className="bg-[#e2e7ef] border-2 rounded-lg lg:border-0 table-data col-rank lg:bg-none">
+        <div className="bg-[#e2e7ef] rounded-lg lg:border-0 table-data hidden  md:flex col-rank lg:bg-none">
           <div className="component-ranking-table-rank rank-1">
             <span className="current-rank">{props.index}</span>
             <span className="past-rank"></span>
           </div>
         </div>
         <div className={`flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main ${theme === "light" ? "custom-shadow border-white table-main-lite" : "custom-shadow-black border-black"}`}>
-          <div className="text-center lg:table-data col-name">
+          <div className="text-center lg:table-data flex col-name">
             <div className="component-ranking-table-name">
               <div className="icon-place mr-4 py-4">
                 <div className={`icon-wrapper border-2 border-white ${theme === "light" ? "custom-shadow icon-wrpper-lite" : "custom-shadow-black border-black"}`}>
@@ -206,98 +206,172 @@ function Tbody(props) {
               </div>
             </div>
           </div>
-          <div className="flex table-data col-dau">
-            <span className="col-title-mobile">Page Views</span>
-            <div className="component-ranking-table-value-pct">
-              <span className="value">{props.page_views}</span>
-              {/* <div className="pct is-positive">
+          <div className="hidden md:flex">
+            <div className="flex table-data flex col-dau">
+              <span className="col-title-mobile">Page Views</span>
+              <div className="component-ranking-table-value-pct">
+                <span className="value">{props.page_views}</span>
+                {/* <div className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
                   11.40%
                 </div>
               </div> */}
+              </div>
             </div>
-          </div>
-          <div className="table-data col-tx">
-            <span className="col-title-mobile">Status</span>
-            <div className="component-ranking-table-value-pct">
-              <span className="value">{props.app_status}</span>
-              {/* <span className="pct is-positive">
+            <div className="table-data flex col-tx">
+              <span className="col-title-mobile">Status</span>
+              <div className="component-ranking-table-value-pct">
+                <span className="value">{props.app_status}</span>
+                {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
                   11.40%
                 </div>
               </span> */}
+              </div>
             </div>
-          </div>
-          <div className="table-data col-vol">
-            <span className="col-title-mobile">Ticker</span>
-            <div className="component-ranking-table-volume-head">
-              <span className="value">{props.ticker}</span>
-              {/* <span className="pct is-negative">-9.00%</span> */}
+            <div className="table-data flex col-vol">
+              <span className="col-title-mobile">Ticker</span>
+              <div className="component-ranking-table-volume-head">
+                <span className="value">{props.ticker}</span>
+                {/* <span className="pct is-negative">-9.00%</span> */}
+              </div>
             </div>
-          </div>
-          <div className="table-data col-vol col-vol-hbd">
-            <span className="col-title-mobile">Sacrifice</span>
-            <div className="component-ranking-table-volume-head">
-              <span className="value">{props.sacrifice}</span>
-              {/* <span className="pct is-positive">
+            <div className="table-data flex col-vol col-vol-hbd">
+              <span className="col-title-mobile">Sacrifice</span>
+              <div className="component-ranking-table-volume-head">
+                <span className="value">{props.sacrifice}</span>
+                {/* <span className="pct is-positive">
                 <span>^</span>
                 154.80%
               </span> */}
+              </div>
             </div>
-          </div>
-          <div className="table-data col-rewards col-rewards-hive">
-            <span className="col-title-mobile">Total Supply</span>
-            <div className="component-ranking-table-volume-head">
-              <span className="value">{props.total_supply}</span>
-              {/* <span className="pct is-positive">
+            <div className="table-data flex col-rewards col-rewards-hive">
+              <span className="col-title-mobile">Total Supply</span>
+              <div className="component-ranking-table-volume-head">
+                <span className="value">{props.total_supply}</span>
+                {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
                   11.40%
                 </div>
               </span> */}
+              </div>
+            </div>
+            <div className="table-data flex col-rewards col-rewards-hive">
+              <span className="col-title-mobile">Vote</span>
+              <div className="component-ranking-table-volume-head">
+                <span className="value flex">
+                  <button
+                    className="text-center"
+                    disabled={isDisabled}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      isAuthenticated ? handleReaction(true) : authenticate();
+                    }}
+                  >
+                    {like ? (
+                      <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
+                    ) : (
+                      <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
+                    )}
+
+
+                    <span className="link">{likeCount}</span>
+                  </button>
+                  <button
+                    className="text-center ml-2"
+                    disabled={isDisabled}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      isAuthenticated ? handleReaction(false) : authenticate();
+                    }}
+                  >
+                    {dislike ? (
+                      <BsHandThumbsDownFill className="h-5 w-5" />
+                    ) : (
+                      <BsHandThumbsDown className="h-5 w-5" />
+                    )
+                    }
+
+                    <span className="font-bold">{dislikeCount}</span>
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
-          <div className="table-data col-rewards col-rewards-hive">
-            <span className="col-title-mobile">Vote</span>
-            <div className="component-ranking-table-volume-head">
-              <span className="value flex">
-                <button
-                  className="text-center"
-                  disabled={isDisabled}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    isAuthenticated ? handleReaction(true) : authenticate();
-                  }}
-                >
-                  {like ? (
-                    <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
-                  ) : (
-                    <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
-                  )}
+          <div className="block md:hidden text-center">
+            <div class="grid grid-cols-2 divide-x divide-gray-700">
+              <div className="flex flex-col">
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Page Views</p>
+                <p className="col-title-mobile">{props.page_views}</p>
+              </div>
+              <div className="flex flex-col">
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Status</p>
+                <p className="col-title-mobile uppercase">{props.app_status}</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 divide-x mt-14 divide-gray-700">
+              <div className="flex flex-col">
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Ticker</p>
+                <p className="col-title-mobile">{props.ticker}</p>
+              </div>
+              <div className="flex flex-col">
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Sacrifice</p>
+                <p className="col-title-mobile">{props.sacrifice}</p>
+              </div>
+              <div className="flex flex-col">
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Total Supply</p>
+                <p className="col-title-mobile">{props.total_supply}</p>
+              </div>
+            </div>
+            <div className="border-t-2 mt-14 border-gray-700">
+              <div class="grid grid-cols-2 divide-x divide-gray-700">
+                <div className="flex justify-center p-5">
+                  <button
+                    className="text-center"
+                    disabled={isDisabled}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      isAuthenticated ? handleReaction(true) : authenticate();
+                    }}
+                  >
+                    {like ? (
+                      <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
+                    ) : (
+                      <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
+                    )}
+                  </button>
+                  <div className="ml-2">
+                    <span className="link">{likeCount}</span>
+                  </div>
+                </div>
 
+                <div className="flex justify-center p-5">
 
-                  <span className="link">{likeCount}</span>
-                </button>
-                <button
-                  className="text-center ml-2"
-                  disabled={isDisabled}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    isAuthenticated ? handleReaction(false) : authenticate();
-                  }}
-                >
-                  {dislike ? (
-                    <BsHandThumbsDownFill className="h-5 w-5" />
-                  ) : (
-                    <BsHandThumbsDown className="h-5 w-5" />
-                  )
-                  }
+                  <button
+                    className="text-center"
+                    disabled={isDisabled}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      isAuthenticated ? handleReaction(false) : authenticate();
+                    }}
+                  >
+                    {dislike ? (
+                      <BsHandThumbsDownFill className="h-5 w-5" />
+                    ) : (
+                      <BsHandThumbsDown className="h-5 w-5" />
+                    )
+                    }
+                  </button>
+                  <div className="ml-2">
+                    <span className="font-bold">{dislikeCount}</span>
+                  </div>
+                </div>
 
-                  <span className="font-bold">{dislikeCount}</span>
-                </button>
-              </span>
+              </div>
             </div>
           </div>
         </div>

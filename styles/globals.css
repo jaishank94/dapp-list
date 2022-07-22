@@ -147,6 +147,9 @@ li {
   box-shadow: inset -4px -4px 12px #FFFFFF, inset 4px 4px 12px #D1D9E6;
 }
 
+.top-5-6 {
+  top: 5.6rem;
+}
 
 .custom-shadow-black {
   box-shadow: inset -4px -4px 12px #272727, inset 4px 4px 12px #000000;
@@ -409,7 +412,7 @@ li {
 .table-data {
   margin: 0;
   /* text-align: inherit; */
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   padding: 10px 0;
@@ -473,6 +476,10 @@ li {
   /* opacity: 0.5; */
   /* filter: blur(0px); */
   border-radius: 20px;
+}
+
+.border-top {
+  border-top: 1px solid;
 }
 
 .icon-link,

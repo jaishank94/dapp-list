@@ -7,7 +7,9 @@ import Header from "../components/Header";
 import plus from "/public/images/plus.png";
 import Button from "../components/customButton";
 import Footer from "../components/Footer";
-import { BsFillArrowLeftCircleFill, BsPlus, BsDash } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill, BsPlus, BsDash, BsFacebook, BsTwitter, BsInstagram, BsYoutube, BsTelegram, BsReddit, BsMedium, BsDiscord, BsGithub } from "react-icons/bs";
+import { AiFillGitlab } from "react-icons/ai";
+import { IoLogoBitbucket } from "react-icons/Io";
 
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -124,9 +126,13 @@ class CreateApp extends Component {
       twitter: "",
       instagram: "",
       youtube: "",
+      telegram: "",
+      reddit: "",
+      medium: "",
       github: "",
       discord: "",
       gitlab: "",
+      bitbuket: "",
       sacrifice: "Yes",
       total_supply: "",
       ticker: "",
@@ -148,9 +154,13 @@ class CreateApp extends Component {
       twitter,
       instagram,
       youtube,
+      telegram,
+      reddit,
+      medium,
       github,
       discord,
       gitlab,
+      bitbuket,
       logo_url,
       ticker,
       sacrifice,
@@ -223,9 +233,13 @@ class CreateApp extends Component {
             twitter: "",
             instagram: "",
             youtube: "",
+            telegram: "",
+            reddit: "",
+            medium: "",
             github: "",
             discord: "",
             gitlab: "",
+            bitbuket: "",
             sacrifice: "Yes",
             total_supply: "",
             isSubmitting: false,
@@ -332,12 +346,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.name &&
-                                                      errors.name
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.name &&
+                                errors.name
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="name"
                             name="name"
                             placeholder="App Name *"
@@ -357,12 +370,11 @@ class CreateApp extends Component {
                           <input
                             type="text"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.short_description &&
-                                                      errors.short_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.short_description &&
+                                errors.short_description
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="short_description"
                             name="short_description"
                             placeholder="Short Description*"
@@ -375,7 +387,7 @@ class CreateApp extends Component {
                             maxLength={25}
                           />
                           {errors.short_description &&
-                          !this.state.short_description ? (
+                            !this.state.short_description ? (
                             <div className="error my-2">
                               {errors.short_description}
                             </div>
@@ -388,12 +400,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.full_description &&
-                                                      errors.full_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.full_description &&
+                                errors.full_description
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="full_description"
                             name="full_description"
                             placeholder="Full Description*"
@@ -406,7 +417,7 @@ class CreateApp extends Component {
                             maxLength={260}
                           />
                           {errors.full_description &&
-                          !this.state.full_description ? (
+                            !this.state.full_description ? (
                             <div className="error my-2">
                               {errors.full_description}
                             </div>
@@ -419,12 +430,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.website_url &&
-                                                      errors.website_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.website_url &&
+                                errors.website_url
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="website_url"
                             name="website_url"
                             placeholder="Website URL*"
@@ -446,12 +456,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.logo_url &&
-                                                      errors.logo_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.logo_url &&
+                                errors.logo_url
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="logo_url"
                             name="logo_url"
                             placeholder="DApp Logo URL*"
@@ -472,12 +481,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.ticker &&
-                                                      errors.ticker
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.ticker &&
+                                errors.ticker
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="ticker"
                             name="ticker"
                             placeholder="Ticker*"
@@ -498,12 +506,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.total_supply &&
-                                                      errors.total_supply
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.total_supply &&
+                                errors.total_supply
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="total_supply"
                             name="total_supply"
                             placeholder="Total Supply*"
@@ -542,28 +549,25 @@ class CreateApp extends Component {
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.sacrifice === data.name
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
+                                        className={`rectangle-1-1-0 ${this.state.sacrifice === data.name
+                                          ? "selected-background"
+                                          : "not-selected-background"
+                                          }`}
                                       />
                                       <p
-                                        className={`text-1 ${
-                                          this.state.sacrifice === data.name
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
+                                        className={`text-1 ${this.state.sacrifice === data.name
+                                          ? "selected-text"
+                                          : "not-selected-text"
+                                          }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.sacrifice === data.name
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
+                                          className={`rectangle-1-3-3 ${this.state.sacrifice === data.name
+                                            ? "selected-rectangle-1-3-3"
+                                            : "not-rectangle-1-3-3"
+                                            }`}
                                         />
                                         {this.state.sacrifice === data.name ? (
                                           <BsDash className="flex text-center icon justify-center" />
@@ -599,28 +603,25 @@ class CreateApp extends Component {
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.app_status === data.name
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
+                                        className={`rectangle-1-1-0 ${this.state.app_status === data.name
+                                          ? "selected-background"
+                                          : "not-selected-background"
+                                          }`}
                                       />
                                       <p
-                                        className={`text-1 ${
-                                          this.state.app_status === data.name
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
+                                        className={`text-1 ${this.state.app_status === data.name
+                                          ? "selected-text"
+                                          : "not-selected-text"
+                                          }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.app_status === data.name
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
+                                          className={`rectangle-1-3-3 ${this.state.app_status === data.name
+                                            ? "selected-rectangle-1-3-3"
+                                            : "not-rectangle-1-3-3"
+                                            }`}
                                         />
                                         {this.state.app_status === data.name ? (
                                           <BsDash className="flex text-center icon justify-center" />
@@ -669,34 +670,31 @@ class CreateApp extends Component {
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
+                                        className={`rectangle-1-1-0 ${this.state.category.includes(
+                                          data.name
+                                        )
+                                          ? "selected-background"
+                                          : "not-selected-background"
+                                          }`}
                                       />
                                       <p
-                                        className={`text-1 ${
-                                          this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
+                                        className={`text-1 ${this.state.category.includes(
+                                          data.name
+                                        )
+                                          ? "selected-text"
+                                          : "not-selected-text"
+                                          }`}
                                       >
                                         {data.name}
                                       </p>
                                       <div className="group-6-5">
                                         <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.category.includes(
-                                              data.name
-                                            )
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
+                                          className={`rectangle-1-3-3 ${this.state.category.includes(
+                                            data.name
+                                          )
+                                            ? "selected-rectangle-1-3-3"
+                                            : "not-rectangle-1-3-3"
+                                            }`}
                                         />
                                         {this.state.category.includes(
                                           data.name
@@ -713,7 +711,7 @@ class CreateApp extends Component {
                             })}
                           </div>
                           {errors.category &&
-                          this.state.category.length === 0 ? (
+                            this.state.category.length === 0 ? (
                             <div className="error my-2">{errors.category}</div>
                           ) : (
                             ""
@@ -733,7 +731,7 @@ class CreateApp extends Component {
                                       this.setState({
                                         porject_information:
                                           this.state.porject_information ===
-                                          data.name
+                                            data.name
                                             ? this.state.porject_information
                                             : data.name,
                                       })
@@ -742,34 +740,31 @@ class CreateApp extends Component {
                                     <div className="rectangle-1-0-8" />
                                     <div className="rectangle-1-0-9" />
                                     <div
-                                      className={`rectangle-1-1-0 ${
-                                        this.state.porject_information ===
+                                      className={`rectangle-1-1-0 ${this.state.porject_information ===
                                         data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                      }`}
+                                        ? "selected-background"
+                                        : "not-selected-background"
+                                        }`}
                                     />
                                     <p
-                                      className={`text-1 ${
-                                        this.state.porject_information ===
+                                      className={`text-1 ${this.state.porject_information ===
                                         data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                      }`}
+                                        ? "selected-text"
+                                        : "not-selected-text"
+                                        }`}
                                     >
                                       {data.name}
                                     </p>
                                     <div className="group-6-5">
                                       <div
-                                        className={`rectangle-1-3-3 ${
-                                          this.state.porject_information ===
+                                        className={`rectangle-1-3-3 ${this.state.porject_information ===
                                           data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                        }`}
+                                          ? "selected-rectangle-1-3-3"
+                                          : "not-rectangle-1-3-3"
+                                          }`}
                                       />
                                       {this.state.porject_information ===
-                                      data.name ? (
+                                        data.name ? (
                                         <BsDash className="flex text-center icon justify-center" />
                                       ) : (
                                         <BsPlus className="flex text-center icon justify-center" />
@@ -787,11 +782,10 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5 mt-4"
                             className={`form-control custom-input px-5 mt-4
-                                      ${
-                                        touched.tag && errors.tag
-                                          ? "is-invalid"
-                                          : ""
-                                      }`}
+                                      ${touched.tag && errors.tag
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="tag"
                             name="tag"
                             placeholder="e.g.splinterlands"
@@ -867,9 +861,15 @@ class CreateApp extends Component {
                             Social media links
                           </p>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsFacebook className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://facebook.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-72 mt-4"
                               id="facebook"
                               name="facebook"
                               placeholder="Facebook"
@@ -886,9 +886,15 @@ class CreateApp extends Component {
                             />
                           </div>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsTwitter className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://telegram.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-72 mt-4"
                               id="twitter"
                               name="twitter"
                               placeholder="Twitter"
@@ -901,9 +907,15 @@ class CreateApp extends Component {
                             />
                           </div>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsInstagram className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://instagram.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-72 mt-4"
                               id="instagram"
                               name="instagram"
                               placeholder="Instagram"
@@ -920,9 +932,16 @@ class CreateApp extends Component {
                             />
                           </div>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsYoutube className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://youtube.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-72 mt-4"
+                              maxLength={100}
                               id="youtube"
                               name="youtube"
                               placeholder="Youtube"
@@ -934,28 +953,83 @@ class CreateApp extends Component {
                               helpertext={errors.youtube ? errors.youtube : ""}
                             />
                           </div>
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">Source code</p>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsTelegram className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://telegram.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
-                              id="github"
-                              name="github"
-                              placeholder="Github"
-                              value={this.state.github}
+                              className="form-control custom-input px-72 mt-4"
+                              maxLength={100}
+                              id="telegram"
+                              name="telegram"
+                              placeholder="Telegram"
+                              value={this.state.telegram}
                               onChange={(e) =>
-                                this.setState({ github: e.target.value })
+                                this.setState({ telegram: e.target.value })
                               }
-                              error={errors.github && Boolean(errors.github)}
-                              helpertext={errors.github ? errors.github : ""}
+                              error={errors.telegram && Boolean(errors.telegram)}
+                              helpertext={errors.telegram ? errors.telegram : ""}
                             />
                           </div>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsReddit className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://reddit.com</p>
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-72 mt-4"
+                              maxLength={100}
+                              id="reddit"
+                              name="reddit"
+                              placeholder="Reddit"
+                              value={this.state.reddit}
+                              onChange={(e) =>
+                                this.setState({ reddit: e.target.value })
+                              }
+                              error={errors.reddit && Boolean(errors.reddit)}
+                              helpertext={errors.reddit ? errors.reddit : ""}
+                            />
+                          </div>
+                          <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsMedium className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://medium.com</p>
+                              </div>
+                            </div>
+                            <input
+                              type="text"
+                              className="form-control custom-input px-72 mt-4"
+                              maxLength={100}
+                              id="medium"
+                              name="medium"
+                              placeholder="Medium"
+                              value={this.state.medium}
+                              onChange={(e) =>
+                                this.setState({ medium: e.target.value })
+                              }
+                              error={errors.medium && Boolean(errors.medium)}
+                              helpertext={errors.medium ? errors.medium : ""}
+                            />
+                          </div>
+                          <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsDiscord className="h-5 w-5" />
+                                <p className="text-gray-600 pl-2">https://discord.com</p>
+                              </div>
+                            </div>
+                            <input
+                              type="text"
+                              className="form-control custom-input px-72 mt-4"
+                              maxLength={100}
                               id="discord"
                               name="discord"
                               placeholder="Discord"
@@ -967,10 +1041,42 @@ class CreateApp extends Component {
                               helpertext={errors.discord ? errors.discord : ""}
                             />
                           </div>
+                        </div>
+                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                          <p className="font-bold text-lg mt-8">Source code</p>
                           <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <BsGithub className="h-5 w-5" />
+                              </div>
+                            </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-5 mt-4"
+                              className="form-control custom-input px-20 mt-4"
+                              maxLength={500}
+                              id="github"
+                              name="github"
+                              placeholder="Github"
+                              value={this.state.github}
+                              onChange={(e) =>
+                                this.setState({ github: e.target.value })
+                              }
+                              error={errors.github && Boolean(errors.github)}
+                              helpertext={errors.github ? errors.github : ""}
+                            />
+                          </div>
+
+                          <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <AiFillGitlab className="h-5 w-5" />
+
+                              </div>
+                            </div>
+                            <input
+                              type="text"
+                              className="form-control custom-input px-20 mt-4"
+                              maxLength={500}
                               id="gitlab"
                               name="gitlab"
                               placeholder="Gitlab"
@@ -982,11 +1088,31 @@ class CreateApp extends Component {
                               helpertext={errors.gitlab ? errors.gitlab : ""}
                             />
                           </div>
+                          <div>
+                            <div className="p-6 relative w-60 top-5-6 left-3 flex rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-14">
+                                <IoLogoBitbucket className="h-5 w-5" />
+                              </div>
+                            </div>
+                            <input
+                              type="text"
+                              className="form-control custom-input px-20 mt-4"
+                              maxLength={500}
+                              id="bitbuket"
+                              name="bitbuket"
+                              placeholder="Bitbuket"
+                              value={this.state.bitbuket}
+                              onChange={(e) =>
+                                this.setState({ bitbuket: e.target.value })
+                              }
+                              error={errors.bitbuket && Boolean(errors.bitbuket)}
+                              helpertext={errors.bitbuket ? errors.bitbuket : ""}
+                            />
+                          </div>
                           <div className="flex my-4 justify-center ">
                             <button
-                              className={`sub-header-button text-white ${
-                                this.state.isSubmitting ? "" : ""
-                              }`}
+                              className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
+                                }`}
                               type="submit"
                               disabled={this.state.isSubmitting}
                             >
