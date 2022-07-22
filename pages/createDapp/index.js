@@ -39,7 +39,6 @@ const Category = [
   { name: "Entertainment" },
   { name: "Exchanges" },
   { name: "DeFi" },
-  { name: "Wallet" },
   { name: "MarketPlaces" },
   { name: "Governance" },
   { name: "Yield-farming" },
@@ -251,7 +250,7 @@ class CreateApp extends Component {
           <div className="relative wrapper overflow-hidden">
             <Toaster position="top-right" />
             <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
-              <Header displayCreate={true} />
+              <Header displayCreate={false} />
             </div>
           </div>
           <Formik
@@ -699,7 +698,9 @@ class CreateApp extends Component {
                                               : "not-rectangle-1-3-3"
                                           }`}
                                         />
-                                        {this.state.category === data.name ? (
+                                        {this.state.category.includes(
+                                          data.name
+                                        ) ? (
                                           <BsDash className="flex text-center icon justify-center" />
                                         ) : (
                                           <BsPlus className="flex text-center icon justify-center" />
@@ -1001,7 +1002,7 @@ class CreateApp extends Component {
                               Reset
                             </button>
                           </div>
-                          <p className="text-sm text-gray-500 text-center p-4">
+                          <p className="text-sm text-gray-500 bg-blue-200 rounded-xl text-center p-4">
                             Whether you are looking for new users, testers,
                             concept feedback, partners, or investors, submitting
                             a DApp (Decentralized Application) to this

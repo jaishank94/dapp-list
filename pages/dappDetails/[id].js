@@ -13,7 +13,72 @@ import {
   BsAlarmFill,
   BsFillArrowLeftCircleFill,
   BsHandThumbsUp,
+  BsShare,
+  BsExclamationCircle,
+  BsTrash2,
+  BsPencil,
+  BsFillExclamationTriangleFill,
+  BsGraphUp,
+  BsTwitch,
+  BsTwitter,
+  BsGithub,
+  BsYoutube,
+  BsFacebook,
+  BsInstagram,
 } from "react-icons/bs";
+import {
+  GiConsoleController,
+  GiChart,
+  GiArtificialHive,
+  GiHamburgerMenu,
+} from "react-icons/gi";
+
+const Categories = [
+  {
+    name: "Games",
+    slug: "Games",
+    color: "red",
+    icon: (
+      <GiConsoleController
+        className="h-8 w-8 bg-red-900 rounded-full p-1 mx-4"
+        color="white"
+      />
+    ),
+  },
+  {
+    name: "DeFi",
+    slug: "DeFi",
+    color: "pink",
+    icon: (
+      <GiChart
+        className="h-8 w-8 bg-pink-900 rounded-full p-1 mx-4"
+        color="white"
+      />
+    ),
+  },
+  {
+    name: "NFT",
+    slug: "NFT",
+    color: "blue",
+    icon: (
+      <GiArtificialHive
+        className="h-8 w-8 bg-blue-900 rounded-full p-1 mx-4"
+        color="white"
+      />
+    ),
+  },
+  {
+    name: "All Categories",
+    slug: "Category",
+    color: "slate",
+    icon: (
+      <GiHamburgerMenu
+        className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+        color="white"
+      />
+    ),
+  },
+];
 
 export default function DappDetails() {
   const router = useRouter();
@@ -83,7 +148,7 @@ export default function DappDetails() {
       <div className="custom-wrapper h-screen">
         <div className="relative overflow-hidden">
           <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
-            <Header displayCreate={true} />
+            <Header displayCreate={false} />
           </div>
           <div className="w-full mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
@@ -194,7 +259,7 @@ export default function DappDetails() {
                       </div>
                       <div className="ml-1">
                         <p className="text-lg font-semibold">
-                          {dappInfo.likes}
+                          {dappInfo.likes ? dappInfo.likes : 0}
                         </p>
                       </div>
                     </div>
@@ -206,9 +271,24 @@ export default function DappDetails() {
                       <p className="text-gray-500">Social Media</p>
                     </div>
                     <div className="mt-2">
-                      <p className="text-lg font-semibold">
-                        {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
-                      </p>
+                      <ul className="flex">
+                        <li className="p-2">
+                          <a
+                            className="mr-4 hover:underline md:mr-6 "
+                            onClick={() => router.push("/dappAbusive")}
+                          >
+                            <BsTwitter />
+                          </a>
+                        </li>
+                        <li className="p-2">
+                          <a
+                            className="mr-4 hover:underline md:mr-6 "
+                            onClick={() => router.push("/aboutUs")}
+                          >
+                            <BsTwitter />
+                          </a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                   <div className="ticker">
@@ -216,13 +296,28 @@ export default function DappDetails() {
                       <p className="text-gray-500">Source Code</p>
                     </div>
                     <div className="mt-2">
-                      <p className="text-lg font-semibold">
-                        {dappInfo.total_supply ? dappInfo.total_supply : "_"}
-                      </p>
+                      <ul className="flex">
+                        <li className="p-2">
+                          <a
+                            className="mr-4 hover:underline md:mr-6 "
+                            onClick={() => router.push("/dappAbusive")}
+                          >
+                            <BsGithub />
+                          </a>
+                        </li>
+                        <li className="p-2">
+                          <a
+                            className="mr-4 hover:underline md:mr-6 "
+                            onClick={() => router.push("/aboutUs")}
+                          >
+                            <BsGithub />
+                          </a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-center item-center text-gray-500 text-sm pt-16 pb-4">
+                <div className="flex justify-center items-center text-center text-gray-500 text-sm pt-16 pb-4 px-4">
                   {dappInfo.full_description}
                 </div>
                 <div className="mt-4">
@@ -260,6 +355,26 @@ export default function DappDetails() {
                   </div>
                 </div>
               </div>
+              <div className="w-full my-6 p-6 bg-yellow-100 rounded-2xl">
+                <p>
+                  <span className="flex justify-center items-center">
+                    {" "}
+                    <BsFillExclamationTriangleFill
+                      className="w-5 h-5"
+                      color="red"
+                    />{" "}
+                    <span className="text-red-600 mx-2 font-bold">
+                      WARNING:
+                    </span>
+                    <span className="font-normal">PulseChainProjects.io</span>
+                  </span>{" "}
+                </p>
+                <p className="text-gray-500 text-center my-2">
+                  Does not constitute any investment advice or trading advice.
+                  Please carefully understand and evaluate the risks yourself
+                  before participating in any Dapp.
+                </p>
+              </div>
               <div className="w-full pt-6">
                 <iframe
                   className="w-full h-96 rounded-2xl"
@@ -275,8 +390,11 @@ export default function DappDetails() {
                   className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
                   // onClick={logout}
                 >
-                  <span className="link p-1 hidden text-xs md:block">
+                  <span className="link p-1 hidden text-xs md:block ">
                     Share
+                  </span>
+                  <span className="md:hidden">
+                    <BsShare className="h-5 w-5" color="blueviolet" />
                   </span>
                 </button>
                 <button
@@ -286,6 +404,12 @@ export default function DappDetails() {
                   <span className="link p-1 hidden text-xs md:block">
                     Report Abuse
                   </span>
+                  <span className="md:hidden">
+                    <BsExclamationCircle
+                      className="h-5 w-5"
+                      color="blueviolet"
+                    />
+                  </span>
                 </button>
                 <button
                   className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
@@ -293,6 +417,9 @@ export default function DappDetails() {
                 >
                   <span className="link p-1 hidden text-xs md:block">
                     Request Removal
+                  </span>
+                  <span className="md:hidden">
+                    <BsTrash2 className="h-5 w-5" color="blueviolet" />
                   </span>
                 </button>
                 <button
@@ -302,6 +429,9 @@ export default function DappDetails() {
                   <span className="link p-1 hidden text-xs md:block">
                     Edit DApp
                   </span>
+                  <span className="md:hidden">
+                    <BsPencil className="h-5 w-5" color="blueviolet" />
+                  </span>
                 </button>
                 <button
                   className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
@@ -309,6 +439,9 @@ export default function DappDetails() {
                 >
                   <span className="link p-1 hidden text-xs md:block">
                     Promote DApp
+                  </span>
+                  <span className="md:hidden">
+                    <BsGraphUp className="h-5 w-5" color="blueviolet" />
                   </span>
                 </button>
               </div>
@@ -339,7 +472,7 @@ export default function DappDetails() {
                             </div>
                             <div className="px-3">
                               <p className="text-left link">{app.name}</p>
-                              <p className="text-left text-justify">
+                              <p className="text-left py-2 text-sm font-thin text-justify">
                                 {app.short_description}
                               </p>
                             </div>
@@ -354,7 +487,7 @@ export default function DappDetails() {
                   )}
                 </div>
               </div>
-              <div className=" mt-8">
+              <div className="mt-4">
                 <div
                   className="flex flex-start"
                   style={{ marginBottom: "10px" }}
@@ -363,22 +496,23 @@ export default function DappDetails() {
                     Popular Categories
                   </h2>
                 </div>
-                <div className="my-10 sm:grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                  {data &&
-                    data.map((app, indx) => {
+                <div className="my-10 grid grid-cols-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                  {Categories &&
+                    Categories.map((app, indx) => {
                       return (
                         <button
-                          className="cursor-pointer flex justify-center items-center border-2 p-4 m-2 bg-slate-600 space-around rounded-xl "
+                          key={indx}
+                          className={`  bg-${app.color}-300 cursor-pointer flex justify-start items-center border-2 p-4 m-2 space-around rounded-xl`}
                           onClick={() =>
-                            router.push("/dappDetails/" + app.objectId)
+                            router.push("/dapps?filter_category=" + app.slug)
                           }
                         >
-                          <BsAlarmFill className="h-5 w-5 mr-4" />
-                          Hello
+                          <div className={``}>{app.icon}</div>
+                          <span className="font-semibold">{app.name}</span>
                         </button>
                       );
                     })}
-                  {data && data.length == 0 && (
+                  {Categories && Categories.length == 0 && (
                     <>
                       <p className="p-6">No Data</p>
                     </>

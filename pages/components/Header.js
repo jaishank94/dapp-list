@@ -69,77 +69,64 @@ export default function Header({ displayCreate }) {
                       PulseChainProjects.io
                     </p>
                   </a>
-                  {displayCreate && (
-                    <div className="flex items-center">
+
+                  <div className="flex items-center">
+                    <button
+                      onClick={() => router.push("/createDapp")}
+                      className="cursor-pointer md:block shadow-md sub-header-button inline-block text-sm px-4 leading-none rounded text-white  hover:text-teal-500 lg:mt-0"
+                    >
+                      Submit DApp
+                    </button>
+                    {!isAuthenticated ? (
                       <button
-                        onClick={() => router.push("/createDapp")}
-                        className="cursor-pointer hidden md:block shadow-md sub-header-button inline-block text-sm px-4 leading-none rounded text-white  hover:text-teal-500 lg:mt-0"
+                        className={`rounded-lg ${
+                          theme === "light" ? "bg-white" : "bg-gray-800"
+                        } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                        onClick={authenticate}
                       >
-                        Submit DApp
+                        <span className="link p-2 hidden text-xs md:block">
+                          Connect Wallet
+                        </span>
+                        <span className="md:hidden">
+                          <BsWallet2 className="h-5 w-5" />
+                        </span>
                       </button>
-                      {!isAuthenticated ? (
-                        <button
-                          className={`rounded-lg ${
-                            theme === "light" ? "bg-white" : "bg-gray-800"
-                          } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
-                          onClick={authenticate}
-                        >
-                          <span className="link p-2 hidden text-xs md:block">
-                            Connect Wallet
-                          </span>
-                          <span className="md:hidden">
-                            <BsWallet2 className="h-5 w-5" />
-                          </span>
-                        </button>
+                    ) : (
+                      <button
+                        className={`rounded-lg ${
+                          theme === "light" ? "bg-white" : "bg-gray-800"
+                        } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                        onClick={logout}
+                      >
+                        <span className="link p-1 hidden text-xs md:block">
+                          Logout
+                        </span>
+                        <span className="md:hidden">
+                          <BsPower className="h-5 w-5" />
+                        </span>
+                      </button>
+                    )}
+                    <button
+                      onClick={() =>
+                        setTheme(theme === "light" ? "dark" : "light")
+                      }
+                      className="cursor-pointer border-2 p-2 rounded-lg m-1"
+                    >
+                      {theme === "light" ? (
+                        <BsFillMoonFill className="h-5 w-5" />
                       ) : (
-                        <button
-                          className={`rounded-lg ${
-                            theme === "light" ? "bg-white" : "bg-gray-800"
-                          } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
-                          onClick={logout}
-                        >
-                          <span className="link p-1 hidden text-xs md:block">
-                            Logout
-                          </span>
-                          <span className="md:hidden">
-                            <BsPower className="h-5 w-5" />
-                          </span>
-                        </button>
+                        <BsFillSunFill className="h-5 w-5" />
                       )}
-                      <button
-                        onClick={() =>
-                          setTheme(theme === "light" ? "dark" : "light")
-                        }
-                        className="cursor-pointer border-2 p-2 rounded-lg m-1"
-                      >
-                        {theme === "light" ? (
-                          <BsFillMoonFill className="h-5 w-5" />
-                        ) : (
-                          <BsFillSunFill className="h-5 w-5" />
-                        )}
-                      </button>
+                    </button>
+                    {displayCreate && (
                       <button
                         onClick={() => handleSidebar()}
                         className="p-4 rounded-lg focus:outline-none  md:hidden"
                       >
                         <BsMenuApp className="h-5 w-5" />
-                        {/* <svg
-                  className="h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg> */}
                       </button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               </nav>
             </div>

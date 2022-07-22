@@ -1,11 +1,39 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
 import logoWhite from "/public/images/pp_final_icon_white.png";
+import Moralis from "moralis";
 
 export default function index() {
+  const { isInitialized } = useMoralis();
+  const [dappInfo, setDappInfo] = useState({ dapps: 0, visitors: 0 });
   const router = useRouter();
+
+  useEffect(() => {
+    if (isInitialized) {
+      getAppInfo();
+    }
+  }, [isInitialized]);
+
+  const getAppInfo = async () => {
+    try {
+      const Dapps = Moralis.Object.extend("Dapps");
+      const query = new Moralis.Query(Dapps);
+      query.equalTo("status", "ACTIVE");
+      query.limit(10000);
+      const response = await query.find();
+
+      let result = {
+        dapps: response.length,
+        visitors: 0,
+      };
+      setDappInfo(result);
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
 
   return (
     <div className="w-screen h-screen flex home-img flex-1 flex-col items-center p-4 lg:p-16">
@@ -51,20 +79,20 @@ export default function index() {
       </div>
       <div className="w-full flex p-4">
         <div
-          className="text-white rounded-3xl"
+          className="text-white"
           // style={{ backgroundColor: "#5a5a5a1a" }}
         >
-          <div className="p-4 shadow">
-            <p className="text-xl font-bold">234</p>
+          <div className="p-4 shadow rounded-lg">
+            <p className="text-xl font-bold">{dappInfo.dapps}</p>
             <p className="text-xs pt-1 font-bold text-gray-100">DApps</p>
           </div>
         </div>
         <div
-          className="text-white mx-5 rounded-3xl"
+          className="text-white mx-5"
           // style={{ backgroundColor: "#5a5a5a1a" }}
         >
-          <div className="p-4 shadow">
-            <p className="text-xl font-bold">1231231</p>
+          <div className="p-4 shadow rounded-lg">
+            <p className="text-xl font-bold">{dappInfo.visitors}</p>
             <p className="text-xs pt-1 font-bold text-gray-100">Visitors</p>
           </div>
         </div>

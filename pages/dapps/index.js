@@ -27,7 +27,6 @@ const Category = [
   { name: "Entertainment" },
   { name: "Exchanges" },
   { name: "DeFi" },
-  { name: "Wallet" },
   { name: "MarketPlaces" },
   { name: "Governance" },
   { name: "Yield-farming" },
@@ -60,15 +59,18 @@ export default function index() {
   const [filter, setFilter] = useState(Filter[0]);
   const [category, setCategory] = useState(Category[0]);
   const [isLoading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
+  const { query } = useRouter();
+  const {filter_category} = query;
 
   useEffect(() => {
     if (isInitialized) {
+      // console.log("Asd", query)
+      // if(query)
       getAppList();
     }
-  }, [isInitialized, category, filter, duration]);
+  }, [isInitialized, category, filter, duration, filter_category]);
 
   useEffect(() => {
     setMounted(true);
@@ -79,8 +81,15 @@ export default function index() {
     try {
       const Dapps = Moralis.Object.extend("Dapps");
       const query = new Moralis.Query(Dapps);
+
       if (category.name !== "Category") {
         query.containedIn("type", [category.name]);
+      }
+      console.log("asdasdad", filter_category)
+
+      if(filter_category && filter_category!=="Category"){
+        console.log("asdasdad", filter_category)
+        query.containedIn("type", [filter_category]);
       }
       if (filter.name !== "Filter") {
         query.equalTo("app_status", filter.name);
@@ -135,7 +144,7 @@ export default function index() {
   return (
     <Fragment>
       <div className="flex justify-center bg-black text-white w-full p-2">
-        <p>
+        <p className="items-center text-center">
           🎉 FROM THE CREATORS OF
           <span className="px-2">
             <Image src={howToPulse} width={50} height={25} />

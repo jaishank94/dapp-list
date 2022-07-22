@@ -83,7 +83,7 @@ export default function Sidebar({ isOpen }) {
               <span className="flex-1 ml-3 whitespace-nowrap">About Us</span>
             </a>
           </li>
-          <li>
+          {/* <li>
             <a
               href="#"
               className="flex items-center cursor-pointer p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -102,7 +102,7 @@ export default function Sidebar({ isOpen }) {
 
               <span className="flex-1 ml-3 whitespace-nowrap">Github</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
