@@ -37,7 +37,7 @@ import {
   GiHamburgerMenu,
 } from "react-icons/gi";
 import { AiFillGitlab } from "react-icons/ai";
-import { IoLogoBitbucket } from "react-icons/Io";
+import { IoLogoBitbucket } from "react-icons/io";
 import { RWebShare } from "react-web-share";
 import toast, { Toaster } from "react-hot-toast";
 

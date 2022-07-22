@@ -22,7 +22,7 @@ import {
   BsGithub,
 } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
-import { IoLogoBitbucket } from "react-icons/Io";
+import { IoLogoBitbucket } from "react-icons/io";
 
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
