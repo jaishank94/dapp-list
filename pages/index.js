@@ -5,11 +5,19 @@ import React, { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import logoWhite from "/public/images/pp_final_icon_white.png";
 import Moralis from "moralis";
+import { useTheme } from "next-themes";
 
 export default function index() {
   const { isInitialized } = useMoralis();
   const [dappInfo, setDappInfo] = useState({ dapps: 0, visitors: 0 });
   const router = useRouter();
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setTheme("dark")
+  }, []);
 
   useEffect(() => {
     if (isInitialized) {

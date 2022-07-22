@@ -38,7 +38,7 @@ function Tbody(props) {
           let restCount = TypeLength - 2;
           TypeBadge = val.slice(0, 2).map((type, index) => {
             return (
-              <div key={index} className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
+              <div key={index} className={`app-type truncate max-w-xs bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
                 {type}
               </div>
             );
@@ -46,13 +46,13 @@ function Tbody(props) {
           return (
             <>
               {TypeBadge}{" "}
-              <span className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount}</span>
+              {/* <span className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount}</span> */}
             </>
           );
         } else {
           TypeBadge = val.map((type, index) => {
             return (
-              <div key={index} className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
+              <div key={index} className={`app-type truncate max-w-xs bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
                 {type}
               </div>
             );
@@ -183,7 +183,7 @@ function Tbody(props) {
                 </div>
               </div>
 
-              <div className="text-center right-wrapper py-4">
+              <div className="text-center right-wrapper py-4 max-w-fit">
                 <div className="top-wrapper">
                   <div className="name-description-wrapper">
                     <div
@@ -222,7 +222,7 @@ function Tbody(props) {
             <div className="table-data flex col-tx">
               <span className="col-title-mobile">Status</span>
               <div className="component-ranking-table-value-pct">
-                <span className="value">{props.app_status}</span>
+                <span className="value uppercase">{props.app_status}</span>
                 {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -234,14 +234,14 @@ function Tbody(props) {
             <div className="table-data flex col-vol">
               <span className="col-title-mobile">Ticker</span>
               <div className="component-ranking-table-volume-head">
-                <span className="value">{props.ticker}</span>
+                <span className="value uppercase">{props.ticker}</span>
                 {/* <span className="pct is-negative">-9.00%</span> */}
               </div>
             </div>
             <div className="table-data flex col-vol col-vol-hbd">
               <span className="col-title-mobile">Sacrifice</span>
               <div className="component-ranking-table-volume-head">
-                <span className="value">{props.sacrifice}</span>
+                <span className="value uppercase">{props.sacrifice}</span>
                 {/* <span className="pct is-positive">
                 <span>^</span>
                 154.80%
@@ -251,7 +251,7 @@ function Tbody(props) {
             <div className="table-data flex col-rewards col-rewards-hive">
               <span className="col-title-mobile">Total Supply</span>
               <div className="component-ranking-table-volume-head">
-                <span className="value">{props.total_supply}</span>
+                <span className="value uppercase">{props.total_supply}</span>
                 {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -303,7 +303,7 @@ function Tbody(props) {
             </div>
           </div>
           <div className="block md:hidden text-center">
-            <div class="grid grid-cols-2 divide-x divide-gray-700">
+            <div className="grid grid-cols-2 divide-x divide-gray-700">
               <div className="flex flex-col">
                 <p className="col-title-mobile my-2 text-gray-500 text-xs ">Page Views</p>
                 <p className="col-title-mobile">{props.page_views}</p>
@@ -313,22 +313,22 @@ function Tbody(props) {
                 <p className="col-title-mobile uppercase">{props.app_status}</p>
               </div>
             </div>
-            <div class="grid grid-cols-3 divide-x mt-14 divide-gray-700">
+            <div className="grid grid-cols-3 divide-x mt-14 divide-gray-700">
               <div className="flex flex-col">
                 <p className="col-title-mobile my-2 text-gray-500 text-xs ">Ticker</p>
-                <p className="col-title-mobile">{props.ticker}</p>
+                <p className="col-title-mobile uppercase">{props.ticker}</p>
               </div>
               <div className="flex flex-col">
                 <p className="col-title-mobile my-2 text-gray-500 text-xs ">Sacrifice</p>
-                <p className="col-title-mobile">{props.sacrifice}</p>
+                <p className="col-title-mobile uppercase">{props.sacrifice}</p>
               </div>
               <div className="flex flex-col">
                 <p className="col-title-mobile my-2 text-gray-500 text-xs ">Total Supply</p>
-                <p className="col-title-mobile">{props.total_supply}</p>
+                <p className="col-title-mobile uppercase">{props.total_supply}</p>
               </div>
             </div>
             <div className="border-t-2 mt-14 border-gray-700">
-              <div class="grid grid-cols-2 divide-x divide-gray-700">
+              <div className="grid grid-cols-2 divide-x divide-gray-700">
                 <div className="flex justify-center p-5">
                   <button
                     className="text-center"

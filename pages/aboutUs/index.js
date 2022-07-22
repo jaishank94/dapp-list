@@ -1,11 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Header from "../components/Header";
 import { useRouter } from "next/router";
-import logo from "/public/images/pp_final_icon_black.png";
+import blackLogo from "/public/images/pp_final_icon_black.png";
+import whiteLogo from "/public/images/pp_final_icon_white.png";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 export default function index() {
   const router = useRouter();
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isMounted) return null;
 
   return (
     <Fragment>
@@ -19,7 +29,7 @@ export default function index() {
             </div>
           </div>
         </div>
-        <div className="bg-white w-full mx-auto px-4 sm:px-6">
+        <div className="w-full mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-6 px-16 md:justify-center md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1"></div>
           </div>
@@ -28,24 +38,27 @@ export default function index() {
       <>
         <div className="component-app-detail">
           <div
-            className="bg-[#c6c6e4] regal-voilet rounded-3xl"
-            style={{ backgroundColor: "#c6c6e4" }}
+            className={`rounded-3xl ${
+              theme === "light"
+                ? "  border-2 drop-shadow-2xl"
+                : "custom-shadow-black"
+            }`}
           >
-            <div className="card-header flex">
+            <div className="card-header flex border-b-2">
               <div className="flex-none w-14 card-icon">
-                <div className="menuActive rounded-lg">
+                <div className="menuActive rounded-lg p-4">
                   <Image
                     alt="logo"
-                    width={150}
-                    height={150}
+                    width={120}
+                    height={120}
                     className="rounded-t-lg"
-                    src={logo}
+                    src={whiteLogo}
                   />
                 </div>
               </div>
-              <div className="flex-initial px-5 py-2 xl:p-5 app-detail">
+              <div className="flex-initial px-5 py-4 xl:p-5 app-detail">
                 <div className="justify-center">
-                  <h5 className="font-bold app-name">PulseChainProjects.io</h5>
+                  <h5 className="font-bold app-name text-3xl">PulseChainProjects.io</h5>
                   <p className="text-gray-500 text-xs xl:text-bse font-medium mt-2">
                     Directory of all the projects launching on PulseChain
                   </p>
@@ -60,9 +73,8 @@ export default function index() {
                 deploying them to the site.
                 <br />
                 <br />
-                We are dedicated to providing the
-                most up to date information on all projects planning on
-                launching.
+                We are dedicated to providing the most up to date information on
+                all projects planning on launching.
               </p>
             </div>
             {/* <div

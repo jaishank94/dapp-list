@@ -20,12 +20,15 @@ import {
   BsPencil,
   BsFillExclamationTriangleFill,
   BsGraphUp,
-  BsTwitch,
-  BsTwitter,
-  BsGithub,
-  BsYoutube,
   BsFacebook,
+  BsTwitter,
   BsInstagram,
+  BsYoutube,
+  BsTelegram,
+  BsReddit,
+  BsMedium,
+  BsDiscord,
+  BsGithub,
 } from "react-icons/bs";
 import {
   GiConsoleController,
@@ -33,6 +36,10 @@ import {
   GiArtificialHive,
   GiHamburgerMenu,
 } from "react-icons/gi";
+import { AiFillGitlab } from "react-icons/ai";
+import { IoLogoBitbucket } from "react-icons/Io";
+import { RWebShare } from "react-web-share";
+import toast, { Toaster } from "react-hot-toast";
 
 const Categories = [
   {
@@ -81,6 +88,78 @@ const Categories = [
   },
 ];
 
+const codeIcon = {
+  github: (
+    <BsGithub
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  gitlab: (
+    <AiFillGitlab
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  bitbucket: (
+    <IoLogoBitbucket
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+};
+
+const snsIcon = {
+  facebook: (
+    <BsFacebook
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  twitter: (
+    <BsTwitter
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  instagram: (
+    <BsInstagram
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  youtube: (
+    <BsYoutube
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  telegram: (
+    <BsTelegram
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  reddit: (
+    <BsReddit
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  medium: (
+    <BsMedium
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+  discord: (
+    <BsDiscord
+      className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
+      color="white"
+    />
+  ),
+};
+
 export default function DappDetails() {
   const router = useRouter();
   const { isInitialized } = useMoralis();
@@ -90,6 +169,7 @@ export default function DappDetails() {
   const [data, setData] = useState([]);
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
 
   useEffect(() => {
     if (isInitialized && id) {
@@ -100,7 +180,6 @@ export default function DappDetails() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
 
   const fetchDappDetails = async () => {
     setLoading(true);
@@ -121,6 +200,36 @@ export default function DappDetails() {
     }
   };
 
+  const reportAbusive = async () => {
+    setDisabled(true);
+    try {
+      const DappRemoval = Moralis.Object.extend("DappRemoval");
+      const newObject = new DappRemoval();
+      newObject.set("project_url", window.location.href);
+      newObject.set("status", "ACTIVE");
+      let response = await newObject.save();
+      toast.success("Succefully submited");
+      setDisabled(false);
+    } catch (e) {
+      setDisabled(false);
+    }
+  };
+
+  const requestRemoval = async () => {
+    setDisabled(true);
+    try {
+      const DappRemoval = Moralis.Object.extend("DappRemoval");
+      const newObject = new DappRemoval();
+      newObject.set("project_url", window.location.href);
+      newObject.set("status", "ACTIVE");
+      let response = await newObject.save();
+      toast.success("Succefully submited");
+      setDisabled(false);
+    } catch (e) {
+      setDisabled(false);
+    }
+  };
+
   const increasePageView = async () => {
     try {
       const Dapps = Moralis.Object.extend("Dapps");
@@ -131,7 +240,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const getAppList = async () => {
@@ -153,6 +262,8 @@ export default function DappDetails() {
   return (
     <Fragment>
       <div className="custom-wrapper h-screen">
+        <Toaster position="top-right" />
+
         <div className="relative overflow-hidden">
           <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
             <Header displayCreate={false} />
@@ -172,11 +283,35 @@ export default function DappDetails() {
         </div>
         {dappInfo && !isLoading && (
           <div className="component-app-detail">
-            <div className={`rounded-3xl ${theme === "light" ? "  border-2 drop-shadow-2xl" : "custom-shadow-black"}`}>
-              <div className={`card-header flex rounded-3xl   ${theme === "light" ? "border-b-2 drop-shadow-2xl shadow-xl" : "bg-gray-800"}`}>
+            <div
+              className={`rounded-3xl ${
+                theme === "light"
+                  ? "  border-2 drop-shadow-2xl"
+                  : "custom-shadow-black"
+              }`}
+            >
+              <div
+                className={`card-header flex rounded-3xl   ${
+                  theme === "light"
+                    ? "border-b-2 drop-shadow-2xl shadow-xl"
+                    : "bg-gray-800"
+                }`}
+              >
                 <div className="w-14 card-icon">
-                  <div class={`block p-0 md:p-6 max-w-sm rounded-md shadow-md border-2 ${theme === "light" ? "border-white bg-white" : "border-gray-700 bg-gray-700"}`}>
-                    <img alt="Image" src={dappInfo.logo} width={110} height={110} className="rounded-md" />
+                  <div
+                    class={`block p-0 md:p-6 max-w-sm rounded-md shadow-md border-2 ${
+                      theme === "light"
+                        ? "border-white bg-white"
+                        : "border-gray-700 bg-gray-700"
+                    }`}
+                  >
+                    <img
+                      alt="Image"
+                      src={dappInfo.logo}
+                      width={110}
+                      height={110}
+                      className="rounded-md"
+                    />
                   </div>
                 </div>
                 <div className="flex-initial px-5 xl:p-5 app-detail">
@@ -252,10 +387,7 @@ export default function DappDetails() {
                   </div>
                   <div className="mt-2 flex text-center justify-center">
                     <div>
-                      <BsHandThumbsUp
-                        className="h-6 w-6"
-                        color="blueviolet"
-                      />
+                      <BsHandThumbsUp className="h-6 w-6" color="blueviolet" />
                     </div>
                     <div className="ml-1">
                       <p className="text-lg font-semibold">
@@ -266,28 +398,24 @@ export default function DappDetails() {
                 </div>
               </div>
               <div className="flex justify-center mt-5">
-                <div className="status">
+                <div className="status mx-16">
                   <div>
                     <p className="text-gray-500">Social Media</p>
                   </div>
                   <div className="mt-2">
-                    <ul className="flex">
-                      <li className="p-2">
-                        <a
-                          className="mr-4 hover:underline md:mr-6 "
-                          onClick={() => router.push("/dappAbusive")}
-                        >
-                          <BsTwitter />
-                        </a>
-                      </li>
-                      <li className="p-2">
-                        <a
-                          className="mr-4 hover:underline md:mr-6 "
-                          onClick={() => router.push("/aboutUs")}
-                        >
-                          <BsTwitter />
-                        </a>
-                      </li>
+                    <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                      {Object.entries(dappInfo.sns).map((val, key) => {
+                        return (
+                          <li className="p-2" key={key}>
+                            <a
+                              className="mr-4 hover:underline md:mr-6 "
+                              href={val[1]}
+                            >
+                              {snsIcon[val[0]]}
+                            </a>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -296,23 +424,19 @@ export default function DappDetails() {
                     <p className="text-gray-500">Source Code</p>
                   </div>
                   <div className="mt-2">
-                    <ul className="flex">
-                      <li className="p-2">
-                        <a
-                          className="mr-4 hover:underline md:mr-6 "
-                          onClick={() => router.push("/dappAbusive")}
-                        >
-                          <BsGithub />
-                        </a>
-                      </li>
-                      <li className="p-2">
-                        <a
-                          className="mr-4 hover:underline md:mr-6 "
-                          onClick={() => router.push("/aboutUs")}
-                        >
-                          <BsGithub />
-                        </a>
-                      </li>
+                    <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                      {Object.entries(dappInfo.code).map((val, key) => {
+                        return (
+                          <li className="p-2" key={key}>
+                            <a
+                              className="mr-4 hover:underline md:mr-6 "
+                              href={val[1]}
+                            >
+                              {codeIcon[val[0]]}
+                            </a>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
@@ -363,10 +487,10 @@ export default function DappDetails() {
                     className="w-5 h-5"
                     color="red"
                   />{" "}
-                  <span className="text-red-600 mx-2 font-bold">
-                    WARNING:
+                  <span className="text-red-600 mx-2 font-bold">WARNING:</span>
+                  <span className="font-bold text-gray-500">
+                    PulseChainProjects.io
                   </span>
-                  <span className="font-bold text-gray-500">PulseChainProjects.io</span>
                 </span>{" "}
               </p>
               <p className="text-gray-500 text-center my-2">
@@ -375,45 +499,56 @@ export default function DappDetails() {
                 before participating in any Dapp.
               </p>
             </div>
-            <div className="w-full pt-6">
-              <iframe
-                className="w-full h-96 rounded-2xl"
-                src="https://www.youtube.com/embed/4w02jCPsJBA"
-                title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
+            {dappInfo.sns.youtube && dappInfo.sns.youtube !== "" && (
+              <div className="w-full pt-6">
+                <iframe
+                  className="w-full h-96 rounded-2xl"
+                  src={dappInfo.sns.youtube}
+                  title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            )}
+
             <div className="flex justify-center items-center mt-6">
-              <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
-              // onClick={logout}
+              <RWebShare
+                data={{
+                  text: dappInfo.short_description,
+                  url: window.location.href,
+                  title: dappInfo.name,
+                }}
+                onClick={() => console.log("shared successfully!")}
               >
-                <span className="link p-1 hidden text-xs md:block ">
-                  Share
-                </span>
-                <span className="md:hidden">
-                  <BsShare className="h-5 w-5" color="blueviolet" />
-                </span>
-              </button>
+                <button
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
+                  // onClick={logout}
+                >
+                  <span className="link p-1 hidden text-xs md:block ">
+                    Share
+                  </span>
+                  <span className="md:hidden">
+                    <BsShare className="h-5 w-5" color="blueviolet" />
+                  </span>
+                </button>
+              </RWebShare>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
-              // onClick={logout}
+                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 ${isDisabled?"cursor-not-allowed":"cursor-pointer"}`}
+                onClick={() => reportAbusive()}
+                disabled={isDisabled}
               >
                 <span className="link p-1 hidden text-xs md:block">
                   Report Abuse
                 </span>
                 <span className="md:hidden">
-                  <BsExclamationCircle
-                    className="h-5 w-5"
-                    color="blueviolet"
-                  />
+                  <BsExclamationCircle className="h-5 w-5" color="blueviolet" />
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
-              // onClick={logout}
+                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 ${isDisabled?"cursor-not-allowed":"cursor-pointer"} `}
+                onClick={() => requestRemoval()}
+                disabled={isDisabled}
               >
                 <span className="link p-1 hidden text-xs md:block">
                   Request Removal
@@ -423,8 +558,9 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
-              // onClick={logout}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 `}
+                // onClick={logout}
+                disabled={true}
               >
                 <span className="link p-1 hidden text-xs md:block">
                   Edit DApp
@@ -434,8 +570,10 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
-              // onClick={logout}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 `}
+                // onClick={logout}
+                disabled={true}
+
               >
                 <span className="link p-1 hidden text-xs md:block">
                   Promote DApp
@@ -446,10 +584,7 @@ export default function DappDetails() {
               </button>
             </div>
             <div className="py-16 mt-16">
-              <div
-                className="flex flex-start"
-                style={{ marginBottom: "10px" }}
-              >
+              <div className="flex flex-start" style={{ marginBottom: "10px" }}>
                 <h2 className="items-center ml-1 mb-0 custom-text text-dark">
                   Popular Projects
                 </h2>
@@ -459,20 +594,41 @@ export default function DappDetails() {
                   data.map((app, indx) => {
                     return (
                       <div
-                        className={`max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${theme === "light" ? " border-white" : "border-gray-600"}`}
+                        className={`max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${
+                          theme === "light"
+                            ? " border-white"
+                            : "border-gray-600"
+                        }`}
                         onClick={() =>
                           router.push("/dappDetails/" + app.objectId)
                         }
                       >
-                        <div class={`flex block w-full p-6 max-w-sm rounded-2xl  ${theme === "light" ? "custom-shadow bg-white" : "bg-black"} `}>
-
-                          <div class={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${theme === "light" ? "border-white bg-white" : "border-gray-700 bg-gray-700"}`}>
+                        <div
+                          class={`flex block w-full p-6 max-w-sm rounded-2xl  ${
+                            theme === "light"
+                              ? "custom-shadow bg-white"
+                              : "bg-black"
+                          } `}
+                        >
+                          <div
+                            class={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${
+                              theme === "light"
+                                ? "border-white bg-white"
+                                : "border-gray-700 bg-gray-700"
+                            }`}
+                          >
                             <Image src={logo} width={25} height={25} />
                           </div>
 
                           <div className="px-3">
                             <p className="text-left link">{app.name}</p>
-                            <p className={`text-left py-2 text-sm font-thin text-justify ${theme === "light" ? "text-black" : "text-gray-500"}`}>
+                            <p
+                              className={`text-left py-2 text-sm font-thin text-justify ${
+                                theme === "light"
+                                  ? "text-black"
+                                  : "text-gray-500"
+                              }`}
+                            >
                               {app.short_description}
                             </p>
                           </div>
@@ -488,10 +644,7 @@ export default function DappDetails() {
               </div>
             </div>
             <div className="mt-4">
-              <div
-                className="flex flex-start"
-                style={{ marginBottom: "10px" }}
-              >
+              <div className="flex flex-start" style={{ marginBottom: "10px" }}>
                 <h2 className="items-center ml-1 mb-0 custom-text text-dark">
                   Popular Categories
                 </h2>
@@ -508,7 +661,9 @@ export default function DappDetails() {
                         }
                       >
                         <div className={``}>{app.icon}</div>
-                        <span className="font-semibold text-sm">{app.name}</span>
+                        <span className="font-semibold text-sm">
+                          {app.name}
+                        </span>
                       </button>
                     );
                   })}

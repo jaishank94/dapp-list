@@ -619,7 +619,7 @@ export default function index() {
             data.length > 0 &&
             data.map((res, i) => {
               return (
-                <div>
+                <div key={i}>
                   <Tbody
                     index={i + 1}
                     name={res.name}
