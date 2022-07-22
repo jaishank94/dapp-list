@@ -5,6 +5,8 @@ import blackLogo from "/public/images/pp_final_icon_black.png";
 import whiteLogo from "/public/images/pp_final_icon_white.png";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+
 
 export default function index() {
   const router = useRouter();
@@ -87,6 +89,17 @@ export default function index() {
               </p>
             </div> */}
           </div>
+          <div className="flex justify-center items-center my-16">
+              {/* <div className="w-18"> */}
+              <button
+                onClick={() => router.push("/dapps")}
+                className="flex item-center rounded-full shadow-2xl"
+              >
+                <BsFillArrowLeftCircleFill className="h-5 w-5 mx-2" />
+                <p>Back to home</p>
+              </button>
+              {/* </div> */}
+            </div>
         </div>
       </>
     </Fragment>
