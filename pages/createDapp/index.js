@@ -382,12 +382,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.name &&
-                                                      errors.name
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.name &&
+                                errors.name
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="name"
                             name="name"
                             placeholder="App Name *"
@@ -407,12 +406,11 @@ class CreateApp extends Component {
                           <input
                             type="text"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.short_description &&
-                                                      errors.short_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.short_description &&
+                                errors.short_description
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="short_description"
                             name="short_description"
                             placeholder="Short Description*"
@@ -425,7 +423,7 @@ class CreateApp extends Component {
                             maxLength={25}
                           />
                           {errors.short_description &&
-                          !this.state.short_description ? (
+                            !this.state.short_description ? (
                             <div className="error my-2">
                               {errors.short_description}
                             </div>
@@ -438,12 +436,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.full_description &&
-                                                      errors.full_description
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.full_description &&
+                                errors.full_description
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="full_description"
                             name="full_description"
                             placeholder="Full Description*"
@@ -456,7 +453,7 @@ class CreateApp extends Component {
                             maxLength={260}
                           />
                           {errors.full_description &&
-                          !this.state.full_description ? (
+                            !this.state.full_description ? (
                             <div className="error my-2">
                               {errors.full_description}
                             </div>
@@ -469,12 +466,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.website_url &&
-                                                      errors.website_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.website_url &&
+                                errors.website_url
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="website_url"
                             name="website_url"
                             placeholder="Website URL*"
@@ -496,12 +492,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.logo_url &&
-                                                      errors.logo_url
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.logo_url &&
+                                errors.logo_url
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="logo_url"
                             name="logo_url"
                             placeholder="DApp Logo URL*"
@@ -522,12 +517,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.ticker &&
-                                                      errors.ticker
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.ticker &&
+                                errors.ticker
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="ticker"
                             name="ticker"
                             placeholder="Ticker*"
@@ -548,12 +542,11 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5"
                             className={`form-control custom-input px-5
-                                                    ${
-                                                      touched.total_supply &&
-                                                      errors.total_supply
-                                                        ? "is-invalid"
-                                                        : ""
-                                                    }`}
+                                                    ${touched.total_supply &&
+                                errors.total_supply
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="total_supply"
                             name="total_supply"
                             placeholder="Total Supply*"
@@ -573,13 +566,12 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">Sacrifice*</p>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {SacrificeValues.map((data, i) => {
                               return (
                                 <>
                                   <div>
                                     <div
-                                      className="group-6-6 cursor-pointer"
                                       onClick={(e) =>
                                         this.setState({
                                           sacrifice:
@@ -588,39 +580,23 @@ class CreateApp extends Component {
                                               : data.name,
                                         })
                                       }
-                                    >
-                                      <div className="rectangle-1-0-8" />
-                                      <div className="rectangle-1-0-9" />
-                                      <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.sacrifice === data.name
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
-                                      />
-                                      <p
-                                        className={`text-1 ${
-                                          this.state.sacrifice === data.name
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
-                                      >
+                                      className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.sacrifice === data.name
+                                        ? "selected-background"
+                                        : ""
+                                        }`}>
+                                      <span className={`w-9/12 text-left ${this.state.sacrifice === data.name
+                                        ? "selected-text"
+                                        : ""
+                                        }`}>
                                         {data.name}
-                                      </p>
-                                      <div className="group-6-5">
-                                        <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.sacrifice === data.name
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
-                                        />
-                                        {this.state.sacrifice === data.name ? (
-                                          <BsDash className="flex text-center icon justify-center text-black" />
+                                      </span>
+                                      <span className="w-3/12 text-right">
+                                        {/* {this.state.app_status === data.name ? (
+                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center text-black" />
-                                        )}
-                                      </div>
+                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                        )} */}
+                                      </span>
                                     </div>
                                   </div>
                                 </>
@@ -630,13 +606,12 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">App Status*</p>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {AppStatus.map((data, i) => {
                               return (
                                 <>
                                   <div>
                                     <div
-                                      className="group-6-6 cursor-pointer"
                                       onClick={(e) =>
                                         this.setState({
                                           app_status:
@@ -645,39 +620,23 @@ class CreateApp extends Component {
                                               : data.name,
                                         })
                                       }
-                                    >
-                                      <div className="rectangle-1-0-8" />
-                                      <div className="rectangle-1-0-9" />
-                                      <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.app_status === data.name
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
-                                      />
-                                      <p
-                                        className={`text-1 ${
-                                          this.state.app_status === data.name
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
-                                      >
+                                      className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.app_status === data.name
+                                        ? "selected-background"
+                                        : ""
+                                        }`}>
+                                      <span className={`w-9/12 text-left ${this.state.app_status === data.name
+                                        ? "selected-text"
+                                        : ""
+                                        }`}>
                                         {data.name}
-                                      </p>
-                                      <div className="group-6-5">
-                                        <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.app_status === data.name
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
-                                        />
-                                        {this.state.app_status === data.name ? (
-                                          <BsDash className="flex text-center icon justify-center text-black" />
+                                      </span>
+                                      <span className="w-3/12 text-right">
+                                        {/* {this.state.app_status === data.name ? (
+                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center text-black" />
-                                        )}
-                                      </div>
+                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                        )} */}
+                                      </span>
                                     </div>
                                   </div>
                                 </>
@@ -687,7 +646,7 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">Category*</p>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 py-5 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {Category.map((data, i) => {
                               return (
                                 <>
@@ -713,49 +672,29 @@ class CreateApp extends Component {
                                         });
                                       }
                                     }}
-                                    // className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
+                                  // className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
                                   >
-                                    <div className="group-6-6 cursor-pointer">
-                                      <div className="rectangle-1-0-8" />
-                                      <div className="rectangle-1-0-9" />
-                                      <div
-                                        className={`rectangle-1-1-0 ${
-                                          this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-background"
-                                            : "not-selected-background"
-                                        }`}
-                                      />
-                                      <p
-                                        className={`text-1 ${
-                                          this.state.category.includes(
-                                            data.name
-                                          )
-                                            ? "selected-text"
-                                            : "not-selected-text"
-                                        }`}
-                                      >
+                                    <div className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.category.includes(data.name)
+                                      ? "selected-background"
+                                      : ""
+                                      }`}>
+                                      <span className={`w-9/12 text-left ${this.state.category.includes(
+                                        data.name
+                                      )
+                                        ? "selected-text"
+                                        : ""
+                                        }`}>
                                         {data.name}
-                                      </p>
-                                      <div className="group-6-5">
-                                        <div
-                                          className={`rectangle-1-3-3 ${
-                                            this.state.category.includes(
-                                              data.name
-                                            )
-                                              ? "selected-rectangle-1-3-3"
-                                              : "not-rectangle-1-3-3"
-                                          }`}
-                                        />
+                                      </span>
+                                      <span className="w-3/12 text-right">
                                         {this.state.category.includes(
                                           data.name
                                         ) ? (
-                                          <BsDash className="flex text-center icon justify-center text-black" />
+                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center text-black" />
+                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
                                         )}
-                                      </div>
+                                      </span>
                                     </div>
                                   </div>
                                 </>
@@ -763,7 +702,7 @@ class CreateApp extends Component {
                             })}
                           </div>
                           {errors.category &&
-                          this.state.category.length === 0 ? (
+                            this.state.category.length === 0 ? (
                             <div className="error my-2">{errors.category}</div>
                           ) : (
                             ""
@@ -773,58 +712,37 @@ class CreateApp extends Component {
                           <p className="font-bold text-lg mt-8">
                             Project Information*
                           </p>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {ProjInformation.map((data, i) => {
                               return (
                                 <div key={i}>
                                   <div
-                                    className="group-6-6 cursor-pointer"
                                     onClick={(e) =>
                                       this.setState({
                                         porject_information:
                                           this.state.porject_information ===
-                                          data.name
+                                            data.name
                                             ? this.state.porject_information
                                             : data.name,
                                       })
                                     }
-                                  >
-                                    <div className="rectangle-1-0-8" />
-                                    <div className="rectangle-1-0-9" />
-                                    <div
-                                      className={`rectangle-1-1-0 ${
-                                        this.state.porject_information ===
-                                        data.name
-                                          ? "selected-background"
-                                          : "not-selected-background"
-                                      }`}
-                                    />
-                                    <p
-                                      className={`text-1 ${
-                                        this.state.porject_information ===
-                                        data.name
-                                          ? "selected-text"
-                                          : "not-selected-text"
-                                      }`}
-                                    >
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.porject_information === data.name
+                                      ? "selected-background"
+                                      : ""
+                                      }`}>
+                                    <span className={`w-9/12 text-left ${this.state.porject_information === data.name
+                                      ? "selected-text"
+                                      : ""
+                                      }`}>
                                       {data.name}
-                                    </p>
-                                    <div className="group-6-5">
-                                      <div
-                                        className={`rectangle-1-3-3 ${
-                                          this.state.porject_information ===
-                                          data.name
-                                            ? "selected-rectangle-1-3-3"
-                                            : "not-rectangle-1-3-3"
-                                        }`}
-                                      />
-                                      {this.state.porject_information ===
-                                      data.name ? (
-                                        <BsDash className="flex text-center icon justify-center text-black" />
-                                      ) : (
-                                        <BsPlus className="flex text-center icon justify-center text-black" />
-                                      )}
-                                    </div>
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {/* {this.state.app_status === data.name ? (
+                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                        ) : (
+                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                        )} */}
+                                    </span>
                                   </div>
                                 </div>
                               );
@@ -837,11 +755,10 @@ class CreateApp extends Component {
                             type="text"
                             // className="form-control custom-input px-5 mt-4"
                             className={`form-control custom-input px-5 mt-4
-                                      ${
-                                        touched.tag && errors.tag
-                                          ? "is-invalid"
-                                          : ""
-                                      }`}
+                                      ${touched.tag && errors.tag
+                                ? "is-invalid"
+                                : ""
+                              }`}
                             id="tag"
                             name="tag"
                             placeholder="e.g.splinterlands"
@@ -849,8 +766,6 @@ class CreateApp extends Component {
                             onChange={(e) =>
                               this.setState({ tag: e.target.value })
                             }
-                            // onChange={e => this.setState({ category: [...this.state.category, 'Content Discovery'] })}
-                            // onKeyDown={e => this.handleKeyDown(e.target.value)}
                             onKeyPress={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault();
@@ -869,37 +784,18 @@ class CreateApp extends Component {
                               }
                             }}
                           />
-                          {/* {errors.tag && !this.state.tag_arr.length ? (
-                          <div className="error my-2">{errors.tag}</div>
-                        ) : (
-                          ""
-                        )} */}
                           <div>
                             <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                               {this.state.tag_arr.map((data, i) => {
                                 return (
                                   <div key={i} className=" items-center justify-center p-2">
-                                    <div className="group-6-6 bg-white rounded-full">
-                                      <div className="rectangle-1-0-8" />
-                                      <div className="rectangle-1-0-9" />
-                                      <div className="rectangle-1-1-0" />
-                                      <p className="text-1 text-black">{data}</p>
-                                      <div className="group-6-5">
-                                        <div className="rectangle-1-3-3" />
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          className="h-6 w-6 icon1"
-                                          viewBox="0 0 20 20"
-                                          fill=""
-                                          onClick={(e) => this.removeTag(data)}
-                                        >
-                                          <path
-                                            fillRule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clipRule="evenodd"
-                                          />
-                                        </svg>
-                                      </div>
+                                    <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2">
+                                      <span className="w-9/12 text-left truncate">
+                                        {data}
+                                      </span>
+                                      <span className="w-3/12 text-right">
+                                        <BsDash className="rounded-full border-2 shadow-md w-8 h-8" onClick={(e) => this.removeTag(data)} />
+                                      </span>
                                     </div>
                                   </div>
                                 );
@@ -912,13 +808,13 @@ class CreateApp extends Component {
                             ""
                           )}
                         </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                        <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">
                             Social media links
                           </p>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsFacebook className="h-5 w-5 text-black" />
                                 <p className="hidden md:block hidden md:block text-gray-600 pl-2">
                                   https://facebook.com
@@ -927,7 +823,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control custom-input px-24 md:px-72 mt-4"
+                              className="form-control custom-input px-20 md:px-72 mt-4"
                               id="facebook"
                               name="facebook"
                               placeholder="Facebook"
@@ -943,9 +839,9 @@ class CreateApp extends Component {
                               }
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsTwitter className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://telegram.com
@@ -954,7 +850,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               id="twitter"
                               name="twitter"
                               placeholder="Twitter"
@@ -966,9 +862,9 @@ class CreateApp extends Component {
                               helpertext={errors.twitter ? errors.twitter : ""}
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsInstagram className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://instagram.com
@@ -977,7 +873,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               id="instagram"
                               name="instagram"
                               placeholder="Instagram"
@@ -993,9 +889,9 @@ class CreateApp extends Component {
                               }
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsYoutube className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://youtube.com
@@ -1004,7 +900,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               maxLength={100}
                               id="youtube"
                               name="youtube"
@@ -1017,9 +913,9 @@ class CreateApp extends Component {
                               helpertext={errors.youtube ? errors.youtube : ""}
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsTelegram className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://telegram.com
@@ -1028,7 +924,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               maxLength={100}
                               id="telegram"
                               name="telegram"
@@ -1045,9 +941,9 @@ class CreateApp extends Component {
                               }
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsReddit className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://reddit.com
@@ -1056,7 +952,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               maxLength={100}
                               id="reddit"
                               name="reddit"
@@ -1069,9 +965,9 @@ class CreateApp extends Component {
                               helpertext={errors.reddit ? errors.reddit : ""}
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsMedium className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://medium.com
@@ -1080,7 +976,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               maxLength={100}
                               id="medium"
                               name="medium"
@@ -1093,9 +989,9 @@ class CreateApp extends Component {
                               helpertext={errors.medium ? errors.medium : ""}
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsDiscord className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://discord.com
@@ -1104,7 +1000,7 @@ class CreateApp extends Component {
                             </div>
                             <input
                               type="text"
-                              className="form-control px-24 md:px-72 custom-input mt-4"
+                              className="form-control px-20 md:px-72 custom-input mt-4"
                               maxLength={100}
                               id="discord"
                               name="discord"
@@ -1118,10 +1014,10 @@ class CreateApp extends Component {
                             />
                           </div>
                         </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+                        <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">Source code</p>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex rounded-md">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
                               <div class="grid grid-cols-2 divide-x w-14">
                                 <BsGithub className="h-5 w-5 text-black" />
                               </div>
@@ -1142,8 +1038,8 @@ class CreateApp extends Component {
                             />
                           </div>
 
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex rounded-md">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
                               <div class="grid grid-cols-2 divide-x w-14">
                                 <AiFillGitlab className="h-5 w-5 text-black" />
                               </div>
@@ -1163,8 +1059,8 @@ class CreateApp extends Component {
                               helpertext={errors.gitlab ? errors.gitlab : ""}
                             />
                           </div>
-                          <div>
-                            <div className="p-6 relative w-16 md:w-60 top-5-6 left-3 flex rounded-md">
+                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
                               <div class="grid grid-cols-2 divide-x w-14">
                                 <IoLogoBitbucket className="h-5 w-5 text-black" />
                               </div>
@@ -1188,26 +1084,25 @@ class CreateApp extends Component {
                               }
                             />
                           </div>
-                          <div className="flex my-4 justify-center ">
-                            <button
-                              className={`sub-header-button text-white ${
-                                this.state.isSubmitting ? "" : ""
+                        </div>
+                        <div className="flex my-4 w-full justify-center">
+                          <button
+                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
                               }`}
-                              type="submit"
-                              disabled={this.state.isSubmitting}
-                            >
-                              {this.state.isSubmitting
-                                ? "Submitting..."
-                                : "Submit"}
-                            </button>
-                            <button
-                              className={`mx-4 rounded-full border-0 p-4 text-black bg-gray-300`}
-                              type="reset"
-                              onClick={(e) => this.resetForm(e)}
-                            >
-                              Reset
-                            </button>
-                          </div>
+                            type="submit"
+                            disabled={this.state.isSubmitting}
+                          >
+                            {this.state.isSubmitting
+                              ? "Submitting..."
+                              : "Submit"}
+                          </button>
+                          <button
+                            className={`mx-4 rounded-full border-0 p-4 text-black bg-gray-300`}
+                            type="reset"
+                            onClick={(e) => this.resetForm(e)}
+                          >
+                            Reset
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -1216,6 +1111,9 @@ class CreateApp extends Component {
               );
             }}
           </Formik>
+        </div>
+        <div className="relative w-full bottom-0">
+          <Footer />
         </div>
       </Fragment>
     );

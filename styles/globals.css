@@ -646,7 +646,7 @@ li {
 .component-app-detail {
   max-width: 800px;
   margin: 0 auto;
-  height: 656px;
+  /* height: 656px; */
   padding: 20px 10px;
   /* width: 95%; */
   /* display: flex; */
@@ -934,9 +934,9 @@ li {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  
+
   }
-  
+
   .app-name {
     font-size: 20px;
   }
@@ -1225,7 +1225,7 @@ li {
 }
 
 .not-selected-background {
-  background: #E8EDF1;
+  /* background: #E8EDF1; */
   box-shadow: inset -4px -4px 20px rgba(255, 255, 255, 0.7), inset 4px 4px 15px #D1D9E6;
 }
 
