@@ -681,7 +681,7 @@ export default function DappDetails() {
                             )}
                           </div>
 
-                          <div className="px-3">
+                          <div className="px-3 w-4/5 truncate">
                             <p className="text-left link text-lg">{app.name}</p>
                             <p
                               className={`text-left py-2 text-sm font-thin text-justify ${

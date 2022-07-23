@@ -47,7 +47,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`app-type truncate max-w-xs bottom-partial ${
+                className={`p-1 px-1 text-xs font-semibold rounded-full truncate bottom-partial ${
                   theme === "light"
                     ? "bg-black text-white"
                     : "bg-white text-black"
@@ -60,7 +60,7 @@ function Tbody(props) {
           return (
             <>
               {TypeBadge}{" "}
-              {/* <span className={`app-type bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount}</span> */}
+              <span className={`p-1 px-1 text-xs font-semibold rounded-full bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount} more</span>
             </>
           );
         } else {
@@ -68,7 +68,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`app-type truncate max-w-xs bottom-partial ${
+                className={`p-1 px-1 text-xs font-semibold rounded-full truncate bottom-partial ${
                   theme === "light"
                     ? "bg-black text-white"
                     : "bg-white text-black"
@@ -242,7 +242,7 @@ function Tbody(props) {
                     </p>
                   </div>
                 </div>
-                <div className="bottom-wrapper">
+                <div className="grid grid-cols-2 gap-1">
                   {getDisplayType(props.types)}
                   {/* {props.types.map((res, i) => {
                     
