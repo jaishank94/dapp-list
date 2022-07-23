@@ -6,6 +6,7 @@ import { useMoralis } from "react-moralis";
 import logoWhite from "/public/images/pp_final_icon_white.png";
 import Moralis from "moralis";
 import { useTheme } from "next-themes";
+import { BsDot } from "react-icons/bs";
 
 export default function index() {
   const { isInitialized } = useMoralis();
@@ -16,7 +17,7 @@ export default function index() {
 
   useEffect(() => {
     setMounted(true);
-    setTheme("dark")
+    setTheme("dark");
   }, []);
 
   useEffect(() => {
@@ -67,21 +68,22 @@ export default function index() {
       </div>
 
       <div className="w-full">
-        <h1 className="text-5xl font-bold text-white drop-shadow-lg shadow-black pt-14 px-4">
+        <h1 className="text-3xl pt-4 md:text-5xl font-bold text-white drop-shadow-lg shadow-black md:pt-14 px-4">
           Discover the next big <br />
           project on PulseChain
         </h1>
         <ul className="list-disc text-white font-normal px-4 pt-8">
-          <li className="py-4">
-            DISCLAIMER: DYOR, this site is user generated content.
+          <li className="flex py-2 md:py-4 items-center">
+            <BsDot className="h-8 w-8" /> DISCLAIMER: DYOR, this site is user
+            generated content.
           </li>
-          <li className="py-4">
-            Create a project in less than 2 minutes, be detailed to insure best
-            user experience.
+          <li className="flex py-2 md:py-4 items-center">
+            <BsDot className="h-12 w-12 md:h-8 md:w-8" /> Create a project in
+            less than 2 minutes, be detailed to insure best user experience.
           </li>
-          <li className="py-4">
-            Make sure you verify before you invest in ANY project. Due your due
-            diligence.
+          <li className="flex py-2 md:py-4 items-center">
+            <BsDot className="h-12 w-12 md:h-8 md:w-8" /> Make sure you verify
+            before you invest in ANY project. Due your due diligence.
           </li>
         </ul>
       </div>
@@ -90,7 +92,7 @@ export default function index() {
           className="text-white"
           // style={{ backgroundColor: "#5a5a5a1a" }}
         >
-          <div className="p-4 shadow rounded-lg">
+          <div className="p-2 md:p-4 shadow rounded-lg">
             <p className="text-xl font-bold">{dappInfo.dapps}</p>
             <p className="text-xs pt-1 font-bold text-gray-100">DApps</p>
           </div>
@@ -99,13 +101,14 @@ export default function index() {
           className="text-white mx-5"
           // style={{ backgroundColor: "#5a5a5a1a" }}
         >
-          <div className="p-4 shadow rounded-lg">
-            <p className="text-xl font-bold">{dappInfo.visitors}</p>
+          <div className="p-2 md:p-4 shadow rounded-lg">
+            {/* <p className="text-xl font-bold">{dappInfo.visitors}</p> */}
+            <p className="text-xl font-bold">{"-"}</p>
             <p className="text-xs pt-1 font-bold text-gray-100">Visitors</p>
           </div>
         </div>
       </div>
-      <div className="w-full p-4">
+      <div className="w-full pt-2 p-4">
         <button
           className="rounded-full bg-white p-2 shadow-lg cursor-pointer"
           onClick={() => router.push("/dapps")}

@@ -29,6 +29,7 @@ import {
   BsMedium,
   BsDiscord,
   BsGithub,
+  BsArrowDownCircle,
 } from "react-icons/bs";
 import {
   GiConsoleController,
@@ -264,8 +265,12 @@ export default function DappDetails() {
       <div className="custom-wrapper h-screen">
         <Toaster position="top-right" />
 
-        <div className="relative overflow-hidden">
-          <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
+        <div className="overflow-hidden">
+          <div
+            className={`w-full ${
+              theme === "light" ? "border-b-2" : "border-b-0"
+            } border-slate-300 py-2 mb-5`}
+          >
             <Header displayCreate={false} />
           </div>
           <div className="w-full mx-auto px-4 sm:px-6">
@@ -305,13 +310,17 @@ export default function DappDetails() {
                         : "border-gray-700 bg-gray-700"
                     }`}
                   >
-                    <img
-                      alt="Image"
-                      src={dappInfo.logo}
-                      width={110}
-                      height={110}
-                      className="rounded-md"
-                    />
+                    {dappInfo.logo && dappInfo.logo !== "" ? (
+                      <img
+                        alt="Logo"
+                        src={dappInfo.logo}
+                        width={110}
+                        height={110}
+                        className="rounded-md"
+                      />
+                    ) : (
+                      <Image src={logo} width={110} height={110} />
+                    )}
                   </div>
                 </div>
                 <div className="flex-initial px-5 xl:p-5 app-detail">
@@ -354,7 +363,7 @@ export default function DappDetails() {
                     <p className="text-gray-500">Ticker</p>
                   </div>
                   <div className="mt-2">
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg font-semibold uppercase">
                       {dappInfo.ticker ? dappInfo.ticker : "_"}
                     </p>
                   </div>
@@ -366,7 +375,7 @@ export default function DappDetails() {
                     <p className="text-gray-500">Sacrifice</p>
                   </div>
                   <div className="mt-2">
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg font-semibold uppercase">
                       {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
                     </p>
                   </div>
@@ -376,7 +385,7 @@ export default function DappDetails() {
                     <p className="text-gray-500">Total Supply</p>
                   </div>
                   <div className="mt-2">
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg font-semibold uppercase">
                       {dappInfo.total_supply ? dappInfo.total_supply : "_"}
                     </p>
                   </div>
@@ -445,7 +454,13 @@ export default function DappDetails() {
                 {dappInfo.full_description}
               </div>
               <div className="mt-4">
-                <div className="flex text-center items-center align-middle w-full h-24 justify-center border-t-2 rounded-3xl shadow-xl drop-shadow-2xl">
+                <div
+                  className={`flex text-center items-center align-middle w-full h-24 justify-center ${
+                    theme === "light"
+                      ? "border-t-2"
+                      : "custom-shadow-black border-0 border-black"
+                  } rounded-3xl shadow-xl drop-shadow-2xl`}
+                >
                   <div className="submit-status">
                     <div>
                       <p className="text-gray-500">Submitted</p>
@@ -522,7 +537,9 @@ export default function DappDetails() {
                 onClick={() => console.log("shared successfully!")}
               >
                 <button
-                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 `}
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${
+                    theme === "light" ? "bg-white" : "bg-gray-900"
+                  } `}
                   // onClick={logout}
                 >
                   <span className="link p-1 hidden text-xs md:block ">
@@ -534,7 +551,9 @@ export default function DappDetails() {
                 </button>
               </RWebShare>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 ${isDisabled?"cursor-not-allowed":"cursor-pointer"}`}
+                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
+                ${theme === "light" ? "bg-white" : "bg-gray-900"}
+                ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
                 onClick={() => reportAbusive()}
                 disabled={isDisabled}
               >
@@ -546,7 +565,9 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 ${isDisabled?"cursor-not-allowed":"cursor-pointer"} `}
+                className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
+                ${theme === "light" ? "bg-white" : "bg-gray-900"}
+                ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} `}
                 onClick={() => requestRemoval()}
                 disabled={isDisabled}
               >
@@ -558,7 +579,9 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 `}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                  theme === "light" ? "bg-white" : "bg-gray-900"
+                }`}
                 // onClick={logout}
                 disabled={true}
               >
@@ -570,10 +593,11 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 `}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                  theme === "light" ? "bg-white" : "bg-gray-900"
+                } `}
                 // onClick={logout}
                 disabled={true}
-
               >
                 <span className="link p-1 hidden text-xs md:block">
                   Promote DApp
@@ -583,25 +607,26 @@ export default function DappDetails() {
                 </span>
               </button>
             </div>
-            <div className="py-16 mt-16">
+            <div className="py-12 mt-12">
               <div className="flex flex-start" style={{ marginBottom: "10px" }}>
                 <h2 className="items-center ml-1 mb-0 custom-text text-dark">
                   Popular Projects
                 </h2>
               </div>
-              <div className="my-10 sm:grid md:grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
+              <div className="my-10 grid gap-2 grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
                 {data &&
                   data.map((app, indx) => {
                     return (
                       <div
-                        className={`max-w-sm w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${
+                        className={`w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${
                           theme === "light"
-                            ? " border-white"
-                            : "border-gray-600"
+                            ? "custom-shadow"
+                            : "custom-shadow-black border-black"
                         }`}
                         onClick={() =>
                           router.push("/dappDetails/" + app.objectId)
                         }
+                        key={indx}
                       >
                         <div
                           class={`flex block w-full p-6 max-w-sm rounded-2xl  ${
@@ -617,11 +642,20 @@ export default function DappDetails() {
                                 : "border-gray-700 bg-gray-700"
                             }`}
                           >
-                            <Image src={logo} width={25} height={25} />
+                            {app.logo && app.logo !== "" ? (
+                              <img
+                                alt="Logo"
+                                src={app.logo}
+                                width={25}
+                                height={25}
+                              />
+                            ) : (
+                              <Image src={logo} width={25} height={25} />
+                            )}
                           </div>
 
                           <div className="px-3">
-                            <p className="text-left link">{app.name}</p>
+                            <p className="text-left link text-lg">{app.name}</p>
                             <p
                               className={`text-left py-2 text-sm font-thin text-justify ${
                                 theme === "light"
@@ -642,6 +676,9 @@ export default function DappDetails() {
                   </>
                 )}
               </div>
+            </div>
+            <div className="flex justify-center items-center py-6">
+              <BsArrowDownCircle className="h-8 w-8" />
             </div>
             <div className="mt-4">
               <div className="flex flex-start" style={{ marginBottom: "10px" }}>
@@ -688,7 +725,6 @@ export default function DappDetails() {
           </>
         )}
       </div>
-
       {/* <Footer /> */}
     </Fragment>
   );

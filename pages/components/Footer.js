@@ -1,14 +1,26 @@
+import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { BsTwitter, BsGithub } from "react-icons/bs";
 
 export default function Footer() {
   const router = useRouter();
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!isMounted) return null;
 
   return (
     <Fragment>
-      <footer className="text-center relative bottom-0 mt-16 w-full border-t-2 border-gray-200">
-        <div className="">
+      <footer
+        className={`text-center relative bottom-0 mt-16 w-full ${
+          theme === "light" ? "border-t-2" : "border-t-1"
+        } border-gray-200`}
+      >
+        <div className={theme === "dark" ? "bg-gray-800" : ""}>
           <ul className="flex justify-center p-2 flex-wrap cursor-pointer items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
             <li className="p-2">
               <a
@@ -53,7 +65,7 @@ export default function Footer() {
         <div className="">
           <p className="link cursor-pointer text-sm text-center">
             {" "}
-            Built by the Community | Version: 0.0.1
+            Built by the Community | Version: 0.0.2
           </p>
         </div>
       </div>

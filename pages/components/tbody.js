@@ -3,7 +3,14 @@ import Moralis from "moralis";
 import { useMoralis } from "react-moralis";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
-import { BsHandThumbsUpFill, BsHandThumbsUp, BsHandThumbsDown, BsHandThumbsDownFill } from "react-icons/bs";
+import {
+  BsHandThumbsUpFill,
+  BsHandThumbsUp,
+  BsHandThumbsDown,
+  BsHandThumbsDownFill,
+} from "react-icons/bs";
+import logo from "/public/images/pp_final_icon_black.png";
+import Image from "next/image";
 
 
 function Tbody(props) {
@@ -38,7 +45,14 @@ function Tbody(props) {
           let restCount = TypeLength - 2;
           TypeBadge = val.slice(0, 2).map((type, index) => {
             return (
-              <div key={index} className={`app-type truncate max-w-xs bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
+              <div
+                key={index}
+                className={`app-type truncate max-w-xs bottom-partial ${
+                  theme === "light"
+                    ? "bg-black text-white"
+                    : "bg-white text-black"
+                }`}
+              >
                 {type}
               </div>
             );
@@ -52,7 +66,14 @@ function Tbody(props) {
         } else {
           TypeBadge = val.map((type, index) => {
             return (
-              <div key={index} className={`app-type truncate max-w-xs bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>
+              <div
+                key={index}
+                className={`app-type truncate max-w-xs bottom-partial ${
+                  theme === "light"
+                    ? "bg-black text-white"
+                    : "bg-white text-black"
+                }`}
+              >
                 {type}
               </div>
             );
@@ -60,7 +81,7 @@ function Tbody(props) {
           return TypeBadge;
         }
       }
-    } catch (e) { }
+    } catch (e) {}
   }
 
   const handleReaction = async (isLiked) => {
@@ -162,24 +183,46 @@ function Tbody(props) {
       <div className="table-row">
         <div className="bg-[#e2e7ef] rounded-lg lg:border-0 table-data hidden  md:flex col-rank lg:bg-none">
           <div className="component-ranking-table-rank rank-1">
-            <span className="current-rank">{props.index}</span>
+            {/* <span className="current-rank">{props.index}</span> */}
+            <span className="list-disc text-2xl">.</span>
             <span className="past-rank"></span>
           </div>
         </div>
-        <div className={`flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main ${theme === "light" ? "custom-shadow border-white table-main-lite" : "custom-shadow-black border-black"}`}>
+        <div
+          className={`flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main ${
+            theme === "light"
+              ? "custom-shadow border-white table-main-lite"
+              : "custom-shadow-black border-black"
+          }`}
+        >
           <div className="text-center lg:table-data flex col-name">
             <div className="component-ranking-table-name">
               <div className="icon-place mr-4 py-4">
-                <div className={`icon-wrapper border-2 border-white ${theme === "light" ? "custom-shadow icon-wrpper-lite" : "custom-shadow-black border-black"}`}>
-                  {/* <a className="icon-link"> */}
-                  <img
+                <div
+                  className={`icon-wrapper  border-white ${
+                    theme === "light"
+                      ? "custom-shadow icon-wrpper-lite border-2"
+                      : "custom-shadow-black border-0 border-black"
+                  }`}
+                >
+                  {/* <img
                     src={props.logo}
                     alt="Image"
                     width={40}
                     height={40}
                     className="rounded-lg"
-                  />
-                  {/* </a> */}
+                  /> */}
+                  {props.logo && props.logo !== "" ? (
+                    <img
+                      alt="Logo"
+                      src={props.logo}
+                      width={40}
+                      height={40}
+                      className="rounded-lg"
+                    />
+                  ) : (
+                    <Image src={logo} width={40} height={40} />
+                  )}
                 </div>
               </div>
 
@@ -194,7 +237,9 @@ function Tbody(props) {
                         <a className="link">{props.name}</a>
                       </h4>
                     </div>
-                    <p className="description text-xs text-justify font-thin my-2">{props.short_description}</p>
+                    <p className="description text-xs text-justify font-thin my-2">
+                      {props.short_description}
+                    </p>
                   </div>
                 </div>
                 <div className="bottom-wrapper">
@@ -273,11 +318,13 @@ function Tbody(props) {
                     }}
                   >
                     {like ? (
-                      <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
+                      <BsHandThumbsUpFill
+                        className="h-5 w-5"
+                        color="blueviolet"
+                      />
                     ) : (
                       <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
                     )}
-
 
                     <span className="link">{likeCount}</span>
                   </button>
@@ -293,8 +340,7 @@ function Tbody(props) {
                       <BsHandThumbsDownFill className="h-5 w-5" />
                     ) : (
                       <BsHandThumbsDown className="h-5 w-5" />
-                    )
-                    }
+                    )}
 
                     <span className="font-bold">{dislikeCount}</span>
                   </button>
@@ -305,26 +351,38 @@ function Tbody(props) {
           <div className="block md:hidden text-center">
             <div className="grid grid-cols-2 divide-x divide-gray-700">
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Page Views</p>
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
+                  Page Views
+                </p>
                 <p className="col-title-mobile">{props.page_views}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Status</p>
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
+                  Status
+                </p>
                 <p className="col-title-mobile uppercase">{props.app_status}</p>
               </div>
             </div>
             <div className="grid grid-cols-3 divide-x mt-14 divide-gray-700">
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Ticker</p>
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
+                  Ticker
+                </p>
                 <p className="col-title-mobile uppercase">{props.ticker}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Sacrifice</p>
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
+                  Sacrifice
+                </p>
                 <p className="col-title-mobile uppercase">{props.sacrifice}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">Total Supply</p>
-                <p className="col-title-mobile uppercase">{props.total_supply}</p>
+                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
+                  Total Supply
+                </p>
+                <p className="col-title-mobile uppercase">
+                  {props.total_supply}
+                </p>
               </div>
             </div>
             <div className="border-t-2 mt-14 border-gray-700">
@@ -339,7 +397,10 @@ function Tbody(props) {
                     }}
                   >
                     {like ? (
-                      <BsHandThumbsUpFill className="h-5 w-5" color="blueviolet" />
+                      <BsHandThumbsUpFill
+                        className="h-5 w-5"
+                        color="blueviolet"
+                      />
                     ) : (
                       <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
                     )}
@@ -350,7 +411,6 @@ function Tbody(props) {
                 </div>
 
                 <div className="flex justify-center p-5">
-
                   <button
                     className="text-center"
                     disabled={isDisabled}
@@ -363,14 +423,12 @@ function Tbody(props) {
                       <BsHandThumbsDownFill className="h-5 w-5" />
                     ) : (
                       <BsHandThumbsDown className="h-5 w-5" />
-                    )
-                    }
+                    )}
                   </button>
                   <div className="ml-2">
                     <span className="font-bold">{dislikeCount}</span>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

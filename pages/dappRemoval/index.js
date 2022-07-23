@@ -4,11 +4,19 @@ import { useRouter } from "next/router";
 import Moralis from "moralis";
 import toast, { Toaster } from "react-hot-toast";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import Footer from "../components/Footer";
+import { useTheme } from "next-themes";
 
 export default function index() {
   const router = useRouter();
   const [project_url, setProjectUrl] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const requestRemoval = async () => {
     if (project_url === "") {
@@ -32,33 +40,42 @@ export default function index() {
     }
   };
 
+  if (!isMounted) return null;
+
   return (
     <Fragment>
       <div className="relative overflow-hidden">
         <Toaster position="top-right" />
 
-        <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
+        <div
+          className={`w-full ${
+            theme === "light" ? "border-b-2" : "border-b-0"
+          } border-slate-300 py-2 mb-5`}
+        >
           <Header displayCreate={false} />
         </div>
         <div className="w-full hidden mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
-              <div className="w-18">
-                <button
-                  onClick={() => router.push("/dapps")}
-                  className="flex item-center rounded-full shadow-2xl"
-                >
-                  <BsFillArrowLeftCircleFill className="h-12 w-12" />
-                </button>
-              </div>
+          <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
+            <div className="w-18">
+              <button
+                onClick={() => router.push("/dapps")}
+                className="flex item-center rounded-full shadow-2xl"
+              >
+                <BsFillArrowLeftCircleFill className="h-12 w-12" />
+              </button>
             </div>
+          </div>
         </div>
       </div>
       <>
         <div className="component-app-detail">
-          <div className="bg-[#c6c6e4]">
+          <div className={` ${
+                theme === "light"
+                  ? " drop-shadow-2xl"
+                  : "custom-shadow-black"
+              }`}>
             <div
-              style={{ alignItems: "center" }}
-              className="flex flex-col py-6 rounded-2xl text-xl justify-center border-2 shadow-xl"
+              className="flex flex-col py-6 items-center rounded-2xl text-xl justify-center  shadow-xl"
             >
               <p className="font-bold my-2">Request Removal</p>
               <p className="font-normal text-gray-500 text-sm py-4">
@@ -80,25 +97,26 @@ export default function index() {
               <button
                 disabled={isLoading}
                 onClick={() => requestRemoval()}
-                className="inline-flex w-full tracking-widest cursor-pointer text-xs sm:text-xs xl:text-base launcapp-btn px-4 py-4 text-white justify-center rounded-md"
+                className="inline-flex w-full  bg-black cursor-pointer text-xs sm:text-xs xl:text-base launcapp-btn px-4 py-4 text-white justify-center rounded-md"
               >
                 {isLoading ? "Submitting..." : "Remove your DApp"}
               </button>
             </div>
             <div className="flex justify-center items-center my-16">
               {/* <div className="w-18"> */}
-                <button
-                  onClick={() => router.push("/dapps")}
-                  className="flex item-center rounded-full shadow-2xl"
-                >
-                  <BsFillArrowLeftCircleFill className="h-5 w-5 mx-2" />
-                  <p>Back to home</p>
-                </button>
+              <button
+                onClick={() => router.push("/dapps")}
+                className="flex items-center rounded-full shadow-2xl"
+              >
+                <BsFillArrowLeftCircleFill className="h-5 w-5 mx-2" />
+                <p>Back to home</p>
+              </button>
               {/* </div> */}
             </div>
           </div>
         </div>
       </>
+      <Footer />
     </Fragment>
   );
 }

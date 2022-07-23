@@ -914,9 +914,9 @@ li {
 .custom-input {
   width: 100%;
   height: 80px;
-  background: #E8EDF1;
+  /* background: #E8EDF1; */
   border: 1px solid #E0E6EE;
-  box-shadow: inset -4px -4px 20px rgba(255, 255, 255, 0.7), inset 4px 4px 15px #D1D9E6;
+  /* box-shadow: inset -4px -4px 20px rgba(255, 255, 255, 0.7), inset 4px 4px 15px #D1D9E6; */
   border-radius: 15px;
 }
 
@@ -928,6 +928,15 @@ li {
     justify-content: center;
   }
 
+  .home-img {
+    background: url("./../public/images/Homepage-mobile.jpg");
+    /* height: 100%; */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  }
+  
   .app-name {
     font-size: 20px;
   }

@@ -6,6 +6,7 @@ import whiteLogo from "/public/images/pp_final_icon_white.png";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import Footer from "../components/Footer";
 
 
 export default function index() {
@@ -46,7 +47,7 @@ export default function index() {
                 : "custom-shadow-black"
             }`}
           >
-            <div className="card-header flex border-b-2">
+            <div className={`card-header flex border-b-2 ${theme==="light"?"border-gray-300":"border-gray-600"}`}>
               <div className="flex-none w-14 card-icon">
                 <div className="menuActive rounded-lg p-4">
                   <Image
@@ -102,6 +103,7 @@ export default function index() {
             </div>
         </div>
       </>
+      <Footer/>
     </Fragment>
   );
 }
