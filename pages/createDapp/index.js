@@ -281,7 +281,7 @@ class CreateApp extends Component {
         <div className="custom-wrapper">
           <div className="relative wrapper overflow-hidden">
             <Toaster position="top-right" />
-            <div className="w-full border-b-2 border-slate-300 py-2 mb-0">
+            <div className="w-full border-b-2 border-gray-900 py-2 mb-0">
               <Header displayCreate={false} />
             </div>
           </div>
