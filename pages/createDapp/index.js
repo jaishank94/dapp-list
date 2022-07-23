@@ -573,7 +573,7 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">Sacrifice*</p>
-                          <div className="md:flex flex-row my-6">
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {SacrificeValues.map((data, i) => {
                               return (
                                 <>
@@ -616,9 +616,9 @@ class CreateApp extends Component {
                                           }`}
                                         />
                                         {this.state.sacrifice === data.name ? (
-                                          <BsDash className="flex text-center icon justify-center" />
+                                          <BsDash className="flex text-center icon justify-center text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center" />
+                                          <BsPlus className="flex text-center icon justify-center text-black" />
                                         )}
                                       </div>
                                     </div>
@@ -630,7 +630,7 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">App Status*</p>
-                          <div className="md:flex flex-row my-6">
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {AppStatus.map((data, i) => {
                               return (
                                 <>
@@ -673,9 +673,9 @@ class CreateApp extends Component {
                                           }`}
                                         />
                                         {this.state.app_status === data.name ? (
-                                          <BsDash className="flex text-center icon justify-center" />
+                                          <BsDash className="flex text-center icon justify-center text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center" />
+                                          <BsPlus className="flex text-center icon justify-center text-black" />
                                         )}
                                       </div>
                                     </div>
@@ -687,7 +687,7 @@ class CreateApp extends Component {
                         </div>
                         <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
                           <p className="font-bold text-lg mt-8">Category*</p>
-                          <div className="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1">
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {Category.map((data, i) => {
                               return (
                                 <>
@@ -713,7 +713,7 @@ class CreateApp extends Component {
                                         });
                                       }
                                     }}
-                                    className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
+                                    // className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
                                   >
                                     <div className="group-6-6 cursor-pointer">
                                       <div className="rectangle-1-0-8" />
@@ -751,9 +751,9 @@ class CreateApp extends Component {
                                         {this.state.category.includes(
                                           data.name
                                         ) ? (
-                                          <BsDash className="flex text-center icon justify-center" />
+                                          <BsDash className="flex text-center icon justify-center text-black" />
                                         ) : (
-                                          <BsPlus className="flex text-center icon justify-center" />
+                                          <BsPlus className="flex text-center icon justify-center text-black" />
                                         )}
                                       </div>
                                     </div>
@@ -773,10 +773,10 @@ class CreateApp extends Component {
                           <p className="font-bold text-lg mt-8">
                             Project Information*
                           </p>
-                          <div className="md:flex flex-row my-6">
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {ProjInformation.map((data, i) => {
                               return (
-                                <div>
+                                <div key={i}>
                                   <div
                                     className="group-6-6 cursor-pointer"
                                     onClick={(e) =>
@@ -820,9 +820,9 @@ class CreateApp extends Component {
                                       />
                                       {this.state.porject_information ===
                                       data.name ? (
-                                        <BsDash className="flex text-center icon justify-center" />
+                                        <BsDash className="flex text-center icon justify-center text-black" />
                                       ) : (
-                                        <BsPlus className="flex text-center icon justify-center" />
+                                        <BsPlus className="flex text-center icon justify-center text-black" />
                                       )}
                                     </div>
                                   </div>
@@ -875,22 +875,22 @@ class CreateApp extends Component {
                           ""
                         )} */}
                           <div>
-                            <div className="flex flex-row my-3 overscroll-contain">
+                            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                               {this.state.tag_arr.map((data, i) => {
                                 return (
-                                  <div key={i}>
-                                    <div className="group-6-6" key={i}>
+                                  <div key={i} className=" items-center justify-center p-2">
+                                    <div className="group-6-6 bg-white rounded-full">
                                       <div className="rectangle-1-0-8" />
                                       <div className="rectangle-1-0-9" />
                                       <div className="rectangle-1-1-0" />
-                                      <p className="text-1">{data}</p>
+                                      <p className="text-1 text-black">{data}</p>
                                       <div className="group-6-5">
                                         <div className="rectangle-1-3-3" />
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
                                           className="h-6 w-6 icon1"
                                           viewBox="0 0 20 20"
-                                          fill="currentColor"
+                                          fill=""
                                           onClick={(e) => this.removeTag(data)}
                                         >
                                           <path

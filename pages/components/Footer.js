@@ -65,7 +65,7 @@ export default function Footer() {
         <div className="">
           <p className="link cursor-pointer text-sm text-center">
             {" "}
-            Built by the Community | Version: 0.0.2
+            Built by the Community | Version: 0.0.3
           </p>
         </div>
       </div>
