@@ -8,6 +8,9 @@ import moment from "moment";
 import { useMoralis } from "react-moralis";
 import Image from "next/image";
 import logo from "/public/images/pp_final_icon_black.png";
+import blackLogo from "/public/images/pp_final_icon_black.png";
+import whiteLogo from "/public/images/pp_final_icon_white.png";
+
 import Footer from "../components/Footer";
 import { useTheme } from "next-themes";
 import {
@@ -241,7 +244,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const getAppList = async () => {
@@ -267,8 +270,9 @@ export default function DappDetails() {
 
         <div className="overflow-hidden">
           <div
-            className={`w-full ${theme === "light" ? "border-b-2" : "border-b-0"
-              } border-slate-300 py-2 mb-5`}
+            className={`w-full ${
+              theme === "light" ? "border-b-2" : "border-b-0"
+            } border-slate-300 py-2 mb-5`}
           >
             <Header displayCreate={false} />
           </div>
@@ -288,20 +292,44 @@ export default function DappDetails() {
         {dappInfo && !isLoading && (
           <div className="component-app-detail">
             <div
-              className={`rounded-3xl ${theme === "light"
-                ? "  border-2 drop-shadow-2xl"
-                : "custom-shadow-black"
-                }`}
+              className={`rounded-3xl ${
+                theme === "light"
+                  ? "  border-2 drop-shadow-2xl"
+                  : "custom-shadow-black"
+              }`}
             >
               <div
-                className={`card-header flex rounded-3xl   ${theme === "light"
-                  ? "border-b-2 drop-shadow-2xl shadow-xl"
-                  : "bg-gray-800"
-                  }`}
+                className={`card-header flex rounded-3xl   ${
+                  theme === "light"
+                    ? "border-b-2 drop-shadow-2xl shadow-xl"
+                    : "bg-gray-800"
+                }`}
               >
-                <div className="w-14 card-icon">
+                <div class="relative h-32 w-32">
+                  <div class="absolute inset-0 object-fill">
+                    {dappInfo.logo && dappInfo.logo !== "" ? (
+                      <img
+                        alt="Logo"
+                        src={dappInfo.logo}
+                        width={110}
+                        height={110}
+                        className="rounded-md h-32 w-32 object-fill"
+                      />
+                    ) : (
+                      <div className="p-4">
+                        <Image
+                          src={theme === "light" ? blackLogo : whiteLogo}
+                          width={80}
+                          height={80}
+                          className="rounded-md h-32 w-32 "
+                        />
+                        </div>
+                    )}
+                  </div>
+                </div>
+                {/* <div className="w-14">
                   <div
-                    class={`block p-0 md:p-6 max-w-sm rounded-md shadow-md border-2 ${theme === "light"
+                    class={`block p-2 max-w-sm rounded-md shadow-md border-2 ${theme === "light"
                       ? "border-white bg-white"
                       : "border-gray-700 bg-gray-700"
                       }`}
@@ -318,7 +346,7 @@ export default function DappDetails() {
                       <Image src={logo} width={110} height={110} />
                     )}
                   </div>
-                </div>
+                </div> */}
                 <div className="flex-initial px-5 xl:p-5 app-detail">
                   <div className="py-4">
                     <h5 className="font-bold text-lg">{dappInfo.name}</h5>
@@ -432,9 +460,9 @@ export default function DappDetails() {
                     <div className="mt-2">
                       <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 3xl:flex flex-wrap justify-center">
                         {Object.entries(dappInfo.code).map((val, key) => {
-                          console.log("val", val)
+                          console.log("val", val);
                           return (
-                            <li className="p-1" key={key}>
+                            <li className="p-2" key={key}>
                               <a
                                 className="mr-4 hover:underline md:mr-6 "
                                 href={val[1]}
@@ -454,10 +482,11 @@ export default function DappDetails() {
               </div>
               <div className="mt-4">
                 <div
-                  className={`flex text-center items-center align-middle w-full h-24 justify-center ${theme === "light"
-                    ? "border-t-2"
-                    : "custom-shadow-black border-0 border-black"
-                    } rounded-3xl shadow-xl drop-shadow-2xl`}
+                  className={`flex text-center items-center align-middle w-full h-24 justify-center ${
+                    theme === "light"
+                      ? "border-t-2"
+                      : "custom-shadow-black border-0 border-black"
+                  } rounded-3xl shadow-xl drop-shadow-2xl`}
                 >
                   <div className="submit-status">
                     <div>
@@ -535,9 +564,10 @@ export default function DappDetails() {
                 onClick={() => console.log("shared successfully!")}
               >
                 <button
-                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${theme === "light" ? "bg-white" : "bg-gray-900"
-                    } `}
-                // onClick={logout}
+                  className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${
+                    theme === "light" ? "bg-white" : "bg-gray-900"
+                  } `}
+                  // onClick={logout}
                 >
                   <span className="link p-1 hidden text-xs md:block ">
                     Share
@@ -576,8 +606,9 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light" ? "bg-white" : "bg-gray-900"
-                  }`}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                  theme === "light" ? "bg-white" : "bg-gray-900"
+                }`}
                 // onClick={logout}
                 disabled={true}
               >
@@ -589,8 +620,9 @@ export default function DappDetails() {
                 </span>
               </button>
               <button
-                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light" ? "bg-white" : "bg-gray-900"
-                  } `}
+                className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                  theme === "light" ? "bg-white" : "bg-gray-900"
+                } `}
                 // onClick={logout}
                 disabled={true}
               >
@@ -613,26 +645,29 @@ export default function DappDetails() {
                   data.map((app, indx) => {
                     return (
                       <div
-                        className={`w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${theme === "light"
-                          ? "custom-shadow"
-                          : "custom-shadow-black border-black"
-                          }`}
+                        className={`w-full my-2 rounded-2xl lg:w-full lg:flex border-2 cursor-pointer  ${
+                          theme === "light"
+                            ? "custom-shadow"
+                            : "custom-shadow-black border-black"
+                        }`}
                         onClick={() =>
                           router.push("/dappDetails/" + app.objectId)
                         }
                         key={indx}
                       >
                         <div
-                          class={`flex block w-full p-6 max-w-sm rounded-2xl  ${theme === "light"
-                            ? "custom-shadow bg-white"
-                            : "bg-black"
-                            } `}
+                          class={`flex block w-full p-6 max-w-sm rounded-2xl  ${
+                            theme === "light"
+                              ? "custom-shadow bg-white"
+                              : "bg-black"
+                          } `}
                         >
                           <div
-                            class={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${theme === "light"
-                              ? "border-white bg-white"
-                              : "border-gray-700 bg-gray-700"
-                              }`}
+                            class={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${
+                              theme === "light"
+                                ? "border-white bg-white"
+                                : "border-gray-700 bg-gray-700"
+                            }`}
                           >
                             {app.logo && app.logo !== "" ? (
                               <img
@@ -649,10 +684,11 @@ export default function DappDetails() {
                           <div className="px-3">
                             <p className="text-left link text-lg">{app.name}</p>
                             <p
-                              className={`text-left py-2 text-sm font-thin text-justify ${theme === "light"
-                                ? "text-black"
-                                : "text-gray-500"
-                                }`}
+                              className={`text-left py-2 text-sm font-thin text-justify ${
+                                theme === "light"
+                                  ? "text-black"
+                                  : "text-gray-500"
+                              }`}
                             >
                               {app.short_description}
                             </p>
@@ -719,7 +755,6 @@ export default function DappDetails() {
           <Footer />
         </div>
       </div>
-
     </Fragment>
   );
 }
