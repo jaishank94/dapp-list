@@ -39,7 +39,7 @@ export default function index() {
         </div>
       </div>
       <>
-        <div className="component-app-detail">
+        <div className="flex flex-col justify-center items-center">
           <div
             className={`rounded-3xl ${
               theme === "light"

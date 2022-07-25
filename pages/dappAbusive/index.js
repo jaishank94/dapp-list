@@ -49,7 +49,7 @@ export default function index() {
 
         <div className={`w-full ${
             theme === "light" ? "border-b-2" : "border-b-0"
-          } border-slate-300 py-2 mb-5`}>
+          } border-slate-300 mb-5`}>
           <Header displayCreate={false} />
         </div>
         <div className="w-full hidden mx-auto px-4 sm:px-6">
@@ -66,7 +66,7 @@ export default function index() {
         </div>
       </div>
       <>
-        <div className="component-app-detail">
+        <div className="flex flex-col justify-center items-center">
           <div className={` ${
                 theme === "light"
                   ? " drop-shadow-2xl"

@@ -265,14 +265,14 @@ export default function DappDetails() {
 
   return (
     <Fragment>
-      <div className="custom-wrapper h-screen">
+      <div className="h-screen">
         <Toaster position="top-right" />
 
         <div className="overflow-hidden">
           <div
             className={`w-full ${
               theme === "light" ? "border-b-2" : "border-b-0"
-            } border-slate-300 py-2 mb-5`}
+            } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
           </div>
@@ -290,7 +290,7 @@ export default function DappDetails() {
           </div>
         </div>
         {dappInfo && !isLoading && (
-          <div className="component-app-detail">
+          <div className="flex flex-col justify-center items-center">
             <div
               className={`rounded-3xl ${
                 theme === "light"
@@ -305,8 +305,8 @@ export default function DappDetails() {
                     : "bg-gray-800"
                 }`}
               >
-                <div class="relative h-32 w-32">
-                  <div class="absolute inset-0 object-fill">
+                <div className="relative h-32 w-32">
+                  <div className="absolute inset-0 object-fill">
                     {dappInfo.logo && dappInfo.logo !== "" ? (
                       <img
                         alt="Logo"
@@ -329,7 +329,7 @@ export default function DappDetails() {
                 </div>
                 {/* <div className="w-14">
                   <div
-                    class={`block p-2 max-w-sm rounded-md shadow-md border-2 ${theme === "light"
+                    className={`block p-2 max-w-sm rounded-md shadow-md border-2 ${theme === "light"
                       ? "border-white bg-white"
                       : "border-gray-700 bg-gray-700"
                       }`}
@@ -431,7 +431,7 @@ export default function DappDetails() {
                 </div>
               </div>
               <div className="flex justify-center mt-5">
-                <div class="grid grid-cols-2 divide-x">
+                <div className="grid grid-cols-2 divide-x">
                   <div>
                     <div>
                       <p className="text-gray-500 text-center">Social Media</p>
@@ -521,7 +521,7 @@ export default function DappDetails() {
                 </div>
               </div>
             </div>
-            <div className="w-full my-6 p-6 bg-yellow-100 rounded-2xl">
+            <div className="my-6 p-6 bg-yellow-100 rounded-2xl">
               <p>
                 <span className="flex justify-center items-center">
                   {" "}
@@ -542,9 +542,9 @@ export default function DappDetails() {
               </p>
             </div>
             {dappInfo.sns.youtube && dappInfo.sns.youtube !== "" && (
-              <div className="w-full pt-6">
+              <div className="pt-6">
                 <iframe
-                  className="w-full h-96 rounded-2xl"
+                  className="h-96 rounded-2xl"
                   src={dappInfo.sns.youtube}
                   title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
                   frameborder="0"
@@ -656,14 +656,14 @@ export default function DappDetails() {
                         key={indx}
                       >
                         <div
-                          class={`flex block w-full p-6 max-w-sm rounded-2xl  ${
+                          className={`flex block w-full p-6 max-w-sm rounded-2xl  ${
                             theme === "light"
                               ? "custom-shadow bg-white"
                               : "bg-black"
                           } `}
                         >
                           <div
-                            class={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${
+                            className={`block p-6 max-w-sm rounded-lg shadow-md border-2 ${
                               theme === "light"
                                 ? "border-white bg-white"
                                 : "border-gray-700 bg-gray-700"

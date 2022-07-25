@@ -14,8 +14,11 @@ import {
   BsPower,
   BsMenuApp,
 } from "react-icons/bs";
+import { BiMenuAltRight } from "react-icons/bi";
 import { useMoralis } from "react-moralis";
 import Sidebar from "./Sidebar";
+import Link from "next/link";
+import howToPulse from "/public/images/howToPulse.png";
 
 export default function Header({ displayCreate }) {
   const router = useRouter();
@@ -40,100 +43,93 @@ export default function Header({ displayCreate }) {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="relative z-10 bg-transparent">
-          <div className="relative">
-            <div className="text-left w-full">
-              <Head>
-                <title>PulseChainProjects.io</title>
-                <link rel="icon" href="/favicon.ico" />
-                <link
-                  href="https://fonts.cdnfonts.com/css/gordita"
-                  rel="stylesheet"
-                />
-              </Head>
-              <nav className="flex w-full">
-                <div className="flex justify-between w-full items-center">
-                  <a
-                    className="flex items-center cursor-pointer"
-                    onClick={() => router.push("/")}
-                  >
-                    <Image
-                      alt="logo"
-                      width={50}
-                      height={50}
-                      className="rounded-t-lg"
-                      src={theme === "light" ? blackLogo : whiteLogo}
-                    />
-                    <p className="font-bold hidden sm:block ml-1">
-                      PulseChainProjects.io
-                    </p>
-                  </a>
-
-                  <div className="flex items-center">
-                    <button
-                      onClick={() => router.push("/createDapp")}
-                      className="cursor-pointer md:block shadow-md sub-header-button inline-block text-sm px-4 leading-none rounded text-white  hover:text-teal-500 lg:mt-0"
-                    >
-                      Submit DApp
-                    </button>
-                    {!isAuthenticated ? (
-                      <button
-                        className={`rounded-lg ${
-                          theme === "light" ? "bg-white" : "bg-gray-800"
-                        } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
-                        onClick={authenticate}
-                      >
-                        <span className="link p-2 hidden text-xs md:block">
-                          Connect Wallet
-                        </span>
-                        <span className="md:hidden">
-                          <BsWallet2 className="h-5 w-5" />
-                        </span>
-                      </button>
-                    ) : (
-                      <button
-                        className={`rounded-lg ${
-                          theme === "light" ? "bg-white" : "bg-gray-800"
-                        } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
-                        onClick={logout}
-                      >
-                        <span className="link p-1 hidden text-xs md:block">
-                          Logout
-                        </span>
-                        <span className="md:hidden">
-                          <BsPower className="h-5 w-5" />
-                        </span>
-                      </button>
-                    )}
-                    <button
-                      onClick={() =>
-                        setTheme(theme === "light" ? "dark" : "light")
-                      }
-                      className="cursor-pointer border-2 p-2 rounded-lg m-1"
-                    >
-                      {theme === "light" ? (
-                        <BsFillMoonFill className="h-5 w-5" />
-                      ) : (
-                        <BsFillSunFill className="h-5 w-5" />
-                      )}
-                    </button>
-                    {displayCreate && (
-                      <button
-                        onClick={() => handleSidebar()}
-                        className="p-4 rounded-lg focus:outline-none  md:hidden"
-                      >
-                        <BsMenuApp className="h-5 w-5" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
+      <div className="flex justify-center bg-black text-white w-full p-2">
+        <p className="items-center text-center">
+          🎉 FROM THE CREATORS OF
+          <span className="px-2">
+            <Image src={howToPulse} width={50} height={25} />
+          </span>
+          PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉
+        </p>
       </div>
-      <Sidebar isOpen={isOpen} />
+      <header className="flex justify-between p-4 max-w-7xl mx-auto">
+        <Head>
+          <title>PulseChainProjects.io</title>
+          <link rel="icon" href="/favicon.ico" />
+          <link
+            href="https://fonts.cdnfonts.com/css/gordita"
+            rel="stylesheet"
+          />
+        </Head>
+        <Link className="" href="/">
+          <div className="flex items-center cursor-pointer">
+            <Image
+              alt="logo"
+              width={50}
+              height={50}
+              className="rounded-t-lg"
+              src={theme === "light" ? blackLogo : whiteLogo}
+            />
+            <p className="font-bold hidden sm:block ml-1">
+              PulseChainProjects.io
+            </p>
+          </div>
+        </Link>
+
+        <div className="flex items-center space-x-5">
+          <Link href="createDapp" className="">
+            <div className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white">
+              Submit DApp
+            </div>
+          </Link>
+          {!isAuthenticated ? (
+            <button
+              className={`rounded-full ${
+                theme === "light" ? "bg-white" : "shadow-neutral-800"
+              } shadow-lg cursor-pointer md:rounded-full`}
+              onClick={authenticate}
+            >
+              <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                Connect Wallet
+              </span>
+              <span className="md:hidden">
+                <BsWallet2 className="h-5 w-5" />
+              </span>
+            </button>
+          ) : (
+            <button
+              className={`rounded-lg ${
+                theme === "light" ? "bg-white" : "shadow-neutral-800"
+              } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+              onClick={logout}
+            >
+              <span className="link p-1 hidden text-xs md:block">Logout</span>
+              <span className="md:hidden">
+                <BsPower className="h-5 w-5" />
+              </span>
+            </button>
+          )}
+          <button
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="cursor-pointer border-2 p-2 rounded-lg m-1"
+          >
+            {theme === "light" ? (
+              <BsFillMoonFill className="h-5 w-5" />
+            ) : (
+              <BsFillSunFill className="h-5 w-5" />
+            )}
+          </button>
+          {displayCreate && (
+            <button
+              onClick={() => handleSidebar()}
+              className="p-4 rounded-lg focus:outline-none  md:hidden"
+            >
+              <BiMenuAltRight className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+        <Sidebar isOpen={isOpen} />
+      </header>
     </>
   );
 }

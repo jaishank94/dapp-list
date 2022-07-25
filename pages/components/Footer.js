@@ -20,7 +20,7 @@ export default function Footer() {
           theme === "light" ? "border-t-2" : "border-t-1"
         } border-gray-200`}
       >
-        <div className={theme === "dark" ? "bg-gray-800" : ""}>
+        <div className={theme === "dark" ? "bg-neutral-800" : ""}>
           <ul className="flex justify-center p-2 flex-wrap cursor-pointer items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
             <li className="p-2">
               <a
@@ -63,7 +63,7 @@ export default function Footer() {
           Reserved
         </div>
         <div className="">
-          <p className="link cursor-pointer text-sm text-center">
+          <p className="cursor-pointer text-sm text-center text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-60">
             {" "}
             Built by the Community | Version: 0.0.3
           </p>

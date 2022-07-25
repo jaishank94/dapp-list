@@ -11,7 +11,7 @@ import {
 } from "react-icons/bs";
 import logo from "/public/images/pp_final_icon_black.png";
 import Image from "next/image";
-
+import Link from "next/link";
 
 function Tbody(props) {
   const { authenticate, isAuthenticated, user } = useMoralis();
@@ -47,7 +47,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`p-1 px-1 text-xs font-semibold rounded-full truncate bottom-partial ${
+                className={`p-1 px-1 truncate text-xs font-semibold rounded-full truncate bottom-partial ${
                   theme === "light"
                     ? "bg-black text-white"
                     : "bg-white text-black"
@@ -60,7 +60,15 @@ function Tbody(props) {
           return (
             <>
               {TypeBadge}{" "}
-              <span className={`p-1 px-1 text-xs font-semibold rounded-full bottom-partial ${theme === "light" ? "bg-black text-white" : "bg-white text-black"}`}>+{restCount} more</span>
+              <span
+                className={`p-1 px-1 text-xs truncate font-semibold rounded-full bottom-partial ${
+                  theme === "light"
+                    ? "bg-black text-white"
+                    : "bg-white text-black"
+                }`}
+              >
+                +{restCount} more
+              </span>
             </>
           );
         } else {
@@ -68,7 +76,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`p-1 px-1 text-xs font-semibold rounded-full truncate bottom-partial ${
+                className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${
                   theme === "light"
                     ? "bg-black text-white"
                     : "bg-white text-black"
@@ -181,74 +189,57 @@ function Tbody(props) {
   return (
     <div className="table-body mt-5 px-4" key={props.index}>
       <div className="table-row">
-        <div className="bg-[#e2e7ef] rounded-lg lg:border-0 table-data hidden  md:flex col-rank lg:bg-none">
-          <div className="component-ranking-table-rank rank-1">
+        <div className="rounded-lg lg:border-0 table-data hidden  md:flex col-rank lg:bg-none">
+          <div className="">
             {/* <span className="current-rank">{props.index}</span> */}
             <span className="list-disc text-2xl">.</span>
             <span className="past-rank"></span>
           </div>
         </div>
         <div
-          className={`flex flex-col py-4 justify-center lg:py-0 lg:justify-left lg:flex-row table-main ${
+          className={`flex flex-col py-4 justify-center border-2  rounded-lg shadow-lg w-full lg:py-0 lg:justify-left lg:flex-row  ${
             theme === "light"
-              ? "custom-shadow border-white table-main-lite"
-              : "custom-shadow-black border-black"
+              ? "border-slate"
+              : "border-neutral-800 shadow-neutral-800"
           }`}
         >
-          <div className="text-center lg:table-data flex col-name">
-            <div className="component-ranking-table-name">
-              <div className="icon-place mr-4 py-4">
-                <div
-                  className={`icon-wrapper  border-white ${
-                    theme === "light"
-                      ? "custom-shadow icon-wrpper-lite border-2"
-                      : "custom-shadow-black border-0 border-black"
-                  }`}
-                >
-                  {/* <img
-                    src={props.logo}
-                    alt="Image"
-                    width={40}
-                    height={40}
-                    className="rounded-lg"
-                  /> */}
-                  {props.logo && props.logo !== "" ? (
-                    <img
-                      alt="Logo"
-                      src={props.logo}
-                      width={40}
-                      height={40}
-                      className="rounded-lg"
-                    />
-                  ) : (
-                    <Image src={logo} width={40} height={40} />
-                  )}
-                </div>
-              </div>
+          <div class="flex justify-start">
+            {/* <div className="w-1/4 flex items-center justify-center mx-2"> */}
+            {props.logo && props.logo !== "" ? (
+              <img
+                alt="Logo"
+                src={props.logo}
+                width={40}
+                height={40}
+                className={`w-40 h-40 p-2 m-2 object-fit shadow ${
+                  theme === "light"
+                    ? "border-0 border-slate-100"
+                    : "border-02 border-neutral-800 shadow-neutral-800"
+                } rounded-xl`}
+              />
+            ) : (
+              <Image
+                src={logo}
+                width={40}
+                height={40}
+                className={`w-40 h-40 p-2 m-2 object-fit shadow ${
+                  theme === "light"
+                    ? "border-0 shadow-slate-100"
+                    : "border-2 border-neutral-800 shadow-neutral-800"
+                } rounded-xl`}
+              />
+            )}
+            {/* </div> */}
 
-              <div className="text-center right-wrapper py-4 max-w-fit">
-                <div className="top-wrapper">
-                  <div className="name-description-wrapper">
-                    <div
-                      className="name-description-top-wrapper"
-                      onClick={() => router.push(`/dappDetails/${props.id}`)}
-                    >
-                      <h4 className="name">
-                        <a className="link">{props.name}</a>
-                      </h4>
-                    </div>
-                    <p className="description text-xs text-justify font-thin my-2">
-                      {props.short_description}
-                    </p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-1">
-                  {getDisplayType(props.types)}
-                  {/* {props.types.map((res, i) => {
-                    
-                  })} */}
-                </div>
-              </div>
+            <div class="p-6 flex flex-col justify-start">
+              <h5 class="text-2xl font-medium mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                <Link href={"/dappDetails/" + props.id}>{props.name}</Link>
+              </h5>
+              <p class="text-base mb-4">{props.short_description}</p>
+              <p class="flex items-center space-x-2">
+                {" "}
+                {getDisplayType(props.types)}
+              </p>
             </div>
           </div>
           <div className="hidden md:flex">
@@ -351,38 +342,26 @@ function Tbody(props) {
           <div className="block md:hidden text-center">
             <div className="grid grid-cols-2 divide-x divide-gray-700">
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
-                  Page Views
-                </p>
-                <p className="col-title-mobile">{props.page_views}</p>
+                <p className=" my-2 text-gray-500 text-xs ">Page Views</p>
+                <p className="">{props.page_views}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
-                  Status
-                </p>
-                <p className="col-title-mobile uppercase">{props.app_status}</p>
+                <p className=" my-2 text-gray-500 text-xs ">Status</p>
+                <p className=" uppercase">{props.app_status}</p>
               </div>
             </div>
             <div className="grid grid-cols-3 divide-x mt-14 divide-gray-700">
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
-                  Ticker
-                </p>
-                <p className="col-title-mobile uppercase">{props.ticker}</p>
+                <p className=" my-2 text-gray-500 text-xs ">Ticker</p>
+                <p className=" uppercase">{props.ticker}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
-                  Sacrifice
-                </p>
-                <p className="col-title-mobile uppercase">{props.sacrifice}</p>
+                <p className=" my-2 text-gray-500 text-xs ">Sacrifice</p>
+                <p className=" uppercase">{props.sacrifice}</p>
               </div>
               <div className="flex flex-col">
-                <p className="col-title-mobile my-2 text-gray-500 text-xs ">
-                  Total Supply
-                </p>
-                <p className="col-title-mobile uppercase">
-                  {props.total_supply}
-                </p>
+                <p className=" my-2 text-gray-500 text-xs ">Total Supply</p>
+                <p className=" uppercase">{props.total_supply}</p>
               </div>
             </div>
             <div className="border-t-2 mt-14 border-gray-700">

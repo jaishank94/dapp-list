@@ -11,7 +11,7 @@ export default function Sidebar({ isOpen }) {
       }  transition duration-200 ease-in-out`}
       aria-label="Sidebar"
     >
-      <div className="overflow-y-auto h-full py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+      <div className="overflow-y-auto h-full py-4 px-3 bg-gray-50 rounded dark:bg-neutral-800">
         <ul className="space-y-2">
           <li>
             <a

@@ -4,8 +4,6 @@ import Moralis from "moralis";
 import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
 import Header from "../components/Header";
-import plus from "/public/images/plus.png";
-import Button from "../components/customButton";
 import Footer from "../components/Footer";
 import {
   BsFillArrowLeftCircleFill,
@@ -281,7 +279,7 @@ class CreateApp extends Component {
         <div className="custom-wrapper">
           <div className="relative wrapper overflow-hidden">
             <Toaster position="top-right" />
-            <div className="w-full border-b-2 border-gray-900 py-2 mb-0">
+            <div className="w-full border-b-2 border-gray-900 mb-0">
               <Header displayCreate={false} />
             </div>
           </div>
@@ -814,7 +812,7 @@ class CreateApp extends Component {
                           </p>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsFacebook className="h-5 w-5 text-black" />
                                 <p className="hidden md:block hidden md:block text-gray-600 pl-2">
                                   https://facebook.com
@@ -841,7 +839,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsTwitter className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://telegram.com
@@ -864,7 +862,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsInstagram className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://instagram.com
@@ -891,7 +889,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsYoutube className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://youtube.com
@@ -915,7 +913,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsTelegram className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://telegram.com
@@ -943,7 +941,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsReddit className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://reddit.com
@@ -967,7 +965,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsMedium className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://medium.com
@@ -991,7 +989,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                                 <BsDiscord className="h-5 w-5 text-black" />
                                 <p className="hidden md:block text-gray-600 pl-2">
                                   https://discord.com
@@ -1018,7 +1016,7 @@ class CreateApp extends Component {
                           <p className="font-bold text-lg mt-8">Source code</p>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                              <div className="grid grid-cols-2 divide-x w-14">
                                 <BsGithub className="h-5 w-5 text-black" />
                               </div>
                             </div>
@@ -1040,7 +1038,7 @@ class CreateApp extends Component {
 
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                              <div className="grid grid-cols-2 divide-x w-14">
                                 <AiFillGitlab className="h-5 w-5 text-black" />
                               </div>
                             </div>
@@ -1061,7 +1059,7 @@ class CreateApp extends Component {
                           </div>
                           <div style={{ height: "100px", whiteSpace: "nowrap" }}>
                             <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div class="grid grid-cols-2 divide-x w-14">
+                              <div className="grid grid-cols-2 divide-x w-14">
                                 <IoLogoBitbucket className="h-5 w-5 text-black" />
                               </div>
                             </div>

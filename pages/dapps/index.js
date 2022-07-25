@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Moralis from "moralis";
 import Image from "next/image";
 import { Listbox, Transition, Popover } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+// import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import Header from "../components/Header";
 import Tbody from "../components/tbody";
 import { useMoralis } from "react-moralis";
@@ -62,7 +62,7 @@ export default function index() {
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
   const { query } = useRouter();
-  const {filter_category} = query;
+  const { filter_category } = query;
 
   useEffect(() => {
     if (isInitialized) {
@@ -85,10 +85,10 @@ export default function index() {
       if (category.name !== "Category") {
         query.containedIn("type", [category.name]);
       }
-      console.log("asdasdad", filter_category)
+      console.log("asdasdad", filter_category);
 
-      if(filter_category && filter_category!=="Category"){
-        console.log("asdasdad", filter_category)
+      if (filter_category && filter_category !== "Category") {
+        console.log("asdasdad", filter_category);
         query.containedIn("type", [filter_category]);
       }
       if (filter.name !== "Filter") {
@@ -143,47 +143,35 @@ export default function index() {
 
   return (
     <Fragment>
-      <div className="flex justify-center bg-black text-white w-full p-2">
-        <p className="items-center text-center">
-          🎉 FROM THE CREATORS OF
-          <span className="px-2">
-            <Image src={howToPulse} width={50} height={25} />
-          </span>
-          PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉
-        </p>
-      </div>
       <div className="wrapper custom-wrapper overflow-hidden">
         <div
           className={`w-full ${
             theme === "light" ? "border-b-2" : "border-b-0"
-          } border-slate-300 py-2 mb-5`}
+          } border-slate-300 mb-5`}
         >
           <Header displayCreate={true} handleSidebar={handleSidebar} />
         </div>
 
-        <div className="max-width-1200 mx-auto light:bg-gray dark:bg-red">
-          <div className="my-16">
-            <div
-              className="flex flex-row flex-wrap items-center justify-between table-top-wrapper"
-              style={{ marginBottom: "10px" }}
-            >
-              <h2 className="items-center cursor-default ml-1 mb-6 font-bold text-2xl text-dark lg:mb-0">
-                Explore Projects
-              </h2>
-              <div>
-                <div className="flex items-center justify-center">
-                  <div
-                    className={`inline-flex border-2 rounded-full ${
-                      theme === "light"
-                        ? "custom-shadow border-white"
-                        : "custom-shadow-black border-black"
-                    }`}
-                    role="group"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setDuration("Daily")}
-                      className={`rounded-full
+        <div className="flex flex-col md:flex-row justify-between p-2 max-w-7xl mx-auto">
+          {/* <div className="my-16"> */}
+          <div className="flex flex-row flex-wrap">
+            <h2 className="items-center cursor-default ml-1 mb-6 font-bold text-2xl text-dark lg:mb-0">
+              Explore Projects
+            </h2>
+          </div>
+          <div>
+            <div>
+              <div className="flex items-center justify-center">
+                <div
+                  className={`inline-flex border-2 rounded-full ${
+                    theme === "light" ? "border-slate" : "border-black"
+                  }`}
+                  role="group"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setDuration("Daily")}
+                    className={`rounded-full
                       px-4
                       xl:px-6
                       py-2
@@ -200,24 +188,24 @@ export default function index() {
                         duration === "Daily"
                           ? ` border-2 font-semibold grad-text-color text-violet-700 ${
                               theme === "light"
-                                ? "custom-shadow"
-                                : "custom-shadow-black border-black"
+                                ? ""
+                                : " border-black"
                             }`
                           : ""
                       }`}
+                  >
+                    <p
+                      className={`sm:text-xs${
+                        duration === "Daily" ? " link" : ""
+                      }`}
                     >
-                      <p
-                        className={`sm:text-xs${
-                          duration === "Daily" ? " link" : ""
-                        }`}
-                      >
-                        Daily
-                      </p>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDuration("Weekly")}
-                      className={`rounded-full
+                      Daily
+                    </p>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDuration("Weekly")}
+                    className={`rounded-full
                       px-4
                       xl:px-6
                       py-2
@@ -236,24 +224,24 @@ export default function index() {
                           duration === "Weekly"
                             ? ` border-2 font-semibold grad-text-color text-violet-700 ${
                                 theme === "light"
-                                  ? "custom-shadow"
-                                  : "custom-shadow-black border-black"
+                                  ? ""
+                                  : " border-black"
                               }`
                             : ""
                         }`}
+                  >
+                    <p
+                      className={`sm:text-xs ${
+                        duration === "Weekly" ? " link" : ""
+                      }`}
                     >
-                      <p
-                        className={`sm:text-xs ${
-                          duration === "Weekly" ? " link" : ""
-                        }`}
-                      >
-                        Weekly
-                      </p>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDuration("Monthly")}
-                      className={`rounded-full
+                      Weekly
+                    </p>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDuration("Monthly")}
+                    className={`rounded-full
                       px-6
                       py-2
                       text-dark
@@ -271,24 +259,24 @@ export default function index() {
                           duration === "Monthly"
                             ? ` border-2 font-semibold grad-text-color text-violet-700 ${
                                 theme === "light"
-                                  ? "custom-shadow"
-                                  : "custom-shadow-black border-black"
+                                  ? ""
+                                  : " border-black"
                               }`
                             : ""
                         }`}
+                  >
+                    <p
+                      className={`sm:text-xs ${
+                        duration === "Monthly" ? " link" : ""
+                      }`}
                     >
-                      <p
-                        className={`sm:text-xs ${
-                          duration === "Monthly" ? " link" : ""
-                        }`}
-                      >
-                        Monthly
-                      </p>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDuration("Yearly")}
-                      className={`rounded-full
+                      Monthly
+                    </p>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDuration("Yearly")}
+                    className={`rounded-full
                       px-6
                       py-2
                       text-dark
@@ -307,124 +295,123 @@ export default function index() {
                          duration === "Yearly"
                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
                                theme === "light"
-                                 ? "custom-shadow"
-                                 : "custom-shadow-black border-black"
+                                 ? ""
+                                 : " border-black"
                              }`
                            : ""
                        }`}
+                  >
+                    <p
+                      className={`sm:text-xs ${
+                        duration === "Yearly" ? " link" : ""
+                      }`}
                     >
-                      <p
-                        className={`sm:text-xs ${
-                          duration === "Yearly" ? " link" : ""
-                        }`}
-                      >
-                        Yearly
-                      </p>
-                    </button>
-                  </div>
+                      Yearly
+                    </p>
+                  </button>
                 </div>
               </div>
-              <div className="flex mt-2 w-full flex-row text-center justify-center md:justify-end">
-                <div className="container-right">
-                  <Listbox value={filter} onChange={(e) => handleFilter(e)}>
-                    <div className="mt-1 mx-2">
-                      <Listbox.Button
-                        className={`${
-                          theme === "light"
-                            ? "border-white custom-shadow bg-white border-2 "
-                            : "bg-dark custom-shadow-black border-black"
-                        }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
-                      >
-                        <span className="block truncate text-gray-400">
-                          {filter.name}
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <SelectorIcon
-                            className="h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options
-                          className={`absolute mt-1 z-40 max-h-60 ${
-                            theme === "light" ? "bg-white" : "bg-black"
-                          } overflow-auto rounded-md py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
-                        >
-                          {Filter.map((data, dataIdx) => (
-                            <Listbox.Option
-                              key={dataIdx}
-                              className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 
+            </div>
+            <div className="flex mt-2 w-full text-center justify-center md:justify-end">
+              <Listbox value={filter} onChange={(e) => handleFilter(e)}>
+                <div className="mt-1 mx-2">
+                  <Listbox.Button
+                    className={`${
+                      theme === "light"
+                        ? "border-white  bg-white border-2 "
+                        : "bg-dark shadow-neutral-800 border-black"
+                    }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                  >
+                    <span className="block truncate text-gray-400">
+                      {filter.name}
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      {/* <SelectorIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      /> */}
+                    </span>
+                  </Listbox.Button>
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute mt-1 z-40 max-h-60 ${
+                        theme === "light" ? "bg-white" : "bg-black"
+                      } overflow-auto rounded-md py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                    >
+                      {Filter.map((data, dataIdx) => (
+                        <Listbox.Option
+                          key={dataIdx}
+                          className={({ active }) =>
+                            `cursor-pointer select-none py-2 pl-4 pr-4 
                                 ${
                                   theme === "light"
                                     ? "text-gray-900"
                                     : "text-white"
                                 }
                                 ${active ? "bg-amber-100 text-amber-900" : ""}`
-                              }
-                              value={data}
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected
-                                        ? "text-gray-400 font-medium"
-                                        : "font-normal"
-                                    }`}
-                                  >
-                                    {data.name}
-                                  </span>
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </Listbox>
-
-                  <Listbox value={category} onChange={(e) => handleCategory(e)}>
-                    <div className="mt-1">
-                      <Listbox.Button
-                        className={`${
-                          theme === "light"
-                            ? "border-white custom-shadow bg-white border-2 "
-                            : "bg-dark custom-shadow-black border-black"
-                        }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
-                      >
-                        <span className="block truncate text-gray-400">
-                          {category.name}
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <SelectorIcon
-                            className="h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options
-                          className={`absolute z-40 mt-1 max-h-60 overflow-auto ${
-                            theme === "light" ? "bg-white" : "bg-black"
-                          }  rounded-md  py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                          }
+                          value={data}
                         >
-                          {Category.map((data, dataIdx) => (
-                            <Listbox.Option
-                              key={dataIdx}
-                              className={({ active }) =>
-                                `cursor-pointer select-none py-2 pl-4 pr-4 
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${
+                                  selected
+                                    ? "text-gray-400 font-medium"
+                                    : "font-normal"
+                                }`}
+                              >
+                                {data.name}
+                              </span>
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
+
+              <Listbox value={category} onChange={(e) => handleCategory(e)}>
+                <div className="mt-1">
+                  <Listbox.Button
+                    className={`${
+                      theme === "light"
+                        ? "border-white  bg-white border-2 "
+                        : "bg-dark shadow-neutral-800 border-black"
+                    }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                  >
+                    <span className="block truncate text-gray-400">
+                      {category.name}
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      {/* <SelectorIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      /> */}
+                    </span>
+                  </Listbox.Button>
+                  <Transition
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options
+                      className={`absolute z-40 mt-1 max-h-60 overflow-auto ${
+                        theme === "light" ? "bg-white" : "bg-black"
+                      }  rounded-md  py-1 text-xs shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm`}
+                    >
+                      {Category.map((data, dataIdx) => (
+                        <Listbox.Option
+                          key={dataIdx}
+                          className={({ active }) =>
+                            `cursor-pointer select-none py-2 pl-4 pr-4 
                               
                                 ${
                                   theme === "light"
@@ -433,42 +420,41 @@ export default function index() {
                                 }
 
                                 ${active ? "bg-amber-100 text-amber-900" : ""}`
-                              }
-                              value={data}
-                            >
-                              {({ selected }) => (
-                                <>
-                                  <span
-                                    className={`block truncate ${
-                                      selected
-                                        ? "text-gray-400 font-medium"
-                                        : "font-normal"
-                                    }`}
-                                  >
-                                    {data.name}
-                                  </span>
-                                </>
-                              )}
-                            </Listbox.Option>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
-                    </div>
-                  </Listbox>
+                          }
+                          value={data}
+                        >
+                          {({ selected }) => (
+                            <>
+                              <span
+                                className={`block truncate ${
+                                  selected
+                                    ? "text-gray-400 font-medium"
+                                    : "font-normal"
+                                }`}
+                              >
+                                {data.name}
+                              </span>
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
                 </div>
-              </div>
+              </Listbox>
             </div>
           </div>
+          {/* </div> */}
         </div>
-        <div className="max-width-1200 mx-auto">
+        <div className="flex flex-col justify-between p-2 py-16 max-w-7xl mx-auto">
           <div
-            className={`table-header  rounded-md ${
-              theme === "light" ? "bg-white shadow-md" : "bg-gray-800"
+            className={` hidden md:inline-flex table-header py-4 rounded-md ${
+              theme === "light" ? "bg-white shadow-md" : "bg-neutral-800"
             }`}
           >
             <div className="table-row">
-              <div className="table-head col-rank">
-                <div className="component-ranking-table-rank-head">
+              <div className="table-head col-rank px-2">
+                <div className="flex">
                   <a
                     href="#"
                     className="label head-link router-link-active is-active"

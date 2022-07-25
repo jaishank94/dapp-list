@@ -1,17 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import logoWhite from "/public/images/pp_final_icon_white.png";
+import backgroundWeb from "/public/images/Homepage.jpg";
+import backgroundMobile from "/public/images/Homepage-mobile.jpg";
 import Moralis from "moralis";
 import { useTheme } from "next-themes";
-import { BsDot } from "react-icons/bs";
+import Link from "next/link";
 
 export default function index() {
   const { isInitialized } = useMoralis();
   const [dappInfo, setDappInfo] = useState({ dapps: 0, visitors: 0 });
-  const router = useRouter();
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
 
@@ -45,76 +45,87 @@ export default function index() {
   };
 
   return (
-    <div className="w-screen h-screen flex home-img flex-1 flex-col items-center p-4 lg:p-16">
+    <div className="bg-black relative text-white">
       <Head>
         <title>PulseChainProjects.io</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.cdnfonts.com/css/gordita" rel="stylesheet" />
       </Head>
-      <div className="w-full p-4 ">
-        <a
-          className="flex items-center cursor-pointer"
-          onClick={() => router.push("/")}
-        >
-          <Image
-            alt="logo"
-            width={40}
-            height={40}
-            className="rounded-t-lg"
-            src={logoWhite}
-          />
-          <p className="font-bold text-white px-2">PulseChainProjects.io</p>
-        </a>
-      </div>
+      <div className="flex flex-col absolute z-50 p-4 md:p-8">
+        <div className="w-full p-4 ">
+          <Link className="flex items-center cursor-pointer" href="/">
+            <div className="flex items-center">
+              <Image
+                alt="logo"
+                width={40}
+                height={40}
+                className="rounded-t-lg"
+                src={logoWhite}
+              />
+              <p className="font-bold text-white px-2">PulseChainProjects.io</p>
+            </div>
+          </Link>
+        </div>
 
-      <div className="w-full">
-        <h1 className="text-3xl pt-4 md:text-5xl font-bold text-white drop-shadow-lg shadow-black md:pt-14 px-4">
-          Discover the next big <br />
-          project on PulseChain
-        </h1>
-        <ul className="list-disc text-white font-normal px-4 pt-8">
-          <li className="flex py-2 md:py-4 items-center">
-            <BsDot className="h-8 w-8" /> DISCLAIMER: DYOR, this site is user
-            generated content.
-          </li>
-          <li className="flex py-2 md:py-4 items-center">
-            <BsDot className="h-12 w-12 md:h-8 md:w-8" /> Create a project in
-            less than 2 minutes, be detailed to insure best user experience.
-          </li>
-          <li className="flex py-2 md:py-4 items-center">
-            <BsDot className="h-12 w-12 md:h-8 md:w-8" /> Make sure you verify
-            before you invest in ANY project. Due your due diligence.
-          </li>
-        </ul>
-      </div>
-      <div className="w-full flex p-4">
-        <div
-          className="text-white"
-          // style={{ backgroundColor: "#5a5a5a1a" }}
-        >
-          <div className="p-2 md:p-4 shadow rounded-lg">
-            <p className="text-xl font-bold">{dappInfo.dapps}</p>
-            <p className="text-xs pt-1 font-bold text-gray-100">DApps</p>
+        <div className="w-full">
+          <h1 className="text-3xl break-words pt-4 md:text-5xl font-bold text-white drop-shadow-lg shadow-black md:pt-14 px-4">
+            Discover the next big <br />
+            project on PulseChain
+          </h1>
+          <div className="flex px-4">
+            <ul className="list-disc px-2 pt-8">
+              <li className="py-2 text-sm md:text-base md:py-4">
+                DISCLAIMER: DYOR, this site is user generated content.
+              </li>
+              <li className="py-2 text-sm md:text-base md:py-4">
+                Create a project in less than 2 minutes, be detailed to insure
+                best user experience.
+              </li>
+              <li className="py-2 text-sm md:text-base md:py-4">
+                Make sure you verify before you invest in ANY project. Due your
+                due diligence.
+              </li>
+            </ul>
           </div>
         </div>
-        <div
-          className="text-white mx-5"
-          // style={{ backgroundColor: "#5a5a5a1a" }}
-        >
-          <div className="p-2 md:p-4 shadow rounded-lg">
-            {/* <p className="text-xl font-bold">{dappInfo.visitors}</p> */}
-            <p className="text-xl font-bold">{"-"}</p>
-            <p className="text-xs pt-1 font-bold text-gray-100">Visitors</p>
+        <div className="flex p-4 w-full space-between">
+          <div className="text-white relative">
+            <div className="p-2 md:p-4 absolute z-50">
+              <p className="text-xl font-bold">{dappInfo.dapps}</p>
+              <p className="text-xs pt-1 font-bold text-gray-100">DApps</p>
+            </div>
+            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25">
+              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25"></div>
+            </div>
+          </div>
+          <div className="text-white relative mx-10">
+            <div className="p-2 md:p-4 absolute z-50">
+              {/* <p className="text-xl font-bold">{dappInfo.visitors}</p> */}
+              <p className="text-xl font-bold">{"-"}</p>
+              <p className="text-xs pt-1 font-bold text-gray-100">Visitors</p>
+            </div>
+            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25">
+              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25"></div>
+            </div>
           </div>
         </div>
+        <div className="pt-2 p-4">
+          <Link href="/dapps">
+            <div className="cursor-pointer w-3/4 md:w-2/4 flex justify-center items-center rounded-full bg-white shadow-lg p-2 ">
+              <span className="uppercase text-transparent font-bold md:text-2xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                Explore Projects
+              </span>
+            </div>
+          </Link>
+        </div>
       </div>
-      <div className="w-full pt-2 p-4">
-        <button
-          className="rounded-full bg-white p-2 shadow-lg cursor-pointer"
-          onClick={() => router.push("/dapps")}
-        >
-          <span className="link uppercase p-2  text-2xl">Explore Projects</span>
-        </button>
+      <div className="w-full h-screen">
+        <div className="hidden md:block">
+          <Image layout="fill" objectFit="cover" src={backgroundWeb} />
+        </div>
+        <div className="md:hidden">
+          <Image layout="fill" objectFit="cover" src={backgroundMobile} />
+        </div>
       </div>
     </div>
   );
