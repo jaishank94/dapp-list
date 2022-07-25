@@ -317,7 +317,7 @@ function Tbody(props) {
                       <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
                     )}
 
-                    <span className="link">{likeCount}</span>
+                    <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">{likeCount}</span>
                   </button>
                   <button
                     className="text-center ml-2"

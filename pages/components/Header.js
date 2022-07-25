@@ -103,7 +103,7 @@ export default function Header({ displayCreate }) {
               } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
               onClick={logout}
             >
-              <span className="link p-1 hidden text-xs md:block">Logout</span>
+              <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Logout</span>
               <span className="md:hidden">
                 <BsPower className="h-5 w-5" />
               </span>
