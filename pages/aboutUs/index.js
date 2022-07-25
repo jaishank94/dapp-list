@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import Footer from "../components/Footer";
-
+import Link from "next/link";
 
 export default function index() {
   const router = useRouter();
@@ -47,7 +47,11 @@ export default function index() {
                 : "custom-shadow-black"
             }`}
           >
-            <div className={`card-header flex border-b-2 ${theme==="light"?"border-gray-300":"border-gray-600"}`}>
+            <div
+              className={`card-header flex border-b-2 ${
+                theme === "light" ? "border-gray-300" : "border-gray-600"
+              }`}
+            >
               <div className="flex-none w-14 card-icon">
                 <div className="menuActive rounded-lg p-4">
                   <Image
@@ -61,7 +65,9 @@ export default function index() {
               </div>
               <div className="flex-initial px-5 py-4 xl:p-5 app-detail">
                 <div className="justify-center">
-                  <h5 className="font-bold app-name text-3xl">PulseChainProjects.io</h5>
+                  <h5 className="font-bold app-name text-3xl">
+                    PulseChainProjects.io
+                  </h5>
                   <p className="text-gray-500 text-xs xl:text-bse font-medium mt-2">
                     Directory of all the projects launching on PulseChain
                   </p>
@@ -91,19 +97,19 @@ export default function index() {
             </div> */}
           </div>
           <div className="flex justify-center items-center my-16">
-              {/* <div className="w-18"> */}
-              <button
-                onClick={() => router.push("/dapps")}
-                className="flex item-center rounded-full shadow-2xl"
-              >
-                <BsFillArrowLeftCircleFill className="h-5 w-5 mx-2" />
-                <p>Back to home</p>
-              </button>
-              {/* </div> */}
-            </div>
+            {/* <div className="w-18"> */}
+            <Link
+              href="/dapps"
+              // className="flex item-center rounded-full shadow-2xl"
+            >
+              <BsFillArrowLeftCircleFill className="flex item-center rounded-full shadow-2xl h-5 w-5 mx-2" />
+              <p>Back to home</p>
+            </Link>
+            {/* </div> */}
+          </div>
         </div>
       </>
-      <Footer/>
+      <Footer />
     </Fragment>
   );
 }
