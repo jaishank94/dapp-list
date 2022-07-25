@@ -35,7 +35,7 @@ import {
   BsArrowDownCircle,
   BsHandThumbsDown,
   BsHandThumbsUpFill,
-  BsHandThumbsDownFill
+  BsHandThumbsDownFill,
 } from "react-icons/bs";
 import {
   GiConsoleController,
@@ -215,36 +215,6 @@ export default function DappDetails() {
       setLoading(false);
     } catch (e) {
       setLoading(false);
-    }
-  };
-
-  const reportAbusive = async () => {
-    setDisabled(true);
-    try {
-      const DappRemoval = Moralis.Object.extend("DappRemoval");
-      const newObject = new DappRemoval();
-      newObject.set("project_url", window.location.href);
-      newObject.set("status", "ACTIVE");
-      let response = await newObject.save();
-      toast.success("Succefully submited");
-      setDisabled(false);
-    } catch (e) {
-      setDisabled(false);
-    }
-  };
-
-  const requestRemoval = async () => {
-    setDisabled(true);
-    try {
-      const DappRemoval = Moralis.Object.extend("DappRemoval");
-      const newObject = new DappRemoval();
-      newObject.set("project_url", window.location.href);
-      newObject.set("status", "ACTIVE");
-      let response = await newObject.save();
-      toast.success("Succefully submited");
-      setDisabled(false);
-    } catch (e) {
-      setDisabled(false);
     }
   };
 
@@ -557,7 +527,9 @@ export default function DappDetails() {
                             )}
                           </button>
                           <div className="ml-2">
-                            <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">{likeCount}</span>
+                            <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                              {likeCount}
+                            </span>
                           </div>
                         </div>
 
@@ -579,31 +551,12 @@ export default function DappDetails() {
                             )}
                           </button>
                           <div className="ml-2">
-                            <span className="font-semibold">{dislikeCount}</span>
+                            <span className="font-semibold">
+                              {dislikeCount}
+                            </span>
                           </div>
                         </div>
                       </div>
-
-                      {/* <div>
-                        <BsHandThumbsUp
-                          className="h-6 w-6"
-                          color="blueviolet"
-                        />
-                      </div>
-                      <div className="ml-1">
-                        <p className="text-lg font-semibold text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                          {dappInfo.likes ? dappInfo.likes : 0}
-                        </p>
-                      </div>
-                      <div>
-                        <BsHandThumbsDown className="h-6 w-6" color="" />
-                      </div>
-                      <div className="ml-1">
-                        <p className="text-lg font-semibold">
-                          {dappInfo.unlikes ? dappInfo.unlikes : 0}
-                        </p>
-                      </div> */}
-                      {/* </div> */}
                     </div>
                   </div>
                 </div>
@@ -724,45 +677,52 @@ export default function DappDetails() {
                         </span>
                       </button>
                     </RWebShare>
-                    <button
-                      className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
+                    <Link href={"/dappAbusive?url=" + window.location.href}>
+                      <div
+                        className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
                   ${
                     theme === "light"
                       ? "bg-white border-slate-100 shadow-slate-200"
                       : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
                   }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
-                      onClick={() => reportAbusive()}
-                      disabled={isDisabled}
-                    >
-                      <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                        Report Abuse
-                      </span>
-                      <span className="md:hidden">
-                        <BsExclamationCircle
-                          className="h-5 w-5"
-                          color="blueviolet"
-                        />
-                      </span>
-                    </button>
-                    <button
-                      className={`rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
+                        // onClick={() => reportAbusive()}
+                        disabled={isDisabled}
+                      >
+                        <>
+                          <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                            Report Abuse
+                          </span>
+                          <span className="md:hidden">
+                            <BsExclamationCircle
+                              className="h-5 w-5"
+                              color="blueviolet"
+                            />
+                          </span>
+                        </>
+                      </div>
+                    </Link>
+
+                    <Link href={"/dappRemoval?url=" + window.location.href}>
+                      <div
+                        className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
                   ${
                     theme === "light"
                       ? "bg-white border-slate-100 shadow-slate-200"
                       : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
                   }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} `}
-                      onClick={() => requestRemoval()}
-                      disabled={isDisabled}
-                    >
-                      <span className="link p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                        Request Removal
-                      </span>
-                      <span className="md:hidden">
-                        <BsTrash2 className="h-5 w-5" color="blueviolet" />
-                      </span>
-                    </button>
+                        // onClick={() => requestRemoval()}
+                        disabled={isDisabled}
+                      >
+                        <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                          Request Removal
+                        </span>
+                        <span className="md:hidden">
+                          <BsTrash2 className="h-5 w-5" color="blueviolet" />
+                        </span>
+                      </div>
+                    </Link>
                     <button
                       className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
                         theme === "light"

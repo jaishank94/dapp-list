@@ -13,13 +13,19 @@ export default function index() {
   const [isLoading, setLoading] = useState(false);
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
+  const { query } = useRouter();
+  const { url } = query;
+
+  useEffect(() => {
+    setProjectUrl(url);
+  }, [url]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const requestRemoval = async () => {
-    if (project_url === "") {
+    if (!project_url || project_url === "") {
       toast.error("Project URL cannot be empty");
 
       return;
@@ -44,60 +50,56 @@ export default function index() {
 
   return (
     <Fragment>
-      <div className="relative overflow-hidden">
+      <div className="h-screen">
         <Toaster position="top-right" />
 
         <div
           className={`w-full ${
             theme === "light" ? "border-b-2" : "border-b-0"
-          } border-slate-300 py-2 mb-5`}
+          } border-slate-300 mb-5`}
         >
           <Header displayCreate={false} />
         </div>
-        <div className="w-full hidden mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10">
-            <div className="w-18">
-              <button
-                onClick={() => router.push("/dapps")}
-                className="flex item-center rounded-full shadow-2xl"
-              >
-                <BsFillArrowLeftCircleFill className="h-12 w-12" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <>
-        <div className="flex flex-col justify-center items-center">
-          <div className={` ${
-                theme === "light"
-                  ? " drop-shadow-2xl"
-                  : "custom-shadow-black"
-              }`}>
+        <div className="flex flex-col justify-center items-center max-w-7xl mx-auto px-4 md:px-16">
+          <div
+            className={`rounded-3xl border-2  shadow-2xl ${
+              theme === "light"
+                ? " border-slate-100 shadow-slate-300"
+                : " border-neutral-800 shadow-neutral-800"
+            }`}
+          >
             <div
-              className="flex flex-col py-6 items-center rounded-2xl text-xl justify-center  shadow-xl"
+              className={`flex flex-col p-6 items-center rounded-2xl text-2xl justify-center shadow-xl border-2  shadow-2xl ${
+                theme === "light"
+                  ? " border-slate-100 shadow-slate-300"
+                  : " border-neutral-800 shadow-neutral-800"
+              }`}
             >
               <p className="font-bold my-2">Request Removal</p>
               <p className="font-normal text-gray-500 text-sm py-4">
                 Remove your project from our website
               </p>
             </div>
-            <div>
+            <div className="flex justify-center items-center py-4 w-full">
               <input
                 type="text"
-                className="form-control custom-input px-5 mt-4"
+                className={`form-control rounded-xl shadow p-4 ${
+                  theme === "light"
+                    ? " border-slate-100 shadow-slate-300"
+                    : "bg-black border-neutral-800 shadow-neutral-800"
+                }`}
                 id="youtube"
                 name="youtube"
                 placeholder="Enter project link"
-                // value={project_url}
+                value={project_url}
                 onChange={(e) => setProjectUrl(e.target.value)}
               />
             </div>
-            <div className="submit-button py-6">
+            <div className="flex justify-center items-center py-6">
               <button
                 disabled={isLoading}
                 onClick={() => requestRemoval()}
-                className="inline-flex w-full  bg-black cursor-pointer text-xs sm:text-xs xl:text-base launcapp-btn px-4 py-4 text-white justify-center rounded-md"
+                className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white"
               >
                 {isLoading ? "Submitting..." : "Remove your DApp"}
               </button>
@@ -115,7 +117,7 @@ export default function index() {
             </div>
           </div>
         </div>
-      </>
+      </div>
       <Footer />
     </Fragment>
   );
