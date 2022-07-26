@@ -190,8 +190,8 @@ function Tbody(props) {
       <div className="table-row">
         <div className="rounded-lg lg:border-0 table-data hidden  lg:flex col-rank lg:bg-none">
           <div className="">
-            {/* <span className="current-rank">{props.index}</span> */}
-            <span className="list-disc text-2xl">.</span>
+            <span className="current-rank">{props.index}</span>
+            {/* <span className="list-disc text-2xl">.</span> */}
             <span className="past-rank"></span>
           </div>
         </div>

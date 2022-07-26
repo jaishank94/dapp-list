@@ -785,9 +785,9 @@ export default function DappDetails() {
                 </p>
               </div>
               {dappInfo.sns.youtube && dappInfo.sns.youtube !== "" && (
-                <div className="pt-6 flex items-center justify-center">
+                <div className="pt-6 w-full flex items-center justify-center">
                   <iframe
-                    className="h-96 rounded-2xl"
+                    className="h-96 w-full rounded-2xl"
                     src={dappInfo.sns.youtube}
                     title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
                     frameborder="0"
