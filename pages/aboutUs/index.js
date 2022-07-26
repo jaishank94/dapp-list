@@ -9,6 +9,38 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
+const faqs = [
+  {
+    question: "What is PulseChainProjects.io?",
+    answer:
+      "A ranking site for new or existing projects launching on PulseChain. ",
+  },
+  {
+    question: "Is it free?",
+    answer:
+      "Yes, PulseChainProjects.io is completely free tool to use for the community. All content is user generated. ",
+  },
+  {
+    question: "When will I see my project listing?",
+    answer:
+      "It takes around 12-24 hours before your listing will appear on the homepage. ",
+  },
+  {
+    question: "How do I get my project listing? ",
+    answer:
+      "Visit PulseChainProjects.io/Submit-Your-Dapp, Fill-out all required fields, Be unique, don’t just copy and paste your descriptions ",
+  },
+  {
+    question: "Why do I have to connect my wallet?",
+    answer: "If you would like to upvote or downvote a project.  ",
+  },
+  {
+    question: "If you would like to upvote or downvote a project. ",
+    answer:
+      "As of right now we are focusing on brand new projects launching on PulseChain. Possibly in the future we will support other blockchain listings.  ",
+  },
+];
+
 export default function index() {
   const router = useRouter();
   const { theme, setTheme } = useTheme("dark");
@@ -23,7 +55,6 @@ export default function index() {
   return (
     <Fragment>
       <div className="h-screen">
-
         <div className="">
           <div
             className={`w-full ${
@@ -71,173 +102,6 @@ export default function index() {
                   </div>
                 </div>
               </div>
-              {/* <div class="grid grid-cols-3 justify-between divide-x py-8">
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Status</p>
-                  </div>
-                  <div className="mt-2">
-                    <p
-                      className={`p-1 px-1 flex items-center text-lg justify-center text-xs font-semibold rounded-full truncate ${
-                        theme === "light"
-                          ? "bg-black text-white"
-                          : "bg-white text-black"
-                      }`}
-                    >
-                      {dappInfo.app_status}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Page Views</p>
-                  </div>
-                  <div className="flex mt-2">
-                    <span className="text-lg font-semibold">
-                      {dappInfo.page_views ? dappInfo.page_views : "0"}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Ticker</p>
-                  </div>
-                  <div className="mt-2">
-                    <p className="text-lg font-semibold uppercase">
-                      {dappInfo.ticker ? dappInfo.ticker : "_"}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-3 divide-x py-8">
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Sacrifice</p>
-                  </div>
-                  <div className="mt-2">
-                    <p className="text-lg font-semibold uppercase">
-                      {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Total Supply</p>
-                  </div>
-                  <div className="mt-2">
-                    <p className="text-lg font-semibold uppercase">
-                      {dappInfo.total_supply ? dappInfo.total_supply : "_"}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center justify-center">
-                  <div>
-                    <p className="text-gray-500">Vote</p>
-                  </div>
-                  <div className="mt-2 flex text-center cursor-pointer justify-center space-x-2">
-                    <div className="grid grid-cols-2">
-                      <div className="flex justify-center p-5">
-                        <button
-                          className="text-center"
-                          disabled={isDisabled}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            isAuthenticated
-                              ? handleReaction(true)
-                              : authenticate();
-                          }}
-                        >
-                          {like ? (
-                            <BsHandThumbsUpFill
-                              className="h-5 w-5"
-                              color="blueviolet"
-                            />
-                          ) : (
-                            <BsHandThumbsUp
-                              className="h-5 w-5"
-                              color="blueviolet"
-                            />
-                          )}
-                        </button>
-                        <div className="ml-2">
-                          <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                            {likeCount}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-center p-5">
-                        <button
-                          className="text-center"
-                          disabled={isDisabled}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            isAuthenticated
-                              ? handleReaction(false)
-                              : authenticate();
-                          }}
-                        >
-                          {dislike ? (
-                            <BsHandThumbsDownFill className="h-5 w-5" />
-                          ) : (
-                            <BsHandThumbsDown className="h-5 w-5" />
-                          )}
-                        </button>
-                        <div className="ml-2">
-                          <span className="font-semibold">{dislikeCount}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 divide-x py-8">
-                <div className="flex flex-col items-center">
-                  <div>
-                    <p className="text-gray-500 text-center">Social Media</p>
-                  </div>
-                  <div className="mt-2">
-                    <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                      {Object.entries(dappInfo.sns).map((val, key) => {
-                        return (
-                          <li className="p-2" key={key}>
-                            <a
-                              className="mr-4 hover:underline md:mr-6 "
-                              href={val[1]}
-                            >
-                              {snsIcon[val[0]]}
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div>
-                    <p className="text-gray-500 text-center">Source Code</p>
-                  </div>
-                  <div className="mt-2">
-                    <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                      {Object.entries(dappInfo.code).map((val, key) => {
-                        console.log("val", val);
-                        return (
-                          <li className="p-2" key={key}>
-                            <a
-                              className="mr-4 hover:underline md:mr-6 "
-                              href={val[1]}
-                            >
-                              {codeIcon[val[0]]}
-                            </a>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </div>
-              </div> */}
-              {/* </div> */}
               <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
                 <p className="text-gray-500 font-normal p-16 text-justify ">
                   PulseChainProjects.io is an open source tool built by the
@@ -250,7 +114,105 @@ export default function index() {
                   on all projects planning on launching.
                 </p>
               </div>
-              <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
+            </div>
+            <div className="flex flex-col justify-center items-center py-16">
+              <h1 className="text-3xl font-semibold">How it works?</h1>
+              <div className="grid grid-cols-2 gap-8 justify-between py-6">
+                <div className="relative">
+                  <div className="p-2 md:p-4 absolute z-50">
+                    <p className="text-lg w-3/4 font-bold">
+                      {"Lorem Ipsum doloramet sit."}
+                    </p>
+                    <p className="text-xs w-3/4  pt-1 font-bold">
+                      It is a long established fact that reader will be
+                      distracted by the readable content of a page when looking.
+                    </p>
+                  </div>
+                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="p-2 md:p-4 absolute z-50">
+                    <p className="text-lg w-3/4 font-bold">
+                      {"Lorem Ipsum doloramet sit."}
+                    </p>
+                    <p className="text-xs w-3/4  pt-1 font-bold">
+                      It is a long established fact that reader will be
+                      distracted by the readable content of a page when looking.
+                    </p>
+                  </div>
+                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="p-2 md:p-4 absolute z-50">
+                    <p className="text-lg w-3/4 font-bold">
+                      {"Lorem Ipsum doloramet sit."}
+                    </p>
+                    <p className="text-xs w-3/4  pt-1 font-bold">
+                      It is a long established fact that reader will be
+                      distracted by the readable content of a page when looking.
+                    </p>
+                  </div>
+                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="p-2 md:p-4 absolute z-50">
+                    <p className="text-lg w-3/4 font-bold">
+                      {"Lorem Ipsum doloramet sit."}
+                    </p>
+                    <p className="text-xs w-3/4  pt-1 font-bold">
+                      It is a long established fact that reader will be
+                      distracted by the readable content of a page when looking.
+                    </p>
+                  </div>
+                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center items-center py-16">
+              <h1 className="text-3xl font-semibold">FAQs</h1>
+              <div
+                id="accordion-collapse"
+                className="py-4"
+                data-accordion="collapse"
+              >
+                {faqs.map((val, i) => {
+                  return (
+                    <div className="py-4" key={i}>
+                      <h2 id="accordion-collapse-heading-1">
+                        <div
+                          className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                          data-accordion-target="#accordion-collapse-body-1"
+                          aria-expanded="true"
+                          aria-controls="accordion-collapse-body-1"
+                        >
+                          <span>{val.question}</span>
+                        </div>
+                      </h2>
+                      <div
+                        id="accordion-collapse-body-1"
+                        className=""
+                        aria-labelledby="accordion-collapse-heading-1"
+                      >
+                        <div className="p-5 font-light border shadow-xl border-gray-200 dark:border-gray-700 dark:bg-neutral-900 dark:shadow-neutral-800">
+                          <p className="mb-2 text-gray-500 dark:text-gray-400">
+                            {val.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex cursor-pointer justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
                 <Link
                   href="/dapps"
                   // className="flex item-center rounded-full shadow-2xl"
@@ -261,7 +223,6 @@ export default function index() {
                   </>
                 </Link>
               </div>
-            </div>
           </div>
         </div>
 
