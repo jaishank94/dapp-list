@@ -77,7 +77,7 @@ export default function Header({ displayCreate }) {
         </Link>
 
         <div className="flex items-center space-x-5">
-          <Link href="createDapp" className="">
+          <Link href="/createDapp" className="">
             <div className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white">
               Submit DApp
             </div>

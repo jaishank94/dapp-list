@@ -408,6 +408,9 @@ function Tbody(props) {
                 </div>
               </div>
             </div>
+            <div className="w-full">
+              <Link href={"/dappDetails/" + props.id}><span className="p-2 px-4 rounded-full w-full font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-lg text-white ">{" Learn More "}</span></Link>
+              </div>
           </div>
         </div>
       </div>
