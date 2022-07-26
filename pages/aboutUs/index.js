@@ -128,8 +128,8 @@ export default function index() {
                       distracted by the readable content of a page when looking.
                     </p>
                   </div>
-                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
-                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
                   </div>
                 </div>
                 <div className="relative">
@@ -142,8 +142,8 @@ export default function index() {
                       distracted by the readable content of a page when looking.
                     </p>
                   </div>
-                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
-                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
                   </div>
                 </div>
                 <div className="relative">
@@ -156,8 +156,8 @@ export default function index() {
                       distracted by the readable content of a page when looking.
                     </p>
                   </div>
-                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
-                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
                   </div>
                 </div>
                 <div className="relative">
@@ -170,8 +170,8 @@ export default function index() {
                       distracted by the readable content of a page when looking.
                     </p>
                   </div>
-                  <div className="p-2 md:p-4 h-72 w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-25">
-                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
                   </div>
                 </div>
               </div>
