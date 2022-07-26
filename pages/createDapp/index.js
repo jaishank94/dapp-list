@@ -226,7 +226,7 @@ export default function index() {
         this.setState({ isSubmitting: true });
         const Dapps = Moralis.Object.extend("Dapps");
         const newObject = new Dapps();
-        newObject.set("name", name);
+        newObject.set("name", name.toUpperCase());
         newObject.set("short_description", short_description);
         newObject.set("full_description", full_description);
         newObject.set("website_url", website_url);
@@ -735,7 +735,7 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-4 w-full">
                         <p className="font-bold text-lg mt-8">
-                          Project Information *
+                          Tokenomics *
                         </p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {ProjInformation.map((data, i) => {
@@ -790,7 +790,7 @@ export default function index() {
                           type="text"
                           id="tag"
                           name="tag"
-                          placeholder="NFT, DeFi, etc"
+                          placeholder="NFT + Games + Education"
                           value={formValues.tag}
                           // onChange={handleChange}
                           className={`form-control w-full rounded-xl shadow p-4 ${

@@ -54,7 +54,7 @@ const Categories = [
     name: "Games",
     slug: "Games",
     color: "rose",
-    bgColor:"bg-rose-200",
+    bgColor:"bg-rose-300",
     icon: (
       <GiConsoleController
         className="h-8 w-8 bg-rose-600 rounded-full p-1 mx-2"
@@ -66,7 +66,7 @@ const Categories = [
     name: "DeFi",
     slug: "DeFi",
     color: "pink",
-    bgColor:"bg-pink-200",
+    bgColor:"bg-pink-300",
     icon: (
       <GiChart
         className="h-8 w-8 bg-pink-600 rounded-full p-1 mx-4"
@@ -78,7 +78,7 @@ const Categories = [
     name: "NFT",
     slug: "NFT",
     color: "blue",
-    bgColor:"bg-blue-200",
+    bgColor:"bg-blue-300",
     icon: (
       <GiArtificialHive
         className="h-8 w-8 bg-blue-600 rounded-full p-1 mx-4"
@@ -90,7 +90,7 @@ const Categories = [
     name: "All Categories",
     slug: "Category",
     color: "slate",
-    bgColor:"bg-slate-200",
+    bgColor:"bg-slate-300",
     icon: (
       <GiHamburgerMenu
         className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"

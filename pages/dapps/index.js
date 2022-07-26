@@ -56,6 +56,7 @@ export default function index() {
   const { isInitialized } = useMoralis();
   const [data, setData] = useState([]);
   const [duration, setDuration] = useState("Daily");
+  const [searchText, setSearchText] = useState("");
   const [filter, setFilter] = useState(Filter[0]);
   const [category, setCategory] = useState(Category[0]);
   const [isLoading, setLoading] = useState(false);
@@ -66,11 +67,9 @@ export default function index() {
 
   useEffect(() => {
     if (isInitialized) {
-      // console.log("Asd", query)
-      // if(query)
       getAppList();
     }
-  }, [isInitialized, category, filter, duration, filter_category]);
+  }, [isInitialized, category, filter, duration, filter_category, searchText]);
 
   useEffect(() => {
     setMounted(true);
@@ -85,7 +84,10 @@ export default function index() {
       if (category.name !== "Category") {
         query.containedIn("type", [category.name]);
       }
-      console.log("asdasdad", filter_category);
+
+      if (searchText !== "") {
+        query.startsWith("name", searchText.toUpperCase());
+      }
 
       if (filter_category && filter_category !== "Category") {
         console.log("asdasdad", filter_category);
@@ -187,9 +189,7 @@ export default function index() {
                       ${
                         duration === "Daily"
                           ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                              theme === "light"
-                                ? ""
-                                : " border-black"
+                              theme === "light" ? "" : " border-black"
                             }`
                           : ""
                       }`}
@@ -223,9 +223,7 @@ export default function index() {
                         ${
                           duration === "Weekly"
                             ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                                theme === "light"
-                                  ? ""
-                                  : " border-black"
+                                theme === "light" ? "" : " border-black"
                               }`
                             : ""
                         }`}
@@ -258,9 +256,7 @@ export default function index() {
                         ${
                           duration === "Monthly"
                             ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                                theme === "light"
-                                  ? ""
-                                  : " border-black"
+                                theme === "light" ? "" : " border-black"
                               }`
                             : ""
                         }`}
@@ -294,9 +290,7 @@ export default function index() {
                        ${
                          duration === "Yearly"
                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                               theme === "light"
-                                 ? ""
-                                 : " border-black"
+                               theme === "light" ? "" : " border-black"
                              }`
                            : ""
                        }`}
@@ -442,6 +436,17 @@ export default function index() {
                   </Transition>
                 </div>
               </Listbox>
+              <div className="mx-2 mt-1">
+                <input
+                  type="text"
+                  className="flex p-2 w-28 md:w-36 shadow-lg boreder-2 border-slate-800 rounded-full"
+                  placeholder="Search"
+                  onChange={(e) => {
+                    // console.log(e.target.valuea, "adsasd");
+                    setSearchText(e.target.value);
+                  }}
+                />
+              </div>
             </div>
           </div>
           {/* </div> */}
@@ -455,10 +460,7 @@ export default function index() {
             <div className="flex grid grid-cols-8 gap-2 jusitfy-between space-x-10 ">
               <div className="px-2">
                 <div className="flex">
-                  <a
-                    href="#"
-                    className=""
-                  >
+                  <a href="#" className="">
                     Rank
                   </a>
                   <Popover className="relative help ">
