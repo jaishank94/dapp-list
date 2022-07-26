@@ -7,7 +7,7 @@
 
 
 .head-link {
-    /* color: rgba(33, 37, 41, .94118);
+  /* color: rgba(33, 37, 41, .94118);
     border-radius: 0;
     border: none;
     border-bottom-color: currentcolor;
@@ -17,180 +17,180 @@
     background: transparent;
     padding: 0;
     text-decoration: none; */
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.01em;
-    /* color: #1D202C; */
-    width: auto;
-  }
-  
-  .help .help-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .help {
-    margin-left: 5px;
-    cursor: help;
-  }
-  
-  .help-inner {
-  
-    /* background-color: #d6d6d6; */
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: .7rem;
-    color: #fff;
-    /* background: rgba(131, 137, 150, 1); */
-    background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
-  
-  
-  }
-  
-  .help-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .col-name {
-    flex: 1;
-    justify-content: flex-start;
-  }
-  
-  .col-dau,
-  .col-tx {
-    /* text-align: right; */
-    padding: 0 10px;
-  }
-  
-  /* .inset-y-0 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  /* color: #1D202C; */
+  width: auto;
+}
+
+.help .help-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.help {
+  margin-left: 5px;
+  cursor: help;
+}
+
+.help-inner {
+
+  /* background-color: #d6d6d6; */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: .7rem;
+  color: #fff;
+  /* background: rgba(131, 137, 150, 1); */
+  background: linear-gradient(210deg, #00eaff 0%, #0080ff 25%, #8000ff 50%, #e619e6 75%, #f00 100%);
+
+
+}
+
+.help-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.col-name {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.col-dau,
+.col-tx {
+  /* text-align: right; */
+  padding: 0 10px;
+}
+
+/* .inset-y-0 {
     top: 21px !important;
     bottom: 0px;
   } */
-  
-  .col-dau {
-    width: 130px;
-  }
-  
-  .component-ranking-table-dau-head {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .col-tx {
-    width: 125px;
-  }
-  
-  .component-ranking-table-tx-head {
-    display: flex;
-    justify-content: center;
-  }
-  
-  
-  .col-vol,
-  .col-rewards {
-    width: 150px;
-    text-align: right;
-    padding: 0 10px;
-  }
-  
-  .component-ranking-table-volume-head {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .p-rank {
-    font-family: 'Gordita';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 36px;
-    /* identical to box height, or 257% */
-  
-    letter-spacing: 0.01em;
-  
-    color: #1D202C;
-  }
-  
-  .component-ranking-table-volume-head {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .component-ranking-table-rewards-head {
-    display: flex;
-    justify-content: center;
-  }
-  
-  
-  .component-ranking-table-rank {
-    font-weight: 700;
-    width: 100%;
-    padding: 0;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-  
-  .past-rank {
-    font-size: .8rem;
-    display: flex;
-    text-align: center;
-    font-weight: 500;
-  }
-  
-  .table-header .table-row {
-    min-height: 22px;
-    box-shadow: none;
-    border-radius: 0;
-    background: transparent;
-    margin-bottom: 0;
-    cursor: auto;
-  }
-  
-  .table-row {
-    /* background: #fbfbff; */
-    border-radius: 4px;
-    /* box-shadow: 0 0 10px rgba(51, 51, 51, .05); */
-    margin-bottom: 12px;
-    padding-right: 15px;
-    min-height: 80px;
-    display: flex;
-    flex-flow: row nowrap;
-    cursor: pointer;
-  }
-  
-  
-  .custom-wrapper {
-    min-height: 100vh;
-    max-height: 100%;
-  }
-  
-  .col-rank {
-    width: 50px;
-    margin-right: 12px !important;
-    /* background: hsla(0, 0%, 92.5%, .12941); */
-  }
-  
-  .table-data {
-    margin: 0;
-    /* text-align: inherit; */
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;
-  }
-  
-  /* .table-data.col-rewards, .table-data.col-vol, .table-data.col-tx {
+
+.col-dau {
+  width: 130px;
+}
+
+.component-ranking-table-dau-head {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.col-tx {
+  width: 125px;
+}
+
+.component-ranking-table-tx-head {
+  display: flex;
+  justify-content: center;
+}
+
+
+.col-vol,
+.col-rewards {
+  width: 150px;
+  text-align: right;
+  padding: 0 10px;
+}
+
+.component-ranking-table-volume-head {
+  display: flex;
+  justify-content: center;
+}
+
+.p-rank {
+  font-family: 'Gordita';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 36px;
+  /* identical to box height, or 257% */
+
+  letter-spacing: 0.01em;
+
+  color: #1D202C;
+}
+
+.component-ranking-table-volume-head {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.component-ranking-table-rewards-head {
+  display: flex;
+  justify-content: center;
+}
+
+
+.component-ranking-table-rank {
+  font-weight: 700;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.past-rank {
+  font-size: .8rem;
+  display: flex;
+  text-align: center;
+  font-weight: 500;
+}
+
+.table-header .table-row {
+  min-height: 22px;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+  margin-bottom: 0;
+  cursor: auto;
+}
+
+.table-row {
+  /* background: #fbfbff; */
+  border-radius: 4px;
+  /* box-shadow: 0 0 10px rgba(51, 51, 51, .05); */
+  margin-bottom: 12px;
+  padding-right: 15px;
+  min-height: 80px;
+  display: flex;
+  flex-flow: row nowrap;
+  cursor: pointer;
+}
+
+
+.custom-wrapper {
+  min-height: 100vh;
+  max-height: 100%;
+}
+
+.col-rank {
+  width: 50px;
+  margin-right: 12px !important;
+  /* background: hsla(0, 0%, 92.5%, .12941); */
+}
+
+.table-data {
+  margin: 0;
+  /* text-align: inherit; */
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+/* .table-data.col-rewards, .table-data.col-vol, .table-data.col-tx {
     margin: 0;
     text-align: inherit;
     display: flex;
@@ -198,8 +198,8 @@
     justify-content: flex-end;
     padding: 10px 0;
   } */
-  
-  /* .component-ranking-table-rank {
+
+/* .component-ranking-table-rank {
     font-weight: 600;
     width: 100%;
     padding: 0;

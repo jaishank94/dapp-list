@@ -49,7 +49,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`flex truncate px-1 text-xs rounded truncate font-semibold
+                className={`text-center truncate px-1 text-xs rounded truncate font-semibold
                 ${bgColors[index]}
                  ${theme === "light" ? " text-white" : ""}
                 `}
@@ -60,16 +60,7 @@ function Tbody(props) {
           });
           return (
             <>
-              {TypeBadge}{" "}
-              {/* <span
-                className={`flex truncate text-xs rounded truncate font-semibold  ${
-                  theme === "light"
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
-                }`}
-              >
-                +{restCount} more
-              </span> */}
+              {TypeBadge}
             </>
           );
         } else {
@@ -77,7 +68,7 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`flex text-xs px-1 rounded font-semibold truncate 
+                className={`text-center text-xs px-1 rounded font-semibold truncate 
                 ${bgColors[index]}
                 ${theme === "light" ? "text-white" : ""}`}
               >
@@ -88,7 +79,7 @@ function Tbody(props) {
           return TypeBadge;
         }
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const handleReaction = async (isLiked) => {
@@ -196,11 +187,10 @@ function Tbody(props) {
           </div>
         </div>
         <div
-          className={`flex flex-col py-4 justify-center border-2  rounded-lg shadow-lg w-full lg:py-0 lg:justify-left lg:flex-row  ${
-            theme === "light"
+          className={`flex flex-col py-4 justify-center border-2  rounded-lg shadow-lg w-full lg:py-0 lg:justify-left lg:flex-row  ${theme === "light"
               ? "border-slate"
               : "border-neutral-800 shadow-neutral-800"
-          }`}
+            }`}
         >
           <div class="flex justify-start">
             <div className="flex justify-center items-center relative h-32 w-32">
@@ -212,22 +202,20 @@ function Tbody(props) {
                     src={props.logo}
                     width={80}
                     height={80}
-                    className={` shadow-lg ${
-                      theme === "light"
+                    className={` shadow-lg ${theme === "light"
                         ? "border-0 border-slate-100"
                         : "border-02 border-neutral-800 shadow-neutral-800"
-                    }`}
+                      }`}
                   />
                 ) : (
                   <Image
                     src={logo}
                     width={80}
                     height={80}
-                    className={` shadow-lg ${
-                      theme === "light"
+                    className={` shadow-lg ${theme === "light"
                         ? "border-0 shadow-slate-100"
                         : "border-2 border-neutral-800 shadow-neutral-800"
-                    }`}
+                      }`}
                   />
                 )}
               </div>
@@ -410,7 +398,7 @@ function Tbody(props) {
             </div>
             <div className="w-full">
               <Link href={"/dappDetails/" + props.id}><span className="p-2 px-4 rounded-full w-full font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-lg text-white ">{" Learn More "}</span></Link>
-              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const Categories = [
     name: "Games",
     slug: "Games",
     color: "rose",
-    bgColor:"bg-rose-300",
+    bgColor: "bg-rose-300",
     icon: (
       <GiConsoleController
         className="h-8 w-8 bg-rose-600 rounded-full p-1 mx-2"
@@ -66,7 +66,7 @@ const Categories = [
     name: "DeFi",
     slug: "DeFi",
     color: "pink",
-    bgColor:"bg-pink-300",
+    bgColor: "bg-pink-300",
     icon: (
       <GiChart
         className="h-8 w-8 bg-pink-600 rounded-full p-1 mx-4"
@@ -78,7 +78,7 @@ const Categories = [
     name: "NFT",
     slug: "NFT",
     color: "blue",
-    bgColor:"bg-blue-300",
+    bgColor: "bg-blue-300",
     icon: (
       <GiArtificialHive
         className="h-8 w-8 bg-blue-600 rounded-full p-1 mx-4"
@@ -90,7 +90,7 @@ const Categories = [
     name: "All Categories",
     slug: "Category",
     color: "slate",
-    bgColor:"bg-slate-300",
+    bgColor: "bg-slate-300",
     icon: (
       <GiHamburgerMenu
         className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
@@ -232,7 +232,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const getAppList = async () => {
@@ -258,11 +258,10 @@ export default function DappDetails() {
           return (
             <div
               key={index}
-              className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${
-                theme === "light"
-                  ? "bg-black text-white"
-                  : "bg-white text-black"
-              }`}
+              className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${theme === "light"
+                ? "bg-black text-white"
+                : "bg-white text-black"
+                }`}
             >
               {type}
             </div>
@@ -270,7 +269,7 @@ export default function DappDetails() {
         });
         return TypeBadge;
       }
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const handleReaction = async (isLiked) => {
@@ -375,9 +374,8 @@ export default function DappDetails() {
 
         <div className="">
           <div
-            className={`w-full ${
-              theme === "light" ? "border-b-2" : "border-b-0"
-            } border-slate-300 mb-5`}
+            className={`w-full ${theme === "light" ? "border-b-2" : "border-b-0"
+              } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
           </div>
@@ -397,48 +395,67 @@ export default function DappDetails() {
           {dappInfo && !isLoading && (
             <div className="max-w-7xl mx-auto px-4 md:px-28">
               <div
-                className={`rounded-3xl border-2  shadow-2xl ${
-                  theme === "light"
-                    ? " border-slate-100 shadow-slate-300"
-                    : " border-neutral-800 shadow-neutral-800"
-                }`}
+                className={`rounded-3xl border-2  shadow-2xl ${theme === "light"
+                  ? " border-slate-100 shadow-slate-300"
+                  : " border-neutral-800 shadow-neutral-800"
+                  }`}
               >
                 <div
-                  className={`flex rounded-3xl shadow-2xl  ${
-                    theme === "light"
+                  className={`rounded-3xl border-2  shadow-2xl ${theme === "light"
+                    ? " border-slate-100 shadow-slate-300"
+                    : " border-neutral-800 shadow-neutral-800"
+                    }`}
+                >
+                  <div
+                    className={`flex rounded-3xl shadow-2xl  ${theme === "light"
                       ? "border-slate-100 shadow-slate-300"
                       : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
-                  }`}
-                >
-                  <div className="relative h-32 w-32">
-                    <div className="absolute inset-0 object-fill">
-                      {dappInfo.logo && dappInfo.logo !== "" ? (
-                        <img
-                          alt="Logo"
-                          src={dappInfo.logo}
-                          width={110}
-                          height={110}
-                          className="rounded-lg h-32 w-32 object-fill"
-                        />
-                      ) : (
-                        <div className="p-4">
-                          <Image
-                            src={theme === "light" ? blackLogo : whiteLogo}
-                            width={80}
-                            height={80}
-                            className="rounded-lg h-32 w-32 "
+                      }`}
+                  >
+                    <div className="flex justify-center items-center relative h-32 w-32">
+                      <div className="rounded-xl object-fill from-indigo-500 via-purple-500 to-pink-500 shadow-lg">
+                        {dappInfo.logo && dappInfo.logo !== "" ? (
+                          <img
+                            alt="Logo"
+                            src={dappInfo.logo}
+                            width={110}
+                            height={110}
+                            className="rounded-lg h-32 w-32"
                           />
-                        </div>
-                      )}
+                        ) : (
+                          <div className="p-4">
+                            <Image
+                              src={theme === "light" ? blackLogo : whiteLogo}
+                              width={80}
+                              height={80}
+                              className="rounded-lg h-32 w-32 "
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex-initial px-5 xl:p-5">
+                      <div className="py-4">
+                        <h5 className="font-bold text-lg md:text-3xl">
+                          {dappInfo.name}
+                        </h5>
+                        <p className="text-gray-500 text-sm">
+                          {dappInfo.short_description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex-initial px-5 xl:p-5">
-                    <div className="py-4">
-                      <h5 className="font-bold text-lg">{dappInfo.name}</h5>
-                      <p className="text-gray-500 text-sm mt-2">
-                        {dappInfo.short_description}
-                      </p>
-                    </div>
+                  <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
+                    <p className="text-gray-500 font-normal p-16 text-justify ">
+                      PulseChainProjects.io is an open source tool built by the
+                      HowToPulse.com team. Create a FREE listing in less than 5
+                      mins. For the communities safety we will approve all listing
+                      before deploying them to the site.
+                      <br />
+                      <br />
+                      We are dedicated to providing the most up to date information
+                      on all projects planning on launching.
+                    </p>
                   </div>
                 </div>
                 <div class="grid grid-cols-3 justify-between divide-x py-8">
@@ -448,11 +465,10 @@ export default function DappDetails() {
                     </div>
                     <div className="mt-2">
                       <p
-                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${
-                          theme === "light"
-                            ? "bg-black text-white"
-                            : "bg-white text-black"
-                        }`}
+                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${theme === "light"
+                          ? "bg-black text-white"
+                          : "bg-white text-black"
+                          }`}
                       >
                         {dappInfo.app_status}
                       </p>
@@ -618,11 +634,10 @@ export default function DappDetails() {
                 </div>
                 <div className="mt-4">
                   <div
-                    className={`grid grid-cols-2 divide-x py-8 rounded-3xl border-2  shadow-2xl ${
-                      theme === "light"
-                        ? " border-slate-100 shadow-slate-300"
-                        : " border-neutral-800 shadow-neutral-800"
-                    }`}
+                    className={`grid grid-cols-2 divide-x py-8 rounded-3xl border-2  shadow-2xl ${theme === "light"
+                      ? " border-slate-100 shadow-slate-300"
+                      : " border-neutral-800 shadow-neutral-800"
+                      }`}
                   >
                     <div className="flex flex-col items-center justify-center">
                       <div>
@@ -666,12 +681,11 @@ export default function DappDetails() {
                       onClick={() => console.log("shared successfully!")}
                     >
                       <button
-                        className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${
-                          theme === "light"
-                            ? "bg-white border-slate-100 shadow-slate-200"
-                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                        } `}
-                        // onClick={logout}
+                        className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${theme === "light"
+                          ? "bg-white border-slate-100 shadow-slate-200"
+                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                          } `}
+                      // onClick={logout}
                       >
                         <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
                           Share
@@ -684,11 +698,10 @@ export default function DappDetails() {
                     <Link href={"/dappAbusive?url=" + window.location.href}>
                       <div
                         className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
-                  ${
-                    theme === "light"
-                      ? "bg-white border-slate-100 shadow-slate-200"
-                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                  }
+                  ${theme === "light"
+                            ? "bg-white border-slate-100 shadow-slate-200"
+                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                          }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
                         // onClick={() => reportAbusive()}
                         disabled={isDisabled}
@@ -710,11 +723,10 @@ export default function DappDetails() {
                     <Link href={"/dappRemoval?url=" + window.location.href}>
                       <div
                         className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
-                  ${
-                    theme === "light"
-                      ? "bg-white border-slate-100 shadow-slate-200"
-                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                  }
+                  ${theme === "light"
+                            ? "bg-white border-slate-100 shadow-slate-200"
+                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                          }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} `}
                         // onClick={() => requestRemoval()}
                         disabled={isDisabled}
@@ -728,11 +740,10 @@ export default function DappDetails() {
                       </div>
                     </Link>
                     <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
-                        theme === "light"
-                          ? "bg-white border-slate-100 shadow-slate-200"
-                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                      }`}
+                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light"
+                        ? "bg-white border-slate-100 shadow-slate-200"
+                        : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                        }`}
                       // onClick={logout}
                       disabled={true}
                     >
@@ -744,11 +755,10 @@ export default function DappDetails() {
                       </span>
                     </button>
                     <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
-                        theme === "light"
-                          ? "bg-white border-slate-100 shadow-slate-200"
-                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                      } `}
+                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light"
+                        ? "bg-white border-slate-100 shadow-slate-200"
+                        : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                        } `}
                       // onClick={logout}
                       disabled={true}
                     >
@@ -805,32 +815,29 @@ export default function DappDetails() {
                     Popular Projects
                   </h2>
                 </div>
-                <div className="my-10 grid gap-2 grid-cols-2 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
+                <div className="my-10 grid gap-2 grid-cols-1 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
                   {data &&
                     data.map((app, indx) => {
                       return (
                         <div
-                          className={`w-full my-2 rounded-2xl shadow-lg border-2 cursor-pointer  ${
-                            theme === "light"
-                              ? "border-slate-100 shadow-slate-100"
-                              : "border-neutral-800 shadow-neutral-800"
-                          }`}
+                          className={`w-full my-2 rounded-2xl shadow-lg border-2 cursor-pointer  ${theme === "light"
+                            ? "border-slate-100 shadow-slate-100"
+                            : "border-neutral-800 shadow-neutral-800"
+                            }`}
                           onClick={() =>
                             router.push("/dappDetails/" + app.objectId)
                           }
                           key={indx}
                         >
                           <div
-                            className={`flex block w-full h-full p-6 rounded-2xl  ${
-                              theme === "light" ? "bg-white" : "bg-black"
-                            } `}
+                            className={`flex block w-full h-full p-6 rounded-2xl  ${theme === "light" ? "bg-white" : "bg-black"
+                              } `}
                           >
                             <div
-                              className={`block p-6 rounded-lg shadow-lg border-2 ${
-                                theme === "light"
-                                  ? "border-white bg-white shadow-slate-200"
-                                  : "border-neutral-700 bg-neutral-700 shadow-neutral-800"
-                              }`}
+                              className={`block p-6 rounded-lg shadow-lg border-2 ${theme === "light"
+                                ? "border-white bg-white shadow-slate-200"
+                                : "border-neutral-700 bg-neutral-700 shadow-neutral-800"
+                                }`}
                             >
                               {app.logo && app.logo !== "" ? (
                                 <img
@@ -838,6 +845,7 @@ export default function DappDetails() {
                                   src={app.logo}
                                   width={80}
                                   height={80}
+                                  className=""
                                 />
                               ) : (
                                 <Image src={logo} width={80} height={80} />
@@ -849,11 +857,10 @@ export default function DappDetails() {
                                 {app.name}
                               </p>
                               <p
-                                className={`text-left py-2 text-sm font-thin text-justify ${
-                                  theme === "light"
-                                    ? "text-black"
-                                    : "text-gray-500"
-                                }`}
+                                className={`text-left py-2 text-sm font-thin text-justify ${theme === "light"
+                                  ? "text-black"
+                                  : "text-gray-500"
+                                  }`}
                               >
                                 {app.short_description}
                               </p>
