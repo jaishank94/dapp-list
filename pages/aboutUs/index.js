@@ -49,20 +49,20 @@ export default function index() {
                     : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
                 }`}
               >
-                <div className="relative h-32 w-32">
-                  <div className="absolute inset-0 rounded-xl object-fill bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg">
+                <div className="flex justify-center items-center relative h-32 w-32">
+                  <div className="rounded-xl object-fill bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg">
                     <Image
                       alt="logo"
-                      width={120}
-                      height={120}
-                      className="rounded-lg h-32 w-32 object-fill"
+                      width={80}
+                      height={80}
+                      className="rounded-lg h-32 w-32"
                       src={whiteLogo}
                     />
                   </div>
                 </div>
                 <div className="flex-initial px-5 xl:p-5">
                   <div className="py-4">
-                    <h5 className="font-bold text-3xl">
+                    <h5 className="font-bold text-lg md:text-3xl">
                       PulseChainProjects.io
                     </h5>
                     <p className="text-gray-500 text-sm">

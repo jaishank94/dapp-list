@@ -54,6 +54,7 @@ const Categories = [
     name: "Games",
     slug: "Games",
     color: "rose",
+    bgColor:"bg-rose-200",
     icon: (
       <GiConsoleController
         className="h-8 w-8 bg-rose-600 rounded-full p-1 mx-2"
@@ -65,6 +66,7 @@ const Categories = [
     name: "DeFi",
     slug: "DeFi",
     color: "pink",
+    bgColor:"bg-pink-200",
     icon: (
       <GiChart
         className="h-8 w-8 bg-pink-600 rounded-full p-1 mx-4"
@@ -76,6 +78,7 @@ const Categories = [
     name: "NFT",
     slug: "NFT",
     color: "blue",
+    bgColor:"bg-blue-200",
     icon: (
       <GiArtificialHive
         className="h-8 w-8 bg-blue-600 rounded-full p-1 mx-4"
@@ -87,6 +90,7 @@ const Categories = [
     name: "All Categories",
     slug: "Category",
     color: "slate",
+    bgColor:"bg-slate-200",
     icon: (
       <GiHamburgerMenu
         className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
@@ -440,11 +444,11 @@ export default function DappDetails() {
                 <div class="grid grid-cols-3 justify-between divide-x py-8">
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Status</p>
+                      <p className="text-gray-500 text-xs md:text-base">Status</p>
                     </div>
                     <div className="mt-2">
                       <p
-                        className={`p-1 px-1 flex items-center text-lg justify-center text-xs font-semibold rounded-full truncate ${
+                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${
                           theme === "light"
                             ? "bg-black text-white"
                             : "bg-white text-black"
@@ -456,20 +460,20 @@ export default function DappDetails() {
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Page Views</p>
+                      <p className="text-gray-500 text-xs md:text-base">Page Views</p>
                     </div>
                     <div className="flex mt-2">
-                      <span className="text-lg font-semibold">
+                      <span className="text-xs md:text-lg font-semibold">
                         {dappInfo.page_views ? dappInfo.page_views : "0"}
                       </span>
                     </div>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Ticker</p>
+                      <p className="text-gray-500 text-xs md:text-base">Ticker</p>
                     </div>
                     <div className="mt-2">
-                      <p className="text-lg font-semibold uppercase">
+                      <p className="text-xs md:text-lg font-semibold uppercase">
                         {dappInfo.ticker ? dappInfo.ticker : "_"}
                       </p>
                     </div>
@@ -479,27 +483,27 @@ export default function DappDetails() {
                 <div class="grid grid-cols-3 divide-x py-8">
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Sacrifice</p>
+                      <p className="text-gray-500 text-xs md:text-base">Sacrifice</p>
                     </div>
                     <div className="mt-2">
-                      <p className="text-lg font-semibold uppercase">
+                      <p className="text-xs md:text-lg font-semibold uppercase">
                         {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
                       </p>
                     </div>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Total Supply</p>
+                      <p className="text-gray-500 text-xs md:text-base">Total Supply</p>
                     </div>
                     <div className="mt-2">
-                      <p className="text-lg font-semibold uppercase">
+                      <p className="text-xs md:text-lg font-semibold uppercase">
                         {dappInfo.total_supply ? dappInfo.total_supply : "_"}
                       </p>
                     </div>
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500">Vote</p>
+                      <p className="text-gray-500 text-xs md:text-base">Vote</p>
                     </div>
                     <div className="mt-2 flex text-center cursor-pointer justify-center space-x-2">
                       <div className="grid grid-cols-2">
@@ -883,7 +887,7 @@ export default function DappDetails() {
                       return (
                         <button
                           key={indx}
-                          className={`border-2 cursor-pointer flex justify-start items-center px-2 py-4 m-2 space-around rounded-xl`}
+                          className={`${app.bgColor} cursor-pointer flex justify-start items-center px-2 py-4 m-2 space-around rounded-xl`}
                           onClick={() =>
                             router.push("/dapps?filter_category=" + app.slug)
                           }

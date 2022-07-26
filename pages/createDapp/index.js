@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useEffect, useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import Moralis from "moralis";
 import toast, { Toaster } from "react-hot-toast";
@@ -21,6 +21,8 @@ import {
 } from "react-icons/bs";
 import { AiFillGitlab } from "react-icons/ai";
 import { IoLogoBitbucket } from "react-icons/io";
+import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 
 const validation = Yup.object().shape({
   name: Yup.string().required("This field is required"),
@@ -79,35 +81,47 @@ const Category = [
 
 const ProjInformation = [{ name: "Airdrop" }, { name: "Sacrifice Phrase" }];
 
-class CreateApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      short_description: "",
-      full_description: "",
-      website_url: "",
-      app_status: "Live",
-      category: [],
-      porject_information: "Airdrop",
-      tag: "",
-      tag_arr: [],
-      facebook: "",
-      logo_url: "",
-      twitter: "",
-      instagram: "",
-      youtube: "",
-      github: "",
-      discord: "",
-      gitlab: "",
-      ticker: "",
-      sacrifice: "Yes",
-      total_supply: "",
-      isSubmitting: false,
-    };
-  }
+const initialValues = {
+  name: "",
+  short_description: "",
+  full_description: "",
+  website_url: "",
+  app_status: "Live",
+  category: [],
+  project_information: "Airdrop",
+  tag: "",
+  tag_arr: [],
+  facebook: "",
+  logo_url: "",
+  twitter: "",
+  instagram: "",
+  youtube: "",
+  github: "",
+  discord: "",
+  gitlab: "",
+  ticker: "",
+  sacrifice: "Yes",
+  total_supply: "",
+  isSubmitting: false,
+};
 
-  removeTag = (removeData) => {
+export default function index() {
+  const router = useRouter();
+  const [formValues, setformValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { theme, setTheme } = useTheme("dark");
+  const [isMounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const getFormData = (values) => {
+    console.log("getFormData::", values);
+  };
+  console.log("formValues::", formValues);
+
+  const removeTag = (removeData) => {
     const index = this.state.tag_arr.indexOf(removeData);
     console.log(index);
     if (index > -1) {
@@ -116,11 +130,11 @@ class CreateApp extends Component {
     this.setState({ tag_arr: this.state.tag_arr });
   };
 
-  setSocilaMedia = (e) => {
+  const setSocilaMedia = (e) => {
     console.log("ljhck", e.target.value);
   };
 
-  resetForm = (e) => {
+  const resetForm = (e) => {
     e.preventDefault();
     this.setState({
       name: "",
@@ -130,7 +144,7 @@ class CreateApp extends Component {
       logo_url: "",
       app_status: "",
       category: ["Games"],
-      porject_information: "Airdrop",
+      project_information: "Airdrop",
       tag: "",
       tag_arr: [],
       facebook: "",
@@ -151,7 +165,7 @@ class CreateApp extends Component {
     });
   };
 
-  submitApp = async () => {
+  const submitApp = async () => {
     const {
       name,
       short_description,
@@ -159,7 +173,7 @@ class CreateApp extends Component {
       website_url,
       app_status,
       category,
-      porject_information,
+      project_information,
       tag_arr,
       facebook,
       twitter,
@@ -187,7 +201,7 @@ class CreateApp extends Component {
       ticker !== "" &&
       app_status !== "" &&
       category.length &&
-      porject_information !== "" &&
+      project_information !== "" &&
       total_supply !== "" &&
       tag_arr.length
     ) {
@@ -242,7 +256,7 @@ class CreateApp extends Component {
             total_supply: "",
             app_status: "Live",
             category: ["Games"],
-            porject_information: "Airdrop",
+            project_information: "Airdrop",
             tag: "",
             tag_arr: [],
             facebook: "",
@@ -273,473 +287,559 @@ class CreateApp extends Component {
     }
   };
 
-  render() {
-    return (
-      <Fragment>
-        <div className="custom-wrapper">
-          <div className="relative wrapper overflow-hidden">
-            <Toaster position="top-right" />
-            <div className="w-full border-b-2 border-gray-900 mb-0">
-              <Header displayCreate={false} />
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmitting(true);
+  };
+
+  if (!isMounted) return null;
+
+  return (
+    <Fragment>
+      <div className="h-screen">
+        <Toaster position="top-right" />
+
+        <div className="">
+          <div
+            className={`w-full ${
+              theme === "light" ? "border-b-2" : "border-b-0"
+            } border-slate-300 mb-5`}
+          >
+            <Header displayCreate={false} />
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between p-4 max-w-7xl mx-auto">
+            {/* <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10"> */}
+            <div className="w-18 flex ">
+              <button
+                onClick={() => router.push("/dapps")}
+                className="flex item-center rounded-full shadow-2xl"
+              >
+                <BsFillArrowLeftCircleFill className="h-12 w-12" />
+              </button>
+              <div className="p-3 mx-6 xl:w-4/5 text-center">
+                <p className="font-bold text-2xl">Submit a DApp</p>
+              </div>
             </div>
           </div>
+          <div className="max-w-7xl mx-auto px-4 md:px-28 lg:px-36">
+            <p
+              className={`text-sm ${
+                theme === "light"
+                  ? "shadow-slate-100 border-slate-100"
+                  : "shadow-neutral-800 border-neutral-800"
+              } rounded-xl border-2 shadow-xl font-bold text-center p-4`}
+            >
+              Whether you are looking for new users, testers, concept feedback,
+              partners, or investors, submitting a DApp (Decentralized
+              Application) to this definitive registry will help your project
+              gain traction.
+              <br />
+              <br />
+              We welcome DApps at any stage in the product life-cycle (concepts
+              are encouraged), or even DApps that you didn't make but noticed
+              are missing. Email support@pulsechainprojects.io if you have any
+              questions!
+              <br />
+              <br />
+              Email{" "}
+              <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                support@pulsechainprojects.io
+              </span>{" "}
+              if you have any questions!
+            </p>
+          </div>
           <Formik
-            initialValues={{
-              name: this.state.name,
-              short_description: this.state.short_description,
-              full_description: this.state.full_description,
-              website_url: this.state.website_url,
-              logo_url: this.state.logo_url,
-              ticker: this.state.ticker,
-              total_supply: this.state.total_supply,
-              category: this.state.category,
-              tag_arr: this.state.tag_arr,
-            }}
+            // initialValues={{
+            //   name: this.state.name,
+            //   short_description: this.state.short_description,
+            //   full_description: this.state.full_description,
+            //   website_url: this.state.website_url,
+            //   logo_url: this.state.logo_url,
+            //   ticker: this.state.ticker,
+            //   total_supply: this.state.total_supply,
+            //   category: this.state.category,
+            //   tag_arr: this.state.tag_arr,
+            // }}
             enableReinitialize={true}
             validationSchema={validation}
-            onSubmit={this.submitApp}
+            // onSubmit={this.submitApp}
+            initialValues={initialValues}
+            onSubmit={(values, { setSubmitting }) => {}}
           >
-            {({ setFieldValue, setFieldTouched, values, errors, touched }) => {
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              setFieldValue,
+              resetForm,
+            }) => {
+              setformValues(values);
+              getFormData(values);
               return (
-                <Form>
-                  <div className="relative">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-64">
-                      <div className="flex justify-center p-2 items-center py-6 md:justify-center md:space-x-10">
-                        <div className="flex w-full text-center">
-                          <div className="w-18">
-                            <a
-                              href={"/dapps"}
-                              className="flex item-center rounded-full shadow-2xl"
-                            >
-                              <BsFillArrowLeftCircleFill className="h-12 w-12" />
-
-                              {/* <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-5 w-5 custom-back-icon"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg> */}
-                            </a>
-                          </div>
-                          <div className="p-3 mx-6 xl:w-4/5 text-center">
-                            <p className="font-bold text-2xl">Submit a DApp</p>
-                          </div>
-                          {/* <div className="hidden md:block flex mx-6">
-                          <button
-                            className={`sub-header-button text-white ${
-                              this.state.isSubmitting ? "" : ""
+                <Form onSubmit={handleSubmit}>
+                  <div className="max-w-7xl mx-auto px-4 md:px-28 lg:px-36">
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          placeholder="App Name *"
+                          value={formValues.name}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.name && errors.name ? "input-error" : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
                             }`}
-                            type="submit"
-                            disabled={this.state.isSubmitting}
-                          >
-                            {this.state.isSubmitting
-                              ? "Submitting..."
-                              : "Submit"}
-                          </button>
-                          <button
-                            className={`mx-2 rounded-full border-0 p-4 text-black bg-gray-300`}
-                            type="reset"
-                            onClick={(e) => this.resetForm(e)}
-                          >
-                            Reset
-                          </button>
-                        </div> */}
-                        </div>
+                          maxLength={50}
+                        />
+                        {errors.name ? (
+                          <div className="text-rose-900 my-2">
+                            {errors.name}
+                          </div>
+                        ) : (
+                          ""
+                        )}
                       </div>
-                    </div>
-                  </div>
-                  <div className="component-app-detail">
-                    <div className="py-6">
-                      <p className={`text-sm text-gray-500 bg-gray-200 rounded-xl border-2 border-stone-400 shadow-lg font-bold text-center p-4`}>
-                        Whether you are looking for new users, testers, concept
-                        feedback, partners, or investors, submitting a DApp
-                        (Decentralized Application) to this definitive registry
-                        will help your project gain traction.
-                        <br />
-                        <br />
-                        We welcome DApps at any stage in the product life-cycle
-                        (concepts are encouraged), or even DApps that you didn't
-                        make but noticed are missing. Email
-                        support@pulsechainprojects.io if you have any questions!
-                        <br />
-                        <br />
-                        Email <span className="link">support@pulsechainprojects.io</span> if you have any
-                        questions!
-                      </p>
-                    </div>
-                    <div className="flex justify-center">
-                      <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2">
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.name &&
-                                errors.name
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="name"
-                            name="name"
-                            placeholder="App Name *"
-                            value={this.state.name}
-                            onChange={(e) =>
-                              this.setState({ name: e.target.value })
-                            }
-                            maxLength={50}
-                          />
-                          {errors.name && !this.state.name ? (
-                            <div className="error my-2">{errors.name}</div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            className={`form-control custom-input px-5
-                                                    ${touched.short_description &&
-                                errors.short_description
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="short_description"
-                            name="short_description"
-                            placeholder="Short Description*"
-                            value={this.state.short_description}
-                            onChange={(e) =>
-                              this.setState({
-                                short_description: e.target.value,
-                              })
-                            }
-                            maxLength={25}
-                          />
-                          {errors.short_description &&
-                            !this.state.short_description ? (
-                            <div className="error my-2">
-                              {errors.short_description}
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.full_description &&
-                                errors.full_description
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="full_description"
-                            name="full_description"
-                            placeholder="Full Description*"
-                            value={this.state.full_description}
-                            onChange={(e) =>
-                              this.setState({
-                                full_description: e.target.value,
-                              })
-                            }
-                            maxLength={260}
-                          />
-                          {errors.full_description &&
-                            !this.state.full_description ? (
-                            <div className="error my-2">
-                              {errors.full_description}
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.website_url &&
-                                errors.website_url
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="website_url"
-                            name="website_url"
-                            placeholder="Website URL*"
-                            value={this.state.website_url}
-                            onChange={(e) =>
-                              this.setState({ website_url: e.target.value })
-                            }
-                          />
-                          {errors.website_url && !this.state.website_url ? (
-                            <div className="error my-2">
-                              {errors.website_url}
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.logo_url &&
-                                errors.logo_url
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="logo_url"
-                            name="logo_url"
-                            placeholder="DApp Logo URL*"
-                            value={this.state.logo_url}
-                            onChange={(e) =>
-                              this.setState({ logo_url: e.target.value })
-                            }
-                            maxLength={1000}
-                          />
-                          {errors.logo_url && !this.state.logo_url ? (
-                            <div className="error my-2">{errors.logo_url}</div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.ticker &&
-                                errors.ticker
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="ticker"
-                            name="ticker"
-                            placeholder="Ticker*"
-                            value={this.state.ticker}
-                            onChange={(e) =>
-                              this.setState({ ticker: e.target.value })
-                            }
-                            maxLength={200}
-                          />
-                          {errors.ticker && !this.state.ticker ? (
-                            <div className="error my-2">{errors.ticker}</div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5"
-                            className={`form-control custom-input px-5
-                                                    ${touched.total_supply &&
-                                errors.total_supply
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="total_supply"
-                            name="total_supply"
-                            placeholder="Total Supply*"
-                            value={this.state.total_supply}
-                            onChange={(e) =>
-                              this.setState({ total_supply: e.target.value })
-                            }
-                            maxLength={200}
-                          />
-                          {errors.total_supply && !this.state.total_supply ? (
-                            <div className="error my-2">
-                              {errors.total_supply}
-                            </div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">Sacrifice*</p>
-                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                            {SacrificeValues.map((data, i) => {
-                              return (
-                                <>
-                                  <div>
-                                    <div
-                                      onClick={(e) =>
-                                        this.setState({
-                                          sacrifice:
-                                            this.state.sacrifice === data.name
-                                              ? this.state.sacrifice
-                                              : data.name,
-                                        })
-                                      }
-                                      className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.sacrifice === data.name
-                                        ? "selected-background"
-                                        : ""
-                                        }`}>
-                                      <span className={`w-9/12 text-left ${this.state.sacrifice === data.name
-                                        ? "selected-text"
-                                        : ""
-                                        }`}>
-                                        {data.name}
-                                      </span>
-                                      <span className="w-3/12 text-right">
-                                        {/* {this.state.app_status === data.name ? (
-                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                        ) : (
-                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                        )} */}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </>
-                              );
-                            })}
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="short_description"
+                          name="short_description"
+                          placeholder="Short Description *"
+                          value={formValues.short_description}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.short_description &&
+                            errors.short_description
+                              ? "input-error"
+                              : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.short_description ? (
+                          <div short_description="text-rose-900 my-2">
+                            {errors.short_description}
                           </div>
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">App Status*</p>
-                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                            {AppStatus.map((data, i) => {
-                              return (
-                                <>
-                                  <div>
-                                    <div
-                                      onClick={(e) =>
-                                        this.setState({
-                                          app_status:
-                                            this.state.app_status === data.name
-                                              ? this.state.app_status
-                                              : data.name,
-                                        })
-                                      }
-                                      className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.app_status === data.name
-                                        ? "selected-background"
-                                        : ""
-                                        }`}>
-                                      <span className={`w-9/12 text-left ${this.state.app_status === data.name
-                                        ? "selected-text"
-                                        : ""
-                                        }`}>
-                                        {data.name}
-                                      </span>
-                                      <span className="w-3/12 text-right">
-                                        {/* {this.state.app_status === data.name ? (
-                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                        ) : (
-                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                        )} */}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </>
-                              );
-                            })}
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="full_description"
+                          name="full_description"
+                          placeholder="Full Description *"
+                          value={formValues.full_description}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.full_description && errors.full_description
+                              ? "input-error"
+                              : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.full_description ? (
+                          <div full_description="text-rose-900 my-2">
+                            {errors.full_description}
                           </div>
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">Category*</p>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 py-5 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                            {Category.map((data, i) => {
-                              return (
-                                <>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="website_url"
+                          name="website_url"
+                          placeholder="Website URL *"
+                          value={formValues.website_url}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.website_url && errors.website_url
+                              ? "input-error"
+                              : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.website_url ? (
+                          <div website_url="text-rose-900 my-2">
+                            {errors.website_url}
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="logo_url"
+                          name="logo_url"
+                          placeholder="DApp Logo URL *"
+                          value={formValues.logo_url}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.logo_url && errors.logo_url
+                              ? "input-error"
+                              : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.logo_url ? (
+                          <div logo_url="text-rose-900 my-2">
+                            {errors.logo_url}
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="ticker"
+                          name="ticker"
+                          placeholder="Ticker *"
+                          value={formValues.ticker}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.ticker && errors.ticker ? "input-error" : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.ticker ? (
+                          <div ticker="text-rose-900 my-2">{errors.ticker}</div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 pt-8 w-full">
+                        <input
+                          type="text"
+                          id="total_supply"
+                          name="total_supply"
+                          placeholder="Total Supply *"
+                          value={formValues.total_supply}
+                          onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.total_supply && errors.total_supply
+                              ? "input-error"
+                              : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                        />
+                        {errors.total_supply ? (
+                          <div total_supply="text-rose-900 my-2">
+                            {errors.total_supply}
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">Sacrifice *</p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {SacrificeValues.map((data, i) => {
+                            return (
+                              <>
+                                <div>
                                   <div
                                     onClick={(e) => {
-                                      let arr = this.state.category.filter(
-                                        (obj) => obj == data.name
-                                      );
-
-                                      if (arr.length === 0) {
-                                        this.setState({
-                                          category: [
-                                            ...this.state.category,
-                                            data.name,
-                                          ],
-                                        });
-                                      } else {
-                                        let newArr = this.state.category.filter(
-                                          (obj) => obj !== data.name
-                                        );
-                                        this.setState({
-                                          category: newArr,
-                                        });
-                                      }
+                                      e.preventDefault();
+                                      console.log("Asd", data.name);
+                                      setformValues({
+                                        ...formValues,
+                                        sacrifice: data.name,
+                                      });
+                                      console.log("Asd2");
                                     }}
-                                  // className="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 md:w-1/4 lg:my-1 lg:px-1 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4"
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      formValues.sacrifice !== data.name
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
                                   >
-                                    <div className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.category.includes(data.name)
-                                      ? "selected-background"
-                                      : ""
-                                      }`}>
-                                      <span className={`w-9/12 text-left ${this.state.category.includes(
-                                        data.name
-                                      )
-                                        ? "selected-text"
-                                        : ""
-                                        }`}>
-                                        {data.name}
-                                      </span>
-                                      <span className="w-3/12 text-right">
-                                        {this.state.category.includes(
-                                          data.name
-                                        ) ? (
-                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                        ) : (
-                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                        )}
-                                      </span>
-                                    </div>
-                                  </div>
-                                </>
-                              );
-                            })}
-                          </div>
-                          {errors.category &&
-                            this.state.category.length === 0 ? (
-                            <div className="error my-2">{errors.category}</div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">
-                            Project Information*
-                          </p>
-                          <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                            {ProjInformation.map((data, i) => {
-                              return (
-                                <div key={i}>
-                                  <div
-                                    onClick={(e) =>
-                                      this.setState({
-                                        porject_information:
-                                          this.state.porject_information ===
-                                            data.name
-                                            ? this.state.porject_information
-                                            : data.name,
-                                      })
-                                    }
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${this.state.porject_information === data.name
-                                      ? "selected-background"
-                                      : ""
-                                      }`}>
-                                    <span className={`w-9/12 text-left ${this.state.porject_information === data.name
-                                      ? "selected-text"
-                                      : ""
-                                      }`}>
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        formValues.sacrifice !== data.name
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
                                       {data.name}
                                     </span>
                                     <span className="w-3/12 text-right">
-                                      {/* {this.state.app_status === data.name ? (
-                                          <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                        ) : (
-                                          <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                        )} */}
+                                      {/* {formValues.sacrifice !== data.name ? (
+                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                         ) : (
+                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                         )} */}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">App Status *</p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {AppStatus.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      console.log("Asd", data.name);
+                                      setformValues({
+                                        ...formValues,
+                                        app_status: data.name,
+                                      });
+                                      console.log("Asd2");
+                                    }}
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      formValues.app_status !== data.name
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        formValues.app_status !== data.name
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {/* {formValues.app_status !== data.name ? (
+                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                         ) : (
+                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                         )} */}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">Categories *</p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {Category.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div
+                                    onClick={(e) => {
+                                      // let arr = this.state.category.filter(
+                                      //                                       (obj) => obj == data.name
+                                      //                                     );
+                                      //                                     if (arr.length === 0) {
+                                      //                                       this.setState({
+                                      //                                         category: [
+                                      //                                           ...this.state.category,
+                                      //                                           data.name,
+                                      //                                         ],
+                                      //                                       });
+                                      //                                     } else {
+                                      //                                       let newArr = this.state.category.filter(
+                                      //                                         (obj) => obj !== data.name
+                                      //                                       );
+                                      //                                       this.setState({
+                                      //                                         category: newArr,
+                                      //                                       });
+                                      //                                     }
+                                    }}
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      !formValues.category.includes(data.name)
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        !formValues.category.includes(data.name)
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {formValues.category.includes(
+                                        data.name
+                                      ) ? (
+                                        <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                      ) : (
+                                        <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                      )}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">
+                          Project Information *
+                        </p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {ProjInformation.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      console.log("Asd", data.name);
+                                      setformValues({
+                                        ...formValues,
+                                        project_information: data.name,
+                                      });
+                                      console.log("Asd2");
+                                    }}
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      formValues.project_information !==
+                                      data.name
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        formValues.project_information !==
+                                        data.name
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {/* {formValues.project_information !== data.name ? (
+                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                         ) : (
+                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                         )} */}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="my-2 px-2 pt-8 w-full">
+                      <p className="font-bold text-lg my-8">Tags *</p>
+                        <input
+                          type="text"
+                          id="tag"
+                          name="tag"
+                          placeholder="NFT, DeFi, etc"
+                          value={formValues.tag}
+                          // onChange={handleChange}
+                          className={`form-control w-full rounded-xl shadow p-4 ${
+                            touched.tag && errors.tag ? "input-error" : ""
+                          }
+                            ${
+                              theme === "light"
+                                ? " shadow-slate-300"
+                                : "bg-black shadow-neutral-800"
+                            }`}
+                          maxLength={50}
+                          onChange={(e) =>
+                            this.setState({ tag: e.target.value })
+                          }
+                          onKeyPress={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              this.setState(
+                                {
+                                  tag_arr: [
+                                    ...this.state.tag_arr,
+                                    this.state.tag,
+                                  ],
+                                },
+                                () => {
+                                  this.setState({ tag: "" });
+                                }
+                              );
+                              console.log(e.target.value);
+                            }
+                          }}
+                        />
+                        <div>
+                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                            {formValues.tag_arr.map((data, i) => {
+                              return (
+                                <div
+                                  key={i}
+                                  className=" items-center justify-center p-2"
+                                >
+                                  <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2">
+                                    <span className="w-9/12 text-left truncate">
+                                      {data}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      <BsDash
+                                        className="rounded-full border-2 shadow-md w-8 h-8"
+                                        onClick={(e) => removeTag(data)}
+                                      />
                                     </span>
                                   </div>
                                 </div>
@@ -747,361 +847,140 @@ class CreateApp extends Component {
                             })}
                           </div>
                         </div>
-                        <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">Tags*</p>
-                          <input
-                            type="text"
-                            // className="form-control custom-input px-5 mt-4"
-                            className={`form-control custom-input px-5 mt-4
-                                      ${touched.tag && errors.tag
-                                ? "is-invalid"
-                                : ""
-                              }`}
-                            id="tag"
-                            name="tag"
-                            placeholder="e.g.splinterlands"
-                            value={this.state.tag}
-                            onChange={(e) =>
-                              this.setState({ tag: e.target.value })
-                            }
-                            onKeyPress={(e) => {
-                              if (e.key === "Enter") {
-                                e.preventDefault();
-                                this.setState(
-                                  {
-                                    tag_arr: [
-                                      ...this.state.tag_arr,
-                                      this.state.tag,
-                                    ],
-                                  },
-                                  () => {
-                                    this.setState({ tag: "" });
-                                  }
-                                );
-                                console.log(e.target.value);
-                              }
-                            }}
-                          />
-                          <div>
-                            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                              {this.state.tag_arr.map((data, i) => {
-                                return (
-                                  <div key={i} className=" items-center justify-center p-2">
-                                    <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2">
-                                      <span className="w-9/12 text-left truncate">
-                                        {data}
-                                      </span>
-                                      <span className="w-3/12 text-right">
-                                        <BsDash className="rounded-full border-2 shadow-md w-8 h-8" onClick={(e) => this.removeTag(data)} />
-                                      </span>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
+                        {errors.tag_arr && formValues.tag_arr.length === 0 ? (
+                          <div className="text-rose-900 my-2">
+                            {errors.tag_arr}
                           </div>
-                          {errors.tag_arr && this.state.tag_arr.length === 0 ? (
-                            <div className="error my-2">{errors.tag_arr}</div>
-                          ) : (
-                            ""
-                          )}
-                        </div>
-                        <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">
-                            Social media links
-                          </p>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsFacebook className="h-5 w-5 text-black" />
-                                <p className="hidden md:block hidden md:block text-gray-600 pl-2">
-                                  https://facebook.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control custom-input px-20 md:px-72 mt-4"
-                              id="facebook"
-                              name="facebook"
-                              placeholder="Facebook"
-                              value={this.state.facebook}
-                              onChange={(e) =>
-                                this.setState({ facebook: e.target.value })
-                              }
-                              error={
-                                errors.facebook && Boolean(errors.facebook)
-                              }
-                              helpertext={
-                                errors.facebook ? errors.facebook : ""
-                              }
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsTwitter className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://telegram.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              id="twitter"
-                              name="twitter"
-                              placeholder="Twitter"
-                              value={this.state.twitter}
-                              onChange={(e) =>
-                                this.setState({ twitter: e.target.value })
-                              }
-                              error={errors.twitter && Boolean(errors.twitter)}
-                              helpertext={errors.twitter ? errors.twitter : ""}
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsInstagram className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://instagram.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              id="instagram"
-                              name="instagram"
-                              placeholder="Instagram"
-                              value={this.state.instagram}
-                              onChange={(e) =>
-                                this.setState({ instagram: e.target.value })
-                              }
-                              error={
-                                errors.instagram && Boolean(errors.instagram)
-                              }
-                              helpertext={
-                                errors.instagram ? errors.instagram : ""
-                              }
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsYoutube className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://youtube.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              maxLength={100}
-                              id="youtube"
-                              name="youtube"
-                              placeholder="Youtube"
-                              value={this.state.youtube}
-                              onChange={(e) =>
-                                this.setState({ youtube: e.target.value })
-                              }
-                              error={errors.youtube && Boolean(errors.youtube)}
-                              helpertext={errors.youtube ? errors.youtube : ""}
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsTelegram className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://telegram.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              maxLength={100}
-                              id="telegram"
-                              name="telegram"
-                              placeholder="Telegram"
-                              value={this.state.telegram}
-                              onChange={(e) =>
-                                this.setState({ telegram: e.target.value })
-                              }
-                              error={
-                                errors.telegram && Boolean(errors.telegram)
-                              }
-                              helpertext={
-                                errors.telegram ? errors.telegram : ""
-                              }
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsReddit className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://reddit.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              maxLength={100}
-                              id="reddit"
-                              name="reddit"
-                              placeholder="Reddit"
-                              value={this.state.reddit}
-                              onChange={(e) =>
-                                this.setState({ reddit: e.target.value })
-                              }
-                              error={errors.reddit && Boolean(errors.reddit)}
-                              helpertext={errors.reddit ? errors.reddit : ""}
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsMedium className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://medium.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              maxLength={100}
-                              id="medium"
-                              name="medium"
-                              placeholder="Medium"
-                              value={this.state.medium}
-                              onChange={(e) =>
-                                this.setState({ medium: e.target.value })
-                              }
-                              error={errors.medium && Boolean(errors.medium)}
-                              helpertext={errors.medium ? errors.medium : ""}
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                                <BsDiscord className="h-5 w-5 text-black" />
-                                <p className="hidden md:block text-gray-600 pl-2">
-                                  https://discord.com
-                                </p>
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control px-20 md:px-72 custom-input mt-4"
-                              maxLength={100}
-                              id="discord"
-                              name="discord"
-                              placeholder="Discord"
-                              value={this.state.discord}
-                              onChange={(e) =>
-                                this.setState({ discord: e.target.value })
-                              }
-                              error={errors.discord && Boolean(errors.discord)}
-                              helpertext={errors.discord ? errors.discord : ""}
-                            />
-                          </div>
-                        </div>
-                        <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
-                          <p className="font-bold text-lg mt-8">Source code</p>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-14">
-                                <BsGithub className="h-5 w-5 text-black" />
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control custom-input px-20 mt-4"
-                              maxLength={500}
-                              id="github"
-                              name="github"
-                              placeholder="Github"
-                              value={this.state.github}
-                              onChange={(e) =>
-                                this.setState({ github: e.target.value })
-                              }
-                              error={errors.github && Boolean(errors.github)}
-                              helpertext={errors.github ? errors.github : ""}
-                            />
-                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
 
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-14">
-                                <AiFillGitlab className="h-5 w-5 text-black" />
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control custom-input px-20 mt-4"
-                              maxLength={500}
-                              id="gitlab"
-                              name="gitlab"
-                              placeholder="Gitlab"
-                              value={this.state.gitlab}
-                              onChange={(e) =>
-                                this.setState({ gitlab: e.target.value })
-                              }
-                              error={errors.gitlab && Boolean(errors.gitlab)}
-                              helpertext={errors.gitlab ? errors.gitlab : ""}
-                            />
-                          </div>
-                          <div style={{ height: "100px", whiteSpace: "nowrap" }}>
-                            <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
-                              <div className="grid grid-cols-2 divide-x w-14">
-                                <IoLogoBitbucket className="h-5 w-5 text-black" />
-                              </div>
-                            </div>
-                            <input
-                              type="text"
-                              className="form-control custom-input px-20 mt-4"
-                              maxLength={500}
-                              id="bitbuket"
-                              name="bitbuket"
-                              placeholder="Bitbuket"
-                              value={this.state.bitbuket}
-                              onChange={(e) =>
-                                this.setState({ bitbuket: e.target.value })
-                              }
-                              error={
-                                errors.bitbuket && Boolean(errors.bitbuket)
-                              }
-                              helpertext={
-                                errors.bitbuket ? errors.bitbuket : ""
-                              }
-                            />
-                          </div>
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">
+                          Social Media
+                        </p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {ProjInformation.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      console.log("Asd", data.name);
+                                      setformValues({
+                                        ...formValues,
+                                        project_information: data.name,
+                                      });
+                                      console.log("Asd2");
+                                    }}
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      formValues.project_information !==
+                                      data.name
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        formValues.project_information !==
+                                        data.name
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {/* {formValues.project_information !== data.name ? (
+                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                         ) : (
+                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                         )} */}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
                         </div>
-                        <div className="flex my-4 w-full justify-center">
-                          <button
-                            className={`sub-header-button text-white ${this.state.isSubmitting ? "" : ""
-                              }`}
-                            type="submit"
-                            disabled={this.state.isSubmitting}
-                          >
-                            {this.state.isSubmitting
-                              ? "Submitting..."
-                              : "Submit"}
-                          </button>
-                          <button
-                            className={`mx-4 rounded-full border-0 p-4 text-black bg-gray-300`}
-                            type="reset"
-                            onClick={(e) => this.resetForm(e)}
-                          >
-                            Reset
-                          </button>
+                      </div>
+
+                      <div className="my-2 px-2 py-4 w-full">
+                        <p className="font-bold text-lg mt-8">
+                          Source Code
+                        </p>
+                        <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {ProjInformation.map((data, i) => {
+                            return (
+                              <>
+                                <div>
+                                  <div
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      console.log("Asd", data.name);
+                                      setformValues({
+                                        ...formValues,
+                                        project_information: data.name,
+                                      });
+                                      console.log("Asd2");
+                                    }}
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                      formValues.project_information !==
+                                      data.name
+                                        ? ""
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`w-9/12 text-left ${
+                                        formValues.project_information !==
+                                        data.name
+                                          ? ""
+                                          : "text-white"
+                                      }`}
+                                    >
+                                      {data.name}
+                                    </span>
+                                    <span className="w-3/12 text-right">
+                                      {/* {formValues.project_information !== data.name ? (
+                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                         ) : (
+                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                         )} */}
+                                    </span>
+                                  </div>
+                                </div>
+                              </>
+                            );
+                          })}
                         </div>
+                      </div>
+
+                      <div className="flex my-4 w-full justify-center">
+                        <button
+                          // className={`sub-header-button text-white ${
+                          //   this.state.isSubmitting ? "" : ""
+                          // }`}
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={`cursor-pointer rounded-lg p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white`}
+                        >
+                          {isSubmitting ? "Submitting..." : "Submit your DApp"}
+                        </button>
+                        <button
+                          className={`mx-4 rounded-lg border-0 p-2 shadow-lg ${
+                            theme === "light"
+                              ? "bg-slate-300 shadow-slate-300"
+                              : "bg-neutral-800 shadow-neutral-800"
+                          }`}
+                          type="reset"
+                          // onClick={(e) => this.resetForm(e)}
+                          onClick={resetForm}
+                        >
+                          Reset
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -1110,12 +989,339 @@ class CreateApp extends Component {
             }}
           </Formik>
         </div>
-        <div className="relative w-full bottom-0">
-          <Footer />
-        </div>
-      </Fragment>
-    );
-  }
+      </div>
+      <div className="relative w-full bottom-0">{/* <Footer /> */}</div>
+    </Fragment>
+  );
 }
+//                       <div className="my-2 px-2 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+//                         <p className="font-bold text-lg mt-8">Tags*</p>
+//                         <input
+//                           type="text"
+//                           // className="form-control custom-input px-5 mt-4"
+//                           className={`form-control custom-input px-5 mt-4
+//                                       ${
+//                                         touched.tag && errors.tag
+//                                           ? "is-invalid"
+//                                           : ""
+//                                       }`}
+//                           id="tag"
+//                           name="tag"
+//                           placeholder="e.g.splinterlands"
+//                           value={this.state.tag}
+//                           onChange={(e) =>
+//                             this.setState({ tag: e.target.value })
+//                           }
+//                           onKeyPress={(e) => {
+//                             if (e.key === "Enter") {
+//                               e.preventDefault();
+//                               this.setState(
+//                                 {
+//                                   tag_arr: [
+//                                     ...this.state.tag_arr,
+//                                     this.state.tag,
+//                                   ],
+//                                 },
+//                                 () => {
+//                                   this.setState({ tag: "" });
+//                                 }
+//                               );
+//                               console.log(e.target.value);
+//                             }
+//                           }}
+//                         />
+//                         <div>
+//                           <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+//                             {this.state.tag_arr.map((data, i) => {
+//                               return (
+//                                 <div
+//                                   key={i}
+//                                   className=" items-center justify-center p-2"
+//                                 >
+//                                   <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2">
+//                                     <span className="w-9/12 text-left truncate">
+//                                       {data}
+//                                     </span>
+//                                     <span className="w-3/12 text-right">
+//                                       <BsDash
+//                                         className="rounded-full border-2 shadow-md w-8 h-8"
+//                                         onClick={(e) => this.removeTag(data)}
+//                                       />
+//                                     </span>
+//                                   </div>
+//                                 </div>
+//                               );
+//                             })}
+//                           </div>
+//                         </div>
+//                         {errors.tag_arr && this.state.tag_arr.length === 0 ? (
+//                           <div className="error my-2">{errors.tag_arr}</div>
+//                         ) : (
+//                           ""
+//                         )}
+//                       </div>
+//                       <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+//                         <p className="font-bold text-lg mt-8">
+//                           Social media links
+//                         </p>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsFacebook className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block hidden md:block text-gray-600 pl-2">
+//                                 https://facebook.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control custom-input px-20 md:px-72 mt-4"
+//                             id="facebook"
+//                             name="facebook"
+//                             placeholder="Facebook"
+//                             value={this.state.facebook}
+//                             onChange={(e) =>
+//                               this.setState({ facebook: e.target.value })
+//                             }
+//                             error={errors.facebook && Boolean(errors.facebook)}
+//                             helpertext={errors.facebook ? errors.facebook : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsTwitter className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://telegram.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             id="twitter"
+//                             name="twitter"
+//                             placeholder="Twitter"
+//                             value={this.state.twitter}
+//                             onChange={(e) =>
+//                               this.setState({ twitter: e.target.value })
+//                             }
+//                             error={errors.twitter && Boolean(errors.twitter)}
+//                             helpertext={errors.twitter ? errors.twitter : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsInstagram className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://instagram.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             id="instagram"
+//                             name="instagram"
+//                             placeholder="Instagram"
+//                             value={this.state.instagram}
+//                             onChange={(e) =>
+//                               this.setState({ instagram: e.target.value })
+//                             }
+//                             error={
+//                               errors.instagram && Boolean(errors.instagram)
+//                             }
+//                             helpertext={
+//                               errors.instagram ? errors.instagram : ""
+//                             }
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsYoutube className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://youtube.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             maxLength={100}
+//                             id="youtube"
+//                             name="youtube"
+//                             placeholder="Youtube"
+//                             value={this.state.youtube}
+//                             onChange={(e) =>
+//                               this.setState({ youtube: e.target.value })
+//                             }
+//                             error={errors.youtube && Boolean(errors.youtube)}
+//                             helpertext={errors.youtube ? errors.youtube : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsTelegram className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://telegram.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             maxLength={100}
+//                             id="telegram"
+//                             name="telegram"
+//                             placeholder="Telegram"
+//                             value={this.state.telegram}
+//                             onChange={(e) =>
+//                               this.setState({ telegram: e.target.value })
+//                             }
+//                             error={errors.telegram && Boolean(errors.telegram)}
+//                             helpertext={errors.telegram ? errors.telegram : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsReddit className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://reddit.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             maxLength={100}
+//                             id="reddit"
+//                             name="reddit"
+//                             placeholder="Reddit"
+//                             value={this.state.reddit}
+//                             onChange={(e) =>
+//                               this.setState({ reddit: e.target.value })
+//                             }
+//                             error={errors.reddit && Boolean(errors.reddit)}
+//                             helpertext={errors.reddit ? errors.reddit : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsMedium className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://medium.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             maxLength={100}
+//                             id="medium"
+//                             name="medium"
+//                             placeholder="Medium"
+//                             value={this.state.medium}
+//                             onChange={(e) =>
+//                               this.setState({ medium: e.target.value })
+//                             }
+//                             error={errors.medium && Boolean(errors.medium)}
+//                             helpertext={errors.medium ? errors.medium : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex bg-white rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+//                               <BsDiscord className="h-5 w-5 text-black" />
+//                               <p className="hidden md:block text-gray-600 pl-2">
+//                                 https://discord.com
+//                               </p>
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control px-20 md:px-72 custom-input mt-4"
+//                             maxLength={100}
+//                             id="discord"
+//                             name="discord"
+//                             placeholder="Discord"
+//                             value={this.state.discord}
+//                             onChange={(e) =>
+//                               this.setState({ discord: e.target.value })
+//                             }
+//                             error={errors.discord && Boolean(errors.discord)}
+//                             helpertext={errors.discord ? errors.discord : ""}
+//                           />
+//                         </div>
+//                       </div>
+//                       <div className="my-2 px-2 pb-16 w-full overflow-hidden sm:my-2 sm:px-2 md:my-2 md:px-2 lg:my-2 lg:px-2 xl:my-2 xl:px-2">
+//                         <p className="font-bold text-lg mt-8">Source code</p>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-14">
+//                               <BsGithub className="h-5 w-5 text-black" />
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control custom-input px-20 mt-4"
+//                             maxLength={500}
+//                             id="github"
+//                             name="github"
+//                             placeholder="Github"
+//                             value={this.state.github}
+//                             onChange={(e) =>
+//                               this.setState({ github: e.target.value })
+//                             }
+//                             error={errors.github && Boolean(errors.github)}
+//                             helpertext={errors.github ? errors.github : ""}
+//                           />
+//                         </div>
 
-export default CreateApp;
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-14">
+//                               <AiFillGitlab className="h-5 w-5 text-black" />
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control custom-input px-20 mt-4"
+//                             maxLength={500}
+//                             id="gitlab"
+//                             name="gitlab"
+//                             placeholder="Gitlab"
+//                             value={this.state.gitlab}
+//                             onChange={(e) =>
+//                               this.setState({ gitlab: e.target.value })
+//                             }
+//                             error={errors.gitlab && Boolean(errors.gitlab)}
+//                             helpertext={errors.gitlab ? errors.gitlab : ""}
+//                           />
+//                         </div>
+//                         <div style={{ height: "100px", whiteSpace: "nowrap" }}>
+//                           <div className="p-6 relative w-16 md:w-56 top-5-6 left-3 flex rounded-md">
+//                             <div className="grid grid-cols-2 divide-x w-14">
+//                               <IoLogoBitbucket className="h-5 w-5 text-black" />
+//                             </div>
+//                           </div>
+//                           <input
+//                             type="text"
+//                             className="form-control custom-input px-20 mt-4"
+//                             maxLength={500}
+//                             id="bitbuket"
+//                             name="bitbuket"
+//                             placeholder="Bitbuket"
+//                             value={this.state.bitbuket}
+//                             onChange={(e) =>
+//                               this.setState({ bitbuket: e.target.value })
+//                             }
+//                             error={errors.bitbuket && Boolean(errors.bitbuket)}
+//                             helpertext={errors.bitbuket ? errors.bitbuket : ""}
+//                           />
+//                         </div>
+//                       </div>

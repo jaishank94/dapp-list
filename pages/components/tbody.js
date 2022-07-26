@@ -40,6 +40,8 @@ function Tbody(props) {
     try {
       let TypeLength = val ? val.length : 0;
       let TypeBadge = "";
+      let bgColors = ["bg-blue-500", "bg-rose-500"];
+
       if (TypeLength > 0) {
         if (TypeLength > 2) {
           let restCount = TypeLength - 2;
@@ -47,28 +49,27 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`p-1 px-1 truncate text-xs font-semibold rounded-full truncate bottom-partial ${
-                  theme === "light"
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
-                }`}
+                className={`flex truncate px-1 text-xs rounded truncate font-semibold
+                ${bgColors[index]}
+                 ${theme === "light" ? " text-white" : ""}
+                `}
               >
-                {type}
+                <span className="w-3/4">{type}</span>
               </div>
             );
           });
           return (
             <>
               {TypeBadge}{" "}
-              <span
-                className={`p-1 px-1 text-xs truncate font-semibold rounded-full bottom-partial ${
+              {/* <span
+                className={`flex truncate text-xs rounded truncate font-semibold  ${
                   theme === "light"
                     ? "bg-black text-white"
                     : "bg-white text-black"
                 }`}
               >
                 +{restCount} more
-              </span>
+              </span> */}
             </>
           );
         } else {
@@ -76,13 +77,11 @@ function Tbody(props) {
             return (
               <div
                 key={index}
-                className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${
-                  theme === "light"
-                    ? "bg-black text-white"
-                    : "bg-white text-black"
-                }`}
+                className={`flex text-xs px-1 rounded font-semibold truncate 
+                ${bgColors[index]}
+                ${theme === "light" ? "text-white" : ""}`}
               >
-                {type}
+                <span className="w-3/4">{type}</span>
               </div>
             );
           });
@@ -204,39 +203,42 @@ function Tbody(props) {
           }`}
         >
           <div class="flex justify-start">
-            {/* <div className="w-1/4 flex items-center justify-center mx-2"> */}
-            {props.logo && props.logo !== "" ? (
-              <img
-                alt="Logo"
-                src={props.logo}
-                width={40}
-                height={40}
-                className={`w-40 h-40 p-2 m-2 object-fit shadow ${
-                  theme === "light"
-                    ? "border-0 border-slate-100"
-                    : "border-02 border-neutral-800 shadow-neutral-800"
-                } rounded-xl`}
-              />
-            ) : (
-              <Image
-                src={logo}
-                width={40}
-                height={40}
-                className={`w-40 h-40 p-2 m-2 object-fit shadow ${
-                  theme === "light"
-                    ? "border-0 shadow-slate-100"
-                    : "border-2 border-neutral-800 shadow-neutral-800"
-                } rounded-xl`}
-              />
-            )}
-            {/* </div> */}
+            <div className="flex justify-center items-center relative h-32 w-32">
+              <div className="rounded-lg object-fill shadow-lg ">
+                {/* <div className="w-1/4 flex items-center justify-center mx-2"> */}
+                {props.logo && props.logo !== "" ? (
+                  <img
+                    alt="Logo"
+                    src={props.logo}
+                    width={80}
+                    height={80}
+                    className={` shadow-lg ${
+                      theme === "light"
+                        ? "border-0 border-slate-100"
+                        : "border-02 border-neutral-800 shadow-neutral-800"
+                    }`}
+                  />
+                ) : (
+                  <Image
+                    src={logo}
+                    width={80}
+                    height={80}
+                    className={` shadow-lg ${
+                      theme === "light"
+                        ? "border-0 shadow-slate-100"
+                        : "border-2 border-neutral-800 shadow-neutral-800"
+                    }`}
+                  />
+                )}
+              </div>
+            </div>
 
-            <div class="p-6 flex flex-col justify-start">
+            <div class="px-6 my-2 flex flex-col justify-start">
               <h5 class="text-2xl font-medium mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 <Link href={"/dappDetails/" + props.id}>{props.name}</Link>
               </h5>
               <p class="text-base mb-4">{props.short_description}</p>
-              <p class="flex items-center space-x-2">
+              <p class="grid grid-cols-2 gap-2 truncate">
                 {" "}
                 {getDisplayType(props.types)}
               </p>
@@ -244,7 +246,6 @@ function Tbody(props) {
           </div>
           <div className="hidden md:flex">
             <div className="flex table-data flex col-dau">
-              <span className="col-title-mobile">Page Views</span>
               <div className="component-ranking-table-value-pct">
                 <span className="value">{props.page_views}</span>
                 {/* <div className="pct is-positive">
@@ -256,7 +257,6 @@ function Tbody(props) {
               </div>
             </div>
             <div className="table-data flex col-tx">
-              <span className="col-title-mobile">Status</span>
               <div className="component-ranking-table-value-pct">
                 <span className="value uppercase">{props.app_status}</span>
                 {/* <span className="pct is-positive">
@@ -268,14 +268,12 @@ function Tbody(props) {
               </div>
             </div>
             <div className="table-data flex col-vol">
-              <span className="col-title-mobile">Ticker</span>
               <div className="component-ranking-table-volume-head">
                 <span className="value uppercase">{props.ticker}</span>
                 {/* <span className="pct is-negative">-9.00%</span> */}
               </div>
             </div>
             <div className="table-data flex col-vol col-vol-hbd">
-              <span className="col-title-mobile">Sacrifice</span>
               <div className="component-ranking-table-volume-head">
                 <span className="value uppercase">{props.sacrifice}</span>
                 {/* <span className="pct is-positive">
@@ -285,7 +283,6 @@ function Tbody(props) {
               </div>
             </div>
             <div className="table-data flex col-rewards col-rewards-hive">
-              <span className="col-title-mobile">Total Supply</span>
               <div className="component-ranking-table-volume-head">
                 <span className="value uppercase">{props.total_supply}</span>
                 {/* <span className="pct is-positive">
@@ -297,7 +294,6 @@ function Tbody(props) {
               </div>
             </div>
             <div className="table-data flex col-rewards col-rewards-hive">
-              <span className="col-title-mobile">Vote</span>
               <div className="component-ranking-table-volume-head">
                 <span className="value flex">
                   <button
@@ -317,7 +313,9 @@ function Tbody(props) {
                       <BsHandThumbsUp className="h-5 w-5" color="blueviolet" />
                     )}
 
-                    <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">{likeCount}</span>
+                    <span className="text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                      {likeCount}
+                    </span>
                   </button>
                   <button
                     className="text-center ml-2"
