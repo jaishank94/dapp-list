@@ -448,16 +448,16 @@ export default function index() {
         </div>
         <div className="flex flex-col justify-between p-2 py-16 max-w-7xl mx-auto">
           <div
-            className={` hidden md:inline-flex table-header py-4 rounded-md ${
+            className={` hidden lg:inline-flex r py-4 rounded-md ${
               theme === "light" ? "bg-white shadow-md" : "bg-neutral-800"
             }`}
           >
-            <div className="table-row">
-              <div className="table-head col-rank px-2">
+            <div className="flex grid grid-cols-8 gap-2 jusitfy-between space-x-10 ">
+              <div className="px-2">
                 <div className="flex">
                   <a
                     href="#"
-                    className="label head-link router-link-active is-active"
+                    className=""
                   >
                     Rank
                   </a>
@@ -478,10 +478,10 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-name">
+              <div className="">
                 <div className="component-ranking-table-name-head"></div>
               </div>
-              <div className="table-head col-dau">
+              <div className="">
                 <div
                   data-v-e13d5096=""
                   className="component-ranking-table-dau-head"
@@ -503,7 +503,7 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-tx">
+              <div className="">
                 <div className="component-ranking-table-tx-head">
                   <a
                     href="/?sort=tx&amp;order=desc&amp;time=last_day"
@@ -522,7 +522,7 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-vol">
+              <div className="">
                 <div className="component-ranking-table-volume-head">
                   <a
                     href="/?sort=volume_hive&amp;order=desc&amp;time=last_day"
@@ -541,7 +541,7 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-vol col-vol-hbd">
+              <div className="">
                 <div className="component-ranking-table-volume-head">
                   <a
                     href="/?sort=volume_hbd&amp;order=desc&amp;time=last_day"
@@ -560,7 +560,7 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-rewards col-rewards-hive">
+              <div className="">
                 <div className="component-ranking-table-rewards-head">
                   <a
                     href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day"
@@ -579,7 +579,7 @@ export default function index() {
                   </Popover>
                 </div>
               </div>
-              <div className="table-head col-rewards col-rewards-hive">
+              <div className="">
                 <div className="component-ranking-table-rewards-head">
                   <a
                     href="/?sort=rewards_hive&amp;order=desc&amp;time=last_day"

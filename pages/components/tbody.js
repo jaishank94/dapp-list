@@ -188,7 +188,7 @@ function Tbody(props) {
   return (
     <div className="table-body mt-5 px-4" key={props.index}>
       <div className="table-row">
-        <div className="rounded-lg lg:border-0 table-data hidden  md:flex col-rank lg:bg-none">
+        <div className="rounded-lg lg:border-0 table-data hidden  lg:flex col-rank lg:bg-none">
           <div className="">
             {/* <span className="current-rank">{props.index}</span> */}
             <span className="list-disc text-2xl">.</span>
@@ -244,7 +244,7 @@ function Tbody(props) {
               </p>
             </div>
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden lg:flex">
             <div className="flex table-data flex col-dau">
               <div className="component-ranking-table-value-pct">
                 <span className="value">{props.page_views}</span>
@@ -337,7 +337,7 @@ function Tbody(props) {
               </div>
             </div>
           </div>
-          <div className="block md:hidden text-center">
+          <div className="block lg:hidden text-center">
             <div className="grid grid-cols-2 divide-x divide-gray-700">
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Page Views</p>
