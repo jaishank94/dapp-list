@@ -23,7 +23,7 @@ import { AiFillGitlab } from "react-icons/ai";
 import { IoLogoBitbucket } from "react-icons/io";
 import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
-import Modal from "../components/modal";
+import Modal from "../components/Modal";
 import Link from "next/link";
 
 const validation = Yup.object().shape({
