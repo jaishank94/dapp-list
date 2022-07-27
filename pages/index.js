@@ -17,7 +17,7 @@ export default function index() {
 
   useEffect(() => {
     setMounted(true);
-    setTheme("dark");
+    setTheme("light");
   }, []);
 
   useEffect(() => {

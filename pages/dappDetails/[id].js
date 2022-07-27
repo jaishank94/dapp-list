@@ -48,6 +48,7 @@ import { IoLogoBitbucket } from "react-icons/io";
 import { RWebShare } from "react-web-share";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import { BiCertification } from "react-icons/bi";
 
 const Categories = [
   {
@@ -232,7 +233,7 @@ export default function DappDetails() {
         response[0].increment("page_views", 1);
         await response[0].save();
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const getAppList = async () => {
@@ -258,10 +259,11 @@ export default function DappDetails() {
           return (
             <div
               key={index}
-              className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${theme === "light"
-                ? "bg-black text-white"
-                : "bg-white text-black"
-                }`}
+              className={`p-1 px-1 text-xs truncate font-semibold rounded-full truncate bottom-partial ${
+                theme === "light"
+                  ? "bg-black text-white"
+                  : "bg-white text-black"
+              }`}
             >
               {type}
             </div>
@@ -269,7 +271,7 @@ export default function DappDetails() {
         });
         return TypeBadge;
       }
-    } catch (e) { }
+    } catch (e) {}
   }
 
   const handleReaction = async (isLiked) => {
@@ -374,8 +376,9 @@ export default function DappDetails() {
 
         <div className="">
           <div
-            className={`w-full ${theme === "light" ? "border-b-2" : "border-b-0"
-              } border-slate-300 mb-5`}
+            className={`w-full ${
+              theme === "light" ? "border-b-2" : "border-b-0"
+            } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
           </div>
@@ -384,33 +387,35 @@ export default function DappDetails() {
           <div className="flex justify-between p-4 max-w-7xl mx-auto">
             {/* <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10"> */}
             <div className="w-18">
-              <button
-                onClick={() => router.push("/dapps")}
-                className="flex item-center rounded-full shadow-2xl"
-              >
-                <BsFillArrowLeftCircleFill className="h-12 w-12" />
-              </button>
+              <Link href="/dapps">
+                <div className="flex item-center cursor-pointer rounded-full shadow-2xl">
+                  <BsFillArrowLeftCircleFill className="h-12 w-12" />
+                </div>
+              </Link>
             </div>
           </div>
           {dappInfo && !isLoading && (
             <div className="max-w-7xl mx-auto px-4 md:px-28">
               <div
-                className={`rounded-3xl border-2  shadow-2xl ${theme === "light"
-                  ? " border-slate-100 shadow-slate-300"
-                  : " border-neutral-800 shadow-neutral-800"
-                  }`}
-              >
-                <div
-                  className={`rounded-3xl border-2  shadow-2xl ${theme === "light"
+                className={`rounded-3xl border-2  shadow-2xl ${
+                  theme === "light"
                     ? " border-slate-100 shadow-slate-300"
                     : " border-neutral-800 shadow-neutral-800"
-                    }`}
+                }`}
+              >
+                <div
+                  className={`rounded-3xl border-2  shadow-2xl ${
+                    theme === "light"
+                      ? " border-slate-100 shadow-slate-300"
+                      : " border-neutral-800 shadow-neutral-800"
+                  }`}
                 >
                   <div
-                    className={`flex rounded-3xl shadow-2xl  ${theme === "light"
-                      ? "border-slate-100 shadow-slate-300"
-                      : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
-                      }`}
+                    className={`flex rounded-3xl shadow-2xl  ${
+                      theme === "light"
+                        ? "border-slate-100 shadow-slate-300"
+                        : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
+                    }`}
                   >
                     <div className="flex justify-center items-center relative h-32 w-32">
                       <div className="rounded-xl object-fill from-indigo-500 via-purple-500 to-pink-500 shadow-lg">
@@ -445,30 +450,28 @@ export default function DappDetails() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
-                    <p className="text-gray-500 font-normal p-16 text-justify ">
-                      PulseChainProjects.io is an open source tool built by the
-                      HowToPulse.com team. Create a FREE listing in less than 5
-                      mins. For the communities safety we will approve all listing
-                      before deploying them to the site.
-                      <br />
-                      <br />
-                      We are dedicated to providing the most up to date information
-                      on all projects planning on launching.
-                    </p>
-                  </div>
+                  {dappInfo.hiring === "Yes" && (
+                    <div className="flex justify-center items-center text-center text-gray-500 text-sm p-4">
+                      <p className="uppercase p-16 text-justify text-lg p-1 cursor-default font-semibold flex justify-center bg-green-600 rounded-full text-white ">
+                        We are hiring
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div class="grid grid-cols-3 justify-between divide-x py-8">
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500 text-xs md:text-base">Status</p>
+                      <p className="text-gray-500 text-xs md:text-base">
+                        Status
+                      </p>
                     </div>
                     <div className="mt-2">
                       <p
-                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${theme === "light"
-                          ? "bg-black text-white"
-                          : "bg-white text-black"
-                          }`}
+                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${
+                          theme === "light"
+                            ? "bg-black text-white"
+                            : "bg-white text-black"
+                        }`}
                       >
                         {dappInfo.app_status}
                       </p>
@@ -476,7 +479,9 @@ export default function DappDetails() {
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500 text-xs md:text-base">Page Views</p>
+                      <p className="text-gray-500 text-xs md:text-base">
+                        Page Views
+                      </p>
                     </div>
                     <div className="flex mt-2">
                       <span className="text-xs md:text-lg font-semibold">
@@ -486,7 +491,9 @@ export default function DappDetails() {
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500 text-xs md:text-base">Ticker</p>
+                      <p className="text-gray-500 text-xs md:text-base">
+                        Ticker
+                      </p>
                     </div>
                     <div className="mt-2">
                       <p className="text-xs md:text-lg font-semibold uppercase">
@@ -499,7 +506,9 @@ export default function DappDetails() {
                 <div class="grid grid-cols-3 divide-x py-8">
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500 text-xs md:text-base">Sacrifice</p>
+                      <p className="text-gray-500 text-xs md:text-base">
+                        Sacrifice
+                      </p>
                     </div>
                     <div className="mt-2">
                       <p className="text-xs md:text-lg font-semibold uppercase">
@@ -509,7 +518,9 @@ export default function DappDetails() {
                   </div>
                   <div className="flex flex-col items-center justify-center">
                     <div>
-                      <p className="text-gray-500 text-xs md:text-base">Total Supply</p>
+                      <p className="text-gray-500 text-xs md:text-base">
+                        Total Supply
+                      </p>
                     </div>
                     <div className="mt-2">
                       <p className="text-xs md:text-lg font-semibold uppercase">
@@ -588,12 +599,10 @@ export default function DappDetails() {
                     <div className="mt-2">
                       <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                         {Object.entries(dappInfo.sns).map((val, key) => {
+                          if (val[1] === "") return null;
                           return (
                             <li className="p-2" key={key}>
-                              <a
-                                className="mr-4 hover:underline md:mr-6 "
-                                href={val[1]}
-                              >
+                              <a className="mr-4 md:mr-6 " href={val[1]}>
                                 {snsIcon[val[0]]}
                               </a>
                             </li>
@@ -609,13 +618,11 @@ export default function DappDetails() {
                     <div className="mt-2">
                       <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                         {Object.entries(dappInfo.code).map((val, key) => {
-                          console.log("val", val);
+                          if (val[1] === "") return null;
+
                           return (
                             <li className="p-2" key={key}>
-                              <a
-                                className="mr-4 hover:underline md:mr-6 "
-                                href={val[1]}
-                              >
+                              <a className="mr-4 md:mr-6 " href={val[1]}>
                                 {codeIcon[val[0]]}
                               </a>
                             </li>
@@ -629,15 +636,24 @@ export default function DappDetails() {
                 <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
                   {dappInfo.full_description}
                 </div>
-                <div className="flex justify-center items-center text-center text-gray-500 text-sm space-x-2 py-8 px-4">
+                <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
                   {getDisplayType(dappInfo.tag)}
                 </div>
+                {dappInfo.email && dappInfo.email !== "" && (
+                  <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
+                    <p className="text-gray-500 text-lg">
+                      Email : {dappInfo.email}
+                    </p>
+                  </div>
+                )}
+
                 <div className="mt-4">
                   <div
-                    className={`grid grid-cols-2 divide-x py-8 rounded-3xl border-2  shadow-2xl ${theme === "light"
-                      ? " border-slate-100 shadow-slate-300"
-                      : " border-neutral-800 shadow-neutral-800"
-                      }`}
+                    className={`grid grid-cols-2 divide-x py-8 rounded-3xl border-2  shadow-2xl ${
+                      theme === "light"
+                        ? " border-slate-100 shadow-slate-300"
+                        : " border-neutral-800 shadow-neutral-800"
+                    }`}
                   >
                     <div className="flex flex-col items-center justify-center">
                       <div>
@@ -681,11 +697,12 @@ export default function DappDetails() {
                       onClick={() => console.log("shared successfully!")}
                     >
                       <button
-                        className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${theme === "light"
-                          ? "bg-white border-slate-100 shadow-slate-200"
-                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                          } `}
-                      // onClick={logout}
+                        className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${
+                          theme === "light"
+                            ? "bg-white border-slate-100 shadow-slate-200"
+                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                        } `}
+                        // onClick={logout}
                       >
                         <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
                           Share
@@ -698,10 +715,11 @@ export default function DappDetails() {
                     <Link href={"/dappAbusive?url=" + window.location.href}>
                       <div
                         className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
-                  ${theme === "light"
-                            ? "bg-white border-slate-100 shadow-slate-200"
-                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                          }
+                  ${
+                    theme === "light"
+                      ? "bg-white border-slate-100 shadow-slate-200"
+                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                  }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
                         // onClick={() => reportAbusive()}
                         disabled={isDisabled}
@@ -723,10 +741,11 @@ export default function DappDetails() {
                     <Link href={"/dappRemoval?url=" + window.location.href}>
                       <div
                         className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
-                  ${theme === "light"
-                            ? "bg-white border-slate-100 shadow-slate-200"
-                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                          }
+                  ${
+                    theme === "light"
+                      ? "bg-white border-slate-100 shadow-slate-200"
+                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                  }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} `}
                         // onClick={() => requestRemoval()}
                         disabled={isDisabled}
@@ -740,10 +759,11 @@ export default function DappDetails() {
                       </div>
                     </Link>
                     <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light"
-                        ? "bg-white border-slate-100 shadow-slate-200"
-                        : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                        }`}
+                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                        theme === "light"
+                          ? "bg-white border-slate-100 shadow-slate-200"
+                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                      }`}
                       // onClick={logout}
                       disabled={true}
                     >
@@ -755,10 +775,11 @@ export default function DappDetails() {
                       </span>
                     </button>
                     <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${theme === "light"
-                        ? "bg-white border-slate-100 shadow-slate-200"
-                        : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                        } `}
+                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
+                        theme === "light"
+                          ? "bg-white border-slate-100 shadow-slate-200"
+                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                      } `}
                       // onClick={logout}
                       disabled={true}
                     >
@@ -772,6 +793,30 @@ export default function DappDetails() {
                   </div>
                 </div>
               </div>
+              {dappInfo.smart_contract_address &&
+                dappInfo.smart_contract_address !== "" && (
+                  <div className="my-16 p-6 bg-blue-100 rounded-2xl">
+                    <p>
+                      <span className="flex justify-center items-center">
+                        {" "}
+                        <BiCertification
+                          className="w-5 h-5"
+                          color="blue"
+                        />{" "}
+                        <span className="text-gray-600 mx-2 font-bold">
+                          Smart Contract Address:
+                        </span>
+                        {/* <span className="font-bold text-gray-500">
+                      PulseChainProjects.io
+                    </span> */}
+                      </span>{" "}
+                    </p>
+                    <p className="text-gray-500 text-center my-2">
+                      {dappInfo.smart_contract_address}
+                    </p>
+                  </div>
+                )}
+
               <div className="my-16 p-6 bg-yellow-100 rounded-2xl">
                 <p>
                   <span className="flex justify-center items-center">
@@ -820,24 +865,27 @@ export default function DappDetails() {
                     data.map((app, indx) => {
                       return (
                         <div
-                          className={`w-full my-2 rounded-2xl shadow-lg border-2 cursor-pointer  ${theme === "light"
-                            ? "border-slate-100 shadow-slate-100"
-                            : "border-neutral-800 shadow-neutral-800"
-                            }`}
+                          className={`w-full my-2 rounded-2xl shadow-lg border-2 cursor-pointer  ${
+                            theme === "light"
+                              ? "border-slate-100 shadow-slate-100"
+                              : "border-neutral-800 shadow-neutral-800"
+                          }`}
                           onClick={() =>
                             router.push("/dappDetails/" + app.objectId)
                           }
                           key={indx}
                         >
                           <div
-                            className={`flex block w-full h-full p-6 rounded-2xl  ${theme === "light" ? "bg-white" : "bg-black"
-                              } `}
+                            className={`flex block w-full h-full p-6 rounded-2xl  ${
+                              theme === "light" ? "bg-white" : "bg-black"
+                            } `}
                           >
                             <div
-                              className={`block p-6 rounded-lg shadow-lg border-2 ${theme === "light"
-                                ? "border-white bg-white shadow-slate-200"
-                                : "border-neutral-700 bg-neutral-700 shadow-neutral-800"
-                                }`}
+                              className={`block p-6 rounded-lg shadow-lg border-2 ${
+                                theme === "light"
+                                  ? "border-white bg-white shadow-slate-200"
+                                  : "border-neutral-700 bg-neutral-700 shadow-neutral-800"
+                              }`}
                             >
                               {app.logo && app.logo !== "" ? (
                                 <img
@@ -857,10 +905,11 @@ export default function DappDetails() {
                                 {app.name}
                               </p>
                               <p
-                                className={`text-left py-2 text-sm font-thin text-justify ${theme === "light"
-                                  ? "text-black"
-                                  : "text-gray-500"
-                                  }`}
+                                className={`text-left py-2 text-sm font-thin text-justify ${
+                                  theme === "light"
+                                    ? "text-black"
+                                    : "text-gray-500"
+                                }`}
                               >
                                 {app.short_description}
                               </p>
