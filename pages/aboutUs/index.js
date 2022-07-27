@@ -121,25 +121,10 @@ export default function index() {
                 <div className="relative">
                   <div className="p-2 md:p-4 absolute z-50">
                     <p className="text-lg w-3/4 font-bold">
-                      {"Lorem Ipsum doloramet sit."}
+                    Submit your DApp
                     </p>
-                    <p className="text-xs w-3/4  pt-1 font-bold">
-                      It is a long established fact that reader will be
-                      distracted by the readable content of a page when looking.
-                    </p>
-                  </div>
-                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
-                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="p-2 md:p-4 absolute z-50">
-                    <p className="text-lg w-3/4 font-bold">
-                      {"Lorem Ipsum doloramet sit."}
-                    </p>
-                    <p className="text-xs w-3/4  pt-1 font-bold">
-                      It is a long established fact that reader will be
-                      distracted by the readable content of a page when looking.
+                    <p className="text-xs w-3/4  pt-4 font-semibold dark:text-gray-400">
+                    Looking for new users, testers, concept feedback, partners, or investors. Suibmit your Dapp now
                     </p>
                   </div>
                   <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
@@ -149,11 +134,10 @@ export default function index() {
                 <div className="relative">
                   <div className="p-2 md:p-4 absolute z-50">
                     <p className="text-lg w-3/4 font-bold">
-                      {"Lorem Ipsum doloramet sit."}
+                    Upvote / Downvote
                     </p>
-                    <p className="text-xs w-3/4  pt-1 font-bold">
-                      It is a long established fact that reader will be
-                      distracted by the readable content of a page when looking.
+                    <p className="text-xs w-3/4  pt-4 font-semibold dark:text-gray-400">
+                    Upvote your favorite project. Use this feature wisely and be considerate and respectful. 
                     </p>
                   </div>
                   <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
@@ -163,11 +147,23 @@ export default function index() {
                 <div className="relative">
                   <div className="p-2 md:p-4 absolute z-50">
                     <p className="text-lg w-3/4 font-bold">
-                      {"Lorem Ipsum doloramet sit."}
+                    Report Scams
                     </p>
-                    <p className="text-xs w-3/4  pt-1 font-bold">
-                      It is a long established fact that reader will be
-                      distracted by the readable content of a page when looking.
+                    <p className="text-sm w-3/4  pt-4 font-semibold dark:text-gray-400">
+                    Help keep our community safe by reporting known scams to us. 
+                    </p>
+                  </div>
+                  <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
+                    <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-36 md:w-52 shadow border-4 rounded-lg border-rose-600 opacity-25"></div>
+                  </div>
+                </div>
+                <div className="relative">
+                  <div className="p-2 md:p-4 absolute z-50">
+                    <p className="text-lg w-3/4 font-bold">
+                    Stats & Insights 
+                    </p>
+                    <p className="text-xs w-3/4  pt-4 font-semibold dark:text-gray-400">
+                    Important DApp links, social media, videos, source code and popularity 
                     </p>
                   </div>
                   <div className="p-2 md:p-4 h-72 w-36 md:w-52 shadow rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-50">
