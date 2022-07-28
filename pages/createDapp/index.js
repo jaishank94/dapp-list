@@ -34,8 +34,6 @@ const validation = Yup.object().shape({
   logo_url: Yup.string().required("This field is required"),
   ticker: Yup.string().required("This field is required"),
   total_supply: Yup.string().required("This field is required"),
-  tag_arr: Yup.array().min(1).required("This field is required"),
-  category: Yup.array().min(1).required("This field is required"),
   facebook: Yup.string().matches(
     /^http(s*):\/\/(www.)*facebook\.com\/[a-zA-Z0-9.]+$/i,
     "Please enter valid facebook URL"
@@ -256,6 +254,110 @@ export default function index() {
       smart_contract_address,
     } = formValues;
 
+    try {
+      if (
+        facebook !== "" ||
+        instagram !== "" ||
+        twitter !== "" ||
+        reddit !== "" ||
+        discord !== "" ||
+        medium !== "" ||
+        telegram !== "" ||
+        youtube !== "" ||
+        github !== "" ||
+        gitlab !== "" ||
+        bitbuket !== "" ||
+        smart_contract_address !== ""
+      ) {
+
+        let fVal = {
+          name,
+          short_description,
+          full_description,
+          ticker,
+          logo_url,
+          website_url,
+          total_supply,
+        };
+
+        if (facebook !== "") {
+          await validation.validate({
+            ...fVal,
+            facebook,
+          });
+        }
+        if (instagram !== "") {
+          await validation.validate({
+            ...fVal,
+            instagram,
+          });
+        }
+        if (twitter !== "") {
+          await validation.validate({
+            ...fVal,
+            twitter,
+          });
+        }
+        if (telegram !== "") {
+          await validation.validate({
+            ...fVal,
+            telegram,
+          });
+        }
+        if (discord !== "") {
+          await validation.validate({
+            ...fVal,
+            discord,
+          });
+        }
+        if (reddit !== "") {
+          await validation.validate({
+            ...fVal,
+            reddit,
+          });
+        }
+        if (youtube !== "") {
+          await validation.validate({
+            ...fVal,
+            youtube,
+          });
+        }
+        if (github !== "") {
+          await validation.validate({
+            ...fVal,
+            github,
+          });
+        }
+        if (gitlab !== "") {
+          await validation.validate({
+            ...fVal,
+            gitlab,
+          });
+        }
+        if (bitbuket !== "") {
+          await validation.validate({
+            ...fVal,
+            bitbuket,
+          });
+        }
+        if (smart_contract_address !== "") {
+          await validation.validate({
+            ...fVal,
+            smart_contract_address,
+          });
+        }
+        if (medium !== "") {
+          await validation.validate({
+            ...fVal,
+            medium,
+          });
+        }
+      }
+    } catch (e) {
+      toast.error("Please fill all the (*) fields and enter valid details.");
+      return;
+    }
+
     if (
       name !== "" &&
       short_description !== "" &&
@@ -321,7 +423,6 @@ export default function index() {
             website_url: "",
             logo_url: "",
             ticker: "",
-            total_supply: "",
             tag: "",
             facebook: "",
             twitter: "",
@@ -356,17 +457,6 @@ export default function index() {
     } else {
       toast.error("Please fill all the (*) fields.");
     }
-  };
-
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    setformValues({ ...formValues, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmitting(true);
   };
 
   if (!isMounted) return null;
