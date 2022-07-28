@@ -649,14 +649,14 @@ export default function DappDetails() {
 
                 {dappInfo.smart_contract_address &&
                   dappInfo.smart_contract_address !== "" && (
-                    <div className="p-6 bg-blue-300">
+                    <div className="p-6 bg-slate-100 dark:bg-neutral-900">
                       <p>
                         <span className="flex justify-center items-center">
                           {" "}
-                          <BiCertification
+                          {/* <BiCertification
                             className="w-5 h-5"
                             color="blue"
-                          />{" "}
+                          />{" "} */}
                           <span className="text-gray-600 mx-2 font-bold">
                             Smart Contract Address:
                           </span>
