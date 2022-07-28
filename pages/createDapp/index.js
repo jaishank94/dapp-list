@@ -80,7 +80,7 @@ const validation = Yup.object().shape({
   ),
   smart_contract_address: Yup.string().matches(
     /^0x[a-zA-Z0-9.]+$/i,
-    "Please enter valid smart contract address"
+    "Please enter valid smart contract address ex: 0xAb....."
   ),
 });
 
