@@ -905,7 +905,7 @@ export default function DappDetails() {
                                 {app.name}
                               </p>
                               <p
-                                className={`text-left py-2 text-sm font-thin text-justify ${
+                                className={`text-left py-2 text-sm font-normal text-justify ${
                                   theme === "light"
                                     ? "text-black"
                                     : "text-gray-500"
