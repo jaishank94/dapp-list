@@ -1204,9 +1204,19 @@ export default function index() {
       </div>
       {isSuccess && (
         <Modal
-          title={"Congratulations! DApp Submitted Succesfully"}
+          title={"Congratulations! Your DApp Has Been Submitted Successfully!"}
           description={
-            "Thank you for submitting your listing to PulseChainProjects.io. You're listing will be approved within 12-24 hours. Thank you for interest. Also, book a slot and learn more about the products"
+            <p>
+              Thank you for submitting your listing to PulseChainProjects.io.
+              You'll see your listing within 12-24 hours!
+              <br />
+              <br />
+              DON'T GO YET! We invite you to a 1-hour live stream hosted on our
+              YouTube Channel with over 3700 subscribers.
+              (<span><Link href="https://www.youtube.com/howtopulse">https://www.youtube.com/howtopulse</Link></span>). You're listing will be
+              approved within 12-24 hours. Thank you for interest. Also, book a
+              slot and learn more about the products
+            </p>
           }
         />
       )}
