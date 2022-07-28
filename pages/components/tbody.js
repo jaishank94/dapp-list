@@ -177,7 +177,7 @@ function Tbody(props) {
   if (!isMounted) return null;
 
   return (
-    <div className="table-body mt-5 px-4" key={props.index}>
+    <div className="table-body mt-5" key={props.index}>
       <div className="table-row">
         <div className="rounded-lg lg:border-0 table-data hidden  lg:flex col-rank lg:bg-none">
           <div className="">
@@ -222,10 +222,10 @@ function Tbody(props) {
             </div>
 
             <div class="px-6 my-2 flex flex-col justify-start">
-              <h5 class="text-2xl font-medium mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              <h5 class="text-xl font-bold mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 <Link href={"/dappDetails/" + props.id}>{props.name}</Link>
               </h5>
-              <p class="text-base mb-4">{props.short_description}</p>
+              <p class="text-sm font-normal mb-4">{props.short_description}</p>
               <p class="grid grid-cols-2 gap-2 truncate">
                 {" "}
                 {getDisplayType(props.types)}
