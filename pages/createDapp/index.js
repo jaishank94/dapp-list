@@ -1182,7 +1182,7 @@ export default function index() {
                           {isSubmitting ? "Submitting..." : "Submit DApp"}
                         </button>
                         <button
-                          className={`mx-4 rounded-lg border-0 p-2 shadow-lg ${
+                          className={`mx-4 rounded-lg border-0 p-2 shadow-lg font-semibold ${
                             theme === "light"
                               ? "bg-slate-300 shadow-slate-300"
                               : "bg-neutral-800 shadow-neutral-800"
