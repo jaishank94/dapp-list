@@ -417,7 +417,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="short_description"
@@ -448,7 +448,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="full_description"
@@ -478,7 +478,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="website_url"
@@ -508,7 +508,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="logo_url"
@@ -538,7 +538,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="ticker"
@@ -566,7 +566,7 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 pt-8 w-full">
+                      <div className="my-2 px-2 pt-4 w-full">
                         <input
                           type="text"
                           id="total_supply"
@@ -596,8 +596,8 @@ export default function index() {
                           ""
                         )}
                       </div>
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">Sacrifice *</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">Sacrifice *</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {SacrificeValues.map((data, i) => {
                             return (
@@ -607,10 +607,10 @@ export default function index() {
                                     onClick={(e) => {
                                       setSacrifice(data.name);
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
                                       sacrifice !== data.name
                                         ? ""
-                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
@@ -636,8 +636,8 @@ export default function index() {
                           })}
                         </div>
                       </div>
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">App Status *</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">App Status *</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {AppStatus.map((data, i) => {
                             return (
@@ -654,10 +654,10 @@ export default function index() {
                                       // });
                                       // console.log("Asd2");
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
                                       appStatus !== data.name
                                         ? ""
-                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
@@ -683,8 +683,8 @@ export default function index() {
                           })}
                         </div>
                       </div>
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">Categories *</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">Categories *</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {Category.map((data, i) => {
                             return (
@@ -707,14 +707,14 @@ export default function index() {
                                         }
                                       }
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
                                       !category.includes(data.name)
                                         ? ""
-                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
-                                      className={`w-9/12 text-left ${
+                                      className={`w-9/12 text-left truncate ${
                                         !category.includes(data.name)
                                           ? ""
                                           : "text-white"
@@ -722,11 +722,11 @@ export default function index() {
                                     >
                                       {data.name}
                                     </span>
-                                    <span className="w-3/12 text-right">
+                                    <span className="w-3/12 text-right contents">
                                       {category.includes(data.name) ? (
-                                        <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
+                                        <BsDash className="rounded-full border-2 shadow-md w-5 h-5 bg-white text-black" />
                                       ) : (
-                                        <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
+                                        <BsPlus className="rounded-full border-2 shadow-md w-5 h-5 bg-white  text-black" />
                                       )}
                                     </span>
                                   </div>
@@ -736,8 +736,8 @@ export default function index() {
                           })}
                         </div>
                       </div>
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">Tokenomics *</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">Tokenomics *</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {ProjInformation.map((data, i) => {
                             return (
@@ -748,10 +748,10 @@ export default function index() {
                                       e.preventDefault();
                                       setProjectInformation(data.name);
                                     }}
-                                    className={`flex cursor-pointer border-2 rounded-full p-2 ${
+                                    className={`flex cursor-pointer border-2 rounded-full p-2 text-sm ${
                                       projectInformation !== data.name
                                         ? ""
-                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
@@ -771,8 +771,8 @@ export default function index() {
                         </div>
                       </div>
 
-                      <div className="my-2 px-2 pt-8 w-full">
-                        <p className="font-bold text-lg my-8">Tags *</p>
+                      <div className="my-2 px-2 w-full">
+                        <p className="font-bold text-lg my-4">Tags *</p>
                         <input
                           type="text"
                           id="tag"
@@ -803,20 +803,20 @@ export default function index() {
                           Alteast one tag required and max. 10
                         </span>
                         <div>
-                          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {tagArr.map((data, i) => {
                               return (
                                 <div
                                   key={i}
                                   className=" items-center justify-center p-2"
                                 >
-                                  <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2">
+                                  <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm">
                                     <span className="w-9/12 text-left truncate">
                                       {data}
                                     </span>
-                                    <span className="w-3/12 text-right">
+                                    <span className="w-3/12 text-right contents">
                                       <BsDash
-                                        className="rounded-full border-2 shadow-md w-8 h-8"
+                                        className="rounded-full border-2 shadow-md w-5 h-5"
                                         onClick={(e) => {
                                           e.preventDefault();
                                           const index = tagArr.indexOf(data);
@@ -844,12 +844,12 @@ export default function index() {
                         )}
                       </div>
 
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">Social Media</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">Social Media</p>
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsFacebook className="h-5 w-5 text-black" />
+                              <BsFacebook className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -873,7 +873,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsTelegram className="h-5 w-5 text-black" />
+                              <BsTelegram className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -895,7 +895,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsInstagram className="h-5 w-5 text-black" />
+                              <BsInstagram className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -917,7 +917,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsYoutube className="h-5 w-5 text-black" />
+                              <BsYoutube className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -939,7 +939,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsTelegram className="h-5 w-5 text-black" />
+                              <BsTelegram className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -961,7 +961,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsReddit className="h-5 w-5 text-black" />
+                              <BsReddit className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -983,7 +983,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsMedium className="h-5 w-5 text-black" />
+                              <BsMedium className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -1005,7 +1005,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsDiscord className="h-5 w-5 text-black" />
+                              <BsDiscord className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -1026,12 +1026,12 @@ export default function index() {
                         </div>
                       </div>
 
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">Source Code</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">Source Code</p>
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md divide-x">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsGithub className="h-5 w-5 text-black" />
+                              <BsGithub className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -1053,7 +1053,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <AiFillGitlab className="h-5 w-5 text-black" />
+                              <AiFillGitlab className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -1075,7 +1075,7 @@ export default function index() {
                         <div>
                           <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <IoLogoBitbucket className="h-5 w-5 text-black" />
+                              <IoLogoBitbucket className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -1095,8 +1095,8 @@ export default function index() {
                           />
                         </div>
                       </div>
-                      <div className="my-2 px-2 py-4 w-full">
-                        <p className="font-bold text-lg mt-8">We're hiring</p>
+                      <div className="my-2 px-2 py-2 w-full">
+                        <p className="font-bold text-lg">We're hiring</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {hiringValues.map((data, i) => {
                             return (
