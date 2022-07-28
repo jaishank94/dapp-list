@@ -80,6 +80,10 @@ const validation = Yup.object().shape({
     /^http(s*):\/\/(www.)*bitbuket\.com\/[a-zA-Z0-9.]+$/i,
     "Please enter valid bitbuket URL"
   ),
+  smart_contract_address: Yup.string().matches(
+    /^0x[a-zA-Z0-9.]+$/i,
+    "Please enter valid smart contract address"
+  ),
 });
 
 // facebook,
@@ -1258,6 +1262,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={200}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.smart_contract_address}
+                          </div>
                         </div>
                       </div>
 
