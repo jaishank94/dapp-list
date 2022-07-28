@@ -811,7 +811,7 @@ export default function DappDetails() {
                     </span> */}
                       </span>{" "}
                     </p>
-                    <p className="text-gray-500 text-center my-2">
+                    <p className="text-gray-500 text-center my-2 break-words">
                       {dappInfo.smart_contract_address}
                     </p>
                   </div>
