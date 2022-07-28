@@ -404,14 +404,14 @@ export default function DappDetails() {
                 }`}
               >
                 <div
-                  className={`rounded-3xl border-2 shadow-2xl dark:sshadow ${
+                  className={`rounded-3xl border-2 shadow-2xl dark:shadow ${
                     theme === "light"
                       ? " border-slate-100 shadow-slate-300"
                       : " border-neutral-800 shadow-neutral-800"
                   }`}
                 >
                   <div
-                    className={`flex rounded-3xl shadow-2xl  ${
+                    className={`flex rounded-3xl shadow-2xl dark:shadow-md  ${
                       theme === "light"
                         ? "border-slate-100 shadow-slate-300"
                         : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
