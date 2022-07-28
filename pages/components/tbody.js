@@ -58,11 +58,7 @@ function Tbody(props) {
               </div>
             );
           });
-          return (
-            <>
-              {TypeBadge}
-            </>
-          );
+          return <>{TypeBadge}</>;
         } else {
           TypeBadge = val.map((type, index) => {
             return (
@@ -79,7 +75,7 @@ function Tbody(props) {
           return TypeBadge;
         }
       }
-    } catch (e) { }
+    } catch (e) {}
   }
 
   const handleReaction = async (isLiked) => {
@@ -187,12 +183,13 @@ function Tbody(props) {
           </div>
         </div>
         <div
-          className={`flex flex-col py-4 justify-center border-2  rounded-lg shadow-lg w-full lg:py-0 lg:justify-left lg:flex-row  ${theme === "light"
+          className={`flex flex-col lg:grid lg:grid-cols-8 lg:gap-2 py-4 border-2  rounded-lg shadow-lg w-full lg:py-0 lg:justify-left lg:flex-row  ${
+            theme === "light"
               ? "border-slate"
               : "border-neutral-800 shadow-neutral-800"
-            }`}
+          }`}
         >
-          <div class="flex justify-start">
+          <div class="flex justify-start lg:col-span-2">
             <div className="flex justify-center items-center relative h-32 w-32">
               <div className="rounded-lg object-fill shadow-lg ">
                 {/* <div className="w-1/4 flex items-center justify-center mx-2"> */}
@@ -202,26 +199,28 @@ function Tbody(props) {
                     src={props.logo}
                     width={80}
                     height={80}
-                    className={` shadow-lg ${theme === "light"
+                    className={` shadow-lg ${
+                      theme === "light"
                         ? "border-0 border-slate-100"
                         : "border-02 border-neutral-800 shadow-neutral-800"
-                      }`}
+                    }`}
                   />
                 ) : (
                   <Image
                     src={logo}
                     width={80}
                     height={80}
-                    className={` shadow-lg ${theme === "light"
+                    className={` shadow-lg ${
+                      theme === "light"
                         ? "border-0 shadow-slate-100"
                         : "border-2 border-neutral-800 shadow-neutral-800"
-                      }`}
+                    }`}
                   />
                 )}
               </div>
             </div>
 
-            <div class="px-6 my-2 flex flex-col justify-start">
+            <div class="my-2 flex flex-col justify-start">
               <h5 class="text-xl font-bold mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 <Link href={"/dappDetails/" + props.id}>{props.name}</Link>
               </h5>
@@ -232,10 +231,10 @@ function Tbody(props) {
               </p>
             </div>
           </div>
-          <div className="hidden lg:flex">
-            <div className="flex table-data flex col-dau">
-              <div className="component-ranking-table-value-pct">
-                <span className="value">{props.page_views}</span>
+          <div className="hidden lg:flex items-center justify-center text-center">
+            <div className="">
+              <div className="">
+                <span className="text-sm font-semibold">{props.page_views}</span>
                 {/* <div className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -244,9 +243,11 @@ function Tbody(props) {
               </div> */}
               </div>
             </div>
-            <div className="table-data flex col-tx">
-              <div className="component-ranking-table-value-pct">
-                <span className="value uppercase">{props.app_status}</span>
+          </div>
+          <div className="hidden lg:flex items-center justify-center text-center">
+            <div className="">
+              <div className="">
+                <span className="uppercase text-sm font-semibold">{props.app_status}</span>
                 {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -255,24 +256,30 @@ function Tbody(props) {
               </span> */}
               </div>
             </div>
-            <div className="table-data flex col-vol">
-              <div className="component-ranking-table-volume-head">
-                <span className="value uppercase">{props.ticker}</span>
+          </div>
+          <div className="hidden lg:flex lg:flex items-center justify-center">
+            <div className="">
+              <div className="">
+                <span className="text-sm font-semibold uppercase">{props.ticker}</span>
                 {/* <span className="pct is-negative">-9.00%</span> */}
               </div>
             </div>
-            <div className="table-data flex col-vol col-vol-hbd">
-              <div className="component-ranking-table-volume-head">
-                <span className="value uppercase">{props.sacrifice}</span>
+          </div>
+          <div className="hidden lg:flex lg:flex items-center justify-center">
+            <div className="">
+              <div className="">
+                <span className="text-sm font-semibold uppercase">{props.sacrifice}</span>
                 {/* <span className="pct is-positive">
                 <span>^</span>
                 154.80%
               </span> */}
               </div>
             </div>
-            <div className="table-data flex col-rewards col-rewards-hive">
-              <div className="component-ranking-table-volume-head">
-                <span className="value uppercase">{props.total_supply}</span>
+          </div>
+          <div className="hidden lg:flex lg:flex items-center justify-center">
+            <div className="">
+              <div className="">
+                <span className="text-sm font-semibold uppercase">{props.total_supply}</span>
                 {/* <span className="pct is-positive">
                 <div className="is-positive-value">
                   <span>^</span>
@@ -281,8 +288,10 @@ function Tbody(props) {
               </span> */}
               </div>
             </div>
+          </div>
+          <div className="hidden lg:flex lg:flex items-center justify-center">
             <div className="table-data flex col-rewards col-rewards-hive">
-              <div className="component-ranking-table-volume-head">
+              <div className="">
                 <span className="value flex">
                   <button
                     className="text-center"
@@ -329,25 +338,25 @@ function Tbody(props) {
             <div className="grid grid-cols-2 divide-x divide-gray-700">
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Page Views</p>
-                <p className="">{props.page_views}</p>
+                <p className="text-sm font-semibold">{props.page_views}</p>
               </div>
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Status</p>
-                <p className=" uppercase">{props.app_status}</p>
+                <p className="text-sm font-semibold uppercase">{props.app_status}</p>
               </div>
             </div>
             <div className="grid grid-cols-3 divide-x mt-14 divide-gray-700">
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Ticker</p>
-                <p className=" uppercase">{props.ticker}</p>
+                <p className="text-sm font-semibold uppercase">{props.ticker}</p>
               </div>
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Sacrifice</p>
-                <p className=" uppercase">{props.sacrifice}</p>
+                <p className="text-sm font-semibold uppercase">{props.sacrifice}</p>
               </div>
               <div className="flex flex-col">
                 <p className=" my-2 text-gray-500 text-xs ">Total Supply</p>
-                <p className=" uppercase">{props.total_supply}</p>
+                <p className="text-sm font-semibold uppercase">{props.total_supply}</p>
               </div>
             </div>
             <div className="border-t-2 mt-14 border-gray-700">
@@ -397,7 +406,11 @@ function Tbody(props) {
               </div>
             </div>
             <div className="w-full">
-              <Link href={"/dappDetails/" + props.id}><span className="p-2 px-4 rounded-full w-full font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-lg text-white ">{" Learn More "}</span></Link>
+              <Link href={"/dappDetails/" + props.id}>
+                <span className="p-2 px-4 rounded-full w-full font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-lg text-white ">
+                  {" Learn More "}
+                </span>
+              </Link>
             </div>
           </div>
         </div>
