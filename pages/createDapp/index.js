@@ -301,7 +301,7 @@ export default function index() {
         newObject.set("code", code);
         newObject.set("page_views", 0);
         newObject.set("project_informatiom", projectInformation);
-        newObject.set("email", email.trim());
+        newObject.set("email", email ? email.trim() : "");
         newObject.set("smart_contract_address", smart_contract_address);
         newObject.set("hiring", hiring);
         newObject.set("status", "IN-ACTIVE");
@@ -341,7 +341,7 @@ export default function index() {
           setTags("");
           // this.setState({ isSubmitting: false })
         } else {
-          toast.error("Some Error Occured..!! Please try again.");
+          toast.error("Some Error Occured..! Please try again.");
           // this.setState({ isSubmitting: false })
         }
         setIsSubmitting(false);
@@ -752,7 +752,10 @@ export default function index() {
                                         (obj) => obj == data.name
                                       );
                                       if (arr.length === 0) {
-                                        setCategory([...category, data.name.trim()]);
+                                        setCategory([
+                                          ...category,
+                                          data.name.trim(),
+                                        ]);
                                       } else {
                                         let newArr = category.filter(
                                           (obj) => obj !== data.name

@@ -404,7 +404,7 @@ export default function DappDetails() {
                 }`}
               >
                 <div
-                  className={`rounded-3xl border-2 shadow-2xl dark:shadow ${
+                  className={`rounded-3xl border-2 shadow-2xl dark:sshadow ${
                     theme === "light"
                       ? " border-slate-100 shadow-slate-300"
                       : " border-neutral-800 shadow-neutral-800"
@@ -701,7 +701,7 @@ export default function DappDetails() {
                     </div>
                   </div>
                   <div className="">
-                    <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white">
+                    <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white">
                       <Link
                         href={dappInfo.website_url}
                         target="_blank"
