@@ -286,14 +286,14 @@ export default function index() {
         setIsSubmitting(true);
         const Dapps = Moralis.Object.extend("Dapps");
         const newObject = new Dapps();
-        newObject.set("name", name.toUpperCase());
-        newObject.set("short_description", short_description);
-        newObject.set("full_description", full_description);
-        newObject.set("website_url", website_url);
-        newObject.set("ticker", ticker);
-        newObject.set("logo", logo_url);
-        newObject.set("sacrifice", sacrifice);
-        newObject.set("total_supply", total_supply);
+        newObject.set("name", name.trim().toUpperCase());
+        newObject.set("short_description", short_description.trim());
+        newObject.set("full_description", full_description.trim());
+        newObject.set("website_url", website_url.trim());
+        newObject.set("ticker", ticker.trim());
+        newObject.set("logo", logo_url.trim());
+        newObject.set("sacrifice", sacrifice.trim());
+        newObject.set("total_supply", total_supply.trim());
         newObject.set("app_status", appStatus);
         newObject.set("type", category);
         newObject.set("tag", tagArr);
@@ -301,7 +301,7 @@ export default function index() {
         newObject.set("code", code);
         newObject.set("page_views", 0);
         newObject.set("project_informatiom", projectInformation);
-        newObject.set("email", email);
+        newObject.set("email", email.trim());
         newObject.set("smart_contract_address", smart_contract_address);
         newObject.set("hiring", hiring);
         newObject.set("status", "IN-ACTIVE");
@@ -752,7 +752,7 @@ export default function index() {
                                         (obj) => obj == data.name
                                       );
                                       if (arr.length === 0) {
-                                        setCategory([...category, data.name]);
+                                        setCategory([...category, data.name.trim()]);
                                       } else {
                                         let newArr = category.filter(
                                           (obj) => obj !== data.name
