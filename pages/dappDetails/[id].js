@@ -404,7 +404,7 @@ export default function DappDetails() {
                 }`}
               >
                 <div
-                  className={`rounded-3xl border-2  shadow-2xl ${
+                  className={`rounded-3xl border-2 shadow-2xl dark:shadow ${
                     theme === "light"
                       ? " border-slate-100 shadow-slate-300"
                       : " border-neutral-800 shadow-neutral-800"
@@ -451,8 +451,8 @@ export default function DappDetails() {
                     </div>
                   </div>
                   {dappInfo.hiring === "Yes" && (
-                    <div className="flex justify-center items-center text-center text-gray-500 text-sm p-4">
-                      <p className="uppercase p-16 text-justify text-lg p-1 cursor-default font-semibold flex justify-center bg-green-600 rounded-full text-white ">
+                    <div className="">
+                      <p className="uppercase p-16 text-justify text-lg p-1 cursor-default font-semibold flex justify-center bg-green-500 animate-pulse rounded-b-lg text-white ">
                         We are hiring
                       </p>
                     </div>
@@ -642,14 +642,38 @@ export default function DappDetails() {
                 {dappInfo.email && dappInfo.email !== "" && (
                   <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
                     <p className="text-gray-500 text-lg">
-                      Email : {dappInfo.email}
+                      EMAIL ID : {dappInfo.email}
                     </p>
                   </div>
                 )}
 
+                {dappInfo.smart_contract_address &&
+                  dappInfo.smart_contract_address !== "" && (
+                    <div className="p-6 bg-blue-300">
+                      <p>
+                        <span className="flex justify-center items-center">
+                          {" "}
+                          <BiCertification
+                            className="w-5 h-5"
+                            color="blue"
+                          />{" "}
+                          <span className="text-gray-600 mx-2 font-bold">
+                            Smart Contract Address:
+                          </span>
+                          {/* <span className="font-bold text-gray-500">
+                      PulseChainProjects.io
+                    </span> */}
+                        </span>{" "}
+                      </p>
+                      <p className="text-gray-500 cursor-default text-center my-2 break-words">
+                        {dappInfo.smart_contract_address}
+                      </p>
+                    </div>
+                  )}
+
                 <div className="mt-4">
                   <div
-                    className={`grid grid-cols-2 divide-x py-8 rounded-3xl border-2  shadow-2xl ${
+                    className={`grid grid-cols-2 divide-x py-8 rounded-t-3xl border-2  shadow-2xl ${
                       theme === "light"
                         ? " border-slate-100 shadow-slate-300"
                         : " border-neutral-800 shadow-neutral-800"
@@ -676,14 +700,14 @@ export default function DappDetails() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex justify-center">
-                    <div className="cursor-pointer w-3/4 flex items-center justify-center rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white">
+                  <div className="">
+                    <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white">
                       <Link
                         href={dappInfo.website_url}
                         target="_blank"
                         className=""
                       >
-                        Launch App
+                        Launch DApp
                       </Link>
                     </div>
                   </div>
@@ -793,30 +817,6 @@ export default function DappDetails() {
                   </div>
                 </div>
               </div>
-              {dappInfo.smart_contract_address &&
-                dappInfo.smart_contract_address !== "" && (
-                  <div className="my-16 p-6 bg-blue-100 rounded-2xl">
-                    <p>
-                      <span className="flex justify-center items-center">
-                        {" "}
-                        <BiCertification
-                          className="w-5 h-5"
-                          color="blue"
-                        />{" "}
-                        <span className="text-gray-600 mx-2 font-bold">
-                          Smart Contract Address:
-                        </span>
-                        {/* <span className="font-bold text-gray-500">
-                      PulseChainProjects.io
-                    </span> */}
-                      </span>{" "}
-                    </p>
-                    <p className="text-gray-500 text-center my-2 break-words">
-                      {dappInfo.smart_contract_address}
-                    </p>
-                  </div>
-                )}
-
               <div className="my-16 p-6 bg-yellow-100 rounded-2xl">
                 <p>
                   <span className="flex justify-center items-center">

@@ -36,7 +36,63 @@ const validation = Yup.object().shape({
   total_supply: Yup.string().required("This field is required"),
   tag_arr: Yup.array().min(1).required("This field is required"),
   category: Yup.array().min(1).required("This field is required"),
+  facebook: Yup.string().matches(
+    /^http(s*):\/\/(www.)*facebook\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid facebook URL"
+  ),
+  youtube: Yup.string().matches(
+    /^http(s*):\/\/(www.)*youtube\.com\/embed\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid youtube URL. ex: https://www.youtube.com/embed/abcd"
+  ),
+  twitter: Yup.string().matches(
+    /^http(s*):\/\/(www.)*twitter\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid twitter URL"
+  ),
+  instagram: Yup.string().matches(
+    /^http(s*):\/\/(www.)*instagram\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid instagram URL"
+  ),
+  telegram: Yup.string().matches(
+    /^http(s*):\/\/(www.)*telegram\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid telegram URL"
+  ),
+  reddit: Yup.string().matches(
+    /^http(s*):\/\/(www.)*reddit\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid reddit URL"
+  ),
+  medium: Yup.string().matches(
+    /^http(s*):\/\/(www.)*medium\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid medium URL"
+  ),
+  github: Yup.string().matches(
+    /^http(s*):\/\/(www.)*github\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid github URL"
+  ),
+  discord: Yup.string().matches(
+    /^http(s*):\/\/(www.)*discord\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid discord URL"
+  ),
+  gitlab: Yup.string().matches(
+    /^http(s*):\/\/(www.)*gitlab\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid gitlab URL"
+  ),
+  bitbuket: Yup.string().matches(
+    /^http(s*):\/\/(www.)*bitbuket\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid bitbuket URL"
+  ),
 });
+
+// facebook,
+// twitter,
+// instagram,
+// youtube,
+// telegram,
+// reddit,
+// medium,
+// github,
+// discord,
+// gitlab,
+// bitbuket,
 
 const AppStatus = [
   { name: "Live" },
@@ -141,36 +197,36 @@ export default function index() {
     console.log("ljhck", e.target.value);
   };
 
-  const resetForm = (e) => {
-    e.preventDefault();
-    this.setState({
-      name: "",
-      short_description: "",
-      full_description: "",
-      website_url: "",
-      logo_url: "",
-      app_status: "",
-      category: ["Games"],
-      project_information: "Airdrop",
-      tag: "",
-      tag_arr: [],
-      facebook: "",
-      twitter: "",
-      instagram: "",
-      youtube: "",
-      telegram: "",
-      reddit: "",
-      medium: "",
-      github: "",
-      discord: "",
-      gitlab: "",
-      bitbuket: "",
-      sacrifice: "Yes",
-      total_supply: "",
-      ticker: "",
-      isSubmitting: false,
-    });
-  };
+  // const resetForm = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     name: "",
+  //     short_description: "",
+  //     full_description: "",
+  //     website_url: "",
+  //     logo_url: "",
+  //     app_status: "",
+  //     category: ["Games"],
+  //     project_information: "Airdrop",
+  //     tag: "",
+  //     tag_arr: [],
+  //     facebook: "",
+  //     twitter: "",
+  //     instagram: "",
+  //     youtube: "",
+  //     telegram: "",
+  //     reddit: "",
+  //     medium: "",
+  //     github: "",
+  //     discord: "",
+  //     gitlab: "",
+  //     bitbuket: "",
+  //     sacrifice: "Yes",
+  //     total_supply: "",
+  //     ticker: "",
+  //     isSubmitting: false,
+  //   });
+  // };
 
   const submitApp = async () => {
     const {
@@ -597,7 +653,7 @@ export default function index() {
                         )}
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
-                        <p className="font-bold text-lg">Sacrifice *</p>
+                        <p className="font-bold text-lg">Sacrifice</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {SacrificeValues.map((data, i) => {
                             return (
@@ -737,7 +793,7 @@ export default function index() {
                         </div>
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
-                        <p className="font-bold text-lg">Tokenomics *</p>
+                        <p className="font-bold text-lg">Tokenomics</p>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {ProjInformation.map((data, i) => {
                             return (
@@ -847,7 +903,7 @@ export default function index() {
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Social Media</p>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsFacebook className="h-5 w-5" />
                             </div>
@@ -869,9 +925,12 @@ export default function index() {
                             error={errors.facebook && Boolean(errors.facebook)}
                             helpertext={errors.facebook ? errors.facebook : ""}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.facebook}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsTelegram className="h-5 w-5" />
                             </div>
@@ -891,9 +950,12 @@ export default function index() {
                             value={formValues.telegram}
                             onChange={handleChange}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.telegram}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsInstagram className="h-5 w-5" />
                             </div>
@@ -913,9 +975,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.instagram}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsYoutube className="h-5 w-5" />
                             </div>
@@ -935,11 +1000,14 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.youtube}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
-                              <BsTelegram className="h-5 w-5" />
+                              <BsTwitter className="h-5 w-5" />
                             </div>
                           </div>
                           <input
@@ -957,9 +1025,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.twitter}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsReddit className="h-5 w-5" />
                             </div>
@@ -979,9 +1050,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.reddit}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsMedium className="h-5 w-5" />
                             </div>
@@ -1001,9 +1075,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.medium}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsDiscord className="h-5 w-5" />
                             </div>
@@ -1023,13 +1100,16 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.discord}
+                          </div>
                         </div>
                       </div>
 
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Source Code</p>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md divide-x">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md divide-x">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <BsGithub className="h-5 w-5" />
                             </div>
@@ -1049,9 +1129,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.github}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <AiFillGitlab className="h-5 w-5" />
                             </div>
@@ -1071,9 +1154,12 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.gitlab}
+                          </div>
                         </div>
                         <div>
-                          <div className="relative w-16 md:w-56 top-10 left-3 flex rounded-md">
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
                               <IoLogoBitbucket className="h-5 w-5" />
                             </div>
@@ -1093,6 +1179,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <div className="text-rose-500 my-2">
+                            {errors.bitbuket}
+                          </div>
                         </div>
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
@@ -1107,10 +1196,10 @@ export default function index() {
                                       e.preventDefault();
                                       setHiring(data.name);
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 ${
+                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
                                       hiring !== data.name
                                         ? ""
-                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm"
+                                        : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
@@ -1212,10 +1301,14 @@ export default function index() {
               <br />
               <br />
               DON'T GO YET! We invite you to a 1-hour live stream hosted on our
-              YouTube Channel with over 3700 subscribers.
-              (<span><Link href="https://www.youtube.com/howtopulse">https://www.youtube.com/howtopulse</Link></span>). You're listing will be
-              approved within 12-24 hours. Thank you for interest. Also, book a
-              slot and learn more about the products
+              YouTube Channel with over 3700 subscribers. (
+              <span>
+                <Link href="https://www.youtube.com/howtopulse">
+                  https://www.youtube.com/howtopulse
+                </Link>
+              </span>
+              ). You're listing will be approved within 12-24 hours. Thank you
+              for interest. Also, book a slot and learn more about the products
             </p>
           }
         />
