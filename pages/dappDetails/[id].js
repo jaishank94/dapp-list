@@ -422,7 +422,7 @@ export default function DappDetails() {
                     }`}
                   >
                     <div className="flex justify-center items-center relative h-32 w-32">
-                      <div className="rounded-3xl object-fill bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-lg">
+                      <div className="rounded-3xl object-fill shadow-lg shadow-lg">
                         {dappInfo.logo && dappInfo.logo !== "" ? (
                           <img
                             alt="Logo"
@@ -458,7 +458,7 @@ export default function DappDetails() {
                 {dappInfo.hiring === "Yes" && (
                   <div className="relative -top-5 -z-10">
                     <p className=" p-16 text-justify p-1 pt-6 cursor-default font-semibold flex justify-center bg-green-600 rounded-b-3xl text-white ">
-                      We are hiring!
+                      We're hiring
                     </p>
                   </div>
                 )}
