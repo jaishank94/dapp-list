@@ -653,7 +653,7 @@ export default function DappDetails() {
 
                 {dappInfo.smart_contract_address &&
                   dappInfo.smart_contract_address !== "" && (
-                    <div className="relative top-5 -z-10 mb-2 flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-900">
+                    <div className="relative top-5 -z-10 mb-2 rounded-t-3xl flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-900">
                       <p className="text-center text-gray-500 mx-2 text-sm">
                           Smart Contract Address:
                       </p>
