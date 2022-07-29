@@ -457,7 +457,7 @@ export default function DappDetails() {
                 </div>
                 {dappInfo.hiring === "Yes" && (
                   <div className="relative -top-5 -z-10">
-                    <p className=" p-16 text-justify p-1 pt-6 cursor-default font-semibold flex justify-center bg-green-600 rounded-b-lg text-white ">
+                    <p className=" p-16 text-justify p-1 pt-6 cursor-default font-semibold flex justify-center bg-green-600 rounded-b-3xl text-white ">
                       We are hiring!
                     </p>
                   </div>
@@ -653,11 +653,11 @@ export default function DappDetails() {
 
                 {dappInfo.smart_contract_address &&
                   dappInfo.smart_contract_address !== "" && (
-                    <div className="relative top-5 -z-10 mb-2 rounded-t-3xl flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-900">
-                      <p className="text-center text-gray-500 mx-2 text-sm">
+                    <div className="relative top-5 -z-10 mb-2 rounded-t-3xl break-normal flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-900">
+                      <p className="text-center text-gray-500 mx-2 text-sm break-normal">
                           Smart Contract Address:
                       </p>
-                      <p className="cursor-default text-center my-2 break-words">
+                      <p className="cursor-default  text-center my-2 w-3/4 truncate">
                         {dappInfo.smart_contract_address}
                       </p>
                     </div>
