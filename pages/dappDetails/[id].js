@@ -55,7 +55,7 @@ const Categories = [
     name: "Games",
     slug: "Games",
     color: "rose",
-    bgColor: "bg-rose-300",
+    bgColor: "bg-rose-300 dark:bg-rose-900",
     icon: (
       <GiConsoleController
         className="h-8 w-8 bg-rose-600 rounded-full p-1 mx-2"
@@ -67,7 +67,7 @@ const Categories = [
     name: "DeFi",
     slug: "DeFi",
     color: "pink",
-    bgColor: "bg-pink-300",
+    bgColor: "bg-pink-300 dark:bg-pink-900",
     icon: (
       <GiChart
         className="h-8 w-8 bg-pink-600 rounded-full p-1 mx-4"
@@ -79,7 +79,7 @@ const Categories = [
     name: "NFT",
     slug: "NFT",
     color: "blue",
-    bgColor: "bg-blue-300",
+    bgColor: "bg-blue-300 dark:bg-blue-900",
     icon: (
       <GiArtificialHive
         className="h-8 w-8 bg-blue-600 rounded-full p-1 mx-4"
@@ -91,7 +91,7 @@ const Categories = [
     name: "All Categories",
     slug: "Category",
     color: "slate",
-    bgColor: "bg-slate-300",
+    bgColor: "bg-slate-300 dark:bg-neutral-900",
     icon: (
       <GiHamburgerMenu
         className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
@@ -400,25 +400,25 @@ export default function DappDetails() {
                 className={`rounded-3xl border-2  shadow-2xl ${
                   theme === "light"
                     ? " border-slate-100 shadow-slate-300"
-                    : " border-neutral-800 shadow-neutral-800"
+                    : " border-black shadow-neutral-800"
                 }`}
               >
                 <div
                   className={`rounded-3xl border-2 shadow-2xl dark:shadow ${
                     theme === "light"
                       ? " border-slate-100 shadow-slate-300"
-                      : " border-neutral-800 shadow-neutral-800"
+                      : " border-black shadow-neutral-800"
                   }`}
                 >
                   <div
-                    className={`flex rounded-3xl shadow-2xl dark:shadow-md  ${
+                    className={`flex rounded-3xl shadow-2xl ${
                       theme === "light"
                         ? "border-slate-100 shadow-slate-300"
-                        : "border-neutral-800 shadow-neutral-800 bg-neutral-800"
+                        : "border-black bg-neutral-800"
                     }`}
                   >
                     <div className="flex justify-center items-center relative h-32 w-32">
-                      <div className="rounded-xl object-fill from-indigo-500 via-purple-500 to-pink-500 shadow-lg">
+                      <div className="rounded-xl object-fill bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-lg">
                         {dappInfo.logo && dappInfo.logo !== "" ? (
                           <img
                             alt="Logo"
@@ -676,7 +676,7 @@ export default function DappDetails() {
                     className={`grid grid-cols-2 divide-x py-8 rounded-t-3xl border-2  shadow-2xl ${
                       theme === "light"
                         ? " border-slate-100 shadow-slate-300"
-                        : " border-neutral-800 shadow-neutral-800"
+                        : " border-neutral-800 shadow-neutral-800 bg-neutral-800"
                     }`}
                   >
                     <div className="flex flex-col items-center justify-center">
@@ -817,7 +817,7 @@ export default function DappDetails() {
                   </div>
                 </div>
               </div>
-              <div className="my-16 p-6 bg-yellow-100 rounded-2xl">
+              <div className="my-16 p-6 bg-rose-100 dark:bg-neutral-800 rounded-2xl">
                 <p>
                   <span className="flex justify-center items-center">
                     {" "}
@@ -860,12 +860,12 @@ export default function DappDetails() {
                     Popular Projects
                   </h2>
                 </div>
-                <div className="my-10 grid gap-2 grid-cols-1 xl:grid-cols-2 3xl:flex flex-wrap justify-center">
+                <div className="my-10 grid gap-2 grid-cols-1 lg:grid-cols-3 3xl:flex flex-wrap justify-center">
                   {data &&
                     data.map((app, indx) => {
                       return (
                         <div
-                          className={`w-full my-2 rounded-2xl shadow-lg border-2 cursor-pointer  ${
+                          className={`w-full my-2 rounded-3xl shadow-xl border-2 cursor-pointer  ${
                             theme === "light"
                               ? "border-slate-100 shadow-slate-100"
                               : "border-neutral-800 shadow-neutral-800"
@@ -881,22 +881,22 @@ export default function DappDetails() {
                             } `}
                           >
                             <div
-                              className={`block p-6 rounded-lg shadow-lg border-2 ${
+                              className={`block p-6 rounded-lg shadow-xl border-2 ${
                                 theme === "light"
                                   ? "border-white bg-white shadow-slate-200"
-                                  : "border-neutral-700 bg-neutral-700 shadow-neutral-800"
+                                  : "border-black bg-black shadow-neutral-800"
                               }`}
                             >
                               {app.logo && app.logo !== "" ? (
                                 <img
                                   alt="Logo"
                                   src={app.logo}
-                                  width={80}
-                                  height={80}
+                                  width={40}
+                                  height={40}
                                   className=""
                                 />
                               ) : (
-                                <Image src={logo} width={80} height={80} />
+                                <Image src={logo} width={40} height={40} />
                               )}
                             </div>
 
