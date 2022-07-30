@@ -111,7 +111,7 @@ export default function Header({ displayCreate }) {
           )}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="cursor-pointer border-2 p-2 rounded-full m-1"
+            className="cursor-pointer border p-2 rounded-full m-1 border-slate-200 dark:border-neutral-900"
           >
             {theme === "light" ? (
               <BsFillMoonFill className="h-5 w-5" />
@@ -122,7 +122,7 @@ export default function Header({ displayCreate }) {
           {displayCreate && (
             <button
               onClick={() => handleSidebar()}
-              className="p-4 rounded-lg focus:outline-none  md:hidden"
+              className="focus:outline-none  md:hidden border p-2 rounded-full m-1 border-slate-200 dark:border-neutral-900"
             >
               <BiMenuAltRight className="h-5 w-5" />
             </button>

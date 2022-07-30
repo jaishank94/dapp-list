@@ -457,7 +457,7 @@ export default function DappDetails() {
                   </div>
                   {dappInfo.hiring === "Yes" && (
                     <div className="relative py-2">
-                      <p className="p-1 cursor-default font-semibold flex justify-center bg-green-600 text-white ">
+                      <p className="p-1 cursor-default font-semibold flex justify-center bg-[#00BE78] text-white ">
                         We're hiring
                       </p>
                     </div>

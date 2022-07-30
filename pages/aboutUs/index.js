@@ -119,7 +119,7 @@ export default function index() {
                   </div>
                 </div>
                 <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
-                  <p className="text-neutral-500 font-normal p-16 text-justify ">
+                  <p className="text-neutral-500 font-normal p-8 lg:p-16 text-justify ">
                     PulseChainProjects.io is an open source tool built by the
                     HowToPulse.com team. Create a FREE listing in less than 5
                     mins. For the communities safety we will approve all listing
@@ -231,13 +231,13 @@ export default function index() {
                                   : "border-black bg-neutral-900"
                               }`}
                             >
-                              <div className="flex justify-center items-center relative h-32 w-32">
-                                <div className="rounded-full p-4 border dark:border-0 dark:bg-neutral-800 ">
+                              <div className="flex justify-center items-center relative h-16 w-16 lg:h-32 lg:w-32">
+                                <div className="rounded-full p-2 lg:p-4 border dark:border-0 dark:bg-neutral-800 ">
                                   <span className="p-2 text-neutral-400">{i + 1}</span>
                                 </div>
                               </div>
                               <div className="flex justify-center items-center">
-                                <div className="py-4">
+                                <div className="py-2 lg:py-4">
                                   <span className="text-lg font-semibold ">
                                     {val.question}
                                   </span>
