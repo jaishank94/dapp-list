@@ -233,7 +233,9 @@ export default function index() {
                             >
                               <div className="flex justify-center items-center relative h-16 w-16 lg:h-32 lg:w-32">
                                 <div className="rounded-full p-2 lg:p-4 border dark:border-0 dark:bg-neutral-800 ">
-                                  <span className="p-2 text-neutral-400">{i + 1}</span>
+                                  <span className="p-2 text-neutral-400">
+                                    {i + 1}
+                                  </span>
                                 </div>
                               </div>
                               <div className="flex justify-center items-center">
@@ -257,17 +259,15 @@ export default function index() {
                 })}
               </div>
             </div>
-            <div className="flex cursor-pointer justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
-              <Link
-                href="/dapps"
-                // className="flex item-center rounded-full shadow-2xl"
-              >
-                <>
-                  <BsFillArrowLeftCircleFill className="flex item-center rounded-full shadow-2xl h-5 w-5 mx-2" />
-                  <p>Back to home</p>
-                </>
-              </Link>
-            </div>
+            <Link
+              href="/dapps"
+              // className="flex item-center rounded-full shadow-2xl"
+            >
+              <div className="flex cursor-pointer justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
+                <BsFillArrowLeftCircleFill className="flex item-center rounded-full shadow-2xl h-5 w-5 mx-2" />
+                <p>Back to home</p>
+              </div>
+            </Link>
           </div>
         </div>
 
