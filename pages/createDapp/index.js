@@ -269,7 +269,6 @@ export default function index() {
         bitbuket !== "" ||
         smart_contract_address !== ""
       ) {
-
         let fVal = {
           name,
           short_description,
@@ -463,12 +462,12 @@ export default function index() {
 
   return (
     <Fragment>
-      <div className="min-h-screen max-h-full">
+      <div className="min-h-screen max-h-full  bg-[#EDF1F4] dark:bg-neutral-900">
         <Toaster position="top-right" />
-        <div className="">
+        <div className="bg-[#EDF1F4] dark:bg-neutral-800">
           <div
             className={`w-full ${
-              theme === "light" ? "border-b-2" : "border-b-0"
+              theme === "light" ? "border-b" : "border-b-0 bg-neutral-800"
             } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
@@ -488,13 +487,13 @@ export default function index() {
               </div>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto px-4 md:px-28 lg:px-36">
+          <div className="bg-[#EDF1F4] dark:bg-neutral-900 max-w-7xl mx-auto px-4 md:px-28 lg:px-72">
             <p
               className={`text-sm ${
                 theme === "light"
-                  ? "shadow-slate-100 border-slate-100"
-                  : "shadow-neutral-800 border-neutral-800"
-              } rounded-xl border-2 shadow-xl font-bold text-center p-4`}
+                  ? "shadow-white border-white bg-slate-200"
+                  : "shadow-neutral-800 border-black bg-neutral-900"
+              } rounded-xl border-4 shadow-md font-bold text-left p-4`}
             >
               Whether you are looking for new users, testers, concept feedback,
               partners, or investors, submitting a DApp (Decentralized
@@ -537,7 +536,7 @@ export default function index() {
               // getFormData(values);
               return (
                 <Form>
-                  <div className="max-w-7xl mx-auto px-4 md:px-28 lg:px-36">
+                  <div className="max-w-7xl mx-auto px-4 md:px-28 lg:px-72">
                     <div className="flex flex-col items-center justify-center">
                       <div className="my-2 px-2 pt-8 w-full">
                         <input
@@ -547,13 +546,13 @@ export default function index() {
                           placeholder="App Name *"
                           value={formValues.name}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.name && errors.name ? "input-error" : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={50}
                         />
@@ -575,7 +574,7 @@ export default function index() {
                           placeholder="Short Description *"
                           value={formValues.short_description}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.short_description &&
                             errors.short_description
                               ? "input-error"
@@ -583,8 +582,8 @@ export default function index() {
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={25}
                         />
@@ -606,15 +605,15 @@ export default function index() {
                           placeholder="Full Description *"
                           value={formValues.full_description}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.full_description && errors.full_description
                               ? "input-error"
                               : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={300}
                         />
@@ -636,15 +635,15 @@ export default function index() {
                           placeholder="Website URL *"
                           value={formValues.website_url}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.website_url && errors.website_url
                               ? "input-error"
                               : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={200}
                         />
@@ -666,15 +665,15 @@ export default function index() {
                           placeholder="DApp Logo URL *"
                           value={formValues.logo_url}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.logo_url && errors.logo_url
                               ? "input-error"
                               : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={200}
                         />
@@ -696,13 +695,13 @@ export default function index() {
                           placeholder="Ticker *"
                           value={formValues.ticker}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.ticker && errors.ticker ? "input-error" : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={100}
                         />
@@ -724,15 +723,15 @@ export default function index() {
                           placeholder="Total Supply *"
                           value={formValues.total_supply}
                           onChange={handleChange}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.total_supply && errors.total_supply
                               ? "input-error"
                               : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={50}
                         />
@@ -751,20 +750,22 @@ export default function index() {
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {SacrificeValues.map((data, i) => {
                             return (
-                              <>
-                                <div>
+                              <div key={i}>
+                                <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
                                   <div
                                     onClick={(e) => {
                                       setSacrifice(data.name);
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
+                                    className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm 
+                                    
+                                    ${
                                       sacrifice !== data.name
                                         ? ""
                                         : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
-                                      className={`w-9/12 text-left ${
+                                      className={`text-left ${
                                         sacrifice !== data.name
                                           ? ""
                                           : "text-white"
@@ -772,16 +773,9 @@ export default function index() {
                                     >
                                       {data.name}
                                     </span>
-                                    <span className="w-3/12 text-right">
-                                      {/* {formValues.sacrifice !== data.name ? (
-                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                         ) : (
-                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                         )} */}
-                                    </span>
                                   </div>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </div>
@@ -791,8 +785,8 @@ export default function index() {
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {AppStatus.map((data, i) => {
                             return (
-                              <>
-                                <div>
+                              <div key={i}>
+                                <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
                                   <div
                                     onClick={(e) => {
                                       e.preventDefault();
@@ -804,14 +798,14 @@ export default function index() {
                                       // });
                                       // console.log("Asd2");
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
+                                    className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm ${
                                       appStatus !== data.name
                                         ? ""
                                         : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
-                                      className={`w-9/12 text-left ${
+                                      className={`text-left truncate ${
                                         appStatus !== data.name
                                           ? ""
                                           : "text-white"
@@ -819,16 +813,9 @@ export default function index() {
                                     >
                                       {data.name}
                                     </span>
-                                    <span className="w-3/12 text-right">
-                                      {/* {formValues.app_status !== data.name ? (
-                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                         ) : (
-                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                         )} */}
-                                    </span>
                                   </div>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </div>
@@ -838,8 +825,8 @@ export default function index() {
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {Category.map((data, i) => {
                             return (
-                              <>
-                                <div>
+                              <div key={i}>
+                                <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
                                   <div
                                     onClick={(e) => {
                                       let arr = category.filter(
@@ -860,7 +847,7 @@ export default function index() {
                                         }
                                       }
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
+                                    className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm ${
                                       !category.includes(data.name)
                                         ? ""
                                         : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
@@ -877,14 +864,14 @@ export default function index() {
                                     </span>
                                     <span className="w-3/12 text-right contents">
                                       {category.includes(data.name) ? (
-                                        <BsDash className="rounded-full border-2 shadow-md w-5 h-5 bg-white text-black" />
+                                        <BsDash className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-800 shadow-md w-5 h-5 bg-slate-100 text-black dark:text-white" />
                                       ) : (
-                                        <BsPlus className="rounded-full border-2 shadow-md w-5 h-5 bg-white  text-black" />
+                                        <BsPlus className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-900 shadow-md w-5 h-5 bg-slate-100  text-black dark:text-white" />
                                       )}
                                     </span>
                                   </div>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </div>
@@ -894,21 +881,21 @@ export default function index() {
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {ProjInformation.map((data, i) => {
                             return (
-                              <>
-                                <div>
+                              <div key={i}>
+                                <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
                                   <div
                                     onClick={(e) => {
                                       e.preventDefault();
                                       setProjectInformation(data.name);
                                     }}
-                                    className={`flex cursor-pointer border-2 rounded-full p-2 text-sm ${
+                                    className={`flex items-center justify-center cursor-pointer border dark:border-black rounded-full p-2 text-sm ${
                                       projectInformation !== data.name
                                         ? ""
                                         : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
-                                      className={`w-9/12 text-left ${
+                                      className={`${
                                         projectInformation !== data.name
                                           ? ""
                                           : "text-white"
@@ -918,7 +905,7 @@ export default function index() {
                                     </span>
                                   </div>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </div>
@@ -933,13 +920,13 @@ export default function index() {
                           placeholder="NFT + Games + Education"
                           value={tags}
                           onChange={(e) => setTags(e.target.value)}
-                          className={`form-control w-full rounded-xl shadow p-4 ${
+                          className={`form-control w-full rounded-xl border shadow-lg p-4 ${
                             touched.tag && errors.tag ? "input-error" : ""
                           }
                             ${
                               theme === "light"
-                                ? " shadow-slate-300"
-                                : "bg-black shadow-neutral-800"
+                                ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                : "bg-neutral-900 shadow-neutral-800 border-black"
                             }`}
                           maxLength={25}
                           onKeyPress={(e) => {
@@ -959,29 +946,31 @@ export default function index() {
                           <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                             {tagArr.map((data, i) => {
                               return (
-                                <div
-                                  key={i}
-                                  className=" items-center justify-center p-2"
-                                >
-                                  <div className="flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm">
-                                    <span className="w-9/12 text-left truncate">
-                                      {data}
-                                    </span>
-                                    <span className="w-3/12 text-right contents">
-                                      <BsDash
-                                        className="rounded-full border-2 shadow-md w-5 h-5"
-                                        onClick={(e) => {
-                                          e.preventDefault();
-                                          const index = tagArr.indexOf(data);
-                                          let newArry = tagArr;
-                                          if (index > -1) {
-                                            newArry.splice(index, 1);
-                                          }
-                                          setTagArr(newArry);
-                                          setTags(data);
-                                        }}
-                                      />
-                                    </span>
+                                <div key={i}>
+                                  <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
+                                    <div
+                                      className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm 
+                                    }`}
+                                    >
+                                      <span className="w-9/12 text-left truncate">
+                                        {data}
+                                      </span>
+                                      <span className="w-3/12 text-right contents">
+                                        <BsDash
+                                          className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-800 shadow-md w-5 h-5 bg-slate-100 text-black dark:text-white"
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            const index = tagArr.indexOf(data);
+                                            let newArry = tagArr;
+                                            if (index > -1) {
+                                              newArry.splice(index, 1);
+                                            }
+                                            setTagArr(newArry);
+                                            setTags(data);
+                                          }}
+                                        />
+                                      </span>
+                                    </div>
                                   </div>
                                 </div>
                               );
@@ -1007,12 +996,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="facebook"
                             name="facebook"
                             placeholder="Facebook"
@@ -1034,12 +1023,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="telegram"
                             name="telegram"
                             placeholder="Telegram"
@@ -1059,12 +1048,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="instagram"
                             name="instagram"
                             placeholder="Instagram"
@@ -1084,12 +1073,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="youtube"
                             name="youtube"
                             placeholder="Youtube"
@@ -1109,12 +1098,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="twitter"
                             name="twitter"
                             placeholder="Twitter"
@@ -1134,12 +1123,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="reddit"
                             name="reddit"
                             placeholder="Reddit"
@@ -1159,12 +1148,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="medium"
                             name="medium"
                             placeholder="Medium"
@@ -1184,12 +1173,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="discord"
                             name="discord"
                             placeholder="Discord"
@@ -1213,12 +1202,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="github"
                             name="github"
                             placeholder="Github"
@@ -1238,12 +1227,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="gitlab"
                             name="gitlab"
                             placeholder="GitLab"
@@ -1263,12 +1252,12 @@ export default function index() {
                           </div>
                           <input
                             type="text"
-                            className={`form-control w-full pl-16 rounded-xl shadow p-4
-                              ${
-                                theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
-                              }`}
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                             id="bitbuket"
                             name="bitbuket"
                             placeholder="Bitbuket"
@@ -1286,47 +1275,40 @@ export default function index() {
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {hiringValues.map((data, i) => {
                             return (
-                              <>
-                                <div>
+                              <div key={i}>
+                                <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
                                   <div
                                     onClick={(e) => {
                                       e.preventDefault();
                                       setHiring(data.name);
                                     }}
-                                    className={`flex cursor-pointer justify-center items-center border-2 rounded-full p-2 text-sm ${
+                                    className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm ${
                                       hiring !== data.name
                                         ? ""
                                         : "font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg"
                                     }`}
                                   >
                                     <span
-                                      className={`w-9/12 text-left ${
+                                      className={`${
                                         hiring !== data.name ? "" : "text-white"
                                       }`}
                                     >
                                       {data.name}
                                     </span>
-                                    <span className="w-3/12 text-right">
-                                      {/* {formValues.project_information !== data.name ? (
-                                           <BsDash className="rounded-full border-2 shadow-md w-8 h-8 bg-white text-black" />
-                                         ) : (
-                                           <BsPlus className="rounded-full border-2 shadow-md w-8 h-8 bg-white  text-black" />
-                                         )} */}
-                                    </span>
                                   </div>
                                 </div>
-                              </>
+                              </div>
                             );
                           })}
                         </div>
                         <div className="my-5">
                           <input
                             type="email"
-                            className={`form-control w-full rounded-xl shadow p-4
+                            className={`form-control w-full rounded-xl border shadow-lg p-4
                               ${
                                 theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
+                                  ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                  : "bg-neutral-900 shadow-neutral-800 border-black"
                               }`}
                             id="email"
                             name="email"
@@ -1339,11 +1321,11 @@ export default function index() {
                         <div className="my-5">
                           <input
                             type="text"
-                            className={`form-control w-full rounded-xl shadow p-4
+                            className={`form-control w-full rounded-xl border shadow-lg p-4
                               ${
                                 theme === "light"
-                                  ? " shadow-slate-300"
-                                  : "bg-black shadow-neutral-800"
+                                  ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                  : "bg-neutral-900 shadow-neutral-800 border-black"
                               }`}
                             id="smart_contract_address"
                             name="smart_contract_address"
@@ -1366,14 +1348,14 @@ export default function index() {
                           type="submit"
                           disabled={isSubmitting}
                           onClick={submitApp}
-                          className={`cursor-pointer rounded-lg p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white`}
+                          className={`cursor-pointer rounded-full p-4 px-6 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white`}
                         >
                           {isSubmitting ? "Submitting..." : "Submit DApp"}
                         </button>
                         <button
-                          className={`mx-4 rounded-lg border-0 p-2 shadow-lg font-semibold ${
+                          className={`mx-4 rounded-full border-0 p-4 px-8 font-semibold ${
                             theme === "light"
-                              ? "bg-slate-300 shadow-slate-300"
+                              ? "bg-slate-200"
                               : "bg-neutral-800 shadow-neutral-800"
                           }`}
                           type="reset"

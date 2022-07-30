@@ -148,7 +148,7 @@
   font-weight: 500;
 }
 
-.table-header .table-row {
+.table-header .table-rows {
   min-height: 22px;
   box-shadow: none;
   border-radius: 0;
@@ -157,14 +157,14 @@
   cursor: auto;
 }
 
-.table-row {
+.table-rows {
   /* background: #fbfbff; */
   border-radius: 4px;
   /* box-shadow: 0 0 10px rgba(51, 51, 51, .05); */
   margin-bottom: 12px;
   /* padding-right: 15px; */
   min-height: 80px;
-  display: flex;
+  /* display: flex; */
   flex-flow: row nowrap;
   cursor: pointer;
 }

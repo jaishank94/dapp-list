@@ -92,31 +92,34 @@ export default function index() {
           <div className="text-white relative">
             <div className="p-2 md:p-4 absolute z-50">
               <p className="text-xl font-bold">{dappInfo.dapps}</p>
-              <p className="text-xs pt-1 font-bold text-gray-100">DApps</p>
+              <p className="text-xs pt-1 font-default text-gray-100">DApps</p>
             </div>
-            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25">
-              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25"></div>
+            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-xl bg-gradient-to-r from-slate-200 opacity-25">
+              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-xl bg-gradient-to-r from-slate-200 opacity-25"></div>
             </div>
           </div>
           <div className="text-white relative mx-10">
             <div className="p-2 md:p-4 absolute z-50">
               {/* <p className="text-xl font-bold">{dappInfo.visitors}</p> */}
               <p className="text-xl font-bold">{"-"}</p>
-              <p className="text-xs pt-1 font-bold text-gray-100">Visitors</p>
+              <p className="text-xs pt-1 font-default text-gray-100">
+                Visitors
+              </p>
             </div>
-            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25">
-              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-lg bg-gradient-to-r from-slate-200 opacity-25"></div>
+            <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-xl bg-gradient-to-r from-slate-200 opacity-25">
+              <div className="rotate-[165deg] absolute -top-[0.5px] h-16 w-20 md:h-20 md:w-28 shadow rounded-xl bg-gradient-to-r from-slate-200 opacity-25"></div>
             </div>
           </div>
         </div>
         <div className="pt-2 p-4">
-          <Link href="/dapps">
-            <div className="cursor-pointer w-3/4 md:w-2/4 flex justify-center items-center rounded-full bg-white shadow-lg p-2 ">
-              <span className="uppercase text-transparent font-bold md:text-2xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                Explore Projects
-              </span>
-            </div>
-          </Link>
+          {/* <div className="cursor-pointer w-3/4 md:w-2/4 flex justify-center items-center rounded-full bg-white shadow-lg p-2 "> */}
+          <div className="">
+            <Link href="/dapps">
+              <button className="cursor-pointer bg-white p-2 rounded-full shadow-lg shadow-stone-500">
+                <span className="text-sm uppercase text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Explore Projects</span>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="w-full h-screen">

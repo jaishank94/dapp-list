@@ -50,44 +50,39 @@ export default function index() {
 
   return (
     <Fragment>
-      <div className="h-screen">
+      <div className="min-h-screen max-h-full bg-[#EDF1F4] dark:bg-neutral-900">
         <Toaster position="top-right" />
 
         <div
           className={`w-full ${
-            theme === "light" ? "border-b-2" : "border-b-0"
+            theme === "light" ? "border-b" : "border-b-0 bg-neutral-800"
           } border-slate-300 mb-5`}
         >
           <Header displayCreate={false} />
         </div>
-        <div className="flex flex-col justify-center items-center max-w-7xl mx-auto px-4 md:px-16">
-          <div
-            className={`rounded-3xl border-2  shadow-2xl ${
-              theme === "light"
-                ? " border-slate-100 shadow-slate-300"
-                : " border-neutral-800 shadow-neutral-800"
-            }`}
-          >
+        <div className="flex flex-col justify-center items-center max-w-7xl mx-auto px-4 md:px-28 lg:px-72">
+          <div className={`w-full`}>
             <div
-              className={`flex flex-col p-6 items-center rounded-2xl text-2xl justify-center shadow-xl border-2  shadow-2xl ${
+              className={`flex flex-col p-6 items-center rounded-2xl text-2xl justify-center border ${
                 theme === "light"
-                  ? " border-slate-100 shadow-slate-300"
-                  : " border-neutral-800 shadow-neutral-800"
+                  ? " border-slate-50 bg-slate-100"
+                  : " border-neutral-800 bg-neutral-800"
               }`}
             >
               <p className="font-bold my-2">Report Abusive Projects</p>
-              <p className="font-normal text-gray-500 text-sm py-4">
+              <p className="font-normal text-neutral-500 text-sm py-4">
                 Do you see a SCAM project? Let us know..
               </p>
             </div>
             <div className="flex justify-center items-center py-4 w-full">
               <input
                 type="text"
-                className={`form-control rounded-xl shadow p-4 ${
-                  theme === "light"
-                    ? " border-slate-100 shadow-slate-300"
-                    : "bg-black border-neutral-800 shadow-neutral-800"
-                }`}
+                className={`form-control w-full rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
                 id="youtube"
                 name="youtube"
                 placeholder="Enter project link"
@@ -99,7 +94,7 @@ export default function index() {
               <button
                 disabled={isLoading}
                 onClick={() => reportDapp()}
-                className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white"
+                className="cursor-pointer w-full rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white"
               >
                 {isLoading
                   ? "Submitting..."

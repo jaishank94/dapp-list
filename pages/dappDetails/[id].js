@@ -91,7 +91,7 @@ const Categories = [
     name: "All Categories",
     slug: "Category",
     color: "slate",
-    bgColor: "bg-slate-300 dark:bg-neutral-900",
+    bgColor: "bg-slate-300 dark:bg-neutral-800",
     icon: (
       <GiHamburgerMenu
         className="h-8 w-8 bg-gray-900 rounded-full p-1 mx-4"
@@ -371,20 +371,20 @@ export default function DappDetails() {
 
   return (
     <Fragment>
-      <div className="h-screen">
+      <div className="bg-[#EDF1F4] dark:bg-neutral-900">
         <Toaster position="top-right" />
 
         <div className="">
           <div
             className={`w-full ${
-              theme === "light" ? "border-b-2" : "border-b-0"
+              theme === "light" ? "border-b" : "border-b-0 bg-neutral-800"
             } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
           </div>
         </div>
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between p-4 max-w-7xl mx-auto">
+          <div className="flex justify-between p-2 max-w-7xl mx-auto">
             {/* <div className="flex justify-between items-center py-6 sm:px-0 xl:px-16 md:justify-center md:space-x-10"> */}
             <div className="w-18">
               <Link href="/dapps">
@@ -395,421 +395,427 @@ export default function DappDetails() {
             </div>
           </div>
           {dappInfo && !isLoading && (
-            <div className="max-w-7xl mx-auto px-4 md:px-28">
-              <div
-                className={`rounded-3xl border-2  
-                ${dappInfo.hiring === "Yes" ? "" : "shadow-2xl"}
+            <div className="bg-[#EDF1F4] dark:bg-neutral-900 max-w-7xl mx-auto px-4 md:px-28 lg:px-72">
+              <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-3xl">
+                <div
+                  className={`rounded-3xl border  shadow-2xl
                 ${
                   theme === "light"
-                    ? " border-slate-100 shadow-slate-300"
+                    ? " border-white shadow-white"
                     : " border-black shadow-neutral-800"
                 }`}
-              >
-                <div
-                  className={`rounded-3xl border-2 dark:shadow 
-                  ${dappInfo.hiring === "Yes" ? "" : "shadow-2xl"}
-                  ${
-                    theme === "light"
-                      ? " border-slate-100 shadow-slate-300 bg-white"
-                      : " border-black shadow-neutral-800 bg-neutral-800"
-                  }`}
                 >
                   <div
-                    className={`flex rounded-3xl ${
-                      theme === "light"
-                        ? "border-slate-100 shadow-slate-300 bg-white"
-                        : "border-black bg-neutral-800"
-                    }`}
+                    className={`rounded-3xl border-2 z-50
+                   ${dappInfo.hiring === "Yes" ? "" : "shadow-xl"}
+                  ${
+                    theme === "light"
+                      ? " border-slate-200 shadow-slate-200 bg-slate-100"
+                      : " border-black shadow-black bg-neutral-800"
+                  }`}
                   >
-                    <div className="flex justify-center items-center relative h-32 w-32">
-                      <div className="rounded-3xl object-fill shadow-lg shadow-lg">
-                        {dappInfo.logo && dappInfo.logo !== "" ? (
-                          <img
-                            alt="Logo"
-                            src={dappInfo.logo}
-                            width={110}
-                            height={110}
-                            className="rounded-3xl h-32 w-32"
-                          />
-                        ) : (
-                          <div className="p-4">
-                            <Image
-                              src={theme === "light" ? blackLogo : whiteLogo}
-                              width={80}
-                              height={80}
-                              className="rounded-3xl h-32 w-32 "
+                    <div
+                      className={`flex rounded-3xl ${
+                        theme === "light"
+                          ? "border-slate-100 shadow-red-300 bg-slate-100"
+                          : "border-black bg-neutral-800"
+                      }`}
+                    >
+                      <div className="flex justify-center items-center relative h-32 w-32">
+                        <div className="rounded-3xl object-fill border dark:border-0">
+                          {dappInfo.logo && dappInfo.logo !== "" ? (
+                            <img
+                              alt="Logo"
+                              src={dappInfo.logo}
+                              width={110}
+                              height={110}
+                              className="rounded-3xl h-32 w-32"
                             />
-                          </div>
-                        )}
+                          ) : (
+                            <div className="p-4">
+                              <Image
+                                src={theme === "light" ? blackLogo : whiteLogo}
+                                width={80}
+                                height={80}
+                                className="rounded-3xl h-32 w-32 "
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex-initial px-5 xl:p-5">
+                        <div className="py-4">
+                          <h5 className="font-bold text-lg md:text-3xl">
+                            {dappInfo.name}
+                          </h5>
+                          <p className="text-gray-500 text-sm">
+                            {dappInfo.short_description}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex-initial px-5 xl:p-5">
-                      <div className="py-4">
-                        <h5 className="font-bold text-lg md:text-3xl">
-                          {dappInfo.name}
-                        </h5>
-                        <p className="text-gray-500 text-sm">
-                          {dappInfo.short_description}
+                  </div>
+                  {dappInfo.hiring === "Yes" && (
+                    <div className="relative py-2">
+                      <p className="p-1 cursor-default font-semibold flex justify-center bg-green-600 text-white ">
+                        We're hiring
+                      </p>
+                    </div>
+                  )}
+                  <div class="grid grid-cols-3 justify-between divide-x py-8">
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Status
+                        </p>
+                      </div>
+                      <div className="mt-2">
+                        <p
+                          className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${
+                            theme === "light"
+                              ? "bg-black text-white"
+                              : "bg-white text-black"
+                          }`}
+                        >
+                          {dappInfo.app_status}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Page Views
+                        </p>
+                      </div>
+                      <div className="flex mt-2">
+                        <span className="text-xs md:text-lg font-semibold">
+                          {dappInfo.page_views ? dappInfo.page_views : "0"}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Ticker
+                        </p>
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-xs md:text-lg font-semibold uppercase">
+                          {dappInfo.ticker ? dappInfo.ticker : "_"}
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
-                {dappInfo.hiring === "Yes" && (
-                  <div className="relative -top-5 -z-10">
-                    <p className=" p-16 text-justify p-1 pt-6 cursor-default font-semibold flex justify-center bg-green-600 rounded-b-3xl text-white ">
-                      We're hiring
-                    </p>
-                  </div>
-                )}
-                <div class="grid grid-cols-3 justify-between divide-x py-8">
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">
-                        Status
-                      </p>
-                    </div>
-                    <div className="mt-2">
-                      <p
-                        className={`p-1 px-1 flex items-center text-xs justify-center md:text-lg font-semibold rounded-full truncate ${
-                          theme === "light"
-                            ? "bg-black text-white"
-                            : "bg-white text-black"
-                        }`}
-                      >
-                        {dappInfo.app_status}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">
-                        Page Views
-                      </p>
-                    </div>
-                    <div className="flex mt-2">
-                      <span className="text-xs md:text-lg font-semibold">
-                        {dappInfo.page_views ? dappInfo.page_views : "0"}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">
-                        Ticker
-                      </p>
-                    </div>
-                    <div className="mt-2">
-                      <p className="text-xs md:text-lg font-semibold uppercase">
-                        {dappInfo.ticker ? dappInfo.ticker : "_"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="grid grid-cols-3 divide-x py-8">
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">
-                        Sacrifice
-                      </p>
+                  <div class="grid grid-cols-3 divide-x py-8">
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Sacrifice
+                        </p>
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-xs md:text-lg font-semibold uppercase">
+                          {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
+                        </p>
+                      </div>
                     </div>
-                    <div className="mt-2">
-                      <p className="text-xs md:text-lg font-semibold uppercase">
-                        {dappInfo.sacrifice ? dappInfo.sacrifice : "_"}
-                      </p>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Total Supply
+                        </p>
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-xs md:text-lg font-semibold uppercase">
+                          {dappInfo.total_supply ? dappInfo.total_supply : "_"}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">
-                        Total Supply
-                      </p>
-                    </div>
-                    <div className="mt-2">
-                      <p className="text-xs md:text-lg font-semibold uppercase">
-                        {dappInfo.total_supply ? dappInfo.total_supply : "_"}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-center">
-                    <div>
-                      <p className="text-gray-500 text-xs md:text-base">Vote</p>
-                    </div>
-                    <div className="mt-2 flex text-center cursor-pointer justify-center space-x-2">
-                      <div className="grid grid-cols-2">
-                        <div className="flex justify-center p-5">
-                          <button
-                            className="text-center"
-                            disabled={isDisabled}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              isAuthenticated
-                                ? handleReaction(true)
-                                : authenticate();
-                            }}
-                          >
-                            {like ? (
-                              <BsHandThumbsUpFill
-                                className="h-5 w-5"
-                                color="blueviolet"
-                              />
-                            ) : (
-                              <BsHandThumbsUp
-                                className="h-5 w-5"
-                                color="blueviolet"
-                              />
-                            )}
-                          </button>
-                          <div className="ml-2">
-                            <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                              {likeCount}
-                            </span>
+                    <div className="flex flex-col items-center justify-center">
+                      <div>
+                        <p className="text-gray-500 text-xs md:text-base">
+                          Vote
+                        </p>
+                      </div>
+                      <div className="mt-2 flex text-center cursor-pointer justify-center space-x-2">
+                        <div className="grid grid-cols-2">
+                          <div className="flex justify-center p-5">
+                            <button
+                              className="text-center"
+                              disabled={isDisabled}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                isAuthenticated
+                                  ? handleReaction(true)
+                                  : authenticate();
+                              }}
+                            >
+                              {like ? (
+                                <BsHandThumbsUpFill
+                                  className="h-5 w-5"
+                                  color="blueviolet"
+                                />
+                              ) : (
+                                <BsHandThumbsUp
+                                  className="h-5 w-5"
+                                  color="blueviolet"
+                                />
+                              )}
+                            </button>
+                            <div className="ml-2">
+                              <span className="text-transparent font-semibold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                                {likeCount}
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className="flex justify-center p-5">
-                          <button
-                            className="text-center"
-                            disabled={isDisabled}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              isAuthenticated
-                                ? handleReaction(false)
-                                : authenticate();
-                            }}
-                          >
-                            {dislike ? (
-                              <BsHandThumbsDownFill className="h-5 w-5" />
-                            ) : (
-                              <BsHandThumbsDown className="h-5 w-5" />
-                            )}
-                          </button>
-                          <div className="ml-2">
-                            <span className="font-semibold">
-                              {dislikeCount}
-                            </span>
+                          <div className="flex justify-center p-5">
+                            <button
+                              className="text-center"
+                              disabled={isDisabled}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                isAuthenticated
+                                  ? handleReaction(false)
+                                  : authenticate();
+                              }}
+                            >
+                              {dislike ? (
+                                <BsHandThumbsDownFill className="h-5 w-5" />
+                              ) : (
+                                <BsHandThumbsDown className="h-5 w-5" />
+                              )}
+                            </button>
+                            <div className="ml-2">
+                              <span className="font-semibold">
+                                {dislikeCount}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="grid grid-cols-2 divide-x py-8">
-                  <div className="flex flex-col items-center">
-                    <div>
-                      <p className="text-gray-500 text-center">Social Media</p>
+                  <div className="grid grid-cols-2 divide-x py-8">
+                    <div className="flex flex-col items-center">
+                      <div>
+                        <p className="text-gray-500 text-center">
+                          Social Media
+                        </p>
+                      </div>
+                      <div className="mt-2">
+                        <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {Object.entries(dappInfo.sns).map((val, key) => {
+                            if (val[1] === "") return null;
+                            return (
+                              <li className="p-2" key={key}>
+                                <a className="mr-4 md:mr-6 " href={val[1]}>
+                                  {snsIcon[val[0]]}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="mt-2">
-                      <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                        {Object.entries(dappInfo.sns).map((val, key) => {
-                          if (val[1] === "") return null;
-                          return (
-                            <li className="p-2" key={key}>
-                              <a className="mr-4 md:mr-6 " href={val[1]}>
-                                {snsIcon[val[0]]}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div>
-                      <p className="text-gray-500 text-center">Source Code</p>
-                    </div>
-                    <div className="mt-2">
-                      <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                        {Object.entries(dappInfo.code).map((val, key) => {
-                          if (val[1] === "") return null;
+                    <div className="flex flex-col items-center">
+                      <div>
+                        <p className="text-gray-500 text-center">Source Code</p>
+                      </div>
+                      <div className="mt-2">
+                        <ul className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
+                          {Object.entries(dappInfo.code).map((val, key) => {
+                            if (val[1] === "") return null;
 
-                          return (
-                            <li className="p-2" key={key}>
-                              <a className="mr-4 md:mr-6 " href={val[1]}>
-                                {codeIcon[val[0]]}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                            return (
+                              <li className="p-2" key={key}>
+                                <a className="mr-4 md:mr-6 " href={val[1]}>
+                                  {codeIcon[val[0]]}
+                                </a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-                {/* </div> */}
-                <div className="flex justify-center items-center text-center text-gray-500 text-sm py-8 px-4">
-                  {dappInfo.full_description}
-                </div>
-                <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
-                  {getDisplayType(dappInfo.tag)}
-                </div>
-                {dappInfo.email && dappInfo.email !== "" && (
+                  {/* </div> */}
+                  <div className="flex justify-center items-center text-center text-sm py-8 px-16">
+                    {dappInfo.full_description}
+                  </div>
                   <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
-                    <p className="text-black dark:text-white text-lg">
-                      {dappInfo.email}
-                    </p>
+                    {getDisplayType(dappInfo.tag)}
                   </div>
-                )}
-
-                {dappInfo.smart_contract_address &&
-                  dappInfo.smart_contract_address !== "" && (
-                    <div className="relative top-5 -z-10 mb-2 rounded-t-3xl break-normal flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-900">
-                      <p className="text-center text-gray-500 mx-2 text-sm break-normal">
-                          Smart Contract Address:
-                      </p>
-                      <p className="cursor-default  text-center my-2 w-3/4 truncate">
-                        {dappInfo.smart_contract_address}
+                  {dappInfo.email && dappInfo.email !== "" && (
+                    <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
+                      <p className="text-black dark:text-white text-lg">
+                        {dappInfo.email}
                       </p>
                     </div>
                   )}
 
-                <div className="z-50">
-                  <div
-                    className={`z-50 grid grid-cols-2 divide-x py-8 rounded-t-3xl border-2  shadow-2xl ${
-                      theme === "light"
-                        ? " border-slate-100 shadow-slate-300  bg-white"
-                        : " border-neutral-800 shadow-neutral-800 bg-neutral-800"
-                    }`}
-                  >
-                    <div className="flex flex-col items-center justify-center">
-                      <div>
-                        <p className="text-gray-500">Submitted</p>
-                      </div>
-                      <div className="mt-2">
-                        <p className="text-lg font-semibold">
-                          {moment(dappInfo.createdAt).format("DD MMM YY")}
+                  {dappInfo.smart_contract_address &&
+                    dappInfo.smart_contract_address !== "" && (
+                      <div className="relative top-8 mb-2 z-10 rounded-t-3xl flex items-center justify-center p-6 bg-slate-100 dark:bg-neutral-800">
+                        <p className="text-center text-gray-500 mx-1 text-sm">
+                          Smart Contract Address:
+                        </p>
+                        <p className="cursor-default  text-center my-2 truncate">
+                          {dappInfo.smart_contract_address}
                         </p>
                       </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
-                      <div>
-                        <p className="text-gray-500">Last updated</p>
-                      </div>
-                      <div className="mt-2">
-                        <p className="text-lg font-semibold">
-                          {moment(dappInfo.updatedAt).format("DD MMM YY")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="">
-                    <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-xl text-white">
-                      <Link
-                        href={dappInfo.website_url}
-                        target="_blank"
-                        className=""
-                      >
-                        Launch DApp
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="flex justify-center items-center my-4">
-                    <RWebShare
-                      data={{
-                        text: dappInfo.short_description,
-                        url: window.location.href,
-                        title: dappInfo.name,
-                      }}
-                      onClick={() => console.log("shared successfully!")}
+                    )}
+
+                  <div className="z-50">
+                    <div
+                      className={`z-50 grid grid-cols-2 divide-x py-8 rounded-t-3xl border-0  shadow-2xl ${
+                        theme === "light"
+                          ? " border-slate-100 shadow-slate-300  bg-slate-100"
+                          : " border-neutral-800 shadow-neutral-800 bg-neutral-800"
+                      }`}
                     >
-                      <button
-                        className={`rounded-lg px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full border-2 ${
-                          theme === "light"
-                            ? "bg-white border-slate-100 shadow-slate-200"
-                            : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                        } `}
-                        // onClick={logout}
+                      <div className="flex flex-col items-center justify-center">
+                        <div>
+                          <p className="text-gray-500">Submitted</p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-lg font-semibold">
+                            {moment(dappInfo.createdAt).format("DD MMM YY")}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-center justify-center">
+                        <div>
+                          <p className="text-gray-500">Last updated</p>
+                        </div>
+                        <div className="mt-2">
+                          <p className="text-lg font-semibold">
+                            {moment(dappInfo.updatedAt).format("DD MMM YY")}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="">
+                      <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-xl text-white">
+                        <Link
+                          href={dappInfo.website_url}
+                          target="_blank"
+                          className=""
+                        >
+                          Launch DApp
+                        </Link>
+                      </div>
+                    </div>
+                    <div className="flex justify-center items-center my-4">
+                      <RWebShare
+                        data={{
+                          text: dappInfo.short_description,
+                          url: window.location.href,
+                          title: dappInfo.name,
+                        }}
+                        onClick={() => console.log("shared successfully!")}
                       >
-                        <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
-                          Share
-                        </span>
-                        <span className="md:hidden">
-                          <BsShare className="h-5 w-5" color="blueviolet" />
-                        </span>
-                      </button>
-                    </RWebShare>
-                    <Link href={"/dappAbusive?url=" + window.location.href}>
-                      <div
-                        className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2
-                  ${
-                    theme === "light"
-                      ? "bg-white border-slate-100 shadow-slate-200"
-                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                  }
-                ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
-                        // onClick={() => reportAbusive()}
-                        disabled={isDisabled}
-                      >
-                        <>
-                          <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                            Report Abuse
+                        <button
+                          className={`rounded-lg px-4 h-12 cursor-pointer mx-2 md:rounded-full border-0 ${
+                            theme === "light"
+                              ? "bg-white border-slate-100 shadow-slate-200"
+                              : "bg-neutral-800 border-neutral-800 shadow-neutral-800"
+                          } `}
+                          // onClick={logout}
+                        >
+                          <span className="p-1 hidden text-sm lg:text-xs md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
+                            Share
                           </span>
                           <span className="md:hidden">
-                            <BsExclamationCircle
-                              className="h-5 w-5"
-                              color="blueviolet"
-                            />
+                            <BsShare className="h-5 w-5" color="blueviolet" />
                           </span>
-                        </>
-                      </div>
-                    </Link>
-
-                    <Link href={"/dappRemoval?url=" + window.location.href}>
-                      <div
-                        className={`flex items-center rounded-lg px-4 h-12 shadow-lg mx-2 md:rounded-full border-2 
+                        </button>
+                      </RWebShare>
+                      <Link href={"/dappAbusive?url=" + window.location.href}>
+                        <div
+                          className={`flex items-center rounded-lg px-4 h-12 mx-2 md:rounded-full border-0
                   ${
                     theme === "light"
                       ? "bg-white border-slate-100 shadow-slate-200"
-                      : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
+                      : "bg-neutral-800 border-neutral-800 shadow-neutral-800"
+                  }
+                ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"}`}
+                          // onClick={() => reportAbusive()}
+                          disabled={isDisabled}
+                        >
+                          <>
+                            <span className="p-1 hidden text-sm lg:text-xs md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                              Report Abuse
+                            </span>
+                            <span className="md:hidden">
+                              <BsExclamationCircle
+                                className="h-5 w-5"
+                                color="blueviolet"
+                              />
+                            </span>
+                          </>
+                        </div>
+                      </Link>
+
+                      <Link href={"/dappRemoval?url=" + window.location.href}>
+                        <div
+                          className={`flex items-center rounded-lg px-4 h-12 mx-2 md:rounded-full border-0 
+                  ${
+                    theme === "light"
+                      ? "bg-white border-slate-100 shadow-slate-200"
+                      : "bg-neutral-800 border-neutral-800 shadow-neutral-800"
                   }
                 ${isDisabled ? "cursor-not-allowed" : "cursor-pointer"} `}
-                        // onClick={() => requestRemoval()}
-                        disabled={isDisabled}
+                          // onClick={() => requestRemoval()}
+                          disabled={isDisabled}
+                        >
+                          <span className="p-1 hidden text-sm lg:text-xs md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                            Request Removal
+                          </span>
+                          <span className="md:hidden">
+                            <BsTrash2 className="h-5 w-5" color="blueviolet" />
+                          </span>
+                        </div>
+                      </Link>
+                      <button
+                        className={`rounded-lg px-4 h-12 cursor-not-allowed mx-2 md:rounded-full border-0 ${
+                          theme === "light"
+                            ? "bg-white border-slate-100 shadow-slate-200"
+                            : "bg-neutral-800 border-neutral-800 shadow-neutral-800"
+                        }`}
+                        // onClick={logout}
+                        disabled={true}
                       >
-                        <span className="p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                          Request Removal
+                        <span className="link p-1 hidden text-sm lg:text-xs md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                          Edit DApp
                         </span>
                         <span className="md:hidden">
-                          <BsTrash2 className="h-5 w-5" color="blueviolet" />
+                          <BsPencil className="h-5 w-5" color="blueviolet" />
                         </span>
-                      </div>
-                    </Link>
-                    <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
-                        theme === "light"
-                          ? "bg-white border-slate-100 shadow-slate-200"
-                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                      }`}
-                      // onClick={logout}
-                      disabled={true}
-                    >
-                      <span className="link p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                        Edit DApp
-                      </span>
-                      <span className="md:hidden">
-                        <BsPencil className="h-5 w-5" color="blueviolet" />
-                      </span>
-                    </button>
-                    <button
-                      className={`rounded-lg px-4 h-12 shadow-lg cursor-not-allowed mx-2 md:rounded-full border-2 ${
-                        theme === "light"
-                          ? "bg-white border-slate-100 shadow-slate-200"
-                          : "bg-neutral-900 border-neutral-800 shadow-neutral-800"
-                      } `}
-                      // onClick={logout}
-                      disabled={true}
-                    >
-                      <span className="link p-1 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                        Promote DApp
-                      </span>
-                      <span className="md:hidden">
-                        <BsGraphUp className="h-5 w-5" color="blueviolet" />
-                      </span>
-                    </button>
+                      </button>
+                      <button
+                        className={`rounded-lg px-4 h-12 cursor-not-allowed mx-2 md:rounded-full border-0 ${
+                          theme === "light"
+                            ? "bg-white border-slate-100 shadow-slate-200"
+                            : "bg-neutral-800 border-neutral-800 shadow-neutral-800"
+                        } `}
+                        // onClick={logout}
+                        disabled={true}
+                      >
+                        <span className="link p-1 hidden text-sm lg:text-xs md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                          Promote DApp
+                        </span>
+                        <span className="md:hidden">
+                          <BsGraphUp className="h-5 w-5" color="blueviolet" />
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="my-16 p-6 bg-rose-100 dark:bg-neutral-800 rounded-2xl">
+
+              <div className="my-16 p-6 bg-red-100 dark:bg-neutral-800 rounded-2xl">
                 <p>
                   <span className="flex justify-center items-center">
                     {" "}
@@ -852,59 +858,63 @@ export default function DappDetails() {
                     Popular Projects
                   </h2>
                 </div>
-                <div className="my-10 grid gap-2 grid-cols-1 lg:grid-cols-3 3xl:flex flex-wrap justify-center">
+                <div className="my-10 grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 3xl:flex flex-wrap justify-center">
                   {data &&
                     data.map((app, indx) => {
                       return (
                         <div
-                          className={`w-full my-2 rounded-3xl shadow-xl border-2 cursor-pointer  ${
-                            theme === "light"
-                              ? "border-slate-100 shadow-slate-100"
-                              : "border-neutral-800 shadow-neutral-800"
-                          }`}
-                          onClick={() =>
-                            router.push("/dappDetails/" + app.objectId)
-                          }
                           key={indx}
+                          className="shadow-inner shadow-gray-400 dark:shadow-black rounded-3xl"
                         >
                           <div
-                            className={`flex block w-full h-full p-6 rounded-2xl  ${
-                              theme === "light" ? "bg-white" : "bg-black"
-                            } `}
+                            className={`w-full rounded-3xl shadow-lg border cursor-pointer  ${
+                              theme === "light"
+                                ? "border-white shadow-white"
+                                : "border-neutral-800 shadow-neutral-800"
+                            }`}
+                            onClick={() =>
+                              router.push("/dappDetails/" + app.objectId)
+                            }
                           >
                             <div
-                              className={`block p-6 rounded-lg shadow-xl border-2 ${
-                                theme === "light"
-                                  ? "border-white bg-white shadow-slate-200"
-                                  : "border-black bg-black shadow-neutral-800"
-                              }`}
+                              className={`flex block w-full h-full p-2 rounded-2xl  ${
+                                theme === "light" ? "" : "bg-neutral-900"
+                              } `}
                             >
-                              {app.logo && app.logo !== "" ? (
-                                <img
-                                  alt="Logo"
-                                  src={app.logo}
-                                  width={40}
-                                  height={40}
-                                  className=""
-                                />
-                              ) : (
-                                <Image src={logo} width={40} height={40} />
-                              )}
-                            </div>
-
-                            <div className="px-3 w-4/5">
-                              <p className="text-left text-lg truncate text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
-                                {app.name}
-                              </p>
-                              <p
-                                className={`text-left py-2 text-sm font-normal text-justify ${
+                              <div
+                                className={`block w-1/5 flex justify-center items-center rounded-3xl shadow-xl border ${
                                   theme === "light"
-                                    ? "text-black"
-                                    : "text-gray-500"
+                                    ? "border-slate-200  shadow-white"
+                                    : "border-black bg-neutral-900 shadow-neutral-800"
                                 }`}
                               >
-                                {app.short_description}
-                              </p>
+                                {app.logo && app.logo !== "" ? (
+                                  <img
+                                    alt="Logo"
+                                    src={app.logo}
+                                    width={40}
+                                    height={40}
+                                    className=""
+                                  />
+                                ) : (
+                                  <Image src={logo} width={40} height={40} />
+                                )}
+                              </div>
+
+                              <div className="px-3 w-4/5">
+                                <p className="text-left text-lg truncate text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
+                                  {app.name}
+                                </p>
+                                <p
+                                  className={`text-left py-2 truncate text-sm font-normal text-justify ${
+                                    theme === "light"
+                                      ? "text-black"
+                                      : "text-gray-500"
+                                  }`}
+                                >
+                                  {app.short_description}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -935,13 +945,13 @@ export default function DappDetails() {
                       return (
                         <button
                           key={indx}
-                          className={`${app.bgColor} cursor-pointer flex justify-start items-center px-2 py-4 m-2 space-around rounded-xl`}
+                          className={`${app.bgColor} cursor-pointer flex justify-start items-center p-2 m-2 space-around rounded-xl`}
                           onClick={() =>
                             router.push("/dapps?filter_category=" + app.slug)
                           }
                         >
                           <div className={``}>{app.icon}</div>
-                          <span className="font-semibold text-sm">
+                          <span className="font-semibold text-sm truncate">
                             {app.name}
                           </span>
                         </button>
@@ -969,9 +979,9 @@ export default function DappDetails() {
           )}
         </div>
 
-        <div className="relative w-full bottom-0">
-          <Footer />
-        </div>
+        {/* <div className="relative w-full bottom-0"> */}
+        <Footer />
+        {/* </div> */}
       </div>
     </Fragment>
   );

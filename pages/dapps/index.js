@@ -13,6 +13,7 @@ import moment from "moment";
 import Sidebar from "../components/Sidebar";
 import howToPulse from "/public/images/howToPulse.png";
 import { useTheme } from "next-themes";
+import { BsArrowDownShort } from "react-icons/bs";
 
 const Filter = [
   { name: "Filter" },
@@ -145,10 +146,10 @@ export default function index() {
 
   return (
     <Fragment>
-      <div className="wrapper custom-wrapper overflow-hidden">
+      <div className="wrapper custom-wrapper overflow-hidden bg-[#EDF1F4] dark:bg-neutral-900">
         <div
           className={`w-full ${
-            theme === "light" ? "border-b-2" : "border-b-0"
+            theme === "light" ? "border-b" : "border-b-0 bg-neutral-800"
           } border-slate-300 mb-5`}
         >
           <Header displayCreate={true} handleSidebar={handleSidebar} />
@@ -165,8 +166,8 @@ export default function index() {
             <div>
               <div className="flex items-center justify-center">
                 <div
-                  className={`inline-flex border-2 rounded-full ${
-                    theme === "light" ? "border-slate" : "border-black"
+                  className={`inline-flex border shadow-inner shadow-slate-200 dark:shadow-black rounded-full ${
+                    theme === "light" ? "border-slate" : "border-neutral-800"
                   }`}
                   role="group"
                 >
@@ -188,8 +189,10 @@ export default function index() {
                       
                       ${
                         duration === "Daily"
-                          ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                              theme === "light" ? "" : " border-black"
+                          ? ` border m-1 font-semibold grad-text-color shadow-md text-violet-700 ${
+                              theme === "light"
+                                ? ""
+                                : "bg-neutral-900 shadow-black border-neutral-800"
                             }`
                           : ""
                       }`}
@@ -222,8 +225,10 @@ export default function index() {
                       text-gray-400
                         ${
                           duration === "Weekly"
-                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                                theme === "light" ? "" : " border-black"
+                            ? ` border m-1 font-semibold grad-text-color shadow-md text-violet-700 ${
+                                theme === "light"
+                                  ? ""
+                                  : "bg-neutral-900 shadow-black border-neutral-800"
                               }`
                             : ""
                         }`}
@@ -255,8 +260,10 @@ export default function index() {
                       text-gray-400
                         ${
                           duration === "Monthly"
-                            ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                                theme === "light" ? "" : " border-black"
+                            ? ` border m-1 font-semibold grad-text-color shadow-md text-violet-700 ${
+                                theme === "light"
+                                  ? ""
+                                  : "bg-neutral-900 shadow-black border-neutral-800"
                               }`
                             : ""
                         }`}
@@ -289,8 +296,10 @@ export default function index() {
                       text-gray-400
                        ${
                          duration === "Yearly"
-                           ? ` border-2 font-semibold grad-text-color text-violet-700 ${
-                               theme === "light" ? "" : " border-black"
+                           ? ` border m-1 font-semibold grad-text-color shadow-md text-violet-700 ${
+                               theme === "light"
+                                 ? ""
+                                 : "bg-neutral-900 shadow-black border-neutral-800"
                              }`
                            : ""
                        }`}
@@ -307,19 +316,31 @@ export default function index() {
               </div>
             </div>
             <div className="flex mt-2 w-full text-center justify-center md:justify-end">
+              <div className="mx-2 mt-1">
+                <input
+                  type="text"
+                  className="flex p-2 w-28 md:w-40 shadow boreder border-slate-800 rounded-full"
+                  placeholder="Search DApp"
+                  onChange={(e) => {
+                    // console.log(e.target.valuea, "adsasd");
+                    setSearchText(e.target.value);
+                  }}
+                />
+              </div>
               <Listbox value={filter} onChange={(e) => handleFilter(e)}>
                 <div className="mt-1 mx-2">
                   <Listbox.Button
-                    className={`${
+                    className={`border ${
                       theme === "light"
-                        ? "border-white  bg-white border-2 "
-                        : "bg-dark shadow-neutral-800 border-black"
-                    }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                        ? "border-white shadow shadow-white "
+                        : "bg-dark shadow-lg shadow-neutral-800 border-black "
+                    }  rounded-full relative cursor-pointer py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
                   >
                     <span className="block truncate text-gray-400">
                       {filter.name}
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      <BsArrowDownShort className="h-5 w-5 text-gray-400" />
                       {/* <SelectorIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
@@ -374,16 +395,17 @@ export default function index() {
               <Listbox value={category} onChange={(e) => handleCategory(e)}>
                 <div className="mt-1">
                   <Listbox.Button
-                    className={`${
+                    className={`border ${
                       theme === "light"
-                        ? "border-white  bg-white border-2 "
-                        : "bg-dark shadow-neutral-800 border-black"
-                    }  rounded-full relative cursor-pointer rounded-lg  py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+                        ? "border-white shadow shadow-white"
+                        : "bg-dark shadow-lg shadow-neutral-800 border-black"
+                    }  rounded-full relative cursor-pointer  py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
                   >
                     <span className="block truncate text-gray-400">
                       {category.name}
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                      <BsArrowDownShort className="h-5 w-5 text-gray-400" />
                       {/* <SelectorIcon
                         className="h-5 w-5 text-gray-400"
                         aria-hidden="true"
@@ -436,17 +458,6 @@ export default function index() {
                   </Transition>
                 </div>
               </Listbox>
-              <div className="mx-2 mt-1">
-                <input
-                  type="text"
-                  className="flex p-2 w-28 md:w-36 shadow-lg boreder-2 border-slate-800 rounded-full"
-                  placeholder="Search"
-                  onChange={(e) => {
-                    // console.log(e.target.valuea, "adsasd");
-                    setSearchText(e.target.value);
-                  }}
-                />
-              </div>
             </div>
           </div>
           {/* </div> */}
@@ -454,7 +465,7 @@ export default function index() {
         <div className="flex flex-col justify-between p-2 py-16 max-w-7xl mx-auto">
           <div
             className={` hidden lg:inline-flex r py-4 rounded-md ${
-              theme === "light" ? "bg-white shadow-md" : "bg-neutral-800"
+              theme === "light" ? "bg-white" : "bg-neutral-800"
             }`}
           >
             <div className="flex grid grid-cols-8 gap-2 jusitfy-between space-x-10 ">

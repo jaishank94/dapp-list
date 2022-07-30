@@ -52,7 +52,7 @@ export default function Header({ displayCreate }) {
           PULSECHAIN PROJECT DIRECTORY, INSIGHTS AND ANALYTICS 🎉
         </p>
       </div>
-      <header className="flex justify-between p-4 max-w-7xl mx-auto">
+      <header className="flex justify-between p-4 max-w-7xl mx-auto bg-[#EDF1F4] dark:bg-neutral-800">
         <Head>
           <title>PulseChainProjects.io</title>
           <link rel="icon" href="/favicon.ico" />
@@ -78,15 +78,15 @@ export default function Header({ displayCreate }) {
 
         <div className="flex items-center space-x-5">
           <Link href="/createDapp" className="">
-            <div className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-sm text-white">
+            <div className="cursor-pointer rounded-full p-2 font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-sm text-white">
               Submit DApp
             </div>
           </Link>
           {!isAuthenticated ? (
             <button
               className={`rounded-full ${
-                theme === "light" ? "bg-white" : "shadow-neutral-800"
-              } shadow-lg cursor-pointer md:rounded-full`}
+                theme === "light" ? "bg-white" : "bg-neutral-700"
+              } cursor-pointer md:rounded-full`}
               onClick={authenticate}
             >
               <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
@@ -99,8 +99,8 @@ export default function Header({ displayCreate }) {
           ) : (
             <button
               className={`rounded-lg ${
-                theme === "light" ? "bg-white" : "shadow-neutral-800"
-              } px-4 h-12 shadow-lg cursor-pointer mx-2 md:rounded-full`}
+                theme === "light" ? "bg-white" : "bg-neutral-700"
+              } cursor-pointer mx-2 md:rounded-full`}
               onClick={logout}
             >
               <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Logout</span>
@@ -111,7 +111,7 @@ export default function Header({ displayCreate }) {
           )}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="cursor-pointer border-2 p-2 rounded-lg m-1"
+            className="cursor-pointer border-2 p-2 rounded-full m-1"
           >
             {theme === "light" ? (
               <BsFillMoonFill className="h-5 w-5" />
