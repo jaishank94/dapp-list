@@ -46,6 +46,41 @@ const faqs = [
   },
 ];
 
+const howItWorks = [
+  {
+    title: "Submit your DApp",
+    icon: (
+      <GiPlatform className="rounded-full h-16 w-16  bg-slate-200 dark:bg-black" />
+    ),
+    description:
+      "Looking for new users, testers, concept feedback, partners, or investors. Suibmit your Dapp now ",
+  },
+  {
+    title: "Upvote / Downvote",
+    icon: (
+      <GiVote className="rounded-full h-16 w-16  bg-slate-200 dark:bg-black" />
+    ),
+    description:
+      "Upvote your favorite project. Use this feature wisely and be considerate and respectful. ",
+  },
+  {
+    title: "Report Scams",
+    icon: (
+      <GiAlienBug className="rounded-full h-16 w-16  bg-slate-200 dark:bg-black" />
+    ),
+    description:
+      "Help keep our community safe by reporting known scams to us. ",
+  },
+  {
+    title: "Stats & Insights ",
+    icon: (
+      <BsGraphUp className="rounded-full h-16 w-16  bg-slate-200 dark:bg-black" />
+    ),
+    description:
+      "Important DApp links, social media, videos, source code and popularity ",
+  },
+];
+
 export default function index() {
   const router = useRouter();
   const { theme, setTheme } = useTheme("dark");
@@ -135,7 +170,25 @@ export default function index() {
             <div className="flex flex-col justify-center items-center py-16">
               <h1 className="text-3xl font-semibold">How it works?</h1>
               <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8  py-16">
-                <div className="relative flex items-center justify-center">
+                {howItWorks.map((val, i) => {
+                  return (
+                    <div className="flex items-center justify-center">
+                      <div className="w-full md:w-auto py-8 shadow-2xl shadow-gray-900 dark:shadow-indigo-900 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-4 rounded-3xl">
+                        {val.icon}
+                        <p className="text-lg text-white pt-8 font-bold">
+                          {val.title}
+                        </p>
+                        <p className="text-xs text-gray-100  pt-4 font-default dark:text-gray-200">
+                          {val.description}
+                        </p>
+                      </div>
+                      {/* <div className="p-2 md:p-4 h-72 w-64 md:w-52 shadow rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75">
+                        <div className="rotate-[5deg] absolute -top-[0.5px] h-72 w-64 md:w-52 shadow border-r-4 border-t-4 border-b-4 rounded-3xl border-cyan-600 opacity-25"></div>
+                      </div> */}
+                    </div>
+                  );
+                })}
+                {/* <div className="relative flex items-center justify-center">
                   <div className="px-24 md:px-16 lg:px-24 absolute z-50">
                     <GiPlatform className="rounded-full h-16 w-16  bg-slate-200 dark:bg-black" />
                     <p className="text-lg text-white pt-8 font-bold">
@@ -194,7 +247,7 @@ export default function index() {
                   <div className="p-2 md:p-4 h-72 w-64 md:w-52 shadow rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75">
                     <div className="rotate-[175deg] left-[70px] lg:left-[46px] absolute -top-[10px] h-72 w-64 md:w-52 shadow border-r-4 border-b-4 rounded-3xl border-rose-500 opacity-25"></div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="flex flex-col justify-center items-center py-8">
