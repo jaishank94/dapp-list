@@ -39,8 +39,12 @@ const validation = Yup.object().shape({
     "Please enter valid facebook URL"
   ),
   youtube: Yup.string().matches(
+    /^http(s*):\/\/(www.)*youtube\.com\/[a-zA-Z0-9.]+$/i,
+    "Please enter valid youtube URL."
+  ),
+  youtube_embed: Yup.string().matches(
     /^http(s*):\/\/(www.)*youtube\.com\/embed\/[a-zA-Z0-9.]+$/i,
-    "Please enter valid youtube URL. ex: https://www.youtube.com/embed/abcd"
+    "Please enter valid youtube embed URL."
   ),
   twitter: Yup.string().matches(
     /^http(s*):\/\/(www.)*twitter\.com\/[a-zA-Z0-9.]+$/i,
@@ -51,7 +55,7 @@ const validation = Yup.object().shape({
     "Please enter valid instagram URL"
   ),
   telegram: Yup.string().matches(
-    /^http(s*):\/\/(www.)*telegram\.com\/[a-zA-Z0-9.]+$/i,
+    /^http(s*):\/\/t\.me\/[a-zA-Z0-9.]+$/i,
     "Please enter valid telegram URL"
   ),
   reddit: Yup.string().matches(
@@ -67,7 +71,7 @@ const validation = Yup.object().shape({
     "Please enter valid github URL"
   ),
   discord: Yup.string().matches(
-    /^http(s*):\/\/(www.)*discord\.com\/[a-zA-Z0-9.]+$/i,
+    /^http(s*):\/\/(www.)*discord\.gg\/[a-zA-Z0-9.]+$/i,
     "Please enter valid discord URL"
   ),
   gitlab: Yup.string().matches(
@@ -153,6 +157,7 @@ const initialValues = {
   tag: "",
   // tag_arr: [],
   facebook: "",
+  youtube_embed: "",
   logo_url: "",
   twitter: "",
   instagram: "",
@@ -161,10 +166,8 @@ const initialValues = {
   discord: "",
   gitlab: "",
   ticker: "",
-  // sacrifice: "Yes",
   total_supply: "",
   isSubmitting: false,
-  // hiring: "Yes"
 };
 
 export default function index() {
@@ -175,8 +178,8 @@ export default function index() {
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
   const [tags, setTags] = useState("");
-  const [hiring, setHiring] = useState("Yes");
-  const [projectInformation, setProjectInformation] = useState("Airdrop");
+  const [hiring, setHiring] = useState(false);
+  const [projectInformation, setProjectInformation] = useState("None");
   const [category, setCategory] = useState(["Games"]);
   const [tagArr, setTagArr] = useState([]);
   const [appStatus, setAppStatus] = useState("Live");
@@ -209,7 +212,7 @@ export default function index() {
   //     logo_url: "",
   //     app_status: "",
   //     category: ["Games"],
-  //     project_information: "Airdrop",
+  //     project_information: "None",
   //     tag: "",
   //     tag_arr: [],
   //     facebook: "",
@@ -251,6 +254,7 @@ export default function index() {
       ticker,
       total_supply,
       email,
+      youtube_embed,
       smart_contract_address,
     } = formValues;
 
@@ -264,6 +268,7 @@ export default function index() {
         medium !== "" ||
         telegram !== "" ||
         youtube !== "" ||
+        youtube_embed !== "" ||
         github !== "" ||
         gitlab !== "" ||
         bitbuket !== "" ||
@@ -319,6 +324,12 @@ export default function index() {
           await validation.validate({
             ...fVal,
             youtube,
+          });
+        }
+        if (youtube_embed !== "") {
+          await validation.validate({
+            ...fVal,
+            youtube_embed,
           });
         }
         if (github !== "") {
@@ -405,10 +416,11 @@ export default function index() {
         newObject.set("sns", snc);
         newObject.set("code", code);
         newObject.set("page_views", 0);
-        newObject.set("project_informatiom", projectInformation);
+        newObject.set("project_information", projectInformation);
         newObject.set("email", email ? email.trim() : "");
         newObject.set("smart_contract_address", smart_contract_address);
-        newObject.set("hiring", hiring);
+        newObject.set("youtube_embed", youtube_embed);
+        newObject.set("hiring", hiring ? "Yes" : "No");
         newObject.set("status", "IN-ACTIVE");
         let response = await newObject.save();
         let result = JSON.parse(JSON.stringify(response));
@@ -435,14 +447,16 @@ export default function index() {
             gitlab: "",
             bitbuket: "",
             total_supply: "",
+            youtube_embed: "",
             isSubmitting: false,
           });
           setTagArr([]);
           setCategory(["Games"]);
-          setProjectInformation("Airdrop");
+          setProjectInformation("None");
           setAppStatus("Live");
           setSacrifice("Yes");
           setTags("");
+          setHiring(false);
           // this.setState({ isSubmitting: false })
         } else {
           toast.error("Some Error Occured..! Please try again.");
@@ -556,6 +570,9 @@ export default function index() {
                             }`}
                           maxLength={50}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: PulseChainProjects)
+                        </span>
                         {errors.name &&
                         touched.name &&
                         formValues.name == "" ? (
@@ -587,6 +604,9 @@ export default function index() {
                             }`}
                           maxLength={25}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: PulseChainProjects ranking and directory site)
+                        </span>
                         {errors.short_description &&
                         touched.short_description &&
                         formValues.short_description == "" ? (
@@ -617,6 +637,10 @@ export default function index() {
                             }`}
                           maxLength={300}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: PulseChainProjects is an open source tool built
+                          by the HowToPulse Team)
+                        </span>
                         {errors.full_description &&
                         touched.full_description &&
                         formValues.full_description == "" ? (
@@ -647,6 +671,9 @@ export default function index() {
                             }`}
                           maxLength={200}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: https://pulsechainprojects.io)
+                        </span>
                         {errors.website_url &&
                         touched.website_url &&
                         formValues.website_url == "" ? (
@@ -677,6 +704,9 @@ export default function index() {
                             }`}
                           maxLength={200}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: https://pulsechainprojects.io/ourlogo)
+                        </span>
                         {errors.logo_url &&
                         touched.logo_url &&
                         formValues.logo_url == "" ? (
@@ -705,6 +735,9 @@ export default function index() {
                             }`}
                           maxLength={100}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: $PP)
+                        </span>
                         {errors.ticker &&
                         touched.ticker &&
                         formValues.ticker == "" ? (
@@ -735,6 +768,9 @@ export default function index() {
                             }`}
                           maxLength={50}
                         />
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: 10B )
+                        </span>
                         {errors.total_supply &&
                         touched.total_supply &&
                         formValues.total_supply == "" ? (
@@ -747,6 +783,9 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Sacrifice</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          Is your project raising capital?
+                        </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {SacrificeValues.map((data, i) => {
                             return (
@@ -782,6 +821,9 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">App Status *</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: LIVE)
+                        </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {AppStatus.map((data, i) => {
                             return (
@@ -822,6 +864,9 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Categories *</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          (e.g: At Least one tag required and max. 10)
+                        </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {Category.map((data, i) => {
                             return (
@@ -878,6 +923,10 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Tokenomics</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          Make your cryptocurrency valuable and interesting to
+                          investors
+                        </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {ProjInformation.map((data, i) => {
                             return (
@@ -886,7 +935,11 @@ export default function index() {
                                   <div
                                     onClick={(e) => {
                                       e.preventDefault();
-                                      setProjectInformation(data.name);
+                                      if (projectInformation === data.name) {
+                                        setProjectInformation("None");
+                                      } else {
+                                        setProjectInformation(data.name);
+                                      }
                                     }}
                                     className={`flex items-center justify-center cursor-pointer border dark:border-black rounded-full p-2 text-sm ${
                                       projectInformation !== data.name
@@ -895,7 +948,7 @@ export default function index() {
                                     }`}
                                   >
                                     <span
-                                      className={`${
+                                      className={`truncate ${
                                         projectInformation !== data.name
                                           ? ""
                                           : "text-white"
@@ -940,7 +993,7 @@ export default function index() {
                           }}
                         />
                         <span className="text-gray-400 font-semibold text-xs my-2">
-                          Alteast one tag required and max. 10
+                          Atleast one tag required and max. 10
                         </span>
                         <div>
                           <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
@@ -988,6 +1041,9 @@ export default function index() {
 
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Social Media</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          Provide your social media presence
+                        </span>
                         <div>
                           <div className="relative w-16 top-10 left-3 flex rounded-md">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
@@ -1011,6 +1067,9 @@ export default function index() {
                             error={errors.facebook && Boolean(errors.facebook)}
                             helpertext={errors.facebook ? errors.facebook : ""}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.facebook.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.facebook}
                           </div>
@@ -1036,6 +1095,9 @@ export default function index() {
                             value={formValues.telegram}
                             onChange={handleChange}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://t.me/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.telegram}
                           </div>
@@ -1061,6 +1123,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.instagram.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.instagram}
                           </div>
@@ -1086,8 +1151,40 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.youtube.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.youtube}
+                          </div>
+                        </div>
+                        <div>
+                          <div className="relative w-16 top-10 left-3 flex rounded-md">
+                            <div className="grid grid-cols-2 divide-x w-16 md:w-14">
+                              <BsYoutube className="h-5 w-5" />
+                            </div>
+                          </div>
+                          <input
+                            type="text"
+                            className={`form-control w-full pl-16 rounded-xl border shadow-lg p-4 
+                                ${
+                                  theme === "light"
+                                    ? " shadow-slate-200 bg-slate-100 border-slate-200"
+                                    : "bg-neutral-900 shadow-neutral-800 border-black"
+                                }`}
+                            id="youtube_embed"
+                            name="youtube_embed"
+                            placeholder="Youtube Embed URL"
+                            value={formValues.youtube_embed}
+                            onChange={handleChange}
+                            maxLength={100}
+                          />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.youtube.com/embed/projectvideourl
+                            )
+                          </span>
+                          <div className="text-rose-500 my-2">
+                            {errors.youtube_embed}
                           </div>
                         </div>
                         <div>
@@ -1111,6 +1208,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.twitter.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.twitter}
                           </div>
@@ -1136,6 +1236,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.reddit.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.reddit}
                           </div>
@@ -1161,6 +1264,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://medium.com/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.medium}
                           </div>
@@ -1186,6 +1292,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.discord.gg/yourproject )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.discord}
                           </div>
@@ -1194,6 +1303,9 @@ export default function index() {
 
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Source Code</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          Show off your code repo
+                        </span>
                         <div>
                           <div className="relative w-16 top-10 left-3 flex rounded-md divide-x">
                             <div className="grid grid-cols-2 divide-x w-16 md:w-14">
@@ -1215,6 +1327,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.github.com/yourprojectrepo )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.github}
                           </div>
@@ -1240,6 +1355,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.gitlab..com/yourprojectrepo )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.gitlab}
                           </div>
@@ -1265,6 +1383,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: https://www.bitbucket.com/yourprojectrepo )
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.bitbuket}
                           </div>
@@ -1272,8 +1393,12 @@ export default function index() {
                       </div>
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">We're hiring</p>
+                        <span className="text-gray-400 font-semibold text-xs my-2">
+                          Do you need a developer, marketer, social media
+                          content creator?
+                        </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                          {hiringValues.map((data, i) => {
+                          {/* {hiringValues.map((data, i) => {
                             return (
                               <div key={i}>
                                 <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
@@ -1299,7 +1424,34 @@ export default function index() {
                                 </div>
                               </div>
                             );
-                          })}
+                          })} */}
+                          <label
+                            for="toggleB"
+                            className="flex items-center cursor-pointer"
+                          >
+                            <div className="relative">
+                              <input
+                                type="checkbox"
+                                id="toggleB"
+                                className="sr-only"
+                                onClick={(e) => {
+                                  // e.preventDefault();
+                                  setHiring(!hiring);
+                                }}
+                              />
+                              <div
+                                className={`block bg-gray-300  w-14 h-8 rounded-full ${
+                                  hiring
+                                    ? "bg-green-200 dark:bg-green-800"
+                                    : "dark:bg-gray-600"
+                                }`}
+                              ></div>
+                              <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                            </div>
+                            <div className="ml-3 text-gray-400 font-semibold text-xs font-medium">
+                              {hiring ? "Yes" : "No"}
+                            </div>
+                          </label>
                         </div>
                         <div className="my-5">
                           <input
@@ -1317,6 +1469,10 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={100}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            If your hiring or would like users to contact you,
+                            please enter your email
+                          </span>
                         </div>
                         <div className="my-5">
                           <input
@@ -1334,6 +1490,9 @@ export default function index() {
                             onChange={handleChange}
                             maxLength={200}
                           />
+                          <span className="text-gray-400 font-semibold text-xs my-2">
+                            (e.g: Enter your 0x project address)
+                          </span>
                           <div className="text-rose-500 my-2">
                             {errors.smart_contract_address}
                           </div>

@@ -406,8 +406,7 @@ export default function DappDetails() {
                 }`}
                 >
                   <div
-                    className={`rounded-3xl border-2 z-50
-                   ${dappInfo.hiring === "Yes" ? "" : "shadow-xl"}
+                    className={`rounded-3xl border-2 z-50 shadow-xl
                   ${
                     theme === "light"
                       ? " border-slate-200 shadow-slate-200 bg-slate-100"
@@ -455,13 +454,6 @@ export default function DappDetails() {
                       </div>
                     </div>
                   </div>
-                  {dappInfo.hiring === "Yes" && (
-                    <div className="relative py-2">
-                      <p className="p-1 cursor-default font-semibold flex justify-center bg-[#00BE78] text-white ">
-                        We're hiring
-                      </p>
-                    </div>
-                  )}
                   <div class="grid grid-cols-3 justify-between divide-x py-8">
                     <div className="flex flex-col items-center justify-center">
                       <div>
@@ -647,6 +639,13 @@ export default function DappDetails() {
                   <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
                     {getDisplayType(dappInfo.tag)}
                   </div>
+                  {dappInfo.hiring === "Yes" && (
+                    <div className="relative py-2">
+                      <p className="p-1 cursor-default font-semibold flex justify-center bg-[#00BE78] text-white ">
+                        We're hiring
+                      </p>
+                    </div>
+                  )}
                   {dappInfo.email && dappInfo.email !== "" && (
                     <div className="flex justify-center items-center text-center text-gray-500 text-base space-x-2 py-8 px-4">
                       <p className="text-black dark:text-white text-lg">
@@ -837,11 +836,11 @@ export default function DappDetails() {
                   before participating in any Dapp.
                 </p>
               </div>
-              {dappInfo.sns.youtube && dappInfo.sns.youtube !== "" && (
+              {dappInfo.youtube_embed && dappInfo.youtube_embed !== "" && (
                 <div className="pt-6 w-full flex items-center justify-center">
                   <iframe
                     className="h-96 w-full rounded-2xl"
-                    src={dappInfo.sns.youtube}
+                    src={dappInfo.youtube_embed}
                     title="Ms. Marvel Tells Spider-Man To Take Off His Mask Scene - Marvel's Avengers"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

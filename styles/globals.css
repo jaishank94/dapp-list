@@ -190,6 +190,12 @@
   padding: 10px 0;
 }
 
+/* Toggle */
+input:checked ~ .dot {
+  transform: translateX(100%);
+  background-color: #48bb78;
+}
+
 /* .table-data.col-rewards, .table-data.col-vol, .table-data.col-tx {
     margin: 0;
     text-align: inherit;
