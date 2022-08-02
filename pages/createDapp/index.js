@@ -865,7 +865,7 @@ export default function index() {
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Categories *</p>
                         <span className="text-gray-400 font-semibold text-xs my-2">
-                          (e.g: At Least one tag required and max. 10)
+                          Select your project category 
                         </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {Category.map((data, i) => {

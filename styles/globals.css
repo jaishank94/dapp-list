@@ -196,6 +196,16 @@ input:checked ~ .dot {
   background-color: #48bb78;
 }
 
+/* input#tag {
+  background-image: url("/images/tags.png");
+  background-size:contain;
+  background-repeat: no-repeat;
+}
+
+input#tag:focus {
+  background-image:none;
+} */
+
 /* .table-data.col-rewards, .table-data.col-vol, .table-data.col-tx {
     margin: 0;
     text-align: inherit;
