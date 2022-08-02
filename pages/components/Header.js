@@ -18,6 +18,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { useMoralis } from "react-moralis";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
+import Script from "next/script";
 import howToPulse from "/public/images/howToPulse.png";
 
 export default function Header({ displayCreate }) {
@@ -33,7 +34,7 @@ export default function Header({ displayCreate }) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {}, [isAuthenticated, isInitialized]);
+  useEffect(() => { }, [isAuthenticated, isInitialized]);
 
   const handleSidebar = () => {
     setIsOpen(!isOpen);
@@ -55,6 +56,21 @@ export default function Header({ displayCreate }) {
       <header className="flex justify-between p-4 max-w-7xl mx-auto bg-[#EDF1F4] dark:bg-neutral-800">
         <Head>
           <title>PulseChainProjects.io</title>
+          <Script
+            strategy="lazyOnload"
+            src={`https://www.googletagmanager.com/gtag/js?id='G-Y974D74XZD'`}
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`window.dataLayer = window.dataLayer || [];
+          function gtag(){
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-Y974D74XZD');
+          // page_path: window.location.pathname,
+
+        `}
+          </Script>
           <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.cdnfonts.com/css/gordita"
@@ -84,9 +100,8 @@ export default function Header({ displayCreate }) {
           </Link>
           {!isAuthenticated ? (
             <button
-              className={`rounded-full ${
-                theme === "light" ? "bg-white" : "bg-neutral-700"
-              } cursor-pointer md:rounded-full`}
+              className={`rounded-full ${theme === "light" ? "bg-white" : "bg-neutral-700"
+                } cursor-pointer md:rounded-full`}
               onClick={authenticate}
             >
               <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
@@ -98,9 +113,8 @@ export default function Header({ displayCreate }) {
             </button>
           ) : (
             <button
-              className={`rounded-lg ${
-                theme === "light" ? "bg-white" : "bg-neutral-700"
-              } cursor-pointer mx-2 md:rounded-full`}
+              className={`rounded-lg ${theme === "light" ? "bg-white" : "bg-neutral-700"
+                } cursor-pointer mx-2 md:rounded-full`}
               onClick={logout}
             >
               <span className="p-2 hidden text-sm md:block text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Logout</span>
