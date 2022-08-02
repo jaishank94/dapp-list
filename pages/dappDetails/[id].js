@@ -225,13 +225,53 @@ export default function DappDetails() {
 
   const increasePageView = async () => {
     try {
-      const Dapps = Moralis.Object.extend("Dapps");
-      const query = new Moralis.Query(Dapps);
-      query.equalTo("objectId", id);
-      const response = await query.find();
-      if (response.length > 0) {
-        response[0].increment("page_views", 1);
-        await response[0].save();
+      if (id) {
+        const isViewed = localStorage.getItem("viewed");
+        const DappsAnalytics = Moralis.Object.extend("DappsAnalytics");
+        const PageAnalytics = Moralis.Object.extend("PageAnalytics");
+
+        if (!isViewed) {
+          const newAnalyObject = new DappsAnalytics();
+          const nAObj = await newAnalyObject.save();
+
+          const newObject = new PageAnalytics();
+          newObject.set("page", `${id}_details_page`);
+          newObject.set("page_views", 1);
+          newObject.set("analyticId", nAObj.id);
+          await newObject.save();
+
+          localStorage.setItem("viewed", nAObj.id);
+
+          const Dapps = Moralis.Object.extend("Dapps");
+          const query = new Moralis.Query(Dapps);
+          query.equalTo("objectId", id);
+          const response = await query.find();
+          if (response.length > 0) {
+            response[0].increment("page_views", 1);
+            await response[0].save();
+          }
+        } else {
+          const query = new Moralis.Query(PageAnalytics);
+          query.equalTo("page", `${id}_details_page`);
+          query.equalTo("analyticId", isViewed);
+          const response = await query.find();
+          if (response.length === 0) {
+            const newObject = new PageAnalytics();
+            newObject.set("page", `${id}_details_page`);
+            newObject.set("page_views", 1);
+            newObject.set("analyticId", isViewed);
+            await newObject.save();
+
+            const Dapps = Moralis.Object.extend("Dapps");
+            const query = new Moralis.Query(Dapps);
+            query.equalTo("objectId", id);
+            const response = await query.find();
+            if (response.length > 0) {
+              response[0].increment("page_views", 1);
+              await response[0].save();
+            }
+          }
+        }
       }
     } catch (e) {}
   };
@@ -382,8 +422,10 @@ export default function DappDetails() {
           >
             <Header displayCreate={false} />
             <Head>
-          <title>{dappInfo && (dappInfo.name + " - Pulsechain Project Overview")}</title>
-        </Head>
+              <title>
+                {dappInfo && dappInfo.name + " - Pulsechain Project Overview"}
+              </title>
+            </Head>
           </div>
         </div>
         <div className="max-w-7xl mx-auto">
@@ -457,7 +499,7 @@ export default function DappDetails() {
                       </div>
                     </div>
                   </div>
-                  <div class="grid grid-cols-3 justify-between divide-x py-8">
+                  <div className="grid grid-cols-3 justify-between divide-x py-8">
                     <div className="flex flex-col items-center justify-center">
                       <div>
                         <p className="text-gray-500 text-xs md:text-base">
@@ -502,7 +544,7 @@ export default function DappDetails() {
                     </div>
                   </div>
 
-                  <div class="grid grid-cols-3 divide-x py-8">
+                  <div className="grid grid-cols-3 divide-x py-8">
                     <div className="flex flex-col items-center justify-center">
                       <div>
                         <p className="text-gray-500 text-xs md:text-base">

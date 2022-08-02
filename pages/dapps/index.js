@@ -69,12 +69,61 @@ export default function index() {
   useEffect(() => {
     if (isInitialized) {
       getAppList();
+      increasePageView();
     }
   }, [isInitialized, category, filter, duration, filter_category, searchText]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const increasePageView = async () => {
+    try {
+      const isViewed = localStorage.getItem("viewed");
+      const DappsAnalytics = Moralis.Object.extend("DappsAnalytics");
+      const MasterAnalytics = Moralis.Object.extend("MasterAnalytics");
+      const PageAnalytics = Moralis.Object.extend("PageAnalytics");
+
+      const mQuery = new Moralis.Query(MasterAnalytics);
+      mQuery.equalTo("page", "dapps_listing_page");
+      const mResponse = await mQuery.find();
+
+      if (!isViewed) {
+        const newAnalyObject = new DappsAnalytics();
+        const nAObj = await newAnalyObject.save();
+
+        const newObject = new PageAnalytics();
+        newObject.set("page", "dapps_listing_page");
+        newObject.set("page_views", 1);
+        newObject.set("analyticId", nAObj.id);
+        await newObject.save();
+
+        if (mResponse.length) {
+          mResponse[0].increment("page_views", 1);
+          await mResponse[0].save();
+        }
+
+        localStorage.setItem("viewed", nAObj.id);
+      } else {
+        const query = new Moralis.Query(PageAnalytics);
+        query.equalTo("page", "dapps_listing_page");
+        query.equalTo("analyticId", isViewed);
+        const response = await query.find();
+        if (response.length === 0) {
+          const newObject = new PageAnalytics();
+          newObject.set("page", "dapps_listing_page");
+          newObject.set("page_views", 1);
+          newObject.set("analyticId", isViewed);
+          await newObject.save();
+
+          if (mResponse.length) {
+            mResponse[0].increment("page_views", 1);
+            await mResponse[0].save();
+          }
+        }
+      }
+    } catch (e) {}
+  };
 
   const getAppList = async () => {
     setLoading(true);

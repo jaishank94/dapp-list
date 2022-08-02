@@ -11,7 +11,8 @@ import Link from "next/link";
 
 export default function index() {
   const { isInitialized } = useMoralis();
-  const [dappInfo, setDappInfo] = useState({ dapps: 0, visitors: 0 });
+  const [dCount, setDappCount] = useState(0);
+  const [vCount, setVisitorCount] = useState(0);
   const { theme, setTheme } = useTheme("dark");
   const [isMounted, setMounted] = useState(false);
 
@@ -23,8 +24,60 @@ export default function index() {
   useEffect(() => {
     if (isInitialized) {
       getAppInfo();
+      increasePageView();
     }
   }, [isInitialized]);
+
+  const increasePageView = async (dappsCount) => {
+    try {
+      const isViewed = localStorage.getItem("viewed");
+      const DappsAnalytics = Moralis.Object.extend("DappsAnalytics");
+      const MasterAnalytics = Moralis.Object.extend("MasterAnalytics");
+      const PageAnalytics = Moralis.Object.extend("PageAnalytics");
+
+      const mQuery = new Moralis.Query(MasterAnalytics);
+      mQuery.equalTo("page", "landing_page");
+      const mResponse = await mQuery.find();
+
+      if (!isViewed) {
+        const newAnalyObject = new DappsAnalytics();
+        const nAObj = await newAnalyObject.save();
+
+        const newObject = new PageAnalytics();
+        newObject.set("page", "landing_page");
+        newObject.set("page_views", 1);
+        newObject.set("analyticId", nAObj.id);
+        await newObject.save();
+
+        if (mResponse.length) {
+          mResponse[0].increment("page_views", 1);
+          await mResponse[0].save();
+        }
+
+        localStorage.setItem("viewed", nAObj.id);
+      } else {
+        const query = new Moralis.Query(PageAnalytics);
+        query.equalTo("page", "landing_page");
+        query.equalTo("analyticId", isViewed);
+        const response = await query.find();
+        if (response.length === 0) {
+          const newObject = new PageAnalytics();
+          newObject.set("page", "landing_page");
+          newObject.set("analyticId", isViewed);
+          newObject.set("page_views", 1);
+          await newObject.save();
+
+          if (mResponse.length) {
+            mResponse[0].increment("page_views", 1);
+            await mResponse[0].save();
+          }
+        }
+      }
+      if (mResponse.length) {
+        setVisitorCount(mResponse[0].get("page_views"));
+      }
+    } catch (e) {}
+  };
 
   const getAppInfo = async () => {
     try {
@@ -34,11 +87,7 @@ export default function index() {
       query.limit(10000);
       const response = await query.find();
 
-      let result = {
-        dapps: response.length,
-        visitors: 0,
-      };
-      setDappInfo(result);
+      setDappCount(response.length);
     } catch (e) {
       console.log("error", e);
     }
@@ -91,7 +140,7 @@ export default function index() {
         <div className="flex p-4 w-full space-between">
           <div className="text-white relative">
             <div className="p-2 md:p-4 absolute z-50">
-              <p className="text-xl font-bold">{dappInfo.dapps}</p>
+              <p className="text-xl font-bold">{dCount}</p>
               <p className="text-xs pt-1 font-default text-gray-100">DApps</p>
             </div>
             <div className="p-2 md:p-4 h-16 w-20 md:h-20 md:w-28 shadow rounded-xl bg-gradient-to-r from-slate-200 opacity-25">
@@ -100,8 +149,8 @@ export default function index() {
           </div>
           <div className="text-white relative mx-10">
             <div className="p-2 md:p-4 absolute z-50">
-              {/* <p className="text-xl font-bold">{dappInfo.visitors}</p> */}
-              <p className="text-xl font-bold">{"-"}</p>
+              <p className="text-xl font-bold">{vCount}</p>
+              {/* <p className="text-xl font-bold">{"-"}</p> */}
               <p className="text-xs pt-1 font-default text-gray-100">
                 Visitors
               </p>
@@ -116,7 +165,9 @@ export default function index() {
           <div className="">
             <Link href="/dapps">
               <button className="cursor-pointer bg-white p-2 rounded-full shadow-lg shadow-stone-500">
-                <span className="text-sm uppercase text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Explore Projects</span>
+                <span className="text-sm uppercase text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                  Explore Projects
+                </span>
               </button>
             </Link>
           </div>
