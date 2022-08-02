@@ -146,6 +146,8 @@ const Category = [
 
 const ProjInformation = [{ name: "Airdrop" }, { name: "Sacrifice Phrase" }];
 
+const exampleTags = ["NFT", "Marketplace", "Crypto"];
+
 const initialValues = {
   name: "",
   short_description: "",
@@ -865,7 +867,7 @@ export default function index() {
                       <div className="my-2 px-2 py-2 w-full">
                         <p className="font-bold text-lg">Categories *</p>
                         <span className="text-gray-400 font-semibold text-xs my-2">
-                          (e.g: At Least one tag required and max. 10)
+                          Select your project category
                         </span>
                         <div className="grid grid-cols-2 mt-5 gap-4 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
                           {Category.map((data, i) => {
@@ -970,7 +972,7 @@ export default function index() {
                           type="text"
                           id="tag"
                           name="tag"
-                          placeholder="NFT + Games + Education"
+                          placeholder={"Add tags"}
                           value={tags}
                           onChange={(e) => setTags(e.target.value)}
                           className={`form-control w-full rounded-xl border shadow-lg p-4 ${
@@ -983,11 +985,17 @@ export default function index() {
                             }`}
                           maxLength={25}
                           onKeyPress={(e) => {
-                            if (e.key === "Enter") {
+                            if (e.key === "Enter" || e.key === ",") {
                               e.preventDefault();
+                              let newTag = tags;
                               if (tags !== "" && tagArr.length < 10) {
-                                setTagArr([...tagArr, tags]);
-                                setTags("");
+                                const index = tagArr.indexOf(newTag);
+                                if (index <= -1) {
+                                  setTagArr([...tagArr, newTag]);
+                                  setTags("");
+                                } else {
+                                  setTags("");
+                                }
                               }
                             }
                           }}
@@ -997,37 +1005,59 @@ export default function index() {
                         </span>
                         <div>
                           <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-4 3xl:flex flex-wrap justify-center">
-                            {tagArr.map((data, i) => {
-                              return (
-                                <div key={i}>
-                                  <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
-                                    <div
-                                      className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm 
+                            {tagArr.length > 0?
+                              tagArr.map((data, i) => {
+                                return (
+                                  <div key={i}>
+                                    <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full">
+                                      <div
+                                        className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm 
                                     }`}
-                                    >
-                                      <span className="w-9/12 text-left truncate">
-                                        {data}
-                                      </span>
-                                      <span className="w-3/12 text-right contents">
-                                        <BsDash
-                                          className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-800 shadow-md w-5 h-5 bg-slate-100 text-black dark:text-white"
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            const index = tagArr.indexOf(data);
-                                            let newArry = tagArr;
-                                            if (index > -1) {
-                                              newArry.splice(index, 1);
-                                            }
-                                            setTagArr(newArry);
-                                            setTags(data);
-                                          }}
-                                        />
-                                      </span>
+                                      >
+                                        <span className="w-9/12 text-left truncate">
+                                          {data}
+                                        </span>
+                                        <span className="w-3/12 text-right contents">
+                                          <BsDash
+                                            className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-800 shadow-md w-5 h-5 bg-slate-100 text-black dark:text-white"
+                                            onClick={(e) => {
+                                              e.preventDefault();
+                                              const index =
+                                                tagArr.indexOf(data);
+                                              let newArry = tagArr;
+                                              if (index > -1) {
+                                                newArry.splice(index, 1);
+                                              }
+                                              setTagArr(newArry);
+                                              setTags(data);
+                                            }}
+                                          />
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              );
-                            })}
+                                );
+                              }):null}
+                            {tagArr.length === 0 ?
+                              exampleTags.map((data, i) => {
+                                return (
+                                  <div key={i}>
+                                    <div className="shadow-inner shadow-gray-400 dark:shadow-black rounded-full opacity-25">
+                                      <div
+                                        className={`flex cursor-pointer justify-center items-center border dark:border-black rounded-full p-2 text-sm 
+                                    }`}
+                                      >
+                                        <span className="w-9/12 text-left truncate">
+                                          {data}
+                                        </span>
+                                        <span className="w-3/12 text-right contents">
+                                          <BsDash className="rounded-full border border-white dark:border-neutral-800 dark:bg-neutral-800 shadow-md w-5 h-5 bg-slate-100 text-black dark:text-white" />
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              }):null}
                           </div>
                         </div>
                         {errors.tagArr && tagArr.length === 0 ? (

@@ -55,22 +55,7 @@ export default function Header({ displayCreate }) {
       </div>
       <header className="flex justify-between p-4 max-w-7xl mx-auto bg-[#EDF1F4] dark:bg-neutral-800">
         <Head>
-          <title>PulseChainProjects.io</title>
-          <Script
-            strategy="lazyOnload"
-            src={`https://www.googletagmanager.com/gtag/js?id='G-Y974D74XZD'`}
-          />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];
-          function gtag(){
-            dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-          gtag('config', 'G-Y974D74XZD');
-          // page_path: window.location.pathname,
-
-        `}
-          </Script>
+          <title>Pulsechain Projects</title>
           <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.cdnfonts.com/css/gordita"

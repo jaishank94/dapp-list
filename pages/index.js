@@ -47,7 +47,7 @@ export default function index() {
   return (
     <div className="bg-black relative text-white">
       <Head>
-        <title>PulseChainProjects.io</title>
+        <title>Pulsechain Projects</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.cdnfonts.com/css/gordita" rel="stylesheet" />
       </Head>
@@ -62,7 +62,7 @@ export default function index() {
                 className="rounded-t-lg"
                 src={logoWhite}
               />
-              <p className="font-bold text-white px-2">PulseChainProjects.io</p>
+              <p className="font-bold text-white px-2">Pulsechain Projects</p>
             </div>
           </Link>
         </div>
@@ -70,7 +70,7 @@ export default function index() {
         <div className="w-full">
           <h1 className="text-3xl break-words pt-4 md:text-5xl font-bold text-white drop-shadow-lg shadow-black md:pt-14 px-4">
             Discover the next big <br />
-            project on PulseChain
+            project on puslechain projects
           </h1>
           <div className="flex px-4">
             <ul className="list-disc px-2 pt-8">
