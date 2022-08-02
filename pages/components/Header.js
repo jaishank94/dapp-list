@@ -54,7 +54,7 @@ export default function Header({ displayCreate }) {
       </div>
       <header className="flex justify-between p-4 max-w-7xl mx-auto bg-[#EDF1F4] dark:bg-neutral-800">
         <Head>
-          <title>PulseChainProjects.io</title>
+          <title>Pulsechain Projects</title>
           <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.cdnfonts.com/css/gordita"

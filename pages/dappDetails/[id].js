@@ -381,6 +381,9 @@ export default function DappDetails() {
             } border-slate-300 mb-5`}
           >
             <Header displayCreate={false} />
+            <Head>
+          <title>{dappInfo && (dappInfo.name + " - Pulsechain Project Overview")}</title>
+        </Head>
           </div>
         </div>
         <div className="max-w-7xl mx-auto">
@@ -444,9 +447,9 @@ export default function DappDetails() {
                       </div>
                       <div className="flex-initial px-5 xl:p-5">
                         <div className="py-4">
-                          <h5 className="font-bold text-lg md:text-3xl">
+                          <h1 className="font-bold text-lg md:text-3xl">
                             {dappInfo.name}
-                          </h5>
+                          </h1>
                           <p className="text-gray-500 text-sm">
                             {dappInfo.short_description}
                           </p>
