@@ -647,7 +647,11 @@ export default function DappDetails() {
                             if (val[1] === "") return null;
                             return (
                               <li className="p-2" key={key}>
-                                <a className="mr-4 md:mr-6 " href={val[1]}>
+                                <a
+                                  className="mr-4 md:mr-6 "
+                                  href={val[1]}
+                                  target="_blank"
+                                >
                                   {snsIcon[val[0]]}
                                 </a>
                               </li>
@@ -667,7 +671,11 @@ export default function DappDetails() {
 
                             return (
                               <li className="p-2" key={key}>
-                                <a className="mr-4 md:mr-6 " href={val[1]}>
+                                <a
+                                  className="mr-4 md:mr-6 "
+                                  href={val[1]}
+                                  target="_blank"
+                                >
                                   {codeIcon[val[0]]}
                                 </a>
                               </li>
@@ -742,13 +750,13 @@ export default function DappDetails() {
                     </div>
                     <div className="">
                       <div className="cursor-pointer uppercase flex items-center justify-center rounded-b-full p-2 font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-xl text-white">
-                        <Link
+                        <a
                           href={dappInfo.website_url}
                           target="_blank"
                           className=""
                         >
                           Launch DApp
-                        </Link>
+                        </a>
                       </div>
                     </div>
                     <div className="flex justify-center items-center my-4">
@@ -910,57 +918,62 @@ export default function DappDetails() {
                           key={indx}
                           className="shadow-inner shadow-gray-400 dark:shadow-black rounded-3xl"
                         >
-                          <div
-                            className={`w-full rounded-3xl shadow-lg border cursor-pointer  ${
-                              theme === "light"
-                                ? "border-white shadow-white"
-                                : "border-neutral-800 shadow-neutral-800"
-                            }`}
-                            onClick={() =>
-                              router.push("/dappDetails/" + app.objectId)
-                            }
+                          <a
+                            href={"/dappDetails/" + app.objectId}
+                            target="_blank"
                           >
                             <div
-                              className={`flex block w-full h-full p-2 rounded-2xl  ${
-                                theme === "light" ? "" : "bg-neutral-900"
-                              } `}
+                              className={`w-full rounded-3xl shadow-lg border cursor-pointer  ${
+                                theme === "light"
+                                  ? "border-white shadow-white"
+                                  : "border-neutral-800 shadow-neutral-800"
+                              }`}
+                              // onClick={() =>
+                              //   router.push("/dappDetails/" + app.objectId)
+                              // }
                             >
                               <div
-                                className={`block w-1/5 flex justify-center items-center rounded-3xl shadow-xl border ${
-                                  theme === "light"
-                                    ? "border-slate-200  shadow-white"
-                                    : "border-black bg-neutral-900 shadow-neutral-800"
-                                }`}
+                                className={`flex block w-full h-full p-2 rounded-2xl  ${
+                                  theme === "light" ? "" : "bg-neutral-900"
+                                } `}
                               >
-                                {app.logo && app.logo !== "" ? (
-                                  <img
-                                    alt="Logo"
-                                    src={app.logo}
-                                    width={40}
-                                    height={40}
-                                    className=""
-                                  />
-                                ) : (
-                                  <Image src={logo} width={40} height={40} />
-                                )}
-                              </div>
-
-                              <div className="px-3 w-4/5">
-                                <p className="text-left text-lg truncate text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
-                                  {app.name}
-                                </p>
-                                <p
-                                  className={`text-left py-2 truncate text-sm font-normal text-justify ${
+                                <div
+                                  className={`block w-1/5 flex justify-center items-center rounded-3xl shadow-xl border ${
                                     theme === "light"
-                                      ? "text-black"
-                                      : "text-gray-500"
+                                      ? "border-slate-200  shadow-white"
+                                      : "border-black bg-neutral-900 shadow-neutral-800"
                                   }`}
                                 >
-                                  {app.short_description}
-                                </p>
+                                  {app.logo && app.logo !== "" ? (
+                                    <img
+                                      alt="Logo"
+                                      src={app.logo}
+                                      width={40}
+                                      height={40}
+                                      className=""
+                                    />
+                                  ) : (
+                                    <Image src={logo} width={40} height={40} />
+                                  )}
+                                </div>
+
+                                <div className="px-3 w-4/5">
+                                  <p className="text-left text-lg truncate text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 ">
+                                    {app.name}
+                                  </p>
+                                  <p
+                                    className={`text-left py-2 truncate text-sm font-normal text-justify ${
+                                      theme === "light"
+                                        ? "text-black"
+                                        : "text-gray-500"
+                                    }`}
+                                  >
+                                    {app.short_description}
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </a>
                         </div>
                       );
                     })}
@@ -987,18 +1000,17 @@ export default function DappDetails() {
                   {Categories &&
                     Categories.map((app, indx) => {
                       return (
-                        <button
+                        <a
                           key={indx}
                           className={`${app.bgColor} cursor-pointer flex justify-start items-center p-2 m-2 space-around rounded-xl`}
-                          onClick={() =>
-                            router.push("/dapps?filter_category=" + app.slug)
-                          }
+                          href={"/dapps?filter_category=" + app.slug}
+                          target="_blank"
                         >
                           <div className={``}>{app.icon}</div>
                           <span className="font-semibold text-sm truncate">
                             {app.name}
                           </span>
-                        </button>
+                        </a>
                       );
                     })}
                   {Categories && Categories.length == 0 && (

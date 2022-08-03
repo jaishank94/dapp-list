@@ -223,7 +223,7 @@ function Tbody(props) {
 
               <div class="my-2 flex flex-col justify-start">
                 <h5 class="text-xl font-bold mb-2 text-transparent font-bold bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                  <Link href={"/dappDetails/" + props.id}>{props.name}</Link>
+                  <a href={"/dappDetails/" + props.id} target="_blank">{props.name}</a>
                 </h5>
                 <p class="text-sm font-normal mb-4">
                   {props.short_description}
@@ -437,11 +437,11 @@ function Tbody(props) {
                 </div>
               </div>
               <div className="">
-                <Link href={"/dappDetails/" + props.id}>
+                <a href={"/dappDetails/" + props.id} target="_blank">
                   <div className="p-2 px-4 mx-2 rounded-full font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 shadow-lg text-lg text-white ">
                     {" Learn More "}
                   </div>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
